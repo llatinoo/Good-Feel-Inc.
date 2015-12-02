@@ -14,6 +14,7 @@ namespace RPGTest
         [STAThread]
         static void Main()
         {
+            // Test
             using (var game = new Game1())
                 game.Run();
         }
