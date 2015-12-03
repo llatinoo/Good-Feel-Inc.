@@ -5,8 +5,11 @@ using System.Text;
 
 namespace RPGTest.Skills
 {
-    interface IEffect
+    interface IStatuseffect : IEffect
     {
-        void Execute(Character source, List<Character> targets);
+        int duration { get; set; }
+        int damage { get; set; }
+
+        bool IsDone();
     }
 }

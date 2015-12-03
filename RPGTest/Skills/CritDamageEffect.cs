@@ -5,12 +5,15 @@ using System.Text;
 
 namespace RPGTest.Skills
 {
-    class CritDamageEffect : IEffect
+    class CriticalDamageEffect : IEffect
     {
         Random random;
-        public void Execute(int skill, int strg, ref Result result)
+        public void Execute(Character source, List<Character> targets)
         {
-            result.damage -= Convert.ToInt32( (strg * 1.5 + (random.Next(1, (strg / 3) * 1000)) / 1000) );
+            foreach (Character target in targets)
+            {
+                target.Vitality -= Convert.ToInt32((source.fStrength * 1.5 + (random.Next(1, (source.fStrength / 3) * 1000)) / 1000)) - target.Defense;
+            }
         }
     }
 }

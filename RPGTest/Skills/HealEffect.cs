@@ -7,11 +7,12 @@ namespace RPGTest.Skills
 {
     class HealEffect : IEffect
     {
-        Random random;
-
-        public void Execute(int skill, int strg, ref Result result)
+        public void Execute(Character source, List<Character> targets)
         {
-            result.damage += Convert.ToInt32( ((skill / 100) * 20));
+            foreach (Character target in targets)
+            {
+                target.Vitality += Convert.ToInt32(source.fMagic * 0.2);
+            }
         }
     }
 }
