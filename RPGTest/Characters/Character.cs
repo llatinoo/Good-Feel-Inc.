@@ -1,14 +1,13 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace RPGTest
 {
-    class Character
+    public class Character
     {
-        public Texture2D CharTexture;
-
-        public Vector2 Position;
+        Characters.GraphicCharacter sprite;
 
         public string name;
 
@@ -19,38 +18,53 @@ namespace RPGTest
         public int Mana;
         public int Luck;
 
-        public int Width
+        public int fVitality;
+        public int fStrength;
+        public int fMagic;
+        public int fDefense;
+        public int fMana;
+        public int fLuck;
+
+        public int level;
+        public int exp;
+        public List<int> levelcap;
+
+        public List<Skills.Skill> skills;
+        public List<Skills.IStatuseffect> statuseffects;
+        public int ultimatePoints;
+        public int ultimatePointsToCast;
+        private int v;
+
+        //Contains Mindblown
+        //var skill = skillFromList as MindBlown
+        //    if (skill != null)
+
+
+        public Character(Texture2D texture, Vector2 position, int vita, int strength, int mag, int def, int mana, int luck, List<int> levellist)
         {
-            get { return CharTexture.Width; }
+            sprite.Initialize(texture, position);
+
+            fVitality = Vitality = vita;
+            fStrength = Strength = strength;
+            fMagic = Magic = mag;
+            fDefense = Defense = def;
+            fMana = Mana = mana;
+            fLuck = Luck = luck;
+
+            exp = 0;
+            levelcap = levellist;
+
+            skills = new List<Skills.Skill>();
         }
 
-        public int Height
+        public Character(int v)
         {
-            get { return CharTexture.Height; }
+            this.v = v;
         }
 
-        //TODO Konstruktor
-        public void Initialize(Texture2D texture, Vector2 position, int vita, int strg, int mag, int def, int mana, int luck)
+        public void AddSkill(Skills.Skill newSkill)
         {
-            CharTexture = texture;
-            Position = position;
-            Vitality = vita;
-            Strength = strg;
-            Magic = mag;
-            Defense = def;
-            Mana = mana;
-            Luck = luck;
-
-        }
-
-        public void Update()
-        {
-
-        }
-
-        public void Draw(SpriteBatch spritebatch)
-        {
-            spritebatch.Draw(CharTexture, Position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            this.skills.Add(newSkill);
         }
     }
 }

@@ -5,8 +5,8 @@ using System.Text;
 
 namespace RPGTest.Skills
 {
-    interface IEffect
+    public interface IEffect
     {
-        void Execute(int skill, int strg, ref Result result);
+        void Execute(Character source, List<Character> targets);
     }
 }

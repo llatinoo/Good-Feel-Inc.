@@ -5,37 +5,36 @@ using System.Text;
 
 namespace RPGTest.Skills
 {
-    class Skill
+    public class Skill
     {
         public string name ;
-        public int magic;
-        public int strength;
-        public int mana;
+        public int costs;
+        public IList<IEffect> effects;
 
-
-        public List<IEffect> effects;
+        //private IEffect healEffect;
+        //private IEffect criticalDamageEffect;
 
         //TODO Effect Liste
-        public Skill(string name, IEffect newEffect)
+        public Skill(string skillName, int manacosts, List<IEffect> skilleffects)
         {
-            this.name = name;
-            this.AddEffect(newEffect);
+            this.name = skillName;
+            this.costs = manacosts;
+            this.effects = skilleffects;
+
+            //this.healEffect = new HealEffect();
+            //this.criticalDamageEffect = new CriticalDamageEffect();
         }
 
-        public Result Execute()
+        public void Execute(Character source, List<Character> targets)
         {
-            Result result = new Result(); 
+            source.fMana -= this.costs;
             foreach (IEffect effect in effects)
             {
-                effect.Execute(magic, strength, ref result);
+                effect.Execute(source, targets);
             }
 
-            return result;
-        }
-
-        public void AddEffect(IEffect newEffect)
-        {
-            effects.Add(newEffect);
+            //healEffect.Execute(this.character, this.character);
+            //criticalDamageEffect.Execute(this.character, target);            
         }
     }
 }

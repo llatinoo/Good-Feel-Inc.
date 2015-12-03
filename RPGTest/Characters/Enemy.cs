@@ -1,20 +1,12 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace RPGTest
+namespace RPGTest.Characters
 {
-    class Enemy : Character
+    public class Enemy : Character
     {
-        public void UpdateStats(int _vita, int _strg, int _mag, int _def, int _mana, int _luck)
-        {
-            Vitality += _vita;
-            Strength += _strg;
-            Magic += _mag;
-            Defense += _def;
-            Mana += _mana;
-            Luck += _luck;
-        }
+        public Enemy() : base(0) { }
     }
 }
