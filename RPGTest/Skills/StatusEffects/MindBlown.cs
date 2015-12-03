@@ -5,14 +5,14 @@ using System.Text;
 
 namespace RPGTest.Skills.StatusEffects
 {
-    public class Burn : IStatuseffect
+    public class MindBlown : IStatuseffect
     {
         public int duration { get; set; }
         public int damage { get; set; }
 
         public void Execute(Character source, List<Character> targets)
         {
-            Random r1 = new Random();
+            damage = 0;
 
             foreach (Character target in targets)
             {
@@ -20,7 +20,7 @@ namespace RPGTest.Skills.StatusEffects
 
                 foreach (IStatuseffect existingStatus in target.statuseffects)
                 {
-                    var status = existingStatus as Burn;
+                    var status = existingStatus as MindBlown;
                     if (status != null)
                     {
                         exists = true;
@@ -29,14 +29,21 @@ namespace RPGTest.Skills.StatusEffects
 
                 if (!exists)
                 {
-                    this.damage = Convert.ToInt32((r1.Next(source.fMagic / 5, (source.fMagic / 3) * 1000)) / 1000);
-                    this.duration = Convert.ToInt32(r1.Next(1, 4 * 1000) / 1000);
+                    if (target.level > source.level)
+                    {
+                        duration = 1;
+                    }
+                    else
+                    {
+                        duration = source.level - target.level;
+                    }
+
                     target.statuseffects.Add(this);
                 }
             }
         }
 
-        public bool IsDone ()
+        public bool IsDone()
         {
             if (duration <= 0)
                 return true;

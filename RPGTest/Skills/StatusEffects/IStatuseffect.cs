@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RPGTest.Skills
 {
-    interface IStatuseffect : IEffect
+    public interface IStatuseffect : IEffect
     {
         int duration { get; set; }
         int damage { get; set; }

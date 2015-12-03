@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace RPGTest
 {
-    class Character
+    public class Character
     {
         Characters.GraphicCharacter sprite;
 
@@ -25,14 +25,21 @@ namespace RPGTest
         public int fMana;
         public int fLuck;
 
+        public int level;
         public int exp;
         public List<int> levelcap;
 
         public List<Skills.Skill> skills;
-
         public List<Skills.IStatuseffect> statuseffects;
+        public int ultimatePoints;
+        public int ultimatePointsToCast;
+        private int v;
 
-        //TODO Konstruktor
+        //Contains Mindblown
+        //var skill = skillFromList as MindBlown
+        //    if (skill != null)
+
+
         public Character(Texture2D texture, Vector2 position, int vita, int strength, int mag, int def, int mana, int luck, List<int> levellist)
         {
             sprite.Initialize(texture, position);
@@ -48,6 +55,11 @@ namespace RPGTest
             levelcap = levellist;
 
             skills = new List<Skills.Skill>();
+        }
+
+        public Character(int v)
+        {
+            this.v = v;
         }
 
         public void AddSkill(Skills.Skill newSkill)

@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace RPGTest.Characters
 {
-    class GraphicCharacter
+    public class GraphicCharacter
     {
         public Texture2D CharTexture;
 

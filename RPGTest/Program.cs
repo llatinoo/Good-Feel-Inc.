@@ -16,6 +16,7 @@ namespace RPGTest
         {
             using (var game = new Game1())
                 game.Run();
+            Characters.Enemy enemy = new Characters.Enemy();
         }
     }
 #endif

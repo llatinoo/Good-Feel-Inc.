@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RPGTest.Skills
 {
-    class Skill
+    public class Skill
     {
         public string name ;
         public int costs;
@@ -27,7 +27,7 @@ namespace RPGTest.Skills
 
         public void Execute(Character source, List<Character> targets)
         {
-            source.Mana -= this.costs;
+            source.fMana -= this.costs;
             foreach (IEffect effect in effects)
             {
                 effect.Execute(source, targets);
