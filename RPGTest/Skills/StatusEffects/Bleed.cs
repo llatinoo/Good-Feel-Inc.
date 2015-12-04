@@ -1,14 +1,15 @@
-﻿using System;
+﻿using RPG.Characters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RPGTest.Skills
+namespace RPG.Skills.StatusEffects
 {
     public class Bleed : IStatuseffect
     {
-        public int duration { get; set; }
-        public int damage { get; set; }
+        public int Duration { get; set; }
+        public int Damage { get; set; }
 
         public void Execute(Character source, List<Character> targets)
         {
@@ -29,15 +30,15 @@ namespace RPGTest.Skills
 
                 if (!exists)
                 {
-                    duration = Convert.ToInt32(r1.Next(3, 6 * 1000) / 1000);
-                    damage = Convert.ToInt32((r1.Next(source.fMagic / 7, (source.fMagic / 5) * 1000)) / 1000);
+                    Duration = Convert.ToInt32(r1.Next(3, 6 * 1000) / 1000);
+                    Damage = Convert.ToInt32((r1.Next(source.FightMagic / 7, (source.FightMagic / 5) * 1000)) / 1000);
                     target.statuseffects.Add(this);
                 }
             }
         }
         public bool IsDone()
         {
-            if (duration <= 0)
+            if (Duration <= 0)
                 return true;
             else
                 return false;

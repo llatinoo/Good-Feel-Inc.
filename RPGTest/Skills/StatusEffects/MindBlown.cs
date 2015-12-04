@@ -1,18 +1,19 @@
-﻿using System;
+﻿using RPG.Characters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RPGTest.Skills.StatusEffects
+namespace RPG.Skills.StatusEffects
 {
     public class MindBlown : IStatuseffect
     {
-        public int duration { get; set; }
-        public int damage { get; set; }
+        public int Duration { get; set; }
+        public int Damage { get; set; }
 
         public void Execute(Character source, List<Character> targets)
         {
-            damage = 0;
+            Damage = 0;
 
             foreach (Character target in targets)
             {
@@ -29,13 +30,13 @@ namespace RPGTest.Skills.StatusEffects
 
                 if (!exists)
                 {
-                    if (target.level > source.level)
+                    if (target.Level > source.Level)
                     {
-                        duration = 1;
+                        Duration = 1;
                     }
                     else
                     {
-                        duration = source.level - target.level;
+                        Duration = source.Level - target.Level;
                     }
 
                     target.statuseffects.Add(this);
@@ -45,7 +46,7 @@ namespace RPGTest.Skills.StatusEffects
 
         public bool IsDone()
         {
-            if (duration <= 0)
+            if (Duration <= 0)
                 return true;
             else
                 return false;

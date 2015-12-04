@@ -1,14 +1,15 @@
-﻿using System;
+﻿using RPG.Characters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RPGTest.Skills.StatusEffects
+namespace RPG.Skills.StatusEffects
 {
     public class Halo : IStatuseffect
     {
-        public int duration { get; set; }
-        public int damage { get; set; }
+        public int Duration { get; set; }
+        public int Damage { get; set; }
 
         public void Execute(Character source, List<Character> targets)
         {
@@ -29,15 +30,15 @@ namespace RPGTest.Skills.StatusEffects
 
                 if (!exists)
                 {
-                    this.damage -= Convert.ToInt32(target.fVitality * 0.1);
-                    this.duration = Convert.ToInt32(r1.Next(1, 4 * 1000) / 1000);
+                    this.Damage -= Convert.ToInt32(target.FightVitality * 0.1);
+                    this.Duration = Convert.ToInt32(r1.Next(1, 3 * 1000) / 1000);
                     target.statuseffects.Add(this);
                 }
             }
         }
         public bool IsDone()
         {
-            if (duration <= 0)
+            if (Duration <= 0)
                 return true;
             else
                 return false;

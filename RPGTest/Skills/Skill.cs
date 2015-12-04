@@ -1,40 +1,31 @@
-﻿using System;
+﻿using RPG.Characters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RPGTest.Skills
+namespace RPG.Skills
 {
     public class Skill
     {
-        public string name ;
-        public int costs;
-        public IList<IEffect> effects;
+        public string Name { get; set; }
+        public int Costs { get; set; }
+        public IList<IEffect> effects { get; set; }
 
-        //private IEffect healEffect;
-        //private IEffect criticalDamageEffect;
-
-        //TODO Effect Liste
         public Skill(string skillName, int manacosts, List<IEffect> skilleffects)
         {
-            this.name = skillName;
-            this.costs = manacosts;
+            this.Name = skillName;
+            this.Costs = manacosts;
             this.effects = skilleffects;
-
-            //this.healEffect = new HealEffect();
-            //this.criticalDamageEffect = new CriticalDamageEffect();
         }
 
         public void Execute(Character source, List<Character> targets)
         {
-            source.fMana -= this.costs;
+            source.FightMana -= this.Costs;
             foreach (IEffect effect in effects)
             {
                 effect.Execute(source, targets);
-            }
-
-            //healEffect.Execute(this.character, this.character);
-            //criticalDamageEffect.Execute(this.character, target);            
+            }       
         }
     }
 }
