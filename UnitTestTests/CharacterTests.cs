@@ -13,7 +13,7 @@ namespace RPGTests
     public class CharacterTests
     {
         [TestMethod]
-        public void InitzializeTest()
+        public void CharakterInitzializeTest()
         {
             var a = string.Empty;
 
@@ -47,7 +47,7 @@ namespace RPGTests
                     new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 }
                 );
 
-            Enemy.AddSkill(new RPG.Skills.Skill("Springer", 40, new List<RPG.Skills.IEffect>() { new RPG.Skills.BuffEffect("strength"), new RPG.Skills.BuffEffect("strength"), new RPG.Skills.DeBuffEffect("vitality") }));
+            Enemy.AddSkill(new RPG.Skills.Skill("Springer", 40, new List<RPG.Skills.IEffect>() { new RPG.Skills.BuffEffect("+", "strength"), new RPG.Skills.BuffEffect("+", "strength"), new RPG.Skills.BuffEffect("-", "vitality") }));
 
 
             RPG.Skills.Skill executePartySkill = PartyMember.skills.SingleOrDefault(skill => skill.Name.Equals("Genozid"));
@@ -55,8 +55,6 @@ namespace RPGTests
 
             executePartySkill.Execute(PartyMember, new List<Character>() { Enemy });
             executeEnemySkill.Execute(Enemy, new List<Character>() { PartyMember });
-
-            
         }
     }
 }

@@ -64,7 +64,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Skills\BuffEffect.cs" />
-    <Compile Include="Skills\DeBuffEffect.cs" />
     <Compile Include="Skills\StatusEffects\Bleed.cs" />
     <Compile Include="Skills\CritDamageEffect.cs" />
     <Compile Include="Skills\IEffect.cs" />
