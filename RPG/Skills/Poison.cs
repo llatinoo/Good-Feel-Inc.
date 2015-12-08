@@ -15,7 +15,7 @@ namespace RPG.Skills
         {
             foreach (Character target in targets)
             {
-                Statuseffect = new Poisened(source);
+                Statuseffect = new Poisoned(source);
 
                 if (!target.statuseffects.Contains(Statuseffect))
                     target.statuseffects.Add(Statuseffect);
