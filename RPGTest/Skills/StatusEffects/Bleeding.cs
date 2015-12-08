@@ -6,15 +6,17 @@ using System.Text;
 
 namespace RPG.Skills.StatusEffects
 {
-    public class Blessing : IStatuseffect
+    public class Bleeding : IStatuseffect
     {
         public int Duration { get; set; }
         public int Damage { get; set; }
 
-        public Blessing()
+        public Bleeding(Character source)
         {
-            Duration = 1;
-            Damage = 0;
+            Random r1 = new Random();
+
+            Duration = Convert.ToInt32(r1.Next(3, 6 * 1000) / 1000);
+            Damage = Convert.ToInt32((r1.Next(source.FightMagic / 7, (source.FightMagic / 5) * 1000)) / 1000);
         }
 
         public int ExecuteStatus(Character target)

@@ -88,12 +88,12 @@ namespace RPGTests
                     new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 }
                 );
 
-            character.AddSkill(new Skill("Bleed", 0, new List<IEffect>() { new Bleed() }));
+            character.AddSkill(new Skill("Bleed", 0, new List<IEffect>() { new Bleeding() }));
             character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new Blessing() }));
-            character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new Burn() }));
-            character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new Halo() }));
-            character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new MindBlown() }));
-            character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new Poison() }));
+            character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new Burning() }));
+            character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new HasHalo() }));
+            character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new Mindblown() }));
+            character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new Poisened() }));
             character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new StatsChangeEffect("+", "strength") }));
             character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new CriticalDamageEffect() }));
             character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new HealEffect() }));

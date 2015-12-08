@@ -1,4 +1,5 @@
 ﻿using RPG.Characters;
+using RPG.Skills.StatusEffects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace RPG.Skills
     {
         public string Attribut { get; set; }
         public string Sign { get; set; }
+        public IStatuseffect Statuseffect { get; set; }
 
         public StatsChangeEffect(string sign, string attributeToBuff)
         {

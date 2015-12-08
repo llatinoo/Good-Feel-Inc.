@@ -6,42 +6,25 @@ using System.Text;
 
 namespace RPG.Skills.StatusEffects
 {
-    public class MindBlown : IStatuseffect
+    public class Mindblown : IStatuseffect
     {
         public int Duration { get; set; }
         public int Damage { get; set; }
 
-        public void Execute(Character source, List<Character> targets)
+        public Mindblown(Character source, Character target)
         {
             Damage = 0;
+          
+            if (target.Level > source.Level)
+                Duration = 1;
+            else
+                Duration = source.Level - target.Level;
+        }
 
-            foreach (Character target in targets)
-            {
-                bool exists = false;
-
-                foreach (IStatuseffect existingStatus in target.statuseffects)
-                {
-                    var status = existingStatus as MindBlown;
-                    if (status != null)
-                    {
-                        exists = true;
-                    }
-                }
-
-                if (!exists)
-                {
-                    if (target.Level > source.Level)
-                    {
-                        Duration = 1;
-                    }
-                    else
-                    {
-                        Duration = source.Level - target.Level;
-                    }
-
-                    target.statuseffects.Add(this);
-                }
-            }
+        public int ExecuteStatus(Character target)
+        {
+            Duration--;
+            return Damage;
         }
 
         public bool IsDone()
