@@ -63,12 +63,13 @@
     <Compile Include="Characters\Character.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Skills\BuffEffect.cs" />
+    <Compile Include="Skills\StatsChangeEffect.cs" />
     <Compile Include="Skills\StatusEffects\Bleed.cs" />
     <Compile Include="Skills\CritDamageEffect.cs" />
     <Compile Include="Skills\IEffect.cs" />
     <Compile Include="Skills\HealEffect.cs" />
     <Compile Include="Skills\Skill.cs" />
+    <Compile Include="Skills\StatusEffects\Blessing.cs" />
     <Compile Include="Skills\StatusEffects\Burn.cs" />
     <Compile Include="Skills\StatusEffects\IStatuseffect.cs" />
     <Compile Include="Skills\StatusEffects\MindBlown.cs" />

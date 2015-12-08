@@ -6,12 +6,12 @@ using System.Text;
 
 namespace RPG.Skills
 {
-    public class BuffEffect : IEffect
+    public class StatsChangeEffect : IEffect
     {
         public string Attribut { get; set; }
         public string Sign { get; set; }
 
-        public BuffEffect(string sign, string attributeToBuff)
+        public StatsChangeEffect(string sign, string attributeToBuff)
         {
             Sign = sign;
             Attribut = attributeToBuff;
