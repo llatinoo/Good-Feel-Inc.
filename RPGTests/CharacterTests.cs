@@ -55,6 +55,8 @@ namespace RPGTests
 
             executePartySkill.Execute(PartyMember, new List<Character>() { Enemy });
             executeEnemySkill.Execute(Enemy, new List<Character>() { PartyMember });
+
+            Assert.Fail();
         }
 
         [TestMethod]
@@ -87,25 +89,24 @@ namespace RPGTests
                     10,
                     new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 }
                 );
+            Assert.Fail();
+            //character.AddSkill(new Skill("Bleed", 0, new List<IEffect>() { new Bleeding() }));
+            //character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new Blessing() }));
+            //character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new Burning() }));
+            //character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new HasHalo() }));
+            //character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new Mindblown() }));
+            //character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new Poisened() }));
+            //character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new StatsChangeEffect("+", "strength") }));
+            //character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new CriticalDamageEffect() }));
+            //character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new HealEffect() }));
 
-            character.AddSkill(new Skill("Bleed", 0, new List<IEffect>() { new Bleeding() }));
-            character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new Blessing() }));
-            character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new Burning() }));
-            character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new HasHalo() }));
-            character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new Mindblown() }));
-            character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new Poisened() }));
-            character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new StatsChangeEffect("+", "strength") }));
-            character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new CriticalDamageEffect() }));
-            character.AddSkill(new Skill("Blessing", 0, new List<IEffect> { new HealEffect() }));
-
-            foreach (Skill skill in character.skills)
-            {
-                skill.Execute(character, new List<Character>() { enemy });
-            }
-
-            bool 
-            Assert.Is(enemy.statuseffects);
-            Assert. AreNotEqual(1000000, enemy.FightVitality);
+            //foreach (Skill skill in character.skills)
+            //{
+            //    skill.Execute(character, new List<Character>() { enemy });
+            //}
+                        
+            //Assert.Is(enemy.statuseffects);
+            //Assert. AreNotEqual(1000000, enemy.FightVitality);
         }
     }
 }

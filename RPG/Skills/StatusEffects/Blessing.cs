@@ -6,20 +6,18 @@ using System.Text;
 
 namespace RPG.Skills.StatusEffects
 {
-    public class HasHalo : IStatuseffect
+    public class Blessing : IStatuseffect
     {
         public int Duration { get; set; }
         public int Damage { get; set; }
 
-        public HasHalo(Character target)
+        public Blessing()
         {
-            Random r1 = new Random();
-            
-            this.Damage -= Convert.ToInt32(target.FightVitality * 0.1);
-            this.Duration = Convert.ToInt32(r1.Next(1, 3 * 1000) / 1000);
+            Duration = 1;
+            Damage = 0;
         }
 
-        public int ExecuteStatus(Character target)
+        public int ExecuteStatus()
         {
             Duration--;
             return Damage;

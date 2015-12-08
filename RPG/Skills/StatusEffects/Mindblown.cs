@@ -6,20 +6,22 @@ using System.Text;
 
 namespace RPG.Skills.StatusEffects
 {
-    public class Bleeding : IStatuseffect
+    public class Mindblown : IStatuseffect
     {
         public int Duration { get; set; }
         public int Damage { get; set; }
 
-        public Bleeding(Character source)
+        public Mindblown(Character source, Character target)
         {
-            Random r1 = new Random();
-
-            Duration = Convert.ToInt32(r1.Next(3, 6 * 1000) / 1000);
-            Damage = Convert.ToInt32((r1.Next(source.FightMagic / 7, (source.FightMagic / 5) * 1000)) / 1000);
+            Damage = 0;
+          
+            if (target.Level > source.Level)
+                Duration = 1;
+            else
+                Duration = source.Level - target.Level;
         }
 
-        public int ExecuteStatus(Character target)
+        public int ExecuteStatus()
         {
             Duration--;
             return Damage;
