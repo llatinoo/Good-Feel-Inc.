@@ -50,13 +50,11 @@ namespace RPGTests
             Enemy.AddSkill(new Skill("Springer", 40, new List<IEffect>() { new StatsChange("+", "strength"), new StatsChange("+", "strength"), new StatsChange("-", "vitality") }));
 
 
-            Skill executePartySkill = PartyMember.skills.SingleOrDefault(skill => skill.Name.Equals("Genozid"));
-            Skill executeEnemySkill = Enemy.skills.SingleOrDefault(skill => skill.Name.Equals("Springer"));
+            Skill executePartySkill = PartyMember.Skills.SingleOrDefault(skill => skill.Name.Equals("Genozid"));
+            Skill executeEnemySkill = Enemy.Skills.SingleOrDefault(skill => skill.Name.Equals("Springer"));
 
             executePartySkill.Execute(PartyMember, new List<Character>() { Enemy });
             executeEnemySkill.Execute(Enemy, new List<Character>() { PartyMember });
-
-            
         }
 
         [TestMethod]
@@ -101,7 +99,7 @@ namespace RPGTests
             character.AddSkill(new Skill("Heal", 0, new List<IEffect> { new Heal() }));
             character.AddSkill(new Skill("Damage", 0, new List<IEffect> { new Damage() }));
 
-            foreach (Skill skill in character.skills)
+            foreach (Skill skill in character.Skills)
             {
                 skill.Execute(character, new List<Character>() { enemy });
             }

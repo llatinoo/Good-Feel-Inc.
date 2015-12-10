@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using RPG.Skills;
+using RPG.Skills.StatusEffects;
 
 namespace RPG.Characters
 {
@@ -10,7 +12,7 @@ namespace RPG.Characters
     {
         Characters.GraphicCharacter sprite;
 
-        public string name { get; set; }
+        public string Name { get; set; }
 
         //Festwerte die durch aufleveln gesteigert werden
         public int Vitality { get; set; }
@@ -31,13 +33,13 @@ namespace RPG.Characters
         //Level Attribute
         public int Level { get; set; }
         public int Exp { get; set; }
-        public List<int> Levelcap { get; set; }
+        private List<int> Levelcap { get; set; }
 
         //Fähigkeiten Attribute
-        public List<Skills.Skill> skills { get; set; }
+        public List<Skill> Skills { get; set; }
 
         //Auf den Charakter wirkende Effekte
-        public List<Skills.StatusEffects.IStatuseffect> Statuseffects { get; set; }
+        public List<IStatuseffect> Statuseffects { get; set; }
 
         //Ultimative Fähigkeit
         public int UltimatePoints { get; set; }
@@ -46,7 +48,7 @@ namespace RPG.Characters
 
         public Character(string charName, Texture2D texture, Vector2 position, int vitality, int strength, int magic, int defense, int mana, int luck, List<int> levellist)
         {
-            name = charName;
+            Name = charName;
             //sprite.Initialize(texture, position);
 
             FightVitality = Vitality = vitality;
@@ -59,18 +61,18 @@ namespace RPG.Characters
             Exp = 0;
             Levelcap = levellist;
 
-            skills = new List<Skills.Skill>();
-            Statuseffects = new List<Skills.StatusEffects.IStatuseffect>();
+            Skills = new List<Skills.Skill>();
+            Statuseffects = new List<IStatuseffect>();
         }
 
-        public void AddSkill(Skills.Skill newSkill)
+        public void AddSkill(Skill newSkill)
         {
-            this.skills.Add(newSkill);
+            this.Skills.Add(newSkill);
         }
 
-        public void RemoveSkill(Skills.Skill removeSkill)
+        public void RemoveSkill(Skill removeSkill)
         {
-            this.skills.Remove(removeSkill);
+            this.Skills.Remove(removeSkill);
         }
     }
 }

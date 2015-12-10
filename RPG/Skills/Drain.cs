@@ -15,9 +15,9 @@ namespace RPG.Skills
         {
             foreach(Character target in targets)
             {
-                int damage = -((source.FightStrength + source.FightMagic) / 2) / 3;
-                target.FightVitality = damage;
-                source.FightVitality += damage / 2;
+                int damage = Convert.ToInt32(((source.FightStrength + source.FightMagic) / 2) / 3);
+                target.FightVitality -= damage;
+                source.FightVitality += Convert.ToInt32(damage / 2);
             }
         }
     }
