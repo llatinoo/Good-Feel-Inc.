@@ -66,14 +66,15 @@
     <Compile Include="Skills\Bleed.cs" />
     <Compile Include="Skills\Bless.cs" />
     <Compile Include="Skills\Burn.cs" />
+    <Compile Include="Skills\Damage.cs" />
     <Compile Include="Skills\Halo.cs" />
-    <Compile Include="Skills\MindBlow.cs" />
+    <Compile Include="Skills\Mindblow.cs" />
     <Compile Include="Skills\Poison.cs" />
-    <Compile Include="Skills\StatsChangeEffect.cs" />
+    <Compile Include="Skills\StatsChange.cs" />
     <Compile Include="Skills\StatusEffects\Bleeding.cs" />
-    <Compile Include="Skills\CritDamageEffect.cs" />
+    <Compile Include="Skills\CriticalDamage.cs" />
     <Compile Include="Skills\IEffect.cs" />
-    <Compile Include="Skills\HealEffect.cs" />
+    <Compile Include="Skills\Heal.cs" />
     <Compile Include="Skills\Skill.cs" />
     <Compile Include="Skills\StatusEffects\Blessing.cs" />
     <Compile Include="Skills\StatusEffects\Burning.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Skills\StatusEffects\Mindblown.cs" />
     <Compile Include="Skills\StatusEffects\HasHalo.cs" />
     <Compile Include="Skills\StatusEffects\Poisened.cs" />
+    <Compile Include="Skills\Drain.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

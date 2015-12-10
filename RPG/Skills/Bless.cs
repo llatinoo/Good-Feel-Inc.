@@ -17,8 +17,8 @@ namespace RPG.Skills
             {
                 Statuseffect = new Blessing();
 
-                if (!target.statuseffects.Contains(Statuseffect))
-                    target.statuseffects.Add(Statuseffect);
+                if (!target.Statuseffects.Contains(Statuseffect))
+                    target.Statuseffects.Add(Statuseffect);
             }
         }
     }

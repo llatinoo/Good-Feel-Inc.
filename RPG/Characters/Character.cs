@@ -37,7 +37,7 @@ namespace RPG.Characters
         public List<Skills.Skill> skills { get; set; }
 
         //Auf den Charakter wirkende Effekte
-        public List<Skills.StatusEffects.IStatuseffect> statuseffects { get; set; }
+        public List<Skills.StatusEffects.IStatuseffect> Statuseffects { get; set; }
 
         //Ultimative Fähigkeit
         public int UltimatePoints { get; set; }
@@ -60,7 +60,7 @@ namespace RPG.Characters
             Levelcap = levellist;
 
             skills = new List<Skills.Skill>();
-            statuseffects = new List<Skills.StatusEffects.IStatuseffect>();
+            Statuseffects = new List<Skills.StatusEffects.IStatuseffect>();
         }
 
         public void AddSkill(Skills.Skill newSkill)

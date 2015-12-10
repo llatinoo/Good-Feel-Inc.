@@ -7,13 +7,13 @@ using System.Text;
 
 namespace RPG.Skills
 {
-    public class StatsChangeEffect : IEffect
+    public class StatsChange : IEffect
     {
         public string Attribut { get; set; }
         public string Sign { get; set; }
         public IStatuseffect Statuseffect { get; set; }
 
-        public StatsChangeEffect(string sign, string attributeToBuff)
+        public StatsChange(string sign, string attributeToBuff)
         {
             Sign = sign;
             Attribut = attributeToBuff;

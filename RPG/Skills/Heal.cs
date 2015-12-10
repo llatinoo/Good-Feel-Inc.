@@ -7,7 +7,7 @@ using System.Text;
 
 namespace RPG.Skills
 {
-    public class Burn : IEffect
+    public class Heal : IEffect
     {
         public IStatuseffect Statuseffect { get; set; }
 
@@ -15,10 +15,7 @@ namespace RPG.Skills
         {
             foreach (Character target in targets)
             {
-                Statuseffect = new Burning(source);
-
-                if (!target.Statuseffects.Contains(Statuseffect))
-                    target.Statuseffects.Add(Statuseffect);
+                target.FightVitality += Convert.ToInt32(source.FightMagic * 0.25);
             }
         }
     }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace RPG.Skills
 {
-    public class MindBlow : IEffect
+    public class Mindblow : IEffect
     {
         public IStatuseffect Statuseffect { get; set; }
 
@@ -17,8 +17,8 @@ namespace RPG.Skills
             {
                 Statuseffect = new Mindblown(source, target);
 
-                if (!target.statuseffects.Contains(Statuseffect))
-                    target.statuseffects.Add(Statuseffect);
+                if (!target.Statuseffects.Contains(Statuseffect))
+                    target.Statuseffects.Add(Statuseffect);
             }
         }
     }
