@@ -3,16 +3,19 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 
-namespace RPGTest.Characters
+namespace RPG.Characters
 {
+    //Graphische Daten eines Charakters
     public class GraphicCharacter
     {
-        public Texture2D CharTexture;
+        //Sprite eines Charakters
+        public Texture2D CharTexture { get; set; }
 
-        public Vector2 Position;
+        //Position eines Charakters
+        public Vector2 Position { get; set; }
 
-        public bool Active;
-        
+        public bool Active { get; set; }
+
         public int Width
         {
             get { return CharTexture.Width; }
@@ -22,6 +25,7 @@ namespace RPGTest.Characters
         {
             get { return CharTexture.Height; }
         }
+
 
         public void Initialize(Texture2D texture, Vector2 position)
         {
