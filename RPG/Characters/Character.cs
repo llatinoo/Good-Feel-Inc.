@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using RPG.Skills;
@@ -10,8 +9,10 @@ namespace RPG.Characters
     //Technische Daten eines Charakters
     public class Character
     {
-        Characters.GraphicCharacter sprite;
+        //Grafikdaten des Charakters
+        public GraphicCharacter Sprite { get; set; }
 
+        //Name
         public string Name { get; set; }
 
         //Festwerte die durch aufleveln gesteigert werden
@@ -33,10 +34,10 @@ namespace RPG.Characters
         //Level Attribute
         public int Level { get; set; }
         public int Exp { get; set; }
-        private List<int> Levelcap { get; set; }
+        public List<int> Levelcap { get; private set; }
 
         //Fähigkeiten Attribute
-        public List<Skill> Skills { get; set; }
+        public List<Skill> Skills { get; private set; }
 
         //Auf den Charakter wirkende Effekte
         public List<IStatuseffect> Statuseffects { get; set; }
@@ -45,24 +46,24 @@ namespace RPG.Characters
         public int UltimatePoints { get; set; }
         public int UltimatePointsToCast { get; set; }
 
-
         public Character(string charName, Texture2D texture, Vector2 position, int vitality, int strength, int magic, int defense, int mana, int luck, List<int> levellist)
         {
-            Name = charName;
-            //sprite.Initialize(texture, position);
+            this.Name = charName;
 
-            FightVitality = Vitality = vitality;
-            FightStrength = Strength = strength;
-            FightMagic = Magic = magic;
-            FightDefense = Defense = defense;
-            FightMana = Mana = mana;
-            FightLuck = Luck = luck;
+            this.Sprite.Initialize(texture, position);
 
-            Exp = 0;
-            Levelcap = levellist;
+            this.FightVitality = this.Vitality = vitality;
+            this.FightStrength = this.Strength = strength;
+            this.FightMagic = this.Magic = magic;
+            this.FightDefense = this.Defense = defense;
+            this.FightMana = this.Mana = mana;
+            this.FightLuck = this.Luck = luck;
 
-            Skills = new List<Skills.Skill>();
-            Statuseffects = new List<IStatuseffect>();
+            this.Exp = 0;
+            this.Levelcap = levellist;
+
+            this.Skills = new List<Skill>();
+            this.Statuseffects = new List<IStatuseffect>();
         }
 
         public void AddSkill(Skill newSkill)

@@ -60,6 +60,7 @@
     <Compile Include="Characters\GraphicCharacter.cs" />
     <Compile Include="Characters\PartyMember.cs" />
     <Compile Include="Characters\Player.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Characters\Character.cs" />
     <Compile Include="Program.cs" />

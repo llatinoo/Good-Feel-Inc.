@@ -2,79 +2,75 @@
 using RPG.Skills.StatusEffects;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace RPG.Skills
 {
+    public enum Attributes
+    {
+        Vitality,
+        Strength,
+        Magic,
+        Defense,
+        Mana,
+        Luck
+    }
+
+    public enum Actions
+    {
+        Add,
+        Substract
+    }
+
+    //Klasse zur Unterscheidung der Buffs und Debuffs
+    public class StatActions
+    {
+        //Je nach Aufruf Subtraktion oder Addition, erzeugt intern ein neues Objekt
+        public static StatActions Add = new StatActions((value, delta) => value + delta);
+        public static StatActions Substract = new StatActions((value, delta) => value - delta);
+
+        public int GetActionResult(int value, int delta)
+        {            
+            return this.actionFunc(value, delta);
+        }
+
+        private readonly Func<int, int, int> actionFunc;
+
+        //Es können keine Instanzen von außen erzeugt werden
+        private StatActions(Func<int, int, int> actionFunc)
+        {
+            this.actionFunc = actionFunc;
+        }
+    }
+
     public class StatsChange : IEffect
     {
-        public string Attribut { get; set; }
-        public string Sign { get; set; }
-        public IStatuseffect Statuseffect { get; set; }
+        public Attributes Attribut { get; set; }
+        public StatActions StatAction { get; set; }
 
-        public StatsChange(string sign, string attributeToBuff)
+        public StatsChange(StatActions statAction, Attributes attributeToBuff)
         {
-            Sign = sign;
-            Attribut = attributeToBuff;
+            this.StatAction = statAction;
+            this.Attribut = attributeToBuff;
         }
 
         public void Execute(Character source, List<Character> targets)
         {
-            if (Sign == "+")
+            var propertyInfo = typeof(Character).GetProperty("Fight" + this.Attribut.ToString());
+
+            if (propertyInfo == null)
             {
-                foreach (Character target in targets)
-                {
-                    switch (Attribut.ToLower())
-                    {
-                        case "vitality":
-                            target.FightVitality += source.FightMagic / 4;
-                            break;
-                        case "strength":
-                            target.FightStrength += source.FightMagic / 4;
-                            break;
-                        case "magic":
-                            target.FightMagic += source.FightMagic / 4;
-                            break;
-                        case "defense":
-                            target.FightDefense += source.FightMagic / 4;
-                            break;
-                        case "mana":
-                            target.FightMana += source.FightMagic / 4;
-                            break;
-                        case "luck":
-                            target.FightLuck += source.FightMagic / 4;
-                            break;
-                    }
-                }
+                throw new ArgumentException("Property does not exist!");
             }
 
-            if(Sign == "-")
+            var valueDelta = source.FightMagic / 4;
+
+            foreach (Character target in targets)
             {
-                foreach (Character target in targets)
-                {
-                    switch (Attribut.ToLower())
-                    {
-                        case "vitality":
-                            target.FightVitality -= source.FightMagic / 4;
-                            break;
-                        case "strength":
-                            target.FightStrength -= source.FightMagic / 4;
-                            break;
-                        case "magic":
-                            target.FightMagic -= source.FightMagic / 4;
-                            break;
-                        case "defense":
-                            target.FightDefense -= source.FightMagic / 4;
-                            break;
-                        case "mana":
-                            target.FightMana -= source.FightMagic / 4;
-                            break;
-                        case "luck":
-                            target.FightLuck -= source.FightMagic / 4;
-                            break;
-                    }
-                }
+                var oldValue = (int)propertyInfo.GetValue(target, null);
+
+                var newValue = this.StatAction.GetActionResult(oldValue, valueDelta);
+
+                propertyInfo.SetValue(target, newValue, null);
             }
         }
     }

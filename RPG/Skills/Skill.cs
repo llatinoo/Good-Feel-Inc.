@@ -1,28 +1,29 @@
 ﻿using RPG.Characters;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace RPG.Skills
 {
     public class Skill
     {
         public string Name { get; set; }
-        public int Costs { get; set; }
-        public IList<IEffect> effects { get; set; }
+        public int Manacosts { get; set; }
 
-        public Skill(string skillName, int manacosts, List<IEffect> skilleffects)
+        //Liste von Effekten die der Skill verursacht
+        public IEnumerable<IEffect> Effects { get; set; }
+
+        public Skill(string skillName, int manacosts, IEnumerable<IEffect> skilleffects)
         {
             this.Name = skillName;
-            this.Costs = manacosts;
-            this.effects = skilleffects;
+            this.Manacosts = manacosts;
+            this.Effects = skilleffects;
         }
 
+        //Ausführung des Skills
         public void Execute(Character source, List<Character> targets)
         {
-            source.FightMana -= this.Costs;
-            foreach (IEffect effect in effects)
+            //Führt alle Effekte des Skills aus
+            source.FightMana -= this.Manacosts;
+            foreach (IEffect effect in this.Effects)
             {
                 effect.Execute(source, targets);
             }       

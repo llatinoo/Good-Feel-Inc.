@@ -1,15 +1,12 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace RPGTests
 {
     using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Graphics;
     using RPG.Characters;
     using RPG.Skills;
     using RPG.Skills.StatusEffects;
     using System.Collections.Generic;
-    using System.Linq;
 
     [TestClass]
     public class CharacterTests
@@ -17,9 +14,9 @@ namespace RPGTests
         [TestMethod]
         public void CharakterInitzializeTest()
         {
-            var PartyMember = new PartyMember
+            var partyMember = new PartyMember
                 (
-                    "Nero",
+                    "Party",
                     null,
                     new Vector2(0, 0),
                     100,
@@ -31,11 +28,9 @@ namespace RPGTests
                     new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 }
                 );
 
-            PartyMember.AddSkill(new Skill("Genozid", 30, new List<IEffect>() { new Bleed(), new CriticalDamage() }));
-
-            var Enemy = new Enemy
+            var enemy = new Enemy
                 (
-                    "King",
+                    "Enemy",
                     null,
                     new Vector2(0, 0),
                     100,
@@ -46,15 +41,6 @@ namespace RPGTests
                     10,
                     new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 }
                 );
-
-            Enemy.AddSkill(new Skill("Springer", 40, new List<IEffect>() { new StatsChange("+", "strength"), new StatsChange("+", "strength"), new StatsChange("-", "vitality") }));
-
-
-            Skill executePartySkill = PartyMember.Skills.SingleOrDefault(skill => skill.Name.Equals("Genozid"));
-            Skill executeEnemySkill = Enemy.Skills.SingleOrDefault(skill => skill.Name.Equals("Springer"));
-
-            executePartySkill.Execute(PartyMember, new List<Character>() { Enemy });
-            executeEnemySkill.Execute(Enemy, new List<Character>() { PartyMember });
         }
 
         [TestMethod]
@@ -94,18 +80,31 @@ namespace RPGTests
             character.AddSkill(new Skill("Halo", 0, new List<IEffect> { new Halo() }));
             character.AddSkill(new Skill("Mindblow", 0, new List<IEffect> { new Mindblow() }));
             character.AddSkill(new Skill("Poison", 0, new List<IEffect> { new Poison() }));
-            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange("+", "strength") }));
+
             character.AddSkill(new Skill("CriticalDamage", 0, new List<IEffect> { new CriticalDamage() }));
             character.AddSkill(new Skill("Heal", 0, new List<IEffect> { new Heal() }));
             character.AddSkill(new Skill("Damage", 0, new List<IEffect> { new Damage() }));
+            character.AddSkill(new Skill("Drain", 0, new List<IEffect> { new Drain() }));
+
+            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Add, Attributes.Vitality) }));
+            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Substract, Attributes.Strength) }));
+            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Add, Attributes.Magic) }));
+            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Substract, Attributes.Defense) }));
+            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Add, Attributes.Mana) }));
+            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Substract, Attributes.Luck) }));
 
             foreach (Skill skill in character.Skills)
             {
                 skill.Execute(character, new List<Character>() { enemy });
             }
 
-            Assert.IsTrue(enemy.Statuseffects.Count != 0);
+            Assert.IsFalse(enemy.Statuseffects.Count == 0);
             Assert.AreNotEqual(enemy.Vitality, enemy.FightVitality);
+            Assert.AreNotEqual(enemy.Strength, enemy.FightStrength);
+            Assert.AreNotEqual(enemy.Magic, enemy.FightMagic);
+            Assert.AreNotEqual(enemy.Defense, enemy.FightDefense);
+            Assert.AreNotEqual(enemy.Mana, enemy.FightVitality);
+            Assert.AreNotEqual(enemy.Luck, enemy.FightLuck);
 
             enemy.FightVitality = enemy.Vitality;
 
