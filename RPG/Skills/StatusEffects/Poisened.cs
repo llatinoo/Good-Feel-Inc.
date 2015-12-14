@@ -1,15 +1,12 @@
 ﻿using RPG.Characters;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace RPG.Skills.StatusEffects
 {
     public class Poisoned : IStatuseffect
     {
-        public int Duration { get; set; }
-        public int Damage { get; set; }
+        public int Duration { get; private set; }
+        public int Damage { get; private set; }
 
         public Poisoned(Character source)
         {
@@ -18,7 +15,7 @@ namespace RPG.Skills.StatusEffects
 
         public int ExecuteStatus()
         {
-            return Damage;
+            return this.Damage;
         }
 
         public bool IsDone()

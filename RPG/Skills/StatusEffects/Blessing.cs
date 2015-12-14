@@ -1,31 +1,25 @@
-﻿using RPG.Characters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace RPG.Skills.StatusEffects
+﻿namespace RPG.Skills.StatusEffects
 {
     public class Blessing : IStatuseffect
     {
-        public int Duration { get; set; }
-        public int Damage { get; set; }
+        public int Duration { get; private set; }
+        public int Damage { get; private set; }
 
         public Blessing()
         {
-            Duration = 1;
-            Damage = 0;
+            this.Duration = 1;
+            this.Damage = 0;
         }
 
         public int ExecuteStatus()
         {
-            Duration--;
-            return Damage;
+            this.Duration--;
+            return this.Damage;
         }
 
         public bool IsDone()
         {
-            if (Duration <= 0)
+            if (this.Duration <= 0)
                 return true;
             else
                 return false;

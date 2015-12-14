@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 
@@ -16,22 +15,16 @@ namespace RPG.Characters
 
         public bool Active { get; set; }
 
-        public int Width
-        {
-            get { return CharTexture.Width; }
-        }
+        public int Width => this.CharTexture.Width;
 
-        public int Height
-        {
-            get { return CharTexture.Height; }
-        }
+        public int Height => this.CharTexture.Height;
 
 
         public void Initialize(Texture2D texture, Vector2 position)
         {
-            CharTexture = texture;
-            Position = position;
-            Active = true;
+            this.CharTexture = texture;
+            this.Position = position;
+            this.Active = true;
         }
 
         public void Update()
@@ -41,7 +34,7 @@ namespace RPG.Characters
 
         public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(CharTexture, Position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            spritebatch.Draw(this.CharTexture, this.Position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
     }
 }
