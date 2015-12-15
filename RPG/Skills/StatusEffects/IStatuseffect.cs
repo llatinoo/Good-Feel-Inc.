@@ -1,5 +1,6 @@
 ﻿namespace RPG.Skills.StatusEffects
 {
+    //Unterteilung der Statuseffekte
     public interface IStatuseffect
     {
         int Duration { get; }
