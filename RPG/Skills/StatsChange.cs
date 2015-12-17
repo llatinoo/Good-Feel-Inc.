@@ -7,12 +7,12 @@ namespace RPG.Skills
 {
     public enum Attributes
     {
-        Vitality,
-        Strength,
-        Magic,
-        Defense,
-        Mana,
-        Luck
+        FightVitality,
+        FightStrength,
+        FightMagic,
+        FightDefense,
+        FightMana,
+        FightLuck
     }
 
     public enum Actions
@@ -44,18 +44,18 @@ namespace RPG.Skills
 
     public class StatsChange : IEffect
     {
-        public Attributes Attribut { get; set; }
-        public StatActions StatAction { get; set; }
+        public Attributes Attribute { get; private set; }
+        public StatActions StatAction { get; private set; }
 
         public StatsChange(StatActions statAction, Attributes attributeToBuff)
         {
             this.StatAction = statAction;
-            this.Attribut = attributeToBuff;
+            this.Attribute = attributeToBuff;
         }
 
         public void Execute(Character source, List<Character> targets)
         {
-            var propertyInfo = typeof(Character).GetProperty("Fight" + this.Attribut.ToString());
+            var propertyInfo = typeof(Character).GetProperty(this.Attribute.ToString());
 
             if (propertyInfo == null)
             {

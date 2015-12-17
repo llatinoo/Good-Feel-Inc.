@@ -12,38 +12,6 @@ namespace RPGTests
     public class CharacterTests
     {
         [TestMethod]
-        public void CharakterInitzializeTest()
-        {
-            var partyMember = new PartyMember
-                (
-                    "Party",
-                    null,
-                    new Vector2(0, 0),
-                    100,
-                    100,
-                    100,
-                    100,
-                    100,
-                    10,
-                    new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 }
-                );
-
-            var enemy = new Enemy
-                (
-                    "Enemy",
-                    null,
-                    new Vector2(0, 0),
-                    100,
-                    100,
-                    100,
-                    100,
-                    100,
-                    10,
-                    new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 }
-                );
-        }
-
-        [TestMethod]
         public void EffectTests()
         {
             var character = new Character
@@ -73,7 +41,10 @@ namespace RPGTests
                     10,
                     new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 }
                 );
-            
+
+            Assert.IsNotNull(enemy);
+            Assert.IsNotNull(character);
+
             character.AddSkill(new Skill("Bleed", 0, new List<IEffect>() { new Bleed() }));
             character.AddSkill(new Skill("Bless", 0, new List<IEffect> { new Bless() }));
             character.AddSkill(new Skill("Burn", 0, new List<IEffect> { new Burn() }));
@@ -86,12 +57,14 @@ namespace RPGTests
             character.AddSkill(new Skill("Damage", 0, new List<IEffect> { new Damage() }));
             character.AddSkill(new Skill("Drain", 0, new List<IEffect> { new Drain() }));
 
-            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Add, Attributes.Vitality) }));
-            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Substract, Attributes.Strength) }));
-            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Add, Attributes.Magic) }));
-            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Substract, Attributes.Defense) }));
-            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Add, Attributes.Mana) }));
-            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Substract, Attributes.Luck) }));
+            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Add, Attributes.FightVitality) }));
+            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Substract, Attributes.FightStrength) }));
+            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Add, Attributes.FightMagic) }));
+            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Substract, Attributes.FightDefense) }));
+            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Add, Attributes.FightMana) }));
+            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Substract, Attributes.FightLuck) }));
+
+            Assert.AreNotEqual(0, character.Skills.Count);
 
             foreach (Skill skill in character.Skills)
             {
@@ -114,6 +87,11 @@ namespace RPGTests
             }
 
             Assert.AreNotEqual(enemy.Vitality, enemy.FightVitality);
+
+            character.UpdateStat(50,MainAttributes.Defense);
+
+            Assert.IsTrue(character.Defense > 100);
+
         }
     }
 }

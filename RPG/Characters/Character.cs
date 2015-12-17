@@ -6,6 +6,16 @@ using RPG.Skills.StatusEffects;
 
 namespace RPG.Characters
 {
+    public enum MainAttributes
+    {
+        Vitality,
+        Strength,
+        Magic,
+        Defense,
+        Mana,
+        Luck
+    }
+
     //Technische Daten eines Charakters
     public class Character
     {
@@ -16,12 +26,12 @@ namespace RPG.Characters
         public string Name { get; set; }
 
         //Festwerte die durch aufleveln gesteigert werden
-        public int Vitality { get; set; }
-        public int Strength { get; set; }
-        public int Magic { get; set; }
-        public int Defense { get; set; }
-        public int Mana { get; set; }
-        public int Luck { get; set; }
+        public int Vitality { get; private set; }
+        public int Strength { get; private set; }
+        public int Magic { get; private set; }
+        public int Defense { get; private set; }
+        public int Mana { get; private set; }
+        public int Luck { get; private set; }
 
         //Kampfwerte die im Kampf verändert werden können
         public int FightVitality { get; set; }
@@ -50,7 +60,10 @@ namespace RPG.Characters
         {
             this.Name = charName;
 
-            this.Sprite.Initialize(texture, position);
+            if (texture != null)
+            {
+                this.InitzializeSprite(texture, position);
+            }
 
             this.FightVitality = this.Vitality = vitality;
             this.FightStrength = this.Strength = strength;
@@ -74,6 +87,18 @@ namespace RPG.Characters
         public void RemoveSkill(Skill removeSkill)
         {
             this.Skills.Remove(removeSkill);
+        }
+
+        public void InitzializeSprite(Texture2D texture, Vector2 position)
+        {
+            this.Sprite.Initialize(texture, position);
+        }
+
+        public void UpdateStat(int updateAmmount, MainAttributes mainAttributeToUpdate)
+        {
+            var propertyInfo = typeof(Character).GetProperty(mainAttributeToUpdate.ToString());
+            var oldValue = (int)propertyInfo.GetValue(this, null);
+            propertyInfo.SetValue(this, oldValue + updateAmmount, null);
         }
     }
 }

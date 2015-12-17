@@ -5,8 +5,8 @@ namespace RPG.Skills
 {
     public class Skill
     {
-        public string Name { get; set; }
-        public int Manacosts { get; set; }
+        public string Name { get; private set; }
+        public int Manacosts { get; private set; }
 
         //Liste von Effekten die der Skill verursacht
         public IEnumerable<IEffect> Effects { get; set; }

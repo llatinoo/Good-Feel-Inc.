@@ -22,7 +22,7 @@ namespace SchulProjekt.Animation
         //Zeit die ein Frame angezeigt bis zum nächsten
         int frameDisplayTime;
 
-        //Die anzahl an frames des spritesheets
+        //Die Anzahl an frames des spritesheets
         int countSpritesheetFrames;
 
         //Index des aktuell angezeigten Frames
@@ -66,7 +66,7 @@ namespace SchulProjekt.Animation
             this.loop = loop;
 
             //Zeit wird auf 0 gesetzt
-            elapsedTime = 0;
+            this.elapsedTime = 0;
             currentFrame = 0;
 
             //standartmäßig Animation aktiv setzen

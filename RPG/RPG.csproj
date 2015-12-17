@@ -98,6 +98,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\195096.jpg" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
