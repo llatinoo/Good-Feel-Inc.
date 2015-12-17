@@ -98,12 +98,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\MainMenuPlayButton.gif" />
-    <Content Include="Content\MainMenuScreenBackground.jpg" />
-    <Content Include="Content\OptionsContinueButton.png" />
-    <Content Include="Content\OptionsExitButton.png" />
-    <Content Include="Content\OptionsScreenBackground.jpg" />
-    <Content Include="Content\StoryScreenBackground.jpg" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

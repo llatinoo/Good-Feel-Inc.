@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 
-namespace RPG
+namespace SchulProjekt
 {
     class GUIElement
     {
@@ -20,6 +20,7 @@ namespace RPG
         //Position des Elements
         private int positionY;
         private int positionX;
+           
         public string AssetName
         {
             get { return assetName;}
@@ -56,7 +57,7 @@ namespace RPG
         public void Update()
         {
             //Wenn sich die Maus mit der Textur schneidet und dann der linke Mausbutton gedrückt wird, wird das ClickEvent ausgelöst
-            if (GUIRect.Contains(new Point(Mouse.GetState().X, Mouse.GetState().Y)) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+            if(GUIRect.Contains(new Point(Mouse.GetState().X,Mouse.GetState().Y)) && Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
                 clickEvent(assetName);
             }
