@@ -11,6 +11,10 @@ namespace RPG
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Screens mainMenu = new Screens();
+        Screens options = new Screens();
+        Screens storyScreen = new Screens();
+        Screens battleScreen = new Screens();
 
         public Game1()
         {
@@ -27,6 +31,11 @@ namespace RPG
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            //Maus Sichtbar
+            IsMouseVisible = true;
+            //Auflösung des Spiels
+            graphics.PreferredBackBufferHeight = 480;
+            graphics.PreferredBackBufferWidth = 640;
 
             base.Initialize();
         }
@@ -41,6 +50,10 @@ namespace RPG
             this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            mainMenu.LoadContent(Content);
+            options.LoadContent(Content);
+            storyScreen.LoadContent(Content);
+            battleScreen.LoadContent(Content);
         }
 
         /// <summary>
@@ -63,7 +76,10 @@ namespace RPG
                 this.Exit();
 
             // TODO: Add your update logic here
-
+            mainMenu.Update();
+            options.Update();
+            storyScreen.Update();
+            battleScreen.Update();
             base.Update(gameTime);
         }
 
@@ -76,7 +92,12 @@ namespace RPG
             this.GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
+            spriteBatch.Begin();
+            mainMenu.Draw(spriteBatch);
+            options.Draw(spriteBatch);
+            storyScreen.Draw(spriteBatch);
+            battleScreen.Draw(spriteBatch);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
