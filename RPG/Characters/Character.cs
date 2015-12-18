@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using RPG.Skills;
 using RPG.Skills.StatusEffects;
+using SchulProjekt.Animation;
 
 namespace RPG.Characters
 {
@@ -20,7 +21,7 @@ namespace RPG.Characters
     public class Character
     {
         //Grafikdaten des Charakters
-        public GraphicCharacter Sprite { get; set; }
+        public Animations Sprite { get; set; }
 
         //Name
         public string Name { get; set; }
@@ -56,14 +57,9 @@ namespace RPG.Characters
         public int UltimatePoints { get; set; }
         public int UltimatePointsToCast { get; set; }
 
-        public Character(string charName, Texture2D texture, Vector2 position, int vitality, int strength, int magic, int defense, int mana, int luck, List<int> levellist)
+        public Character(string charName, int vitality, int strength, int magic, int defense, int mana, int luck, List<int> levellist)
         {
             this.Name = charName;
-
-            if (texture != null)
-            {
-                this.InitzializeSprite(texture, position);
-            }
 
             this.FightVitality = this.Vitality = vitality;
             this.FightStrength = this.Strength = strength;
@@ -89,9 +85,10 @@ namespace RPG.Characters
             this.Skills.Remove(removeSkill);
         }
 
-        public void InitzializeSprite(Texture2D texture, Vector2 position)
+        public void InitzializeSprite(Texture2D texture, Vector2 position, int frameWidth, int frameHeight,
+            int countSpritesheetFrames, int frameDisplayTime, Color color, float displayedScale, bool loop)
         {
-            this.Sprite.Initialize(texture, position);
+            this.Sprite.Initialize(texture, position, frameWidth, frameHeight, countSpritesheetFrames, frameDisplayTime, color, displayedScale, loop);
         }
 
         public void UpdateStat(int updateAmmount, MainAttributes mainAttributeToUpdate)

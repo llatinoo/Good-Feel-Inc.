@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace SchulProjekt.Animation
 {
-    class Animations
+    public class Animations
     {
         //Textur der Animation
         Texture2D sprite;

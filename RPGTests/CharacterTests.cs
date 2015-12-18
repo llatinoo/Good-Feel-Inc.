@@ -17,8 +17,6 @@ namespace RPGTests
             var character = new Character
                 (
                     "Char",
-                    null,
-                    new Vector2(0, 0),
                     1000000,
                     100,
                     100,
@@ -31,8 +29,6 @@ namespace RPGTests
             var enemy = new Enemy
                 (
                     "Enemy",
-                    null,
-                    new Vector2(0, 0),
                     1000000,
                     100,
                     100,

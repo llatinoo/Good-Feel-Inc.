@@ -11,6 +11,8 @@ namespace RPG
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        GamePadState gamePadState;
+        KeyboardState keyboardState;
 
         public Game1()
         {
