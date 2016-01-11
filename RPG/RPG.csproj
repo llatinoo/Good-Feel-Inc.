@@ -88,6 +88,7 @@
     <Compile Include="Skills\StatusEffects\HasHalo.cs" />
     <Compile Include="Skills\StatusEffects\Poisened.cs" />
     <Compile Include="Skills\Drain.cs" />
+    <Compile Include="Weapon.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

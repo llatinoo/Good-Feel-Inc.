@@ -10,7 +10,7 @@ namespace RPG.Skills.StatusEffects
 
         public Poisoned(Character source)
         {
-            this.Damage = Convert.ToInt32((source.FightMagic / 5));
+            this.Damage = Convert.ToInt32((source.FightMagic / 4) / (source.FightResistance / 2));
         }
 
         public int ExecuteStatus()

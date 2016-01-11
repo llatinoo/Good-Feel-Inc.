@@ -18,10 +18,11 @@ namespace RPGTests
                 (
                     "Char",
                     1000000,
-                    100,
-                    100,
-                    100,
                     1000000,
+                    100,
+                    100,
+                    100,
+                    100,
                     10,
                     new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 }
                 );
@@ -30,10 +31,11 @@ namespace RPGTests
                 (
                     "Enemy",
                     1000000,
-                    100,
-                    100,
-                    100,
                     1000000,
+                    100,
+                    100,
+                    100,
+                    100,
                     10,
                     new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 }
                 );
@@ -50,7 +52,7 @@ namespace RPGTests
 
             character.AddSkill(new Skill("CriticalDamage", 0, new List<IEffect> { new CriticalDamage() }));
             character.AddSkill(new Skill("Heal", 0, new List<IEffect> { new Heal() }));
-            character.AddSkill(new Skill("Damage", 0, new List<IEffect> { new Damage() }));
+            character.AddSkill(new Skill("CausedDamage", 0, new List<IEffect> { new Damage() }));
             character.AddSkill(new Skill("Drain", 0, new List<IEffect> { new Drain() }));
 
             character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Add, Attributes.FightVitality) }));

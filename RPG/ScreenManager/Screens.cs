@@ -26,14 +26,14 @@ namespace SchulProjekt
 
         public Screens()
         {
-            mainMenu.Insert(0, new GUIElement("MainMenuScreenbackground",0,0));
-            mainMenu.Insert(1, new GUIElement("MainMenuPlayButton", 150, 150));
+            this.mainMenu.Insert(0, new GUIElement("MainMenuScreenbackground",0,0));
+            this.mainMenu.Insert(1, new GUIElement("MainMenuPlayButton", 150, 150));
 
-            options.Insert(0, new GUIElement("OptionsScreenBackground", 0, 0));
-            options.Insert(1, new GUIElement("OptionsExitButton", 150, 150));
-            options.Insert(2, new GUIElement("OptionsContinueButton", 200, 100));
+            this.options.Insert(0, new GUIElement("OptionsScreenBackground", 0, 0));
+            this.options.Insert(1, new GUIElement("OptionsExitButton", 150, 150));
+            this.options.Insert(2, new GUIElement("OptionsContinueButton", 200, 100));
 
-            storyScreen.Insert(0, new GUIElement("StoryScreenBackground", 0, 0));
+            this.storyScreen.Insert(0, new GUIElement("StoryScreenBackground", 0, 0));
 
             /*
             storyScreen.Insert(0, new GUIElement("StoryScreenBackground", 0, 0));
@@ -58,29 +58,29 @@ namespace SchulProjekt
 
         public void LoadContent(ContentManager content)
         {
-            foreach(GUIElement element in mainMenu)
+            foreach(GUIElement element in this.mainMenu)
             {
                 element.LoadContent(content);
-                element.clickEvent += OnClick;
+                element.clickEvent += this.OnClick;
             }
             //verschiebt das GUI Element mit einem bestimmten Namen 
             //main.Find(x => x.AssetName == "Play").moveElement(0,-100);
-            foreach(GUIElement element in options)
+            foreach(GUIElement element in this.options)
             {
                 element.LoadContent(content);
-                element.clickEvent += OnClick;
+                element.clickEvent += this.OnClick;
             }
 
-            foreach (GUIElement element in storyScreen)
+            foreach (GUIElement element in this.storyScreen)
             {
                 element.LoadContent(content);
-                element.clickEvent += OnClick;
+                element.clickEvent += this.OnClick;
             }
 
-            foreach (GUIElement element in battleScreen)
+            foreach (GUIElement element in this.battleScreen)
             {
                 element.LoadContent(content);
-                element.clickEvent += OnClick;
+                element.clickEvent += this.OnClick;
             }
             
         }
@@ -88,37 +88,37 @@ namespace SchulProjekt
         public void Update()
         {
             //Tastatur Status wird gespeichert
-            previousKeyboardState = currentKeyboardState;
+            this.previousKeyboardState = this.currentKeyboardState;
             //aktueller Tastatur Status wird gelesen
-            currentKeyboardState = Keyboard.GetState();
+            this.currentKeyboardState = Keyboard.GetState();
 
-            if(currentKeyboardState.IsKeyDown(Keys.Escape) && gameState != GameState.mainMenu)
+            if(this.currentKeyboardState.IsKeyDown(Keys.Escape) && this.gameState != GameState.mainMenu)
             {
-                gameState = GameState.options;
+                this.gameState = GameState.options;
             }
             
-            switch (gameState)
+            switch (this.gameState)
             {
                 case GameState.mainMenu:
-                    foreach (GUIElement element in mainMenu)
+                    foreach (GUIElement element in this.mainMenu)
                     {
                         element.Update();
                     }
                     break;
                 case GameState.options:
-                    foreach (GUIElement element in options)
+                    foreach (GUIElement element in this.options)
                     {
                         element.Update();
                     }
                     break;
                 case GameState.storyScreen:
-                    foreach (GUIElement element in storyScreen)
+                    foreach (GUIElement element in this.storyScreen)
                     {
                         element.Update();
                     }
                     break;
                 case GameState.battleScreen:
-                    foreach (GUIElement element in storyScreen)
+                    foreach (GUIElement element in this.storyScreen)
                     {
                         element.Update();
                     }
@@ -129,28 +129,28 @@ namespace SchulProjekt
         public void Draw(SpriteBatch spriteBatch)
         {
 
-            switch (gameState)
+            switch (this.gameState)
             {
                 case GameState.mainMenu:
-                    foreach (GUIElement element in mainMenu)
+                    foreach (GUIElement element in this.mainMenu)
                     {
                         element.Draw(spriteBatch);
                     }
                     break;
                 case GameState.options:
-                    foreach (GUIElement element in options)
+                    foreach (GUIElement element in this.options)
                     {
                         element.Draw(spriteBatch);
                     }
                     break;
                 case GameState.storyScreen:
-                    foreach (GUIElement element in storyScreen)
+                    foreach (GUIElement element in this.storyScreen)
                     {
                         element.Draw(spriteBatch);
                     }
                     break;
                 case GameState.battleScreen:
-                    foreach (GUIElement element in storyScreen)
+                    foreach (GUIElement element in this.storyScreen)
                     {
                         element.Draw(spriteBatch);
                     }
@@ -170,12 +170,12 @@ namespace SchulProjekt
         {
             if(element == "MainMenuPlayButton")
             {
-                gameState = GameState.storyScreen;
+                this.gameState = GameState.storyScreen;
                 
             }
             if(element == "OptionsContinueButton")
             {
-                gameState = GameState.storyScreen;
+                this.gameState = GameState.storyScreen;
             }
             if(element == "OptionsExitButton")
             {

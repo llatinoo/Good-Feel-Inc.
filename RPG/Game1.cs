@@ -29,7 +29,7 @@ namespace RPG
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            IsMouseVisible = true;
+            this.IsMouseVisible = true;
             base.Initialize();
         }
 

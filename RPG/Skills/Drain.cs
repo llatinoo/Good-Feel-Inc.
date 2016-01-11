@@ -7,13 +7,15 @@ namespace RPG.Skills
 {
     public class Drain : IEffect
     {
+        public int CausedDamage { get; private set; }
+
         public void Execute(Character source, List<Character> targets)
         {
             foreach(Character target in targets)
             {
-                int damage = Convert.ToInt32(((source.FightStrength + source.FightMagic) / 2) / 3);
-                target.FightVitality -= damage;
-                source.FightVitality += Convert.ToInt32(damage / 2);
+                this.CausedDamage = Convert.ToInt32(((source.FightStrength + source.FightMagic) / 2) / 3);
+                target.FightVitality -= this.CausedDamage;
+                source.FightVitality += Convert.ToInt32(this.CausedDamage / 2);
             }
         }
     }

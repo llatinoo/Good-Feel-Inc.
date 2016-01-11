@@ -10,37 +10,71 @@ namespace RPG.Characters
     public enum MainAttributes
     {
         Vitality,
+        Mana,
         Strength,
         Magic,
         Defense,
-        Mana,
+        Resistance,
         Luck
+    }
+    public enum Classes
+    {
+        Warrior,
+        Hunter,
+        Colossus,
+        Patron,
+        Harasser
     }
 
     //Technische Daten eines Charakters
     public class Character
     {
         //Grafikdaten des Charakters
-        public Animations Sprite { get; set; }
+        public Animations Sprite { get; private set; }
 
         //Name
-        public string Name { get; set; }
+        public string Name { get; private set; }
+
+        //Klasse
+        public string Class { get; private set; }
 
         //Festwerte die durch aufleveln gesteigert werden
         public int Vitality { get; private set; }
+        public int Mana { get; private set; }
         public int Strength { get; private set; }
         public int Magic { get; private set; }
         public int Defense { get; private set; }
-        public int Mana { get; private set; }
-        public int Luck { get; private set; }
+        public int Resistance
+        {
+            get { return this.Resistance; }
+            set { this.Resistance = MathHelper.Clamp(this.Resistance, 0, 20); }
+        }
+        public int Luck   
+        {
+            get { return this.Luck; }
+            set { this.Luck = MathHelper.Clamp(this.Luck, 0, 70); }
+        }
 
         //Kampfwerte die im Kampf verändert werden können
         public int FightVitality { get; set; }
+        public int FightMana { get; set; }
         public int FightStrength { get; set; }
         public int FightMagic { get; set; }
         public int FightDefense { get; set; }
-        public int FightMana { get; set; }
-        public int FightLuck { get; set; }
+        public int FightResistance
+        {
+            get { return this.FightResistance; }
+            set { this.FightResistance = MathHelper.Clamp(this.FightResistance, 0, 20); }
+        }
+        public int FightLuck
+        {
+            get { return this.FightLuck; }
+            set { this.FightLuck = MathHelper.Clamp(this.FightLuck, 0, 70); }
+        }
+
+        //Ausrüstung
+        public Weapon RightWeapon { get; set; }
+        public Weapon LefWeapon { get; set; }
 
         //Level Attribute
         public int Level { get; set; }
@@ -57,15 +91,16 @@ namespace RPG.Characters
         public int UltimatePoints { get; set; }
         public int UltimatePointsToCast { get; set; }
 
-        public Character(string charName, int vitality, int strength, int magic, int defense, int mana, int luck, List<int> levellist)
+        public Character(string charName, int vitality, int mana, int strength, int magic, int defense, int resistance, int luck, List<int> levellist)
         {
             this.Name = charName;
 
             this.FightVitality = this.Vitality = vitality;
+            this.FightMana = this.Mana = mana;
             this.FightStrength = this.Strength = strength;
             this.FightMagic = this.Magic = magic;
             this.FightDefense = this.Defense = defense;
-            this.FightMana = this.Mana = mana;
+            this.FightResistance = this.Resistance = resistance;
             this.FightLuck = this.Luck = luck;
 
             this.Exp = 0;
