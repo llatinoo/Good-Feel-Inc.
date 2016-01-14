@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Linq.Expressions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RPG;
 
 namespace RPGTests
 {
@@ -17,6 +19,8 @@ namespace RPGTests
             var character = new Character
                 (
                     "Char",
+                    Classes.Warrior, 
+                    "Dämon",
                     1000000,
                     1000000,
                     100,
@@ -30,6 +34,8 @@ namespace RPGTests
             var enemy = new Enemy
                 (
                     "Enemy",
+                    Classes.Colossus,
+                    "Human",
                     1000000,
                     1000000,
                     100,
@@ -43,7 +49,7 @@ namespace RPGTests
             Assert.IsNotNull(enemy);
             Assert.IsNotNull(character);
 
-            character.AddSkill(new Skill("Bleed", 0, new List<IEffect>() { new Bleed() }));
+            character.AddSkill(new Skill("Bleed", 0, new List<IEffect> { new Bleed() }));
             character.AddSkill(new Skill("Bless", 0, new List<IEffect> { new Bless() }));
             character.AddSkill(new Skill("Burn", 0, new List<IEffect> { new Burn() }));
             character.AddSkill(new Skill("Halo", 0, new List<IEffect> { new Halo() }));
@@ -61,6 +67,9 @@ namespace RPGTests
             character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Substract, Attributes.FightDefense) }));
             character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Add, Attributes.FightMana) }));
             character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Substract, Attributes.FightLuck) }));
+            character.AddSkill(new Skill("RandomStatsChange", 0, new List<IEffect> {new StatsChange(StatActions.Add, RandomStatsHelperClass.GetRandomStat()) }));
+
+            character.AddSkill(new Skill("Remove Skill", 0, new List<IEffect> { new RemoveStatusEffect() }));
 
             Assert.AreNotEqual(0, character.Skills.Count);
 

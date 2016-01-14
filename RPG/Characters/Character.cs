@@ -34,9 +34,11 @@ namespace RPG.Characters
 
         //Name
         public string Name { get; private set; }
-
         //Klasse
-        public string Class { get; private set; }
+        public Classes Class { get; private set; }
+        //Rasse
+        public string Race { get; private set; }
+
 
         //Festwerte die durch aufleveln gesteigert werden
         public int Vitality { get; private set; }
@@ -91,9 +93,11 @@ namespace RPG.Characters
         public int UltimatePoints { get; set; }
         public int UltimatePointsToCast { get; set; }
 
-        public Character(string charName, int vitality, int mana, int strength, int magic, int defense, int resistance, int luck, List<int> levellist)
+        public Character(string charName, Classes className, string race, int vitality, int mana, int strength, int magic, int defense, int resistance, int luck, List<int> levellist)
         {
             this.Name = charName;
+            this.Class = className;
+            this.Race = race;
 
             this.FightVitality = this.Vitality = vitality;
             this.FightMana = this.Mana = mana;

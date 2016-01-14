@@ -13,7 +13,7 @@ namespace RPG.Skills
         {
             foreach(Character target in targets)
             {
-                this.CausedDamage = Convert.ToInt32(((source.FightStrength + source.FightMagic) / 2) / 3);
+                this.CausedDamage = Convert.ToInt32((source.FightStrength + source.FightMagic) / 3);
                 target.FightVitality -= this.CausedDamage;
                 source.FightVitality += Convert.ToInt32(this.CausedDamage / 2);
             }
