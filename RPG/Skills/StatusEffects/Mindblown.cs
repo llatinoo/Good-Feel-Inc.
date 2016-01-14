@@ -10,11 +10,37 @@ namespace RPG.Skills.StatusEffects
         public Mindblown(Character source, Character target)
         {
             this.Damage = 0;
-          
-            if (target.Level > source.Level)
+
+            int difference = source.Level - target.Level;
+
+            if (target.FightResistance == 20 || difference <= 0)
+            {
                 this.Duration = 1;
+            }
             else
-                this.Duration = source.Level - target.Level;
+            {
+                if (target.FightResistance >= 15 & difference >= 2)
+                {
+                    this.Duration = 2;
+                }
+                else
+                {
+                    if (target.FightResistance >= 10 & difference >= 3)
+                    {
+                        this.Duration = 3;
+                    }
+                    else
+                    {
+                        if (target.Level < source.Level)
+                        {
+                            this.Duration = difference;
+                        }
+                    }
+                }
+            }
+            
+            
+
         }
 
         public int ExecuteStatus()

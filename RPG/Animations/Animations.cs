@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace SchulProjekt.Animation
 {
-    class Animations
+    public class Animations
     {
         //Textur der Animation
         Texture2D sprite;
@@ -22,7 +22,7 @@ namespace SchulProjekt.Animation
         //Zeit die ein Frame angezeigt bis zum nächsten
         int frameDisplayTime;
 
-        //Die anzahl an frames des spritesheets
+        //Die Anzahl an frames des spritesheets
         int countSpritesheetFrames;
 
         //Index des aktuell angezeigten Frames
@@ -66,57 +66,57 @@ namespace SchulProjekt.Animation
             this.loop = loop;
 
             //Zeit wird auf 0 gesetzt
-            elapsedTime = 0;
-            currentFrame = 0;
+            this.elapsedTime = 0;
+            this.currentFrame = 0;
 
             //standartmäßig Animation aktiv setzen
-            active = true;
+            this.active = true;
         }
 
         public void Update(GameTime gameTime)
         {
-            if (active == false)
+            if (this.active == false)
             {
                 return;
             }
             //vergangene Zeit updaten
-            elapsedTime += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
+            this.elapsedTime += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
 
             //Wenn vergangene Zeit größer als anzeigezeit ist, wird das aktuelle Frame geändert
-            if (elapsedTime > frameDisplayTime)
+            if (this.elapsedTime > this.frameDisplayTime)
             {
-                currentFrame++;
+                this.currentFrame++;
 
-                if(currentFrame == countSpritesheetFrames)
+                if(this.currentFrame == this.countSpritesheetFrames)
                 {
-                    currentFrame = 0;
+                    this.currentFrame = 0;
 
                     //Wenn die Animation nicht wiederholt werden soll wird sie deaktiviert
-                    if(!loop)
+                    if(!this.loop)
                     {
-                        active = false;
+                        this.active = false;
                     }
                 }
 
                 //vergangene Zeit wird zurückgesetzt
-                elapsedTime = 0;
+                this.elapsedTime = 0;
             }
 
             //Der korrekte Frame wird gewählt
-            sourceRect = new Rectangle(frameWidth * currentFrame, 0, frameWidth, frameHeight);
+            this.sourceRect = new Rectangle(this.frameWidth *this.currentFrame, 0, this.frameWidth, this.frameHeight);
 
             //Ziel des anzuzeigenden Frames
-            destinationRect = new Rectangle((int)position.X - (int)(frameWidth * displayedScale) / 2, 
-            (int)position.Y - (int)(frameHeight * displayedScale) / 2, (int)(frameWidth * displayedScale), (int)(frameHeight * displayedScale));
+            this.destinationRect = new Rectangle((int) this.position.X - (int)(this.frameWidth *this.displayedScale) / 2, 
+            (int) this.position.Y - (int)(this.frameHeight *this.displayedScale) / 2, (int)(this.frameWidth *this.displayedScale), (int)(this.frameHeight *this.displayedScale));
                 
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             //nur wenn die Animation aktiv ist wird sie dargestellt
-            if(active)
+            if(this.active)
             {
-                spriteBatch.Draw(sprite,destinationRect,sourceRect,color);
+                spriteBatch.Draw(this.sprite, this.destinationRect, this.sourceRect, this.color);
             }
         }
     }

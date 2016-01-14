@@ -13,7 +13,7 @@ namespace RPG.Skills.StatusEffects
             Random r1 = new Random();
             
             this.Duration = Convert.ToInt32(r1.Next(1, 4 * 1000) / 1000);
-            this.Damage = Convert.ToInt32((r1.Next(source.FightMagic / 5, (source.FightMagic / 3) * 1000)) / 1000);
+            this.Damage = Convert.ToInt32((((r1.Next(source.FightMagic / 4, (source.FightMagic / 2) * 1000)) / 1000) / source.FightResistance) / (source.FightResistance / 2));
         }
 
         public int ExecuteStatus()

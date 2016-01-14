@@ -11,6 +11,8 @@ namespace RPG
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        GamePadState gamePadState;
+        KeyboardState keyboardState;
 
         public Game1()
         {
@@ -27,7 +29,7 @@ namespace RPG
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            this.IsMouseVisible = true;
             base.Initialize();
         }
 
