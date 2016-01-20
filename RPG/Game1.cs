@@ -10,6 +10,7 @@ namespace RPG
     /// </summary>
     public class Game1 : Game
     {
+        //Tolles Kommentar
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Screen Screen = new Screen();
