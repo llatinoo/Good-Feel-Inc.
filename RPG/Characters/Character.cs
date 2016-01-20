@@ -74,10 +74,6 @@ namespace RPG.Characters
             set { this.FightLuck = MathHelper.Clamp(this.FightLuck, 0, 70); }
         }
 
-        //Ausrüstung
-        public Weapon RightWeapon { get; set; }
-        public Weapon LefWeapon { get; set; }
-
         //Level Attribute
         public int Level { get; set; }
         public int Exp { get; set; }
