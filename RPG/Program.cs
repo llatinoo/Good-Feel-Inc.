@@ -15,7 +15,10 @@ namespace RPG
         static void Main()
         {
             using (var game = new Game1())
+            {
+                game.Window.Title = "RPG";
                 game.Run();
+            }
         }
     }
 #endif
