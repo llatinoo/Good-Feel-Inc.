@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using RPG.Skills;
 using RPG.Skills.StatusEffects;
-using SchulProjekt.Animation;
 
 namespace RPG.Characters
 {
@@ -30,7 +29,7 @@ namespace RPG.Characters
     public class Character
     {
         //Grafikdaten des Charakters
-        public Animations Sprite { get; private set; }
+        public Animation Sprite { get; private set; }
 
         //Name
         public string Name { get; private set; }
@@ -118,12 +117,6 @@ namespace RPG.Characters
         public void RemoveSkill(Skill removeSkill)
         {
             this.Skills.Remove(removeSkill);
-        }
-
-        public void InitzializeSprite(Texture2D texture, Vector2 position, int frameWidth, int frameHeight,
-            int countSpritesheetFrames, int frameDisplayTime, Color color, float displayedScale, bool loop)
-        {
-            this.Sprite.Initialize(texture, position, frameWidth, frameHeight, countSpritesheetFrames, frameDisplayTime, color, displayedScale, loop);
         }
 
         public void UpdateStat(int updateAmmount, MainAttributes mainAttributeToUpdate)
