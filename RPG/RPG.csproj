@@ -208,6 +208,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="Content\Fonts\BasicFont.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
