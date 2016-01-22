@@ -61,7 +61,8 @@
     <Compile Include="Characters\Enemy.cs" />
     <Compile Include="Characters\PartyMember.cs" />
     <Compile Include="Characters\Player.cs" />
-    <Compile Include="Extensions.cs" />
+    <Compile Include="StoryDialogsDataSection.cs" />
+    <Compile Include="StatusEffectExtensions.cs" />
     <Compile Include="Characters\Character.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
@@ -100,6 +101,7 @@
       <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>

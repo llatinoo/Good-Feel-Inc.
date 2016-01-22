@@ -14,7 +14,7 @@ namespace DialogToXML
         static void Main(string[] args)
         {
             bool doLoop = true;
-            int i = 0;
+            int i = 1;
             do
             {
                 Console.WriteLine("szene");
@@ -44,7 +44,7 @@ namespace DialogToXML
                     if (Console.ReadLine().ToLower() == "j")
                     {
                         string filePath = String.Format(@"C:\Users\dengler\OneDrive\RPG\RPG Dokumente\RPGDialogs\{0}\{1}.xml",scene, part);
-                        string data = String.Format("<add id=\"{8}\" speaker=\"{0}\" speakerPicture=\"{1}\" listener=\"{2}\" listenerPicture=\"{3}\" row1=\"{4}\" row2=\"{5}\" row3=\"{6}\" row4=\"{7}\">", speaker, speakerPicture, listener, listenerPicture, textRow1, textRow2, textRow3, textRow4, i);
+                        string data = String.Format("<TextBox id=\"{8}\" speaker=\"{0}\" speakerPicture=\"{1}\" listener=\"{2}\" listenerPicture=\"{3}\" row1=\"{4}\" row2=\"{5}\" row3=\"{6}\" row4=\"{7}\"/>", speaker, speakerPicture, listener, listenerPicture, textRow1, textRow2, textRow3, textRow4, i);
                         File.AppendAllText(filePath, data + Environment.NewLine);
                         i++;
                     }
