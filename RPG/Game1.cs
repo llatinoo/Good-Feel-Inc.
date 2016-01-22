@@ -51,7 +51,7 @@ namespace RPG
             // TODO: use this.Content to load your game content here
             Screen.LoadContent(Content);
             MouseCursor.LoadContent(Content);
-            sound.LoadContent(Content);
+            //sound.LoadContent(Content);
         }
         
         /// <summary>

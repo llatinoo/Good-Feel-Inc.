@@ -27,6 +27,7 @@ namespace RPG
         private List<GUIElement> storyScreen = new List<GUIElement>();
         private List<GUIElement> battleScreen = new List<GUIElement>();
         private List<TextElement> battleScreenSkills = new List<TextElement>();
+        private List<TextElement> storyText = new List<TextElement>();
 
         private bool exitGame = false;
         public bool ExitGame
@@ -39,6 +40,7 @@ namespace RPG
             mainMenu.Insert(1, new GUIElement("Buttons\\New_Game_Button"));
             mainMenu.Insert(2, new GUIElement("Buttons\\Continue_Button"));
             mainMenu.Insert(3, new GUIElement("Buttons\\Quit_Button"));
+            
 
             options.Insert(0, new GUIElement("Backgrounds\\Menus\\Options_Screen_Background"));
             options.Insert(1, new GUIElement("Buttons\\Continue_Button"));
@@ -46,11 +48,17 @@ namespace RPG
             options.Insert(3, new GUIElement("Buttons\\Quit_Button"));
 
             storyScreen.Insert(0, new GUIElement("Backgrounds\\Story\\Triumphfelder_Story_Background"));
+            storyScreen.Insert(1, new GUIElement("Textboxes\\TextBox_RPG"));
 
             battleScreen.Insert(0, new GUIElement("Backgrounds\\Battle\\Forest_Battle_Background"));
 
             battleScreenSkills.Insert(0,new TextElement("Skill1",50,50));
             battleScreenSkills.Insert(1, new TextElement("Skill2", 100, 50));
+
+            storyText.Insert(0, new TextElement ("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", 410, 130));
+            storyText.Insert(1, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", 435, 130));
+            storyText.Insert(2, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", 460, 130));
+            storyText.Insert(3, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", 485, 130));
 
             /*
             storyScreen.Insert(0, new GUIElement("StoryScreenBackground", 0, 0));
@@ -75,7 +83,13 @@ namespace RPG
 
         public void LoadContent(ContentManager content)
         {
-            foreach(TextElement element in battleScreenSkills)
+
+            foreach (TextElement element in storyText)
+            {
+                element.LoadContent(content);
+                element.tclickEvent += OnClick;
+            }
+            foreach (TextElement element in battleScreenSkills)
             {
                 element.LoadContent(content);
                 element.tclickEvent += OnClick;
@@ -126,6 +140,9 @@ namespace RPG
             options.ElementAt<GUIElement>(2).moveElement(0, 0);
             options.ElementAt<GUIElement>(3).CenterElement(576, 720);
             options.ElementAt<GUIElement>(3).moveElement(0, 100);
+
+            storyScreen.ElementAt<GUIElement>(1).CenterElement(576, 720);
+            storyScreen.ElementAt<GUIElement>(1).moveElement(0, 180);
 
         }
         
@@ -183,7 +200,7 @@ namespace RPG
                             Mouse.SetPosition(mainMenu.ElementAt<GUIElement>(3).getGUIRect.Center.X, mainMenu.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
                         }
                     }
-                        break;
+                    break;
                 case GameState.options:
                     foreach (GUIElement element in options)
                     {
@@ -246,7 +263,10 @@ namespace RPG
                         testSkill2.Update(gameTime);
                     }
                     break;
-            }
+                    }
+
+                    
+            
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -266,6 +286,10 @@ namespace RPG
                     break;
                 case GameState.storyScreen:
                     foreach (GUIElement element in storyScreen)
+                    {
+                        element.Draw(spriteBatch);
+                    }
+                    foreach (TextElement element in storyText)
                     {
                         element.Draw(spriteBatch);
                     }

@@ -184,6 +184,9 @@
     </Content>
     <Content Include="Content\Textboxes\Textbox.png" />
     <Content Include="Icon.ico" />
+    <Content Include="Content\Textboxes\TextBox_RPG.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
@@ -212,6 +215,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="Content\Fonts\AwesomeFont.xnb" />
     <None Include="Content\Fonts\BasicFont.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

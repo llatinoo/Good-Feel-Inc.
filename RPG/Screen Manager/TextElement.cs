@@ -13,7 +13,7 @@ namespace RPG
     {
         
         Controls controls = new Controls();
-        SpriteFont BasicFont;
+        SpriteFont AwesomeFont;
         private Vector2 fontSize;
 
         private string skillName;
@@ -34,8 +34,8 @@ namespace RPG
         public void LoadContent(ContentManager content)
         {
             //Font mit dem Namen "BasicFont" wird geladen
-            BasicFont = content.Load<SpriteFont>("Fonts\\BasicFont");
-            fontSize = BasicFont.MeasureString(skillName);
+            AwesomeFont = content.Load<SpriteFont>("Fonts\\AwesomeFont");
+            fontSize = AwesomeFont.MeasureString(skillName);
             textRect = new Rectangle(positionX, positionY, (int)fontSize.X, (int)fontSize.Y);
         }
 
@@ -49,10 +49,10 @@ namespace RPG
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(BasicFont, skillName, new Vector2(positionX, positionY), Color.White);
+            spriteBatch.DrawString(AwesomeFont, skillName, new Vector2(positionX, positionY), Color.White);
             if (textRect.Contains(controls.CursorPos))
             {
-                spriteBatch.DrawString(BasicFont, skillName, new Vector2(positionX, positionY), Color.DarkBlue);
+                spriteBatch.DrawString(AwesomeFont, skillName, new Vector2(positionX, positionY), Color.DarkBlue);
             }
         }
       }
