@@ -39,6 +39,7 @@ namespace RPG
             mainMenu.Insert(1, new GUIElement("Buttons\\New_Game_Button"));
             mainMenu.Insert(2, new GUIElement("Buttons\\Continue_Button"));
             mainMenu.Insert(3, new GUIElement("Buttons\\Quit_Button"));
+            mainMenu.Insert(4, new GUIElement("Buttons\\Quit_Button"));
 
             options.Insert(0, new GUIElement("Backgrounds\\Menus\\Options_Screen_Background"));
             options.Insert(1, new GUIElement("Buttons\\Continue_Button"));

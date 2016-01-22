@@ -55,6 +55,9 @@
   <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>RPG.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Animations\Animation.cs" />
     <Compile Include="Animations\SkillAnimation.cs" />
@@ -175,6 +178,7 @@
     <Content Include="Content\Sounds\Life_converted.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textboxes\Textbox.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
