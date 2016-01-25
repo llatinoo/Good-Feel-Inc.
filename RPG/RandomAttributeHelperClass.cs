@@ -8,9 +8,9 @@ using RPG.Skills.StatusEffects;
 
 namespace RPG
 {
-    public static class RandomStatsHelperClass
+    public static class RandomAttributeHelperClass
     {
-        public static Attributes GetRandomStat()
+        public static Attributes GetRandomAttribute()
         {
             int random = new Random().Next(0, 7 * 1000) / 1000;
 
