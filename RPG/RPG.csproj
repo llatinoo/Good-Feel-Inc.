@@ -110,6 +110,18 @@
     <Content Include="Content\Animations\BattlerAnim.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Animations\Battlers\Caspar\Caspar_Attack_Animation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Animations\Battlers\Caspar\Caspar_Death_Animation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Animations\Battlers\Caspar\Caspar_Standard_Animation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Animations\Battlers\Kaiser\Kaiser_Battle_Animation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Animations\DarkHoleAnim30FPS.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

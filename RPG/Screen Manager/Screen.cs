@@ -16,6 +16,7 @@ namespace RPG
         //Skill Animation wird erstellt
         private SkillAnimation testSkill = new SkillAnimation();
         private SkillAnimation testSkill2 = new SkillAnimation();
+        private SkillAnimation testSkill3 = new SkillAnimation();
 
         //SpielStatus
         private enum GameState {mainMenu, options, storyScreen, battleScreen}
@@ -120,12 +121,16 @@ namespace RPG
                 //neue Animation wird erstellt
                 Animation testAnimation = new Animation();
                 Animation testAnimation2 = new Animation();
+                Animation testAnimation3 = new Animation();
                 //Animation wird geladen und die Textur sowie die Breite und Höhe wird festeglegt
-                testAnimation.LoadContent(content.Load<Texture2D>("Animations\\DarkHoleAnim30FPS"), Vector2.Zero, 223, 232, 50, Color.White, 1f, true, 1, 16);
+                testAnimation.LoadContent(content.Load<Texture2D>("Animations\\DarkHoleAnim30FPS"), Vector2.Zero, 223, 232, 50, Color.White, 1f, true, 1, 16, false);
                 testSkill.LoadContent(testAnimation, new Vector2(150, 150));
 
-                testAnimation2.LoadContent(content.Load<Texture2D>("Animations\\BattlerAnim"), Vector2.Zero, 64, 64, 50, Color.White, 1f, true, 6, 9);
+                testAnimation2.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Caspar\\Caspar_Attack_Animation"), Vector2.Zero, 64, 64, 125, Color.White, 1f, true, 1, 6, false);
                 testSkill2.LoadContent(testAnimation2, new Vector2(400, 400));
+
+                testAnimation3.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Caspar\\Caspar_Standard_Animation"), Vector2.Zero, 64, 64, 150, Color.White, 1f, true, 1, 6, false);
+                testSkill3.LoadContent(testAnimation3, new Vector2(300, 400));
             }
             mainMenu.ElementAt<GUIElement>(1).CenterElement(576, 720);
             mainMenu.ElementAt<GUIElement>(1).moveElement(0, 0);
@@ -261,6 +266,7 @@ namespace RPG
                         }
                         testSkill.Update(gameTime);
                         testSkill2.Update(gameTime);
+                        testSkill3.Update(gameTime);
                     }
                     break;
                     }
@@ -305,6 +311,7 @@ namespace RPG
 
                         testSkill.Draw(spriteBatch);
                         testSkill2.Draw(spriteBatch);
+                        testSkill3.Draw(spriteBatch);
                     }
                     break;
             }

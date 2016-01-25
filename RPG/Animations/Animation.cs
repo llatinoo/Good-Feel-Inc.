@@ -58,8 +58,9 @@ namespace RPG
         //aktuell angezeigter Vertikaler frame
         int currentVerticalFrame;
 
+        private bool mirrored = false;
         public void LoadContent(Texture2D sprite, Vector2 position, int frameWidth, int frameHeight,
-            int frameDisplayTime, Color color, float displayedScale, bool loop, int spriteSheetHorizontal, int spriteSheetVertical)
+            int frameDisplayTime, Color color, float displayedScale, bool loop, int spriteSheetHorizontal, int spriteSheetVertical, bool mirrored)
         {
             this.sprite = sprite;
             this.position = position;
@@ -71,12 +72,19 @@ namespace RPG
             this.loop = loop;
             this.spriteSheetHorizontal = spriteSheetHorizontal;
             this.spriteSheetVertical = spriteSheetVertical;
-
+            this.mirrored = mirrored;
             //Zeit wird auf 0 gesetzt
             elapsedTime = 0;
-            currentVerticalFrame = 0;
-            currentHorizontalFrame = 0;
-
+            if (!mirrored)
+            {
+                currentVerticalFrame = 0;
+                currentHorizontalFrame = 0;
+            }
+            else if(mirrored)
+            {
+                currentVerticalFrame = spriteSheetVertical;
+                currentHorizontalFrame = spriteSheetHorizontal;
+            }
             //standartmäßig Animation aktiv setzen
             active = true;
 
@@ -91,34 +99,53 @@ namespace RPG
             //vergangene Zeit updaten
             elapsedTime += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            //Wenn vergangene Zeit größer als anzeigezeit ist, wird das aktuelle Frame geändert
-            if (elapsedTime > frameDisplayTime)
-            {
-                currentVerticalFrame++;
-                if (currentVerticalFrame == spriteSheetVertical)
+            
+                //Wenn vergangene Zeit größer als anzeigezeit ist, wird das aktuelle Frame geändert
+                if (elapsedTime > frameDisplayTime)
                 {
-                    currentVerticalFrame = 0;
-                    currentHorizontalFrame++;
-                    if(currentHorizontalFrame == spriteSheetHorizontal)
+                    if (!mirrored)
                     {
-                        currentHorizontalFrame = 0;
+                    currentVerticalFrame++;
+                        if (currentVerticalFrame == spriteSheetVertical)
+                        {
+                            currentVerticalFrame = 0;
+                            currentHorizontalFrame++;
+                            if (currentHorizontalFrame == spriteSheetHorizontal)
+                            {
+                                currentHorizontalFrame = 0;
+                            }
+                            if (!loop)
+                            {
+                                active = false;
+                            }
+                        }
                     }
-                    if (!loop)
+                    else if(mirrored)
                     {
-                        active = false;
+                    currentVerticalFrame--;
+                        if (currentVerticalFrame == 0)
+                        {
+                            currentVerticalFrame = spriteSheetVertical;
+                            currentHorizontalFrame--;
+                            if (currentHorizontalFrame == 0)
+                            {
+                                currentHorizontalFrame = spriteSheetHorizontal;
+                            }
+                            if (!loop)
+                            {
+                                active = false;
+                            }
+                        }
                     }
-                }
-
                 //vergangene Zeit wird zurückgesetzt
                 elapsedTime = 0;
-            }
+                }
                 sourceRect = new Rectangle(frameWidth * currentVerticalFrame, frameHeight * currentHorizontalFrame, frameWidth, frameHeight);
 
-            //Ziel des anzuzeigenden Frames
-            destinationRect = new Rectangle((int)position.X - (int)(frameWidth * displayedScale) / 2, 
-            (int)position.Y - (int)(frameHeight * displayedScale) / 2, (int)(frameWidth * displayedScale), (int)(frameHeight * displayedScale));
-                
-        }
+                //Ziel des anzuzeigenden Frames
+                destinationRect = new Rectangle((int)position.X - (int)(frameWidth * displayedScale) / 2,
+                (int)position.Y - (int)(frameHeight * displayedScale) / 2, (int)(frameWidth * displayedScale), (int)(frameHeight * displayedScale));
+            } 
 
         public void Draw(SpriteBatch spriteBatch)
         {
