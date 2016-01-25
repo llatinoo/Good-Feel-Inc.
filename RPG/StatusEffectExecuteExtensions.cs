@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace RPG
 {
-    internal static class Extensions
+    internal static class StatusEffectExecuteExtensions
     {
         public static void AddStatuseffectToTargets(this List<Character> targets, Func<Character, IStatuseffect> getStatuseffectFunc)
         {            

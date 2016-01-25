@@ -61,12 +61,15 @@
     <Compile Include="Characters\Enemy.cs" />
     <Compile Include="Characters\PartyMember.cs" />
     <Compile Include="Characters\Player.cs" />
-    <Compile Include="Extensions.cs" />
+    <Compile Include="RandomStatusEffectHelperClass.cs" />
+    <Compile Include="Skills\RandomEffect.cs" />
+    <Compile Include="StoryDialogsDataSection.cs" />
+    <Compile Include="StatusEffectExecuteExtensions.cs" />
     <Compile Include="Characters\Character.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RandomStatsHelperClass.cs" />
+    <Compile Include="RandomAttributeHelperClass.cs" />
     <Compile Include="Screen Manager\Controls.cs" />
     <Compile Include="Screen Manager\Cursor.cs" />
     <Compile Include="Screen Manager\GUIElement.cs" />
@@ -80,7 +83,7 @@
     <Compile Include="Skills\Mindblow.cs" />
     <Compile Include="Skills\Poison.cs" />
     <Compile Include="Skills\RemoveStatusEffect.cs" />
-    <Compile Include="Skills\StatsChange.cs" />
+    <Compile Include="Skills\AttributesChangeEffect.cs" />
     <Compile Include="Skills\StatusEffects\Bleeding.cs" />
     <Compile Include="Skills\CriticalDamage.cs" />
     <Compile Include="Skills\IEffect.cs" />
@@ -100,6 +103,7 @@
       <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -208,6 +212,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="Content\Fonts\BasicFont.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

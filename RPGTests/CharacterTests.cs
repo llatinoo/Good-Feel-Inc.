@@ -61,13 +61,13 @@ namespace RPGTests
             character.AddSkill(new Skill("CausedDamage", 0, new List<IEffect> { new Damage() }));
             character.AddSkill(new Skill("Drain", 0, new List<IEffect> { new Drain() }));
 
-            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Add, Attributes.FightVitality) }));
-            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Substract, Attributes.FightStrength) }));
-            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Add, Attributes.FightMagic) }));
-            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Substract, Attributes.FightDefense) }));
-            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Add, Attributes.FightMana) }));
-            character.AddSkill(new Skill("StatsChange", 0, new List<IEffect> { new StatsChange(StatActions.Substract, Attributes.FightLuck) }));
-            character.AddSkill(new Skill("RandomStatsChange", 0, new List<IEffect> {new StatsChange(StatActions.Add, RandomStatsHelperClass.GetRandomStat()) }));
+            character.AddSkill(new Skill("AttributesChange", 0, new List<IEffect> { new AttributesChangeEffect(AttributeActions.Add, Attributes.FightVitality) }));
+            character.AddSkill(new Skill("AttributesChange", 0, new List<IEffect> { new AttributesChangeEffect(AttributeActions.Substract, Attributes.FightStrength) }));
+            character.AddSkill(new Skill("AttributesChange", 0, new List<IEffect> { new AttributesChangeEffect(AttributeActions.Add, Attributes.FightMagic) }));
+            character.AddSkill(new Skill("AttributesChange", 0, new List<IEffect> { new AttributesChangeEffect(AttributeActions.Substract, Attributes.FightDefense) }));
+            character.AddSkill(new Skill("AttributesChange", 0, new List<IEffect> { new AttributesChangeEffect(AttributeActions.Add, Attributes.FightMana) }));
+            character.AddSkill(new Skill("AttributesChange", 0, new List<IEffect> { new AttributesChangeEffect(AttributeActions.Substract, Attributes.FightLuck) }));
+            character.AddSkill(new Skill("RandomStatsChange", 0, new List<IEffect> {new AttributesChangeEffect(AttributeActions.Add, RandomAttributeHelperClass.GetRandomAttribute()) }));
 
             character.AddSkill(new Skill("Remove Skill", 0, new List<IEffect> { new RemoveStatusEffect() }));
 
