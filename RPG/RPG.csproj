@@ -96,7 +96,7 @@
     <Compile Include="Skills\StatusEffects\HasHalo.cs" />
     <Compile Include="Skills\StatusEffects\Poisened.cs" />
     <Compile Include="Skills\Drain.cs" />
-    <Compile Include="Sounds\Sound.cs" />
+    <Compile Include="Sound Player\SoundPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -587,7 +587,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\Intro\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Content\Fonts\AwesomeFont.xnb" />
   </ItemGroup>

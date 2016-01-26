@@ -15,7 +15,8 @@ namespace RPG
         SpriteBatch spriteBatch;
         Screen Screen = new Screen();
         Cursor MouseCursor = new Cursor();
-        Sound sound = new Sound();
+        SoundPlayer sound = new SoundPlayer("Content\\Sounds\\Life_converted.wav");
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -78,7 +79,7 @@ namespace RPG
             base.Update(gameTime);
             Screen.Update(gameTime);
             MouseCursor.Update();
-
+            
             if (Screen.ExitGame)
             {
                 this.Exit();

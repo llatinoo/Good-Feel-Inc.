@@ -6,12 +6,18 @@ using Microsoft.Xna.Framework.Content;
 
 namespace RPG
 {
-    class Sound
+    class SoundPlayer
     {
         System.Media.SoundPlayer test = new System.Media.SoundPlayer();
+
+        private String soundName;
+        public SoundPlayer(string soundName)
+        {
+            this.soundName = soundName;
+        }
         public void LoadContent(ContentManager content)
         {
-            test.SoundLocation = "Content\\Sounds\\Life_converted.wav";
+            test.SoundLocation = soundName;
             test.Load();
             test.Play();
         }
