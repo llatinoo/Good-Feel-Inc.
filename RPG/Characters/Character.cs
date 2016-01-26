@@ -19,8 +19,8 @@ namespace RPG.Characters
     public enum Classes
     {
         Warrior,
-        Hunter,
-        Colossus,
+        DamageDealer,
+        Coloss,
         Patron,
         Harasser
     }
@@ -28,6 +28,13 @@ namespace RPG.Characters
     //Technische Daten eines Charakters
     public class Character
     {
+        public int resistance;
+        public int fightResistance;
+        public int luck;
+        public int fightLuck;
+        public int life;
+
+
         //Grafikdaten des Charakters
         public Animation Sprite { get; private set; }
 
@@ -47,16 +54,21 @@ namespace RPG.Characters
         public int Defense { get; private set; }
         public int Resistance
         {
-            get { return this.Resistance; }
-            set { this.Resistance = MathHelper.Clamp(this.Resistance, 0, 20); }
+            get { return this.resistance; }
+            set { this.resistance = MathHelper.Clamp(this.resistance, 0, 20); }
         }
         public int Luck   
         {
-            get { return this.Luck; }
-            set { this.Luck = MathHelper.Clamp(this.Luck, 0, 70); }
+            get { return this.luck; }
+            set { this.luck = MathHelper.Clamp(this.luck, 0, 70); }
         }
 
         //Kampfwerte die im Kampf verändert werden können
+        public int Life
+        {
+            get { return this.life; }
+            set { this.life = MathHelper.Clamp(value, 0, FightVitality); }
+        }
         public int FightVitality { get; set; }
         public int FightMana { get; set; }
         public int FightStrength { get; set; }
@@ -64,13 +76,13 @@ namespace RPG.Characters
         public int FightDefense { get; set; }
         public int FightResistance
         {
-            get { return this.FightResistance; }
-            set { this.FightResistance = MathHelper.Clamp(this.FightResistance, 0, 20); }
+            get { return this.fightResistance; }
+            set { this.fightResistance = MathHelper.Clamp(value, 0, 20); }
         }
         public int FightLuck
         {
-            get { return this.FightLuck; }
-            set { this.FightLuck = MathHelper.Clamp(this.FightLuck, 0, 70); }
+            get { return this.fightLuck; }
+            set { this.fightLuck = MathHelper.Clamp(value, 0, 70); }
         }
 
         //Level Attribute
