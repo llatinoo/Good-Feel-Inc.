@@ -123,15 +123,15 @@ namespace RPG
                     else if(mirrored)
                     {
                     currentVerticalFrame--;
-                        if (currentVerticalFrame == 0)
-                        {
-                            currentVerticalFrame = spriteSheetVertical;
-                            currentHorizontalFrame--;
-                            if (currentHorizontalFrame == 0)
-                            {
-                                currentHorizontalFrame = spriteSheetHorizontal;
-                            }
-                            if (!loop)
+                    if (currentVerticalFrame == 0)
+                    {
+                        currentVerticalFrame = spriteSheetVertical;
+                        //currentHorizontalFrame++;
+                        //if (currentHorizontalFrame == spriteSheetHorizontal)
+                        //{
+                          //  currentHorizontalFrame = 1;
+                        //}
+                        if (!loop)
                             {
                                 active = false;
                             }
@@ -155,5 +155,5 @@ namespace RPG
                 spriteBatch.Draw(sprite,destinationRect,sourceRect,color);
             }
         }
-    }
+}
 }

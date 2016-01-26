@@ -18,6 +18,10 @@ namespace RPG
         private SkillAnimation testSkill3 = new SkillAnimation();
         private SkillAnimation testSkill4 = new SkillAnimation();
         private SkillAnimation testSkill5 = new SkillAnimation();
+        private SkillAnimation testSkill6 = new SkillAnimation();
+        private SkillAnimation testSkill7 = new SkillAnimation();
+        private SkillAnimation testSkill8 = new SkillAnimation();
+        private SkillAnimation testSkill9 = new SkillAnimation();
 
         //SpielStatus
         private enum GameState {mainMenu, options, storyScreen, battleScreen}
@@ -50,9 +54,9 @@ namespace RPG
 
         //Position der Gegner
         Vector2 enemyPosition_1 = new Vector2(100,415);
-        Vector2 enemyPosition_2 = new Vector2(90, 350);
-        Vector2 enemyPosition_3 = new Vector2(80, 285);
-        Vector2 enemyPosition_4 = new Vector2(70, 220);
+        Vector2 enemyPosition_2 = new Vector2(110, 350);
+        Vector2 enemyPosition_3 = new Vector2(120, 285);
+        Vector2 enemyPosition_4 = new Vector2(130, 220);
         Vector2 normalBossPosition;
         Vector2 finalBossPosition;
 
@@ -128,22 +132,43 @@ namespace RPG
                 Animation testAnimation3 = new Animation();
                 Animation testAnimation4 = new Animation();
                 Animation testAnimation5 = new Animation();
+                Animation testAnimation6 = new Animation();
+                Animation testAnimation7 = new Animation();
+                Animation testAnimation8 = new Animation();
+                Animation testAnimation9 = new Animation();
 
                 //Animation wird geladen und die Textur sowie die Breite und Höhe wird festeglegt
                 testAnimation.LoadContent(content.Load<Texture2D>("Animations\\DarkHoleAnim30FPS"), Vector2.Zero, 223, 232, 50, Color.White, 1f, true, 1, 16, false);
-                testSkill.LoadContent(testAnimation, new Vector2(150, 150));
+                testSkill.LoadContent(testAnimation, new Vector2(400, 400));
 
-                testAnimation2.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Caspar\\Caspar_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 125, Color.White, 1f, true, 1, 6, false);
+                testAnimation2.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Caspar\\Caspar_Complete_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 1, 3, false);
                 testSkill2.LoadContent(testAnimation2, characterPosition_1);
 
-                testAnimation3.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Kaiser\\Kaiser_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 150, Color.White, 1f, true, 1, 6, false);
+                testAnimation3.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Kaiser\\Kaiser_Complete_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 1, 3, false);
                 testSkill3.LoadContent(testAnimation3, characterPosition_2);
 
-                testAnimation4.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Seitz\\Seitz_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 150, Color.White, 1f, true, 1, 6, false);
+                testAnimation4.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Seitz\\Seitz_Complete_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 1, 3, false);
                 testSkill4.LoadContent(testAnimation4, characterPosition_3);
 
-                testAnimation5.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Seyfrid\\Seyfrid_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 150, Color.White, 1f, true, 1, 6, false);
+                testAnimation5.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Seyfrid\\Seyfrid_Complete_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 1, 3, false);
                 testSkill5.LoadContent(testAnimation5, characterPosition_4);
+
+
+
+
+
+                testAnimation6.LoadContent(content.Load<Texture2D>("Enemies\\Animated\\Anna\\Anna_Standard_Animation_Enemy"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 5, true);
+                testSkill6.LoadContent(testAnimation6, enemyPosition_1);
+
+                testAnimation7.LoadContent(content.Load<Texture2D>("Enemies\\Animated\\Elena\\Elena_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 5, true);
+                testSkill7.LoadContent(testAnimation7, enemyPosition_2);
+
+                testAnimation8.LoadContent(content.Load<Texture2D>("Enemies\\Animated\\Ells\\Ells_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 5, true);
+                testSkill8.LoadContent(testAnimation8, enemyPosition_3);
+
+                testAnimation9.LoadContent(content.Load<Texture2D>("Enemies\\Animated\\Marlein\\Marlein_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 5, true);
+                testSkill9.LoadContent(testAnimation9, enemyPosition_4);
+
             }
 
             //Die Position der GUIElemente wird verändert
@@ -287,6 +312,10 @@ namespace RPG
                         testSkill3.Update(gameTime);
                         testSkill4.Update(gameTime);
                         testSkill5.Update(gameTime);
+                        testSkill6.Update(gameTime);
+                        testSkill7.Update(gameTime);
+                        testSkill8.Update(gameTime);
+                        testSkill9.Update(gameTime);
                     }
                     break;
                     }
@@ -334,6 +363,10 @@ namespace RPG
                         testSkill3.Draw(spriteBatch);
                         testSkill4.Draw(spriteBatch);
                         testSkill5.Draw(spriteBatch);
+                        testSkill6.Draw(spriteBatch);
+                        testSkill7.Draw(spriteBatch);
+                        testSkill8.Draw(spriteBatch);
+                        testSkill9.Draw(spriteBatch);
                     }
                     break;
             }
