@@ -17,6 +17,8 @@ namespace RPG
         private SkillAnimation testSkill = new SkillAnimation();
         private SkillAnimation testSkill2 = new SkillAnimation();
         private SkillAnimation testSkill3 = new SkillAnimation();
+        private SkillAnimation testSkill4 = new SkillAnimation();
+        private SkillAnimation testSkill5 = new SkillAnimation();
 
         //SpielStatus
         private enum GameState {mainMenu, options, storyScreen, battleScreen}
@@ -35,6 +37,24 @@ namespace RPG
         {
             get { return exitGame; }
         }
+
+        //Character in Pixeln
+        int characterSize = 64;
+
+        //Spieler Character Position
+        Vector2 characterPosition_1 = new Vector2(630,415);
+        Vector2 characterPosition_2 = new Vector2(620, 350);
+        Vector2 characterPosition_3 = new Vector2(610, 285);
+        Vector2 characterPosition_4 = new Vector2(600, 220);
+
+        //Position der Gegner
+        Vector2 enemyPosition_1;
+        Vector2 enemyPosition_2;
+        Vector2 enemyPosition_3;
+        Vector2 enemyPosition_4;
+        Vector2 normalBossPosition;
+        Vector2 finalBossPosition;
+
         public Screen()
         {
             mainMenu.Insert(0, new GUIElement("Backgrounds\\Menus\\Title_Screen_Background"));
@@ -49,17 +69,19 @@ namespace RPG
             options.Insert(3, new GUIElement("Buttons\\Quit_Button"));
 
             storyScreen.Insert(0, new GUIElement("Backgrounds\\Story\\Triumphfelder_Story_Background"));
-            storyScreen.Insert(1, new GUIElement("Textboxes\\TextBox_RPG"));
+            storyScreen.Insert(1, new GUIElement("Textboxes\\TextBox_Heroic_RPG"));
+            
 
             battleScreen.Insert(0, new GUIElement("Backgrounds\\Battle\\Forest_Battle_Background"));
+            battleScreen.Insert(1, new GUIElement("Icons\\Mindblown_Icon"));
 
             battleScreenSkills.Insert(0,new TextElement("Skill1",50,50));
             battleScreenSkills.Insert(1, new TextElement("Skill2", 100, 50));
 
-            storyText.Insert(0, new TextElement ("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", 410, 130));
-            storyText.Insert(1, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", 435, 130));
-            storyText.Insert(2, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", 460, 130));
-            storyText.Insert(3, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", 485, 130));
+            storyText.Insert(0, new TextElement ("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", 422, 150));
+            storyText.Insert(1, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", 447, 150));
+            storyText.Insert(2, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", 472, 150));
+            storyText.Insert(3, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", 497, 150));
 
             /*
             storyScreen.Insert(0, new GUIElement("StoryScreenBackground", 0, 0));
@@ -122,15 +144,23 @@ namespace RPG
                 Animation testAnimation = new Animation();
                 Animation testAnimation2 = new Animation();
                 Animation testAnimation3 = new Animation();
+                Animation testAnimation4 = new Animation();
+                Animation testAnimation5 = new Animation();
                 //Animation wird geladen und die Textur sowie die Breite und Höhe wird festeglegt
                 testAnimation.LoadContent(content.Load<Texture2D>("Animations\\DarkHoleAnim30FPS"), Vector2.Zero, 223, 232, 50, Color.White, 1f, true, 1, 16, false);
                 testSkill.LoadContent(testAnimation, new Vector2(150, 150));
 
-                testAnimation2.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Caspar\\Caspar_Attack_Animation"), Vector2.Zero, 64, 64, 125, Color.White, 1f, true, 1, 6, false);
-                testSkill2.LoadContent(testAnimation2, new Vector2(400, 400));
+                testAnimation2.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Caspar\\Caspar_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 125, Color.White, 1f, true, 1, 6, false);
+                testSkill2.LoadContent(testAnimation2, characterPosition_1);
 
-                testAnimation3.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Caspar\\Caspar_Standard_Animation"), Vector2.Zero, 64, 64, 150, Color.White, 1f, true, 1, 6, false);
-                testSkill3.LoadContent(testAnimation3, new Vector2(300, 400));
+                testAnimation3.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Kaiser\\Kaiser_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 150, Color.White, 1f, true, 1, 6, false);
+                testSkill3.LoadContent(testAnimation3, characterPosition_2);
+
+                testAnimation4.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Seitz\\Seitz_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 150, Color.White, 1f, true, 1, 6, false);
+                testSkill4.LoadContent(testAnimation4, characterPosition_3);
+
+                testAnimation5.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Seyfrid\\Seyfrid_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 150, Color.White, 1f, true, 1, 6, false);
+                testSkill5.LoadContent(testAnimation5, characterPosition_4);
             }
             mainMenu.ElementAt<GUIElement>(1).CenterElement(576, 720);
             mainMenu.ElementAt<GUIElement>(1).moveElement(0, 0);
@@ -148,6 +178,8 @@ namespace RPG
 
             storyScreen.ElementAt<GUIElement>(1).CenterElement(576, 720);
             storyScreen.ElementAt<GUIElement>(1).moveElement(0, 180);
+
+            battleScreen.ElementAt<GUIElement>(1).moveElement(368, 340);
 
         }
         
@@ -267,6 +299,8 @@ namespace RPG
                         testSkill.Update(gameTime);
                         testSkill2.Update(gameTime);
                         testSkill3.Update(gameTime);
+                        testSkill4.Update(gameTime);
+                        testSkill5.Update(gameTime);
                     }
                     break;
                     }
@@ -312,6 +346,8 @@ namespace RPG
                         testSkill.Draw(spriteBatch);
                         testSkill2.Draw(spriteBatch);
                         testSkill3.Draw(spriteBatch);
+                        testSkill4.Draw(spriteBatch);
+                        testSkill5.Draw(spriteBatch);
                     }
                     break;
             }
