@@ -24,7 +24,7 @@ namespace RPG
 
         public delegate void tElementClicked(string element);
         public event tElementClicked tclickEvent;
-        public TextElement(string skillName, int positionY, int positionX)
+        public TextElement(string skillName, int positionX, int positionY)
         {
             this.skillName = skillName;
             this.positionX = positionX;

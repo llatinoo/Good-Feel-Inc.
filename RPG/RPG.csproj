@@ -314,6 +314,9 @@
     <Content Include="Content\Backgrounds\Story\Winterbach_Story_Background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Boxes\SkillBox_RPG.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Buttons\Continue_Button.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -551,11 +554,11 @@
     <Content Include="Content\Sounds\Life_converted.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textboxes\TextBox_Heroic_RPG.png">
+    <Content Include="Content\Boxes\TextBox_Heroic_RPG.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />
-    <Content Include="Content\Textboxes\TextBox_RPG.png">
+    <Content Include="Content\Boxes\TextBox_RPG.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
