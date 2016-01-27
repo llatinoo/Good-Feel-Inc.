@@ -1,9 +1,8 @@
-﻿using RPG.Characters;
-using RPG.Skills.StatusEffects;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using RPG.Characters;
 
-namespace RPG.Skills
+namespace RPG.Skills.Effects
 {
     public class Drain : IEffect
     {
@@ -14,8 +13,8 @@ namespace RPG.Skills
             foreach(Character target in targets)
             {
                 this.CausedDamage = Convert.ToInt32((source.FightStrength + source.FightMagic) / 3);
-                target.FightVitality -= this.CausedDamage;
-                source.FightVitality += Convert.ToInt32(this.CausedDamage / 2);
+                target.Life -= this.CausedDamage;
+                source.Life += Convert.ToInt32(this.CausedDamage / 2);
             }
         }
     }

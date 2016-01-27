@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace RPG
+namespace RPG.Animations
 {
     class SkillAnimation
     {
@@ -19,7 +15,7 @@ namespace RPG
         public void LoadContent(Animation animation, Vector2 position)
 
         {
-            skillAnimation = animation;
+            this.skillAnimation = animation;
 
             // setzt die Position der Animation
             this.position = position;
@@ -28,13 +24,13 @@ namespace RPG
         public void Update(GameTime gameTime)
 
         {
-            skillAnimation.position = position;
-            skillAnimation.Update(gameTime);
+            this.skillAnimation.position = this.position;
+            this.skillAnimation.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            skillAnimation.Draw(spriteBatch);
+            this.skillAnimation.Draw(spriteBatch);
         }
         
 

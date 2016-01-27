@@ -1,8 +1,8 @@
-﻿using RPG.Characters;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using RPG.Characters;
 
-namespace RPG.Skills
+namespace RPG.Skills.Effects
 {
     public class CriticalDamage : IEffect
     {
@@ -14,12 +14,17 @@ namespace RPG.Skills
         {
             foreach (var target in targets)
             {
-                this.CausedDamage = Convert.ToInt32((source.FightStrength * 1.5 + (this.r1.Next(1, (source.FightStrength / 7) * 1000)) / 1000)) - target.FightDefense;
+                this.CausedDamage = Convert.ToInt32((source.FightStrength + (this.r1.Next(1, (source.FightStrength / 7) * 1000)) / 1000));
+
+                this.CausedDamage = Convert.ToInt32(this.CausedDamage * 1.5);
+                this.CausedDamage -= target.FightDefense;
 
                 if (this.CausedDamage < 0)
+                {
                     this.CausedDamage = 0;
+                }
 
-                target.FightVitality -= this.CausedDamage;
+                target.Life -= this.CausedDamage;
             }
         }
     }

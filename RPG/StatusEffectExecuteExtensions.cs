@@ -18,6 +18,16 @@ namespace RPG
                 {
                     target.Statuseffects.Add(statuseffect);
                 }
+                else
+                {
+                    foreach (var effect in target.Statuseffects)
+                    {
+                        if (effect.GetType() == statuseffect.GetType())
+                        {
+                            effect.UpdateDuration(statuseffect.Duration);
+                        }
+                    }
+                }
             }
         }
     }
