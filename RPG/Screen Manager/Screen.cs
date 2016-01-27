@@ -141,32 +141,32 @@ namespace RPG
                 testAnimation.LoadContent(content.Load<Texture2D>("Animations\\DarkHoleAnim30FPS"), Vector2.Zero, 223, 232, 50, Color.White, 1f, true, 1, 16, false);
                 testSkill.LoadContent(testAnimation, new Vector2(400, 400));
 
-                testAnimation2.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Caspar\\Caspar_Complete_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 1, 3, false);
+                testAnimation2.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Caspar\\Caspar_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 1, 3, false);
                 testSkill2.LoadContent(testAnimation2, characterPosition_1);
 
-                testAnimation3.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Kaiser\\Kaiser_Complete_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 1, 3, false);
+                testAnimation3.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Kaiser\\Kaiser_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 1, 3, false);
                 testSkill3.LoadContent(testAnimation3, characterPosition_2);
 
-                testAnimation4.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Seitz\\Seitz_Complete_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 1, 3, false);
+                testAnimation4.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Seitz\\Seitz_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 1, 3, false);
                 testSkill4.LoadContent(testAnimation4, characterPosition_3);
 
-                testAnimation5.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Seyfrid\\Seyfrid_Complete_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 1, 3, false);
+                testAnimation5.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Seyfrid\\Seyfrid_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 1, 3, false);
                 testSkill5.LoadContent(testAnimation5, characterPosition_4);
 
 
 
 
 
-                testAnimation6.LoadContent(content.Load<Texture2D>("Enemies\\Animated\\Anna\\Anna_Standard_Animation_Enemy"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 5, true);
+                testAnimation6.LoadContent(content.Load<Texture2D>("Enemies\\Animated\\Anna\\Anna_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 2, true);
                 testSkill6.LoadContent(testAnimation6, enemyPosition_1);
 
-                testAnimation7.LoadContent(content.Load<Texture2D>("Enemies\\Animated\\Elena\\Elena_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 5, true);
+                testAnimation7.LoadContent(content.Load<Texture2D>("Enemies\\Animated\\Elena\\Elena_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 2, true);
                 testSkill7.LoadContent(testAnimation7, enemyPosition_2);
 
-                testAnimation8.LoadContent(content.Load<Texture2D>("Enemies\\Animated\\Ells\\Ells_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 5, true);
+                testAnimation8.LoadContent(content.Load<Texture2D>("Enemies\\Animated\\Ells\\Ells_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 2, true);
                 testSkill8.LoadContent(testAnimation8, enemyPosition_3);
 
-                testAnimation9.LoadContent(content.Load<Texture2D>("Enemies\\Animated\\Marlein\\Marlein_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 5, true);
+                testAnimation9.LoadContent(content.Load<Texture2D>("Enemies\\Animated\\Marlein\\Marlein_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 2, true);
                 testSkill9.LoadContent(testAnimation9, enemyPosition_4);
 
             }

@@ -119,9 +119,6 @@
     <Content Include="Content\Animations\Battlers\Female\Elena\Elena_Attack_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Animations\Battlers\Female\Elena\Elena_Complete_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Animations\Battlers\Female\Elena\Elena_Death_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -129,9 +126,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Female\Ells\Ells_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Animations\Battlers\Female\Ells\Ells_Complete_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Female\Ells\Ells_Death_Animation.png">
@@ -143,9 +137,6 @@
     <Content Include="Content\Animations\Battlers\Female\Genefe\Genefe_Attack_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Animations\Battlers\Female\Genefe\Genefe_Complete_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Animations\Battlers\Female\Genefe\Genefe_Death_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -155,22 +146,13 @@
     <Content Include="Content\Animations\Battlers\Female\Marlein\Marlein_Attack_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Animations\Battlers\Female\Marlein\Marlein_Complete_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Animations\Battlers\Female\Marlein\Marlein_Death_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Female\Marlein\Marlein_Standard_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Animations\Battlers\Female\Anna\Anna_Complete_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Animations\Battlers\Male\Caspar\Caspar_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Animations\Battlers\Male\Caspar\Caspar_Complete_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Caspar\Caspar_Death_Animation.png">
@@ -182,9 +164,6 @@
     <Content Include="Content\Animations\Battlers\Male\Jos\Jos_Attack_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Animations\Battlers\Male\Jos\Jos_Complete_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Animations\Battlers\Male\Jos\Jos_Death_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -192,9 +171,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Kaiser\Kaiser_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Animations\Battlers\Male\Kaiser\Kaiser_Complete_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Kaiser\Kaiser_Death_Animation.png">
@@ -206,9 +182,6 @@
     <Content Include="Content\Animations\Battlers\Male\Nick\Nick_Attack_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Animations\Battlers\Male\Nick\Nick_Complete_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Animations\Battlers\Male\Nick\Nick_Death_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -218,9 +191,6 @@
     <Content Include="Content\Animations\Battlers\Male\Seitz\Seitz_Attack_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Animations\Battlers\Male\Seitz\Seitz_Complete_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Animations\Battlers\Male\Seitz\Seitz_Death_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -228,9 +198,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Seyfrid\Seyfrid_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Animations\Battlers\Male\Seyfrid\Seyfrid_Complete_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Seyfrid\Seyfrid_Death_Animation.png">
@@ -368,13 +335,13 @@
     <Content Include="Content\Cursors\Demon_Sword_Cursor.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Animated\Anna\Anna_Attack_Animation_Enemy.png">
+    <Content Include="Content\Enemies\Animated\Anna\Anna_Attack_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Animated\Anna\Anna_Death_Animation_Enemy.png">
+    <Content Include="Content\Enemies\Animated\Anna\Anna_Death_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Animated\Anna\Anna_Standard_Animation_Enemy.png">
+    <Content Include="Content\Enemies\Animated\Anna\Anna_Standard_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Animated\Elena\Elena_Attack_Animation.png">

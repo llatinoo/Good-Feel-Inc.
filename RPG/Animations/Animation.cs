@@ -126,11 +126,6 @@ namespace RPG
                     if (currentVerticalFrame == 0)
                     {
                         currentVerticalFrame = spriteSheetVertical;
-                        //currentHorizontalFrame++;
-                        //if (currentHorizontalFrame == spriteSheetHorizontal)
-                        //{
-                          //  currentHorizontalFrame = 1;
-                        //}
                         if (!loop)
                             {
                                 active = false;
