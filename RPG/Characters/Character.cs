@@ -31,16 +31,20 @@ namespace RPG.Characters
     {
         private int resistance;
         private int fightResistance;
+
         private int luck;
         private int fightLuck;
+
         private int life;
         private int fightVitality;
+
         private int mana;
         private int fightManaPool;
 
 
         //Grafikdaten des Charakters
         public Animation Sprite { get; private set; }
+
 
         //Name
         public string Name { get; private set; }
@@ -67,7 +71,8 @@ namespace RPG.Characters
             set { this.luck = MathHelper.Clamp(this.luck, 0, 71); }
         }
 
-        //Kampfwerte die im Kampf verändert werden können
+
+        //Leben und Mana im Kampf
         public int Life
         {
             get { return this.life; }
@@ -80,6 +85,8 @@ namespace RPG.Characters
         }
 
 
+        //Kampfwerte die im Kampf verändert werden können
+        //Vitalität und Manapool regulieren auch Mana und Leben, da diese Werte nicht über deren Kampfwerte liegen dürfen
         public int FightVitality
         {
             get { return this.fightVitality; }
@@ -113,23 +120,19 @@ namespace RPG.Characters
         }
 
 
-
         //Level Attribute
         public int Level { get; set; }
-        public int Exp { get; set; }
-        public List<int> Levelcap { get; private set; }
+
 
         //Fähigkeiten Attribute
         public List<Skill> Skills { get; private set; }
 
+
         //Auf den Charakter wirkende Effekte
         public List<IStatuseffect> Statuseffects { get; set; }
 
-        //Ultimative Fähigkeit
-        public int UltimatePoints { get; set; }
-        public int UltimatePointsToCast { get; set; }
 
-        public Character(string charName, Classes className, string race, int vitality, int mana, int strength, int magic, int defense, int resistance, int luck, List<int> levellist)
+        public Character(string charName, Classes className, string race, int vitality, int mana, int strength, int magic, int defense, int resistance, int luck)
         {
             this.Name = charName;
             this.Class = className;
@@ -143,8 +146,7 @@ namespace RPG.Characters
             this.FightResistance = this.Resistance = resistance;
             this.FightLuck = this.Luck = luck;
 
-            this.Exp = 0;
-            this.Levelcap = levellist;
+            this.Level = 1;
 
             this.Skills = new List<Skill>();
             this.Statuseffects = new List<IStatuseffect>();

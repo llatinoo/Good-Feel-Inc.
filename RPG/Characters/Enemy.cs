@@ -10,8 +10,8 @@ namespace RPG.Characters
         public bool isBoss;
 
         public Enemy(string charName, Classes className, bool isboss, string race, int vita, int mana, int strength,
-            int mag, int def, int res, int luck, List<int> levellist)
-            : base(charName, className, race, vita, mana, strength, mag, def, res, luck, levellist)
+            int mag, int def, int res, int luck)
+            : base(charName, className, race, vita, mana, strength, mag, def, res, luck)
         {
             this.isBoss = isboss;
         }

@@ -33,8 +33,7 @@ namespace RPGTests
                 100, //magic
                 50, //Defense
                 100, //Res
-                100, //Luck
-                new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 }
+                100 //Luck
             );
 
             var partymember = new PartyMember
@@ -49,7 +48,8 @@ namespace RPGTests
                 100,
                 100,
                 10,
-                new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 }
+                new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
+                100
             );
 
             enemy.Life = enemy.FightVitality;
@@ -126,8 +126,7 @@ namespace RPGTests
                 100, //magic
                 50, //Defense
                 0, //Res
-                100, //Luck
-                new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 }
+                100 //Luck
             );
 
             var partymember = new PartyMember
@@ -142,7 +141,8 @@ namespace RPGTests
                 100,
                 1,
                 100,
-                new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 }
+                new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
+                100
             );
 
             enemy.Life = enemy.FightVitality;
@@ -245,8 +245,7 @@ namespace RPGTests
                 100, //magic
                 50, //Defense
                 100, //Res
-                100, //Luck
-                new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 }
+                100 //Luck
             );
 
             enemy.Life = enemy.FightVitality;
@@ -268,7 +267,8 @@ namespace RPGTests
                 100,
                 100,
                 10,
-                new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 }
+                new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
+                100
             );
 
             partymember.Life = partymember.FightVitality;
