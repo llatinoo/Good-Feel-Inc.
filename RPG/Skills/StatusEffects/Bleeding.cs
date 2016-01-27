@@ -1,5 +1,6 @@
 ﻿using RPG.Characters;
 using System;
+using Microsoft.Xna.Framework;
 
 namespace RPG.Skills.StatusEffects
 {
@@ -14,7 +15,7 @@ namespace RPG.Skills.StatusEffects
 
             this.Duration = Convert.ToInt32(r1.Next(3, 6 * 1000) / 1000);
             this.Damage = Convert.ToInt32(((r1.Next(source.FightMagic / 6, (source.FightMagic / 4) * 1000)) / 1000));
-            this.Damage = this.Damage / (source.FightResistance/2);
+            this.Damage = this.Damage / (MathHelper.Clamp(source.FightResistance/2, 1, 20));
         }
 
         public int ExecuteStatus()

@@ -62,10 +62,10 @@
     <Compile Include="Characters\PartyMember.cs" />
     <Compile Include="Characters\Player.cs" />
     <Compile Include="RandomStatusEffectHelperClass.cs" />
-    <Compile Include="Skills\GetRandomBuffEffect.cs" />
-    <Compile Include="Skills\RandomDebuffEffect.cs" />
-    <Compile Include="Skills\RandomEffect.cs" />
-    <Compile Include="Skills\Resurrection.cs" />
+    <Compile Include="Skills\Effects\GetRandomBuffEffect.cs" />
+    <Compile Include="Skills\Effects\RandomDebuffEffect.cs" />
+    <Compile Include="Skills\Effects\RandomEffect.cs" />
+    <Compile Include="Skills\Effects\Resurrection.cs" />
     <Compile Include="Skills\Ultis\BaumDesLebens.cs" />
     <Compile Include="Skills\Ultis\Fegefeuer.cs" />
     <Compile Include="Skills\Ultis\Genozid.cs" />
@@ -90,19 +90,19 @@
     <Compile Include="Screen Manager\GUIElement.cs" />
     <Compile Include="Screen Manager\Screen.cs" />
     <Compile Include="Screen Manager\TextElement.cs" />
-    <Compile Include="Skills\Bleed.cs" />
-    <Compile Include="Skills\Bless.cs" />
-    <Compile Include="Skills\Burn.cs" />
-    <Compile Include="Skills\Damage.cs" />
-    <Compile Include="Skills\Halo.cs" />
-    <Compile Include="Skills\Mindblow.cs" />
-    <Compile Include="Skills\Poison.cs" />
-    <Compile Include="Skills\RemoveStatusEffect.cs" />
-    <Compile Include="Skills\AttributesChangeEffect.cs" />
+    <Compile Include="Skills\Effects\Bleed.cs" />
+    <Compile Include="Skills\Effects\Bless.cs" />
+    <Compile Include="Skills\Effects\Burn.cs" />
+    <Compile Include="Skills\Effects\Damage.cs" />
+    <Compile Include="Skills\Effects\Halo.cs" />
+    <Compile Include="Skills\Effects\Mindblow.cs" />
+    <Compile Include="Skills\Effects\Poison.cs" />
+    <Compile Include="Skills\Effects\RemoveStatusEffect.cs" />
+    <Compile Include="Skills\Effects\AttributesChangeEffect.cs" />
     <Compile Include="Skills\StatusEffects\Bleeding.cs" />
-    <Compile Include="Skills\CriticalDamage.cs" />
-    <Compile Include="Skills\IEffect.cs" />
-    <Compile Include="Skills\Heal.cs" />
+    <Compile Include="Skills\Effects\CriticalDamage.cs" />
+    <Compile Include="Skills\Effects\IEffect.cs" />
+    <Compile Include="Skills\Effects\Heal.cs" />
     <Compile Include="Skills\Skill.cs" />
     <Compile Include="Skills\StatusEffects\Blessing.cs" />
     <Compile Include="Skills\StatusEffects\Burning.cs" />
@@ -110,7 +110,7 @@
     <Compile Include="Skills\StatusEffects\Mindblown.cs" />
     <Compile Include="Skills\StatusEffects\HasHalo.cs" />
     <Compile Include="Skills\StatusEffects\Poisened.cs" />
-    <Compile Include="Skills\Drain.cs" />
+    <Compile Include="Skills\Effects\Drain.cs" />
     <Compile Include="Sounds\Sound.cs" />
   </ItemGroup>
   <ItemGroup>

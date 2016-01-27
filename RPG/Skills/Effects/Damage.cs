@@ -1,9 +1,8 @@
-﻿using RPG.Characters;
-using RPG.Skills.StatusEffects;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using RPG.Characters;
 
-namespace RPG.Skills
+namespace RPG.Skills.Effects
 {
     public class Damage : IEffect
     {

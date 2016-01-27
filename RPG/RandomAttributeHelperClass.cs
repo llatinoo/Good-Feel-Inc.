@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using RPG.Skills;
+using RPG.Skills.Effects;
 using RPG.Skills.StatusEffects;
 
 namespace RPG

@@ -1,8 +1,8 @@
-﻿using RPG.Characters;
+﻿using System.Collections.Generic;
+using RPG.Characters;
 using RPG.Skills.StatusEffects;
-using System.Collections.Generic;
 
-namespace RPG.Skills
+namespace RPG.Skills.Effects
 {
     public class Bleed : IEffect
     { 

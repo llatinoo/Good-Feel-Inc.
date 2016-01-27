@@ -1,5 +1,7 @@
 ﻿using RPG.Characters;
 using System.Collections.Generic;
+using RPG.Animations;
+using RPG.Skills.Effects;
 
 namespace RPG.Skills
 {

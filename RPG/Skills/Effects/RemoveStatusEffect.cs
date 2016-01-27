@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using RPG.Characters;
 using RPG.Skills.StatusEffects;
 
-namespace RPG.Skills
+namespace RPG.Skills.Effects
 {
     public class RemoveStatusEffect : IEffect
     {
@@ -21,7 +20,7 @@ namespace RPG.Skills
                     }
                     else
                     {
-                        int random = new Random().Next(0, (target.Statuseffects.Count + 1) * 1000) / 1000;
+                        int random = new Random().Next(0, (target.Statuseffects.Count) * 1000) / 1000;
                         target.Statuseffects.Remove(target.Statuseffects.ElementAt(random));
                     }
                 }

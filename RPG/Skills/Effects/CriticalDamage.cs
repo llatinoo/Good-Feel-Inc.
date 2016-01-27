@@ -1,8 +1,8 @@
-﻿using RPG.Characters;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using RPG.Characters;
 
-namespace RPG.Skills
+namespace RPG.Skills.Effects
 {
     public class CriticalDamage : IEffect
     {

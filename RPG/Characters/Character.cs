@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using RPG.Animations;
 using RPG.Skills;
 using RPG.Skills.StatusEffects;
 
@@ -58,15 +59,13 @@ namespace RPG.Characters
         public int Resistance
         {
             get { return this.resistance; }
-            set { this.resistance = MathHelper.Clamp(this.resistance, 0, 20); }
+            set { this.resistance = MathHelper.Clamp(this.resistance, 0, 21); }
         }
         public int Luck   
         {
             get { return this.luck; }
-            set { this.luck = MathHelper.Clamp(this.luck, 0, 70); }
+            set { this.luck = MathHelper.Clamp(this.luck, 0, 71); }
         }
-
-
 
         //Kampfwerte die im Kampf verändert werden können
         public int Life
