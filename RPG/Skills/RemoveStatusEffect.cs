@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RPG.Characters;
+using RPG.Skills.StatusEffects;
 
 namespace RPG.Skills
 {
@@ -12,11 +13,17 @@ namespace RPG.Skills
         {
             foreach (var target in targets)
             {
-                int random = new Random().Next(0, (target.Statuseffects.Count + 1) * 1000) / 1000;
-
-                if (target.Statuseffects.Count != 0)
+                if (target.Statuseffects.Count > 0)
                 {
-                    target.Statuseffects.Remove(target.Statuseffects.ElementAt(random));
+                    if (target.Statuseffects.All(effect => effect.GetType() == typeof (Poisoned)))
+                    {
+                        target.Statuseffects.RemoveAll(effect => effect.GetType() == typeof (Poisoned));
+                    }
+                    else
+                    {
+                        int random = new Random().Next(0, (target.Statuseffects.Count + 1) * 1000) / 1000;
+                        target.Statuseffects.Remove(target.Statuseffects.ElementAt(random));
+                    }
                 }
             }
             

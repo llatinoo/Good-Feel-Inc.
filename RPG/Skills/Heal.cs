@@ -11,7 +11,7 @@ namespace RPG.Skills
         {
             foreach (Character target in targets)
             {
-                target.FightVitality += Convert.ToInt32(source.FightMagic * 0.25);
+                target.Life += Convert.ToInt32(source.FightMagic);
             }
         }
     }

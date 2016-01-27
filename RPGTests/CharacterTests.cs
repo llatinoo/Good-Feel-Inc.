@@ -15,7 +15,7 @@ namespace RPGTests
     public class CharacterTests
     {
         [TestMethod]
-        public void EffectTests()
+        public void CharacterInitializeTests()
         {
             var character = new Character
                 (
@@ -81,7 +81,31 @@ namespace RPGTests
             );
 
             List<Character> Chars = new List<Character>() {player, enemy, character, partymember};
-            
+
+            foreach (var Char in Chars)
+            {
+                if (Char.GetType() == (typeof (Player)))
+                {
+                    Assert.IsTrue(true);
+                }
+                if (Char.GetType() == (typeof(Enemy)))
+                {
+                    Assert.IsTrue(true);
+                }
+                if (Char.GetType() == (typeof(Character)))
+                {
+                    Assert.IsTrue(true);
+                }
+                if (Char.GetType() == (typeof(PartyMember)))
+                {
+                    Assert.IsTrue(true);
+                }
+                else
+                {
+                    Assert.IsFalse(false);
+                }
+            }
+
             Assert.IsNotNull(Chars);
         }
     }

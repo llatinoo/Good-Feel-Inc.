@@ -12,7 +12,7 @@ namespace RPG.Skills.StatusEffects
         {
             Random r1 = new Random();
             
-            this.Damage -= Convert.ToInt32(target.FightVitality * 0.1);
+            this.Damage -= Convert.ToInt32(target.FightVitality * 0.15);
             this.Duration = Convert.ToInt32(r1.Next(1, 3 * 1000) / 1000);
         }
 
@@ -28,6 +28,10 @@ namespace RPG.Skills.StatusEffects
                 return true;
             else
                 return false;
+        }
+        public void UpdateDuration(int durationToAdd)
+        {
+            this.Duration += durationToAdd;
         }
     }
 }

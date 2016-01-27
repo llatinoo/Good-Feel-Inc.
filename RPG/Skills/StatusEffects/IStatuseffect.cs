@@ -10,5 +10,7 @@
 
         //Abfrage ob Statuseffekt beendet ist
         bool IsDone();
+
+        void UpdateDuration(int durationToAdd);
     }
 }

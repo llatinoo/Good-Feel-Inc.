@@ -38,9 +38,6 @@ namespace RPG.Skills.StatusEffects
                     }
                 }
             }
-            
-            
-
         }
 
         public int ExecuteStatus()
@@ -55,6 +52,10 @@ namespace RPG.Skills.StatusEffects
                 return true;
             else
                 return false;
+        }
+        public void UpdateDuration(int durationToAdd)
+        {
+            this.Duration += durationToAdd;
         }
     }
 }

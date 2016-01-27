@@ -24,5 +24,9 @@
             else
                 return false;
         }
+        public void UpdateDuration(int durationToAdd)
+        {
+            this.Duration += durationToAdd;
+        }
     }
 }

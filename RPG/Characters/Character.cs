@@ -28,11 +28,14 @@ namespace RPG.Characters
     //Technische Daten eines Charakters
     public class Character
     {
-        public int resistance;
-        public int fightResistance;
-        public int luck;
-        public int fightLuck;
-        public int life;
+        private int resistance;
+        private int fightResistance;
+        private int luck;
+        private int fightLuck;
+        private int life;
+        private int fightVitality;
+        private int mana;
+        private int fightManaPool;
 
 
         //Grafikdaten des Charakters
@@ -48,7 +51,7 @@ namespace RPG.Characters
 
         //Festwerte die durch aufleveln gesteigert werden
         public int Vitality { get; private set; }
-        public int Mana { get; private set; }
+        public int Manapool { get; private set; }
         public int Strength { get; private set; }
         public int Magic { get; private set; }
         public int Defense { get; private set; }
@@ -63,14 +66,39 @@ namespace RPG.Characters
             set { this.luck = MathHelper.Clamp(this.luck, 0, 70); }
         }
 
+
+
         //Kampfwerte die im Kampf verändert werden können
         public int Life
         {
             get { return this.life; }
-            set { this.life = MathHelper.Clamp(value, 0, FightVitality); }
+            set { this.life = MathHelper.Clamp(value, 0, this.FightVitality); }
         }
-        public int FightVitality { get; set; }
-        public int FightMana { get; set; }
+        public int Mana
+        {
+            get { return this.mana; }
+            set { this.mana = MathHelper.Clamp(value, 0, this.FightManaPool); }
+        }
+
+
+        public int FightVitality
+        {
+            get { return this.fightVitality; }
+            set
+            {
+                this.fightVitality = value;
+                MathHelper.Clamp(this.life, 0, this.fightVitality);
+            }
+        }
+        public int FightManaPool
+        {
+            get { return this.fightManaPool; }
+            set
+            {
+                this.fightManaPool = value;
+                MathHelper.Clamp(this.mana, 0, this.fightManaPool);
+            }
+        }
         public int FightStrength { get; set; }
         public int FightMagic { get; set; }
         public int FightDefense { get; set; }
@@ -84,6 +112,8 @@ namespace RPG.Characters
             get { return this.fightLuck; }
             set { this.fightLuck = MathHelper.Clamp(value, 0, 70); }
         }
+
+
 
         //Level Attribute
         public int Level { get; set; }
@@ -107,7 +137,7 @@ namespace RPG.Characters
             this.Race = race;
 
             this.FightVitality = this.Vitality = vitality;
-            this.FightMana = this.Mana = mana;
+            this.FightManaPool = this.Manapool = mana;
             this.FightStrength = this.Strength = strength;
             this.FightMagic = this.Magic = magic;
             this.FightDefense = this.Defense = defense;

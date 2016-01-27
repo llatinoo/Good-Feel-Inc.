@@ -14,7 +14,7 @@ namespace RPG
         {
             int random = new Random().Next(0, 7 * 1000) / 1000;
 
-            List<Attributes> attributes = new List<Attributes> { Attributes.FightVitality, Attributes.FightMana, Attributes.FightStrength, Attributes.FightMagic, Attributes.FightDefense, Attributes.FightResistance, Attributes.FightLuck};
+            List<Attributes> attributes = new List<Attributes> { Attributes.FightVitality, Attributes.FightManaPool, Attributes.FightStrength, Attributes.FightMagic, Attributes.FightDefense, Attributes.FightResistance, Attributes.FightLuck};
 
             return attributes.ElementAt(random);
         }

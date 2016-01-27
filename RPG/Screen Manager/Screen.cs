@@ -31,26 +31,26 @@ namespace RPG
         private bool exitGame = false;
         public bool ExitGame
         {
-            get { return exitGame; }
+            get { return this.exitGame; }
         }
         public Screen()
         {
-            mainMenu.Insert(0, new GUIElement("Backgrounds\\Menus\\Title_Screen_Background"));
-            mainMenu.Insert(1, new GUIElement("Buttons\\New_Game_Button"));
-            mainMenu.Insert(2, new GUIElement("Buttons\\Continue_Button"));
-            mainMenu.Insert(3, new GUIElement("Buttons\\Quit_Button"));
+            this.mainMenu.Insert(0, new GUIElement("Backgrounds\\Menus\\Title_Screen_Background"));
+            this.mainMenu.Insert(1, new GUIElement("Buttons\\New_Game_Button"));
+            this.mainMenu.Insert(2, new GUIElement("Buttons\\Continue_Button"));
+            this.mainMenu.Insert(3, new GUIElement("Buttons\\Quit_Button"));
 
-            options.Insert(0, new GUIElement("Backgrounds\\Menus\\Options_Screen_Background"));
-            options.Insert(1, new GUIElement("Buttons\\Continue_Button"));
-            options.Insert(2, new GUIElement("Buttons\\Save_Button"));
-            options.Insert(3, new GUIElement("Buttons\\Quit_Button"));
+            this.options.Insert(0, new GUIElement("Backgrounds\\Menus\\Options_Screen_Background"));
+            this.options.Insert(1, new GUIElement("Buttons\\Continue_Button"));
+            this.options.Insert(2, new GUIElement("Buttons\\Save_Button"));
+            this.options.Insert(3, new GUIElement("Buttons\\Quit_Button"));
 
-            storyScreen.Insert(0, new GUIElement("Backgrounds\\Story\\Triumphfelder_Story_Background"));
+            this.storyScreen.Insert(0, new GUIElement("Backgrounds\\Story\\Triumphfelder_Story_Background"));
 
-            battleScreen.Insert(0, new GUIElement("Backgrounds\\Battle\\Forest_Battle_Background"));
+            this.battleScreen.Insert(0, new GUIElement("Backgrounds\\Battle\\Forest_Battle_Background"));
 
-            battleScreenSkills.Insert(0,new TextElement("Skill1",50,50));
-            battleScreenSkills.Insert(1, new TextElement("Skill2", 100, 50));
+            this.battleScreenSkills.Insert(0,new TextElement("Skill1",50,50));
+            this.battleScreenSkills.Insert(1, new TextElement("Skill2", 100, 50));
 
             /*
             storyScreen.Insert(0, new GUIElement("StoryScreenBackground", 0, 0));
@@ -75,212 +75,212 @@ namespace RPG
 
         public void LoadContent(ContentManager content)
         {
-            foreach(TextElement element in battleScreenSkills)
+            foreach(TextElement element in this.battleScreenSkills)
             {
                 element.LoadContent(content);
-                element.tclickEvent += OnClick;
+                element.tclickEvent += this.OnClick;
             }
-            foreach (GUIElement element in mainMenu)
+            foreach (GUIElement element in this.mainMenu)
             {
                 element.LoadContent(content);
-                element.clickEvent += OnClick;
+                element.clickEvent += this.OnClick;
             }
 
-            foreach(GUIElement element in options)
+            foreach(GUIElement element in this.options)
             {
                 element.LoadContent(content);
-                element.clickEvent += OnClick;
+                element.clickEvent += this.OnClick;
             }
             
-            foreach (GUIElement element in storyScreen)
+            foreach (GUIElement element in this.storyScreen)
             {
                 element.LoadContent(content);
-                element.clickEvent += OnClick;
+                element.clickEvent += this.OnClick;
             }
             
-            foreach (GUIElement element in battleScreen)
+            foreach (GUIElement element in this.battleScreen)
             {
                 element.LoadContent(content);
-                element.clickEvent += OnClick;
+                element.clickEvent += this.OnClick;
 
                 //neue Animation wird erstellt
                 Animation testAnimation = new Animation();
                 Animation testAnimation2 = new Animation();
                 //Animation wird geladen und die Textur sowie die Breite und Höhe wird festeglegt
                 testAnimation.LoadContent(content.Load<Texture2D>("Animations\\DarkHoleAnim30FPS"), Vector2.Zero, 223, 232, 50, Color.White, 1f, true, 1, 16);
-                testSkill.LoadContent(testAnimation, new Vector2(150, 150));
+                this.testSkill.LoadContent(testAnimation, new Vector2(150, 150));
 
                 testAnimation2.LoadContent(content.Load<Texture2D>("Animations\\BattlerAnim"), Vector2.Zero, 64, 64, 50, Color.White, 1f, true, 6, 9);
-                testSkill2.LoadContent(testAnimation2, new Vector2(400, 400));
+                this.testSkill2.LoadContent(testAnimation2, new Vector2(400, 400));
             }
-            mainMenu.ElementAt<GUIElement>(1).CenterElement(576, 720);
-            mainMenu.ElementAt<GUIElement>(1).moveElement(0, 0);
-            mainMenu.ElementAt<GUIElement>(2).CenterElement(576, 720);
-            mainMenu.ElementAt<GUIElement>(2).moveElement(0, 100);
-            mainMenu.ElementAt<GUIElement>(3).CenterElement(576, 720);
-            mainMenu.ElementAt<GUIElement>(3).moveElement(0, 200);
+            this.mainMenu.ElementAt<GUIElement>(1).CenterElement(576, 720);
+            this.mainMenu.ElementAt<GUIElement>(1).moveElement(0, 0);
+            this.mainMenu.ElementAt<GUIElement>(2).CenterElement(576, 720);
+            this.mainMenu.ElementAt<GUIElement>(2).moveElement(0, 100);
+            this.mainMenu.ElementAt<GUIElement>(3).CenterElement(576, 720);
+            this.mainMenu.ElementAt<GUIElement>(3).moveElement(0, 200);
 
-            options.ElementAt<GUIElement>(1).CenterElement(576, 720);
-            options.ElementAt<GUIElement>(1).moveElement(0, -100);
-            options.ElementAt<GUIElement>(2).CenterElement(576, 720);
-            options.ElementAt<GUIElement>(2).moveElement(0, 0);
-            options.ElementAt<GUIElement>(3).CenterElement(576, 720);
-            options.ElementAt<GUIElement>(3).moveElement(0, 100);
+            this.options.ElementAt<GUIElement>(1).CenterElement(576, 720);
+            this.options.ElementAt<GUIElement>(1).moveElement(0, -100);
+            this.options.ElementAt<GUIElement>(2).CenterElement(576, 720);
+            this.options.ElementAt<GUIElement>(2).moveElement(0, 0);
+            this.options.ElementAt<GUIElement>(3).CenterElement(576, 720);
+            this.options.ElementAt<GUIElement>(3).moveElement(0, 100);
 
         }
         
         public void Update(GameTime gameTime)
         {
-            controls.Update();
+            this.controls.Update();
 
-            if (controls.CurrentKeyboardState.IsKeyDown(Keys.Escape) && gameState != GameState.mainMenu && gameState != GameState.options)
+            if (this.controls.CurrentKeyboardState.IsKeyDown(Keys.Escape) && this.gameState != GameState.mainMenu && this.gameState != GameState.options)
             {
-                gameState = GameState.options;
+                this.gameState = GameState.options;
             }
 
-            switch (gameState)
+            switch (this.gameState)
             {
                 case GameState.mainMenu:
-                    foreach (GUIElement element in mainMenu)
+                    foreach (GUIElement element in this.mainMenu)
                     {
                         element.Update();
                     }
-                    if (controls.CurrentKeyboardState.IsKeyDown(Keys.Up) && !controls.PreviousKeyboardState.IsKeyDown(Keys.Up))
+                    if (this.controls.CurrentKeyboardState.IsKeyDown(Keys.Up) && !this.controls.PreviousKeyboardState.IsKeyDown(Keys.Up))
                     {
-                        if (mainMenu.ElementAt<GUIElement>(3).getGUIRect.Contains(controls.CursorPos))
+                        if (this.mainMenu.ElementAt<GUIElement>(3).getGUIRect.Contains(this.controls.CursorPos))
                         {
-                            Mouse.SetPosition(mainMenu.ElementAt<GUIElement>(2).getGUIRect.Center.X, mainMenu.ElementAt<GUIElement>(2).getGUIRect.Center.Y);
+                            Mouse.SetPosition(this.mainMenu.ElementAt<GUIElement>(2).getGUIRect.Center.X, this.mainMenu.ElementAt<GUIElement>(2).getGUIRect.Center.Y);
                         }
-                        else if (mainMenu.ElementAt<GUIElement>(1).getGUIRect.Contains(controls.CursorPos))
+                        else if (this.mainMenu.ElementAt<GUIElement>(1).getGUIRect.Contains(this.controls.CursorPos))
                         {
-                            Mouse.SetPosition(mainMenu.ElementAt<GUIElement>(3).getGUIRect.Center.X, mainMenu.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
+                            Mouse.SetPosition(this.mainMenu.ElementAt<GUIElement>(3).getGUIRect.Center.X, this.mainMenu.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
                         }
-                        else if (mainMenu.ElementAt<GUIElement>(2).getGUIRect.Contains(controls.CursorPos))
+                        else if (this.mainMenu.ElementAt<GUIElement>(2).getGUIRect.Contains(this.controls.CursorPos))
                         {
-                            Mouse.SetPosition(mainMenu.ElementAt<GUIElement>(1).getGUIRect.Center.X, mainMenu.ElementAt<GUIElement>(1).getGUIRect.Center.Y);
+                            Mouse.SetPosition(this.mainMenu.ElementAt<GUIElement>(1).getGUIRect.Center.X, this.mainMenu.ElementAt<GUIElement>(1).getGUIRect.Center.Y);
                         }
                         else
                         {
-                            Mouse.SetPosition(mainMenu.ElementAt<GUIElement>(1).getGUIRect.Center.X, mainMenu.ElementAt<GUIElement>(1).getGUIRect.Center.Y);
+                            Mouse.SetPosition(this.mainMenu.ElementAt<GUIElement>(1).getGUIRect.Center.X, this.mainMenu.ElementAt<GUIElement>(1).getGUIRect.Center.Y);
                         }
                     }
-                    if (controls.CurrentKeyboardState.IsKeyDown(Keys.Down) && !controls.PreviousKeyboardState.IsKeyDown(Keys.Down))
+                    if (this.controls.CurrentKeyboardState.IsKeyDown(Keys.Down) && !this.controls.PreviousKeyboardState.IsKeyDown(Keys.Down))
                     {
-                        if (mainMenu.ElementAt<GUIElement>(2).getGUIRect.Contains(controls.CursorPos))
+                        if (this.mainMenu.ElementAt<GUIElement>(2).getGUIRect.Contains(this.controls.CursorPos))
                         {
-                            Mouse.SetPosition(mainMenu.ElementAt<GUIElement>(3).getGUIRect.Center.X, mainMenu.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
+                            Mouse.SetPosition(this.mainMenu.ElementAt<GUIElement>(3).getGUIRect.Center.X, this.mainMenu.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
                         }
-                        else if (mainMenu.ElementAt<GUIElement>(3).getGUIRect.Contains(controls.CursorPos))
+                        else if (this.mainMenu.ElementAt<GUIElement>(3).getGUIRect.Contains(this.controls.CursorPos))
                         {
-                            Mouse.SetPosition(mainMenu.ElementAt<GUIElement>(1).getGUIRect.Center.X, mainMenu.ElementAt<GUIElement>(1).getGUIRect.Center.Y);
+                            Mouse.SetPosition(this.mainMenu.ElementAt<GUIElement>(1).getGUIRect.Center.X, this.mainMenu.ElementAt<GUIElement>(1).getGUIRect.Center.Y);
                         }
-                        else if (mainMenu.ElementAt<GUIElement>(1).getGUIRect.Contains(controls.CursorPos))
+                        else if (this.mainMenu.ElementAt<GUIElement>(1).getGUIRect.Contains(this.controls.CursorPos))
                         {
-                            Mouse.SetPosition(mainMenu.ElementAt<GUIElement>(2).getGUIRect.Center.X, mainMenu.ElementAt<GUIElement>(2).getGUIRect.Center.Y);
+                            Mouse.SetPosition(this.mainMenu.ElementAt<GUIElement>(2).getGUIRect.Center.X, this.mainMenu.ElementAt<GUIElement>(2).getGUIRect.Center.Y);
                         }
                         else
                         {
-                            Mouse.SetPosition(mainMenu.ElementAt<GUIElement>(3).getGUIRect.Center.X, mainMenu.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
+                            Mouse.SetPosition(this.mainMenu.ElementAt<GUIElement>(3).getGUIRect.Center.X, this.mainMenu.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
                         }
                     }
                         break;
                 case GameState.options:
-                    foreach (GUIElement element in options)
+                    foreach (GUIElement element in this.options)
                     {
                         element.Update();
-                        if (controls.CurrentKeyboardState.IsKeyDown(Keys.Up) && !controls.PreviousKeyboardState.IsKeyDown(Keys.Up))
+                        if (this.controls.CurrentKeyboardState.IsKeyDown(Keys.Up) && !this.controls.PreviousKeyboardState.IsKeyDown(Keys.Up))
                         {
-                            if (options.ElementAt<GUIElement>(3).getGUIRect.Contains(controls.CursorPos))
+                            if (this.options.ElementAt<GUIElement>(3).getGUIRect.Contains(this.controls.CursorPos))
                             {
-                                Mouse.SetPosition(options.ElementAt<GUIElement>(2).getGUIRect.Center.X, options.ElementAt<GUIElement>(2).getGUIRect.Center.Y);
+                                Mouse.SetPosition(this.options.ElementAt<GUIElement>(2).getGUIRect.Center.X, this.options.ElementAt<GUIElement>(2).getGUIRect.Center.Y);
                             }
-                            else if (options.ElementAt<GUIElement>(1).getGUIRect.Contains(controls.CursorPos))
+                            else if (this.options.ElementAt<GUIElement>(1).getGUIRect.Contains(this.controls.CursorPos))
                             {
-                                Mouse.SetPosition(options.ElementAt<GUIElement>(3).getGUIRect.Center.X, options.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
+                                Mouse.SetPosition(this.options.ElementAt<GUIElement>(3).getGUIRect.Center.X, this.options.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
                             }
-                            else if (options.ElementAt<GUIElement>(2).getGUIRect.Contains(controls.CursorPos))
+                            else if (this.options.ElementAt<GUIElement>(2).getGUIRect.Contains(this.controls.CursorPos))
                             {
-                                Mouse.SetPosition(options.ElementAt<GUIElement>(1).getGUIRect.Center.X, options.ElementAt<GUIElement>(1).getGUIRect.Center.Y);
+                                Mouse.SetPosition(this.options.ElementAt<GUIElement>(1).getGUIRect.Center.X, this.options.ElementAt<GUIElement>(1).getGUIRect.Center.Y);
                             }
                             else
                             {
-                                Mouse.SetPosition(options.ElementAt<GUIElement>(3).getGUIRect.Center.X, options.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
+                                Mouse.SetPosition(this.options.ElementAt<GUIElement>(3).getGUIRect.Center.X, this.options.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
                             }
                         }
-                        if (controls.CurrentKeyboardState.IsKeyDown(Keys.Down) && !controls.PreviousKeyboardState.IsKeyDown(Keys.Down))
+                        if (this.controls.CurrentKeyboardState.IsKeyDown(Keys.Down) && !this.controls.PreviousKeyboardState.IsKeyDown(Keys.Down))
                         {
-                            if (options.ElementAt<GUIElement>(2).getGUIRect.Contains(controls.CursorPos))
+                            if (this.options.ElementAt<GUIElement>(2).getGUIRect.Contains(this.controls.CursorPos))
                             {
-                                Mouse.SetPosition(options.ElementAt<GUIElement>(3).getGUIRect.Center.X, options.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
+                                Mouse.SetPosition(this.options.ElementAt<GUIElement>(3).getGUIRect.Center.X, this.options.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
                             }
-                            else if (options.ElementAt<GUIElement>(3).getGUIRect.Contains(controls.CursorPos))
+                            else if (this.options.ElementAt<GUIElement>(3).getGUIRect.Contains(this.controls.CursorPos))
                             {
-                                Mouse.SetPosition(options.ElementAt<GUIElement>(1).getGUIRect.Center.X, options.ElementAt<GUIElement>(1).getGUIRect.Center.Y);
+                                Mouse.SetPosition(this.options.ElementAt<GUIElement>(1).getGUIRect.Center.X, this.options.ElementAt<GUIElement>(1).getGUIRect.Center.Y);
                             }
-                            else if (options.ElementAt<GUIElement>(1).getGUIRect.Contains(controls.CursorPos))
+                            else if (this.options.ElementAt<GUIElement>(1).getGUIRect.Contains(this.controls.CursorPos))
                             {
-                                Mouse.SetPosition(options.ElementAt<GUIElement>(2).getGUIRect.Center.X, options.ElementAt<GUIElement>(2).getGUIRect.Center.Y);
+                                Mouse.SetPosition(this.options.ElementAt<GUIElement>(2).getGUIRect.Center.X, this.options.ElementAt<GUIElement>(2).getGUIRect.Center.Y);
                             }
                             else
                             {
-                                Mouse.SetPosition(options.ElementAt<GUIElement>(3).getGUIRect.Center.X, options.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
+                                Mouse.SetPosition(this.options.ElementAt<GUIElement>(3).getGUIRect.Center.X, this.options.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
                             }
                         }
                     }
                     break;
                 case GameState.storyScreen:
-                    foreach (GUIElement element in storyScreen)
+                    foreach (GUIElement element in this.storyScreen)
                     {
                         element.Update();
                     }
                     break;
                 case GameState.battleScreen:
-                    foreach (GUIElement element in battleScreen)
+                    foreach (GUIElement element in this.battleScreen)
                     {
                         element.Update();
-                        foreach (TextElement telement in battleScreenSkills)
+                        foreach (TextElement telement in this.battleScreenSkills)
                         {
                             telement.Update();
                         }
-                        testSkill.Update(gameTime);
-                        testSkill2.Update(gameTime);
+                        this.testSkill.Update(gameTime);
+                        this.testSkill2.Update(gameTime);
                     }
                     break;
             }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            switch (gameState)
+            switch (this.gameState)
             {
                 case GameState.mainMenu:
-                    foreach (GUIElement element in mainMenu)
+                    foreach (GUIElement element in this.mainMenu)
                     {
                         element.Draw(spriteBatch);
                     }
                     break;
                 case GameState.options:
-                    foreach (GUIElement element in options)
+                    foreach (GUIElement element in this.options)
                     {
                         element.Draw(spriteBatch);
                     }
                     break;
                 case GameState.storyScreen:
-                    foreach (GUIElement element in storyScreen)
+                    foreach (GUIElement element in this.storyScreen)
                     {
                         element.Draw(spriteBatch);
                     }
                     break;
                 case GameState.battleScreen:
-                    foreach (GUIElement element in battleScreen)
+                    foreach (GUIElement element in this.battleScreen)
                     {
                         element.Draw(spriteBatch);
-                        foreach (TextElement telement in battleScreenSkills)
+                        foreach (TextElement telement in this.battleScreenSkills)
                         {
                             telement.Draw(spriteBatch);
                         }
 
-                        testSkill.Draw(spriteBatch);
-                        testSkill2.Draw(spriteBatch);
+                        this.testSkill.Draw(spriteBatch);
+                        this.testSkill2.Draw(spriteBatch);
                     }
                     break;
             }
@@ -297,19 +297,19 @@ namespace RPG
         {
             if(element == "Buttons\\Continue_Button")
             {
-                gameState = GameState.storyScreen;
+                this.gameState = GameState.storyScreen;
             }
             if (element == "Buttons\\Load_Game_Button")
             {
-                gameState = GameState.battleScreen;
+                this.gameState = GameState.battleScreen;
             }
             if (element == "Buttons\\New_Game_Button")
             {
-                gameState = GameState.battleScreen;
+                this.gameState = GameState.battleScreen;
             }
             if (element == "Buttons\\Quit_Button")
             {
-                exitGame = true;
+                this.exitGame = true;
             }
             if (element == "Buttons\\Save_Button")
             {
@@ -317,11 +317,11 @@ namespace RPG
             }
             if (element == "Skill1")
             {
-                gameState = GameState.storyScreen;
+                this.gameState = GameState.storyScreen;
             }
             if (element == "Skill2")
             {
-                gameState = GameState.mainMenu;
+                this.gameState = GameState.mainMenu;
             }
         }
     }

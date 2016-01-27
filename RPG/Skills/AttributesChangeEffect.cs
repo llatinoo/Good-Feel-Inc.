@@ -8,7 +8,7 @@ namespace RPG.Skills
     public enum Attributes
     {
         FightVitality,
-        FightMana,
+        FightManaPool,
         FightStrength,
         FightMagic,
         FightDefense,
