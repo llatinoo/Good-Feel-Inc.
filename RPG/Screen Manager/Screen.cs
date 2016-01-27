@@ -138,7 +138,7 @@ namespace RPG
                 Animation testAnimation9 = new Animation();
 
                 //Animation wird geladen und die Textur sowie die Breite und Höhe wird festeglegt
-                testAnimation.LoadContent(content.Load<Texture2D>("Animations\\DarkHoleAnim30FPS"), Vector2.Zero, 223, 232, 50, Color.White, 1f, true, 1, 16, false);
+                testAnimation.LoadContent(content.Load<Texture2D>("Animations\\Skills\\Dark_Hole_Animation"), Vector2.Zero, 468, 468, 80, Color.White, 1f, true, 32, 1, false);
                 testSkill.LoadContent(testAnimation, new Vector2(400, 400));
 
                 testAnimation2.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Caspar\\Caspar_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 1, 3, false);

@@ -206,7 +206,7 @@
     <Content Include="Content\Animations\Battlers\Male\Seyfrid\Seyfrid_Standard_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Animations\DarkHoleAnim30FPS.png">
+    <Content Include="Content\Animations\Skills\Dark_Hole_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Skills\Physical_Hit.png">
@@ -378,6 +378,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Animated\Marlein\Marlein_Standard_Animation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Animated\White_Hole_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Female\Anna\Anna_Happy_Face.png">
