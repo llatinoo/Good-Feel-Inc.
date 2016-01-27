@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RPG.Characters;
+using RPG.Skills.Effects;
 
-namespace RPG.Skills
+namespace RPG.Skills.Ultis
 {
-    public class RandomEffect : IEffect
+    public class Zeitsprung : IEffect
     {
         public void Execute(Character source, List<Character> targets)
         {
-            RandomStatusEffectHelperClass.GetRandomStatuseffect().Execute(source, targets);
+            new Resurrection().Execute(source,targets);
+            new Heal().Execute(source,targets);
         }
     }
 }

@@ -1,9 +1,8 @@
-﻿using RPG.Characters;
-using RPG.Skills.StatusEffects;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using RPG.Characters;
 
-namespace RPG.Skills
+namespace RPG.Skills.Effects
 {
     public class Heal : IEffect
     {
@@ -11,7 +10,7 @@ namespace RPG.Skills
         {
             foreach (Character target in targets)
             {
-                target.FightVitality += Convert.ToInt32(source.FightMagic * 0.25);
+                target.Life += Convert.ToInt32(source.FightMagic);
             }
         }
     }

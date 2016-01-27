@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using RPG.Screen_Manager;
+using RPG.Sounds;
 
 namespace RPG
 {
@@ -21,8 +23,8 @@ namespace RPG
         Sound sound = new Sound();
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content\\";
+            this.graphics = new GraphicsDeviceManager(this);
+            this.Content.RootDirectory = "Content\\";
         }
 
         /// <summary>
@@ -34,10 +36,10 @@ namespace RPG
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            graphics.PreferredBackBufferHeight = 576;
-            graphics.PreferredBackBufferWidth = 720;
-            graphics.ApplyChanges();
-            IsMouseVisible = false;
+            this.graphics.PreferredBackBufferHeight = 576;
+            this.graphics.PreferredBackBufferWidth = 720;
+            this.graphics.ApplyChanges();
+            this.IsMouseVisible = false;
             
             base.Initialize();
         }
@@ -49,12 +51,12 @@ namespace RPG
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            Screen.LoadContent(Content);
-            MouseCursor.LoadContent(Content);
-            sound.LoadContent(Content);
+            this.Screen.LoadContent(this.Content);
+            this.MouseCursor.LoadContent(this.Content);
+            this.sound.LoadContent(this.Content);
         }
         
         /// <summary>
@@ -64,7 +66,7 @@ namespace RPG
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
-            Content.Unload();
+            this.Content.Unload();
         }
 
         /// <summary>
@@ -75,14 +77,14 @@ namespace RPG
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Back))
-              Exit();
+                this.Exit();
 
             // TODO: Add your update logic here
             base.Update(gameTime);
-            Screen.Update(gameTime);
-            MouseCursor.Update();
+            this.Screen.Update(gameTime);
+            this.MouseCursor.Update();
 
-            if (Screen.ExitGame)
+            if (this.Screen.ExitGame)
             {
                 this.Exit();
             }
@@ -95,13 +97,13 @@ namespace RPG
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            this.GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
-            Screen.Draw(spriteBatch);
-            MouseCursor.Draw(spriteBatch);
-            spriteBatch.End();
+            this.spriteBatch.Begin();
+            this.Screen.Draw(this.spriteBatch);
+            this.MouseCursor.Draw(this.spriteBatch);
+            this.spriteBatch.End();
             base.Draw(gameTime);
         }
     }

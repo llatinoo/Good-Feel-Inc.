@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework.Content;
 
-namespace RPG
+namespace RPG.Sounds
 {
     class Sound
     {
         System.Media.SoundPlayer test = new System.Media.SoundPlayer();
         public void LoadContent(ContentManager content)
         {
-            test.SoundLocation = "Content\\Sounds\\Life_converted.wav";
-            test.Load();
-            test.Play();
+            this.test.SoundLocation = "Content\\Sounds\\Life_converted.wav";
+            this.test.Load();
+            this.test.Play();
         }
     }
 }

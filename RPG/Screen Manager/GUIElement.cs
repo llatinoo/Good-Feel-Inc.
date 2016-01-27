@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace RPG
+namespace RPG.Screen_Manager
 {
     class GUIElement
     {
@@ -21,14 +17,14 @@ namespace RPG
 
         public Rectangle getGUIRect
         {
-            get { return GUIRect; }
+            get { return this.GUIRect; }
         }
         //Pfad zur Textur
         private string assetName;
         public string AssetName
         {
-            get { return assetName;}
-            set { assetName = value;}
+            get { return this.assetName;}
+            set { this.assetName = value;}
         }
 
         //Event das beim drücken auf ein GUI Element ausgeführt wird
@@ -40,51 +36,51 @@ namespace RPG
         }
         public void LoadContent(ContentManager content)
         {
-            GUITexture = content.Load<Texture2D>(assetName);
-            GUIRect = new Rectangle(0, 0, GUITexture.Width, GUITexture.Height);
+            this.GUITexture = content.Load<Texture2D>(this.assetName);
+            this.GUIRect = new Rectangle(0, 0, this.GUITexture.Width, this.GUITexture.Height);
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-                spriteBatch.Draw(GUITexture, GUIRect, color);
-                if (GUIRect.Contains(controls.CursorPos) && Mouse.GetState().LeftButton != ButtonState.Pressed && assetName.Contains("Button"))
+                spriteBatch.Draw(this.GUITexture, this.GUIRect, this.color);
+                if (this.GUIRect.Contains(this.controls.CursorPos) && Mouse.GetState().LeftButton != ButtonState.Pressed && this.assetName.Contains("Button"))
                 {
-                    spriteBatch.Draw(GUITexture, GUIRect, Color.LightYellow);
+                    spriteBatch.Draw(this.GUITexture, this.GUIRect, Color.LightYellow);
                 }
 
-                spriteBatch.Draw(GUITexture, GUIRect, color);
+                spriteBatch.Draw(this.GUITexture, this.GUIRect, this.color);
         }
         
         public void Update()
         {
-            controls.Update();
+            this.controls.Update();
 
             //Wenn sich die Maus mit der Textur schneidet und dann der linke Mausbutton gedrückt wird, wird das ClickEvent ausgelöst
-            if (GUIRect.Contains(controls.CursorPos) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+            if (this.GUIRect.Contains(this.controls.CursorPos) && Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
-                clickEvent(assetName);
+                this.clickEvent(this.assetName);
             }
-            if (GUIRect.Contains(controls.CursorPos) && controls.CurrentKeyboardState.IsKeyDown(Keys.Enter))
+            if (this.GUIRect.Contains(this.controls.CursorPos) && this.controls.CurrentKeyboardState.IsKeyDown(Keys.Enter))
             {
-                clickEvent(assetName);
+                this.clickEvent(this.assetName);
             }
         }
 
         //GUI Element wir in die mitte geschoben
         public void CenterElement(int width, int height)
         {
-            GUIRect = new Rectangle((height / 2) - (this.GUITexture.Width / 2), 
+            this.GUIRect = new Rectangle((height / 2) - (this.GUITexture.Width / 2), 
                 (width / 2) - (this.GUITexture.Height / 2),this.GUITexture.Width,this.GUITexture.Height);
         }
 
         //GUI Element wird verschoben
         public void moveElement(int x, int y)
         {
-            GUIRect = new Rectangle(GUIRect.X += x, GUIRect.Y += y, GUIRect.Width, GUIRect.Height);
+            this.GUIRect = new Rectangle(this.GUIRect.X += x, this.GUIRect.Y += y, this.GUIRect.Width, this.GUIRect.Height);
         }
 
         public void changeColor(Color newColor)
         {
-            color = newColor;
+            this.color = newColor;
         }
         
     }
