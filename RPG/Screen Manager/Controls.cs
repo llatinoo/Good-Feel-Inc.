@@ -41,7 +41,7 @@ namespace RPG
 
         public void Update()
         {
-            vecCursorPos = new Vector2(Mouse.GetState().Position.X - 10, Mouse.GetState().Position.Y - 10);
+            vecCursorPos = new Vector2(Mouse.GetState().Position.X, Mouse.GetState().Position.Y);
             cursorPos = new Point(Mouse.GetState().Position.X, Mouse.GetState().Position.Y);
             previousKeyboardState = currentKeyboardState;
             currentKeyboardState = Keyboard.GetState();

@@ -35,7 +35,7 @@ namespace RPG
             graphics.PreferredBackBufferHeight = 576;
             graphics.PreferredBackBufferWidth = 720;
             graphics.ApplyChanges();
-            IsMouseVisible = false;
+            IsMouseVisible = true;
             
             base.Initialize();
         }
