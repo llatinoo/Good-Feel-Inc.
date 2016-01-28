@@ -336,52 +336,145 @@
     <Content Include="Content\Cursors\Demon_Sword_Cursor.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Animated\Anna\Anna_Attack_Animation.png">
+    <Content Include="Content\Enemies\Bosse\Human\Irene\Irene_Attack_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Animated\Anna\Anna_Death_Animation.png">
+    <Content Include="Content\Enemies\Bosse\Human\Irene\Irene_Death_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Animated\Anna\Anna_Standard_Animation.png">
+    <Content Include="Content\Enemies\Bosse\Human\Irene\Irene_Standard_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Animated\Elena\Elena_Attack_Animation.png">
+    <Content Include="Content\Enemies\Bosse\Human\Michael\Michael_Attack_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Animated\Elena\Elena_Death_Animation.png">
+    <Content Include="Content\Enemies\Bosse\Human\Michael\Michael_Death_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Animated\Elena\Elena_Standard_Animation.png">
+    <Content Include="Content\Enemies\Bosse\Human\Michael\Michael_Standard_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Animated\Ells\Ells_Attack_Animation.png">
+    <Content Include="Content\Enemies\Bosse\Human\Reinhardt\Reinhardt_Attack_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Animated\Ells\Ells_Death_Animation.png">
+    <Content Include="Content\Enemies\Bosse\Human\Reinhardt\Reinhardt_Death_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Animated\Ells\Ells_Standard_Animation.png">
+    <Content Include="Content\Enemies\Bosse\Human\Reinhardt\Reinhardt_Standard_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Animated\Kaiser\Kaiser_Attack_Animation.png">
+    <Content Include="Content\Enemies\Bosse\Monsters\Der_Engel.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Animated\Kaiser\Kaiser_Death_Animation.png">
+    <Content Include="Content\Enemies\Bosse\Monsters\Der_Geläuterte.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Animated\Kaiser\Kaiser_Standard_Animation.png">
+    <Content Include="Content\Enemies\Bosse\Human\Anna\Anna_Attack_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Animated\Marlein\Marlein_Attack_Animation.png">
+    <Content Include="Content\Enemies\Bosse\Human\Anna\Anna_Death_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Animated\Marlein\Marlein_Death_Animation.png">
+    <Content Include="Content\Enemies\Bosse\Human\Anna\Anna_Standard_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Animated\Marlein\Marlein_Standard_Animation.png">
+    <Content Include="Content\Enemies\Bosse\Human\Elena\Elena_Attack_Animation.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Animated\White_Hole_Animation.png">
+    <Content Include="Content\Enemies\Bosse\Human\Elena\Elena_Death_Animation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Bosse\Human\Elena\Elena_Standard_Animation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Bosse\Human\Ells\Ells_Attack_Animation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Bosse\Human\Ells\Ells_Death_Animation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Bosse\Human\Ells\Ells_Standard_Animation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Bosse\Human\Kaiser\Kaiser_Attack_Animation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Bosse\Human\Kaiser\Kaiser_Death_Animation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Bosse\Human\Kaiser\Kaiser_Standard_Animation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Bosse\Human\Marlein\Marlein_Attack_Animation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Bosse\Human\Marlein\Marlein_Death_Animation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Bosse\Human\Marlein\Marlein_Standard_Animation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Bosse\Monsters\Ttherot%27h\Ttherhot%27h_Minion.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Bosse\Monsters\Ttherot%27h\Ttherhot%27h_Stufe_1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Bosse\Monsters\Ttherot%27h\Ttherhot%27h_Stufe_2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Bosse\Monsters\Ttherot%27h\Ttherhot%27h_Stufe_3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Bosse\Monsters\Ttherot%27h\Ttherhot%27h_Stufe_4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Bosse\Monsters\White_Hole_Animation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Demons\Demon_Retributer.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Demons\Demon_Soldier.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Human\Falken_Gardist.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Human\Falken_Ritter.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Human\Freier_Falke.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Human\Legenden Wächter.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Human\Ritter.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Human\Söldner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Human\Wache.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Monster\Aggresive_Demon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Monster\Death.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Monster\Mutant.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Monster\Slime.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Enemies\Monster\Succubus.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Faces\Female\Anna\Anna_Cry_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Female\Anna\Anna_Happy_Face.png">
@@ -396,7 +489,7 @@
     <Content Include="Content\Faces\Female\Anna\Anna_Shoked_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Anna\Anna_Standart_Face.png">
+    <Content Include="Content\Faces\Female\Anna\Anna_Standard_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Female\Anna\Anna_Thoughtful_Face.png">
@@ -414,10 +507,13 @@
     <Content Include="Content\Faces\Female\Elena\Elena_Shocked_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Elena\Elena_Standart_Face.png">
+    <Content Include="Content\Faces\Female\Elena\Elena_Standard_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Female\Elena\Elena_Thoughtful_Face.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Faces\Female\Ells\Ells_Cry_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Female\Ells\Ells_Happy_Face.png">
@@ -432,10 +528,13 @@
     <Content Include="Content\Faces\Female\Ells\Ells_Shocked_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Ells\Ells_Standart_Face.png">
+    <Content Include="Content\Faces\Female\Ells\Ells_Standard_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Female\Ells\Ells_Thoughtful_Face.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Faces\Female\Genefe\Genefe_Cry_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Female\Genefe\Genefe_Happy_Face.png">
@@ -450,10 +549,16 @@
     <Content Include="Content\Faces\Female\Genefe\Genefe_Shocked_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Genefe\Genefe_Standart_Face.png">
+    <Content Include="Content\Faces\Female\Genefe\Genefe_Standard_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Female\Genefe\Genefe_Thoughtful_Face.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Faces\Female\Irene\Irene_Standard_Face.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Faces\Female\Marlein\Marlein_Cry_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Female\Marlein\Marlein_Happy_Face.png">
@@ -468,7 +573,7 @@
     <Content Include="Content\Faces\Female\Marlein\Marlein_Shocked_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Marlein\Marlein_Standart_Face.png">
+    <Content Include="Content\Faces\Female\Marlein\Marlein_Standard_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Female\Marlein\Marlein_Thoughtful_Face.png">
@@ -486,7 +591,7 @@
     <Content Include="Content\Faces\Male\Capsar\Caspar_Shocked_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Capsar\Caspar_Standart_Face.png">
+    <Content Include="Content\Faces\Male\Capsar\Caspar_Standard_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Male\Capsar\Caspar_Thoughtful_Face.png">
@@ -504,7 +609,7 @@
     <Content Include="Content\Faces\Male\Jos\Jos_Shocked_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Jos\Jos_Standart_Face.png">
+    <Content Include="Content\Faces\Male\Jos\Jos_Standard_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Male\Jos\Jos_Thoughtful_Face.png">
@@ -522,10 +627,13 @@
     <Content Include="Content\Faces\Male\Kaiser\Kaiser_Shocked_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Kaiser\Kaiser_Standart_Face.png">
+    <Content Include="Content\Faces\Male\Kaiser\Kaiser_Standard_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Male\Kaiser\Kaiser_Thoightful_Face.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Faces\Male\Michael\Michael_Standard_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Male\Nick\Nick_Happy_Face.png">
@@ -540,10 +648,13 @@
     <Content Include="Content\Faces\Male\Nick\Nick_Shocked_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Nick\Nick_Standart_Face.png">
+    <Content Include="Content\Faces\Male\Nick\Nick_Standard_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Male\Nick\Nick_Thoughtful_Face.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Faces\Male\Reinhardt\Reinhardt_Standard_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Male\Seitz\Seitz_Happy_Face.png">
@@ -558,7 +669,7 @@
     <Content Include="Content\Faces\Male\Seitz\Seitz_Shocked_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seitz\Seitz_Standart_Face.png">
+    <Content Include="Content\Faces\Male\Seitz\Seitz_Standard_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Male\Seitz\Seitz_Thoughtful_Face.png">
@@ -576,7 +687,7 @@
     <Content Include="Content\Faces\Male\Seyfrid\Seyfrid_Shocked_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seyfrid\Seyfrid_Standart_Face.png">
+    <Content Include="Content\Faces\Male\Seyfrid\Seyfrid_Standard_Face.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Male\Seyfrid\Seyfrid_Thoughtful_Face.png">
@@ -609,6 +720,7 @@
     <Content Include="Content\Boxes\TextBox_Heroic_RPG.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Sounds\Life_converted_wma.wma" />
     <Content Include="Icon.ico" />
     <Content Include="Content\Boxes\TextBox_RPG.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -10,7 +10,6 @@ namespace RPG
     /// </summary>
     public class Game1 : Game
     {
-        //Tolles Kommentar
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Screen Screen = new Screen();
@@ -54,10 +53,10 @@ namespace RPG
             // TODO: use this.Content to load your game content here
             Screen.LoadContent(Content);
             MouseCursor.LoadContent(Content);
-            //sound.LoadContent(Content);
             Intro.LoadContent(Content);
+            //sound.LoadContent();
         }
-        
+
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// game-specific content.
@@ -83,7 +82,6 @@ namespace RPG
             Screen.Update(gameTime);
             MouseCursor.Update();
             Intro.Update();
-            
             if (Screen.ExitGame)
             {
                 this.Exit();
@@ -97,8 +95,6 @@ namespace RPG
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            
-
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();

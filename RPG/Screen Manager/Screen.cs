@@ -24,8 +24,12 @@ namespace RPG
         private SkillAnimation testSkill9 = new SkillAnimation();
 
         //SpielStatus
-        private enum GameState {mainMenu, options, storyScreen, battleScreen}
+        public enum GameState {mainMenu, options, storyScreen, battleScreen}
         private GameState gameState;
+        public GameState getGameState
+        {
+            get { return gameState; }
+        }
         private GameState oldGameState;
 
         //Liste der GUI Elemente
@@ -47,18 +51,24 @@ namespace RPG
         private int characterSize = 64;
 
         //Spieler Character Position
-        private Vector2 characterPosition_1 = new Vector2(630,415);
+        private Vector2 characterPosition_1 = new Vector2(630, 415);
         private Vector2 characterPosition_2 = new Vector2(620, 350);
         private Vector2 characterPosition_3 = new Vector2(610, 285);
         private Vector2 characterPosition_4 = new Vector2(600, 220);
 
         //Position der Gegner
-        Vector2 enemyPosition_1 = new Vector2(100,415);
+        Vector2 enemyPosition_1 = new Vector2(100, 415);
         Vector2 enemyPosition_2 = new Vector2(110, 350);
         Vector2 enemyPosition_3 = new Vector2(120, 285);
         Vector2 enemyPosition_4 = new Vector2(130, 220);
         Vector2 normalBossPosition;
         Vector2 finalBossPosition;
+
+        //position des Textes
+        Vector2 textLine_1 = new Vector2(150, 422);
+        Vector2 textLine_2 = new Vector2(150, 447);
+        Vector2 textLine_3 = new Vector2(150, 472);
+        Vector2 textLine_4 = new Vector2(150, 497);
 
         public Screen()
         {
@@ -75,18 +85,17 @@ namespace RPG
 
             storyScreen.Insert(0, new GUIElement("Backgrounds\\Story\\Triumphfelder_Story_Background"));
             storyScreen.Insert(1, new GUIElement("Boxes\\TextBox_Heroic_RPG"));
-            
 
             battleScreen.Insert(0, new GUIElement("Backgrounds\\Battle\\Forest_Battle_Background"));
             battleScreen.Insert(1, new GUIElement("Icons\\Mindblown_Icon"));
 
-            battleScreenSkills.Insert(0,new TextElement("Skill1",50,50));
-            battleScreenSkills.Insert(1, new TextElement("Skill2", 100, 50));
+            battleScreenSkills.Insert(0,new TextElement("Skill1", 400, 450));
+            battleScreenSkills.Insert(1, new TextElement("Skill2", 400, 480));
 
-            storyText.Insert(0, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", 150, 422));
-            storyText.Insert(1, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", 150, 447));
-            storyText.Insert(2, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", 150, 472));
-            storyText.Insert(3, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", 150, 497));
+            storyText.Insert(0, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", (int)textLine_1.X, (int)textLine_1.Y));
+            storyText.Insert(1, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", (int)textLine_2.X, (int)textLine_2.Y));
+            storyText.Insert(2, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", (int)textLine_3.X, (int)textLine_3.Y));
+            storyText.Insert(3, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", (int)textLine_4.X, (int)textLine_4.Y));
 
         }
 
@@ -138,8 +147,10 @@ namespace RPG
                 Animation testAnimation9 = new Animation();
 
                 //Animation wird geladen und die Textur sowie die Breite und Höhe wird festeglegt
+
+                //Spieler Charactere
                 testAnimation.LoadContent(content.Load<Texture2D>("Animations\\Skills\\Dark_Hole_Animation"), Vector2.Zero, 468, 468, 80, Color.White, 1f, true, 32, 1, false);
-                testSkill.LoadContent(testAnimation, new Vector2(400, 400));
+                testSkill.LoadContent(testAnimation, new Vector2(400, 200));
 
                 testAnimation2.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Caspar\\Caspar_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 1, 3, false);
                 testSkill2.LoadContent(testAnimation2, characterPosition_1);
@@ -154,19 +165,17 @@ namespace RPG
                 testSkill5.LoadContent(testAnimation5, characterPosition_4);
 
 
-
-
-
-                testAnimation6.LoadContent(content.Load<Texture2D>("Enemies\\Animated\\Anna\\Anna_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 2, true);
+                //Gegner
+                testAnimation6.LoadContent(content.Load<Texture2D>("Enemies\\Bosse\\Human\\Anna\\Anna_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 2, true);
                 testSkill6.LoadContent(testAnimation6, enemyPosition_1);
 
-                testAnimation7.LoadContent(content.Load<Texture2D>("Enemies\\Animated\\Elena\\Elena_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 2, true);
+                testAnimation7.LoadContent(content.Load<Texture2D>("Enemies\\Bosse\\Human\\Elena\\Elena_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 2, true);
                 testSkill7.LoadContent(testAnimation7, enemyPosition_2);
 
-                testAnimation8.LoadContent(content.Load<Texture2D>("Enemies\\Animated\\Ells\\Ells_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 2, true);
+                testAnimation8.LoadContent(content.Load<Texture2D>("Enemies\\Bosse\\Human\\Ells\\Ells_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 2, true);
                 testSkill8.LoadContent(testAnimation8, enemyPosition_3);
 
-                testAnimation9.LoadContent(content.Load<Texture2D>("Enemies\\Animated\\Marlein\\Marlein_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 2, true);
+                testAnimation9.LoadContent(content.Load<Texture2D>("Enemies\\Bosse\\Human\\Marlein\\Marlein_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 2, true);
                 testSkill9.LoadContent(testAnimation9, enemyPosition_4);
 
             }

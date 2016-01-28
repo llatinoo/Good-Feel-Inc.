@@ -24,3 +24,9 @@
 /processor:VideoProcessor
 /build:Intro/Good Feel Inc Intro.wmv
 
+#begin Sounds/Life_converted_wma.wma
+/importer:WmaImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/Life_converted_wma.wma
+

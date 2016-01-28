@@ -15,7 +15,7 @@ namespace RPG
         {
             this.soundName = soundName;
         }
-        public void LoadContent(ContentManager content)
+        public void LoadContent()
         {
             test.SoundLocation = soundName;
             test.Load();

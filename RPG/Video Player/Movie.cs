@@ -46,7 +46,7 @@ namespace RPG
                 state = 1;
             }
 
-            // Only call GetTexture if a video is playing or paused
+            // Nur wenn Video abgespielt wird oder Pausiert ist wird GetTexture aufgerufen
             if (videoPlayer.State != MediaState.Stopped)
             {
                 videoTexture = videoPlayer.GetTexture();
