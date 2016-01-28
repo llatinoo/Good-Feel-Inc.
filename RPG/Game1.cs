@@ -15,7 +15,8 @@ namespace RPG
         SpriteBatch spriteBatch;
         Screen Screen = new Screen();
         Cursor MouseCursor = new Cursor();
-        SoundPlayer sound = new SoundPlayer("Content\\Sounds\\Life_converted.wav");
+        Sound sound = new Sound("Content\\Sounds\\Life_converted.wav");
+        Movie Intro = new Movie("Intro\\Good Feel Inc Intro");
 
         public Game1()
         {
@@ -35,8 +36,9 @@ namespace RPG
             graphics.PreferredBackBufferHeight = 576;
             graphics.PreferredBackBufferWidth = 720;
             graphics.ApplyChanges();
-            IsMouseVisible = true;
-            
+            IsMouseVisible = false;
+            Intro.Initialize();
+
             base.Initialize();
         }
 
@@ -53,6 +55,7 @@ namespace RPG
             Screen.LoadContent(Content);
             MouseCursor.LoadContent(Content);
             //sound.LoadContent(Content);
+            Intro.LoadContent(Content);
         }
         
         /// <summary>
@@ -79,12 +82,12 @@ namespace RPG
             base.Update(gameTime);
             Screen.Update(gameTime);
             MouseCursor.Update();
+            Intro.Update();
             
             if (Screen.ExitGame)
             {
                 this.Exit();
             }
-            
         }
 
         /// <summary>
@@ -94,11 +97,14 @@ namespace RPG
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            
+
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             Screen.Draw(spriteBatch);
             MouseCursor.Draw(spriteBatch);
+            Intro.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }

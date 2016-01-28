@@ -6,12 +6,12 @@ using Microsoft.Xna.Framework.Content;
 
 namespace RPG
 {
-    class SoundPlayer
+    class Sound
     {
         System.Media.SoundPlayer test = new System.Media.SoundPlayer();
 
         private String soundName;
-        public SoundPlayer(string soundName)
+        public Sound(string soundName)
         {
             this.soundName = soundName;
         }

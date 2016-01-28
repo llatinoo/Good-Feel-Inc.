@@ -96,7 +96,8 @@
     <Compile Include="Skills\StatusEffects\HasHalo.cs" />
     <Compile Include="Skills\StatusEffects\Poisened.cs" />
     <Compile Include="Skills\Drain.cs" />
-    <Compile Include="Sound Player\SoundPlayer.cs" />
+    <Compile Include="Sound Player\Sound.cs" />
+    <Compile Include="Video Player\Movie.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -599,6 +600,9 @@
     <Content Include="Content\Icons\Toxic_Icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Intro\Good Feel Inc Intro.wmv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Sounds\Life_converted.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -635,9 +639,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\Intro\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Content\Fonts\AwesomeFont.xnb" />
   </ItemGroup>

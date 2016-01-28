@@ -19,3 +19,8 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/AwesomeFont.spritefont
 
+#begin Intro/Good Feel Inc Intro.wmv
+/importer:WmvImporter
+/processor:VideoProcessor
+/build:Intro/Good Feel Inc Intro.wmv
+
