@@ -15,7 +15,7 @@ namespace RPG.Skills.StatusEffects
 
             this.Duration = Convert.ToInt32(r1.Next(3, 6 * 1000) / 1000);
             this.Damage = Convert.ToInt32(((r1.Next(source.FightMagic / 6, (source.FightMagic / 4) * 1000)) / 1000));
-            this.Damage = this.Damage / (MathHelper.Clamp(source.FightResistance/2, 1, 20));
+            this.Damage = this.Damage / (MathHelper.Clamp(source.FightResistance/4, 1, 5));
         }
 
         public int ExecuteStatus()

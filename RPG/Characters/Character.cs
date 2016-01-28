@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using RPG.Animations;
@@ -50,6 +51,8 @@ namespace RPG.Characters
         public string Name { get; private set; }
         //Klasse
         public Classes Class { get; private set; }
+        public int Initiative { get; private set; }
+
         //Rasse
         public string Race { get; private set; }
 
@@ -167,6 +170,35 @@ namespace RPG.Characters
             var propertyInfo = typeof(Character).GetProperty(mainAttributeToUpdate.ToString());
             var oldValue = (int)propertyInfo.GetValue(this, null);
             propertyInfo.SetValue(this, oldValue + updateAmmount, null);
+        }
+
+        public void SetInitiative()
+        {
+            if (this.Class == Classes.Coloss)
+            {
+                this.Initiative = 1;
+            }
+            if (this.Class == Classes.Warrior)
+            {
+                this.Initiative = 2;
+            }
+            if (this.Class == Classes.Harasser)
+            {
+                this.Initiative = 3;
+            }
+            if (this.Class == Classes.Patron)
+            {
+                this.Initiative = 4;
+            }
+            if (this.Class == Classes.DamageDealer)
+            {
+                this.Initiative = 5;
+            }
+        }
+
+        public int GetInitiative()
+        {
+            return this.Initiative + (new Random().Next(this.Initiative, (this.Initiative + 4) * 1000) / 1000);
         }
     }
 }

@@ -62,6 +62,8 @@
     <Compile Include="Characters\PartyMember.cs" />
     <Compile Include="Characters\Player.cs" />
     <Compile Include="RandomStatusEffectHelperClass.cs" />
+    <Compile Include="ClassSkillDataSection.cs" />
+    <Compile Include="SkillCadreDataSection.cs" />
     <Compile Include="Skills\Effects\GetRandomBuffEffect.cs" />
     <Compile Include="Skills\Effects\RandomDebuffEffect.cs" />
     <Compile Include="Skills\Effects\RandomEffect.cs" />
