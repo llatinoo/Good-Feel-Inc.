@@ -11,7 +11,7 @@ namespace RPG.Characters
     public enum MainAttributes
     {
         Vitality,
-        Mana,
+        ManaPool,
         Strength,
         Magic,
         Defense,
@@ -75,7 +75,7 @@ namespace RPG.Characters
         }
 
 
-        //Leben und Mana im Kampf
+        //Leben und ManaPool im Kampf
         public int Life
         {
             get { return this.life; }
@@ -89,7 +89,7 @@ namespace RPG.Characters
 
 
         //Kampfwerte die im Kampf verändert werden können
-        //Vitalität und Manapool regulieren auch Mana und Leben, da diese Werte nicht über deren Kampfwerte liegen dürfen
+        //Vitalität und Manapool regulieren auch ManaPool und Leben, da diese Werte nicht über deren Kampfwerte liegen dürfen
         public int FightVitality
         {
             get { return this.fightVitality; }
@@ -121,14 +121,10 @@ namespace RPG.Characters
             get { return this.fightLuck; }
             set { this.fightLuck = MathHelper.Clamp(value, 0, 70); }
         }
-
-
-        //Level Attribute
-        public int Level { get; set; }
-
-
+        
         //Fähigkeiten Attribute
         public List<Skill> Skills { get; private set; }
+        //public List<string> SkillTree { get; private set; }
 
 
         //Auf den Charakter wirkende Effekte
@@ -148,8 +144,6 @@ namespace RPG.Characters
             this.FightDefense = this.Defense = defense;
             this.FightResistance = this.Resistance = resistance;
             this.FightLuck = this.Luck = luck;
-
-            this.Level = 1;
 
             this.Skills = new List<Skill>();
             this.Statuseffects = new List<IStatuseffect>();

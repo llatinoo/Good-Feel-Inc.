@@ -9,7 +9,7 @@ namespace RPG
     public class StoryDialogsDataSection : ConfigurationSection
     {
         [ConfigurationProperty("Scenes")]
-        public ScenesElementCollection Sceneses
+        public ScenesElementCollection Scenes
         {
             get
             {
@@ -222,10 +222,10 @@ namespace RPG
 //    ConfigurationManager.GetSection("Story") as StoryDialogsDataSection;
 
 //var dialogWithIdOne =
-//    dialogsDataSection.Sceneses.Cast<SceneElement>()
+//    dialogsDataSection.Scenes.Cast<SceneElement>()
 //        .SingleOrDefault(dialogElement => dialogElement.Id == "0");
             
-//foreach (TextBoxElement dialogElementsElement in dialogWithIdOne.TextBoxes)
+//foreach (TextBoxElement dialogElementsElement in dialogWithIdOne.Skills)
 //{
 //      Debug.WriteLine(dialogElementsElement.Id + ": " + dialogElementsElement.Speaker);
 //}

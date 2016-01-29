@@ -3,32 +3,33 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
+using RPG.Skills.Effects;
 
 namespace RPG
 {
     public class SkillCadreDataSection : ConfigurationSection
     {
         [ConfigurationProperty("Skills")]
-        public AllSkillsElementCollection Sceneses
+        public SkillsElementCollection Skills
         {
             get
             {
-                return this["AllSkills"] as AllSkillsElementCollection;
+                return this["Skills"] as SkillsElementCollection;
             }
         }
     }
 
 
-    public class AllSkillsElementCollection : ConfigurationElementCollection
+    public class SkillsElementCollection : ConfigurationElementCollection
     {
         protected override ConfigurationElement CreateNewElement()
         {
-            return new DefinedSkillElement();
+            return new SkillElement();
         }
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((DefinedSkillElement)element).Name;
+            return ((SkillElement)element).Name;
         }
 
         public override ConfigurationElementCollectionType CollectionType
@@ -38,12 +39,12 @@ namespace RPG
 
         protected override string ElementName
         {
-            get { return "DefinedSkill"; }
+            get { return "Skill"; }
         }
 
-        public DefinedSkillElement this[int index]
+        public SkillElement this[int index]
         {
-            get { return (DefinedSkillElement)this.BaseGet(index); }
+            get { return (SkillElement)this.BaseGet(index); }
             set
             {
                 if (this.BaseGet(index) != null)
@@ -54,9 +55,9 @@ namespace RPG
             }
         }
 
-        new public DefinedSkillElement this[string id]
+        new public SkillElement this[string id]
         {
-            get { return (DefinedSkillElement)this.BaseGet(id); }
+            get { return (SkillElement)this.BaseGet(id); }
         }
 
         public bool ContainsKey(string key)
@@ -68,7 +69,7 @@ namespace RPG
     }
 
 
-    public class DefinedSkillElement : ConfigurationElement
+    public class SkillElement : ConfigurationElement
     {
         [ConfigurationProperty("name", IsRequired = true, IsKey = true)]
         public string Name
@@ -83,8 +84,21 @@ namespace RPG
             }
         }
 
+        [ConfigurationProperty("manaCosts", IsRequired = true, IsKey = false)]
+        public string ManaCosts
+        {
+            get
+            {
+                return this["manaCosts"] as string;
+            }
+            set
+            {
+                this["manaCosts"] = value;
+            }
+        }
+
         [ConfigurationProperty("Effects")]
-        public EffectsElementCollection TextBoxes
+        public EffectsElementCollection Effects
         {
             get
             {

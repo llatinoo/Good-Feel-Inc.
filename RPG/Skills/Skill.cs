@@ -21,10 +21,10 @@ namespace RPG.Skills
             this.Effects = skilleffects;
         }
 
-        //Ausführung des Skills
+        //Ausführung des ClassSkills
         public void Execute(Character source, List<Character> targets)
         {
-            //Führt alle Effekte des Skills aus
+            //Führt alle Effekte des ClassSkills aus
             source.Mana -= this.Manacosts;
             foreach (IEffect effect in this.Effects)
             {

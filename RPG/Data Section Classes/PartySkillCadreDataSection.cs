@@ -1,35 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Configuration.Internal;
 using System.Linq;
 using System.Text;
 
-namespace RPG
+namespace RPG.Data_Section_Classes
 {
-    public class ClassSkillDataSection : ConfigurationSection
+    public class PartySkillCadreDataSection : ConfigurationSection
     {
-        [ConfigurationProperty("Classes")]
-        public ClassesElementCollection Sceneses
+        [ConfigurationProperty("Chars")]
+        public CharsElementCollection Chars
         {
-            get
-            {
-                return this["Classes"] as ClassesElementCollection;
-            }
+            get { return this["Chars"] as CharsElementCollection; }
         }
     }
 
 
-    public class ClassesElementCollection : ConfigurationElementCollection
+    public class CharsElementCollection : ConfigurationElementCollection
     {
         protected override ConfigurationElement CreateNewElement()
         {
-            return new ClassElement();
+            return new CharElement();
         }
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((ClassElement)element).Name;
+            return ((CharElement)element).Name;
         }
 
         public override ConfigurationElementCollectionType CollectionType
@@ -39,82 +35,7 @@ namespace RPG
 
         protected override string ElementName
         {
-            get { return "Class"; }
-        }
-
-        public ClassElement this[int index]
-        {
-            get { return (ClassElement)this.BaseGet(index); }
-            set
-            {
-                if (this.BaseGet(index) != null)
-                {
-                    this.BaseRemoveAt(index);
-                }
-                this.BaseAdd(index, value);
-            }
-        }
-
-        new public ClassElement this[string id]
-        {
-            get { return (ClassElement)this.BaseGet(id); }
-        }
-
-        public bool ContainsKey(string key)
-        {
-            var keys = this.BaseGetAllKeys();
-
-            return keys.Any(keyToCompare => (string)keyToCompare == key);
-        }
-    }
-
-
-    public class ClassElement : ConfigurationElement
-    {
-        [ConfigurationProperty("name", IsRequired = true, IsKey = true)]
-        public string Name
-        {
-            get
-            {
-                return this["name"] as string;
-            }
-            set
-            {
-                this["name"] = value;
-            }
-        }
-
-        [ConfigurationProperty("Skills")]
-        public SkillsElementCollection TextBoxes
-        {
-            get
-            {
-                return this["Skills"] as SkillsElementCollection;
-            }
-        }
-    }
-
-
-    public class SkillsElementCollection : ConfigurationElementCollection
-    {
-        protected override ConfigurationElement CreateNewElement()
-        {
-            return new SkillElement();
-        }
-
-        protected override object GetElementKey(ConfigurationElement element)
-        {
-            return ((SkillElement)element).Name;
-        }
-
-        public override ConfigurationElementCollectionType CollectionType
-        {
-            get { return ConfigurationElementCollectionType.BasicMap; }
-        }
-
-        protected override string ElementName
-        {
-            get { return "Skill"; }
+            get { return "Char"; }
         }
 
         public SkillElement this[int index]
@@ -129,9 +50,10 @@ namespace RPG
                 this.BaseAdd(index, value);
             }
         }
-        new public SkillElement this[string id]
+
+        new public CharElement this[string id]
         {
-            get { return (SkillElement)this.BaseGet(id); }
+            get { return (CharElement)this.BaseGet(id); }
         }
 
         public bool ContainsKey(string key)
@@ -142,8 +64,7 @@ namespace RPG
         }
     }
 
-
-    public class SkillElement : ConfigurationElement
+    public class CharElement : ConfigurationElement
     {
         [ConfigurationProperty("name", IsRequired = true, IsKey = true)]
         public string Name
@@ -155,6 +76,92 @@ namespace RPG
             set
             {
                 this["name"] = value;
+            }
+        }
+
+        [ConfigurationProperty("CharSkills")]
+        public CharSkillsElementCollection CharSkills
+        {
+            get
+            {
+                return this["CharSkills"] as CharSkillsElementCollection;
+            }
+        }
+    }
+
+
+    public class CharSkillsElementCollection : ConfigurationElementCollection
+    {
+        protected override ConfigurationElement CreateNewElement()
+        {
+            return new CharSkillElement();
+        }
+
+        protected override object GetElementKey(ConfigurationElement element)
+        {
+            return ((CharSkillElement)element).Name;
+        }
+
+        public override ConfigurationElementCollectionType CollectionType
+        {
+            get { return ConfigurationElementCollectionType.BasicMap; }
+        }
+
+        protected override string ElementName
+        {
+            get { return "CharSkill"; }
+        }
+
+        public CharSkillElement this[int index]
+        {
+            get { return (CharSkillElement)this.BaseGet(index); }
+            set
+            {
+                if (this.BaseGet(index) != null)
+                {
+                    this.BaseRemoveAt(index);
+                }
+                this.BaseAdd(index, value);
+            }
+        }
+        new public CharSkillElement this[string id]
+        {
+            get { return (CharSkillElement)this.BaseGet(id); }
+        }
+
+        public bool ContainsKey(string key)
+        {
+            var keys = this.BaseGetAllKeys();
+
+            return keys.Any(keyToCompare => (string)keyToCompare == key);
+        }
+    }
+
+    public class CharSkillElement : ConfigurationElement
+    {
+        [ConfigurationProperty("name", IsRequired = true, IsKey = true)]
+        public string Name
+        {
+            get
+            {
+                return this["name"] as string;
+            }
+            set
+            {
+                this["name"] = value;
+            }
+        }
+
+        [ConfigurationProperty("level", IsRequired = true, IsKey = true)]
+        public string Level
+        {
+            get
+            {
+                return this["level"] as string;
+            }
+            set
+            {
+                this["level"] = value;
             }
         }
     }
