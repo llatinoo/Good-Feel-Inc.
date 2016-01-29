@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using RPG.Animations;
 using RPG.Skills;
 using RPG.Skills.StatusEffects;
 

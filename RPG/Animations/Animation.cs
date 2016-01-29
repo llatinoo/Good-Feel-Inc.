@@ -1,7 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 
-namespace RPG.Animations
+namespace RPG
 {
     public class Animation
     {
@@ -53,8 +58,9 @@ namespace RPG.Animations
         //aktuell angezeigter Vertikaler frame
         int currentVerticalFrame;
 
+        private bool mirrored = false;
         public void LoadContent(Texture2D sprite, Vector2 position, int frameWidth, int frameHeight,
-            int frameDisplayTime, Color color, float displayedScale, bool loop, int spriteSheetHorizontal, int spriteSheetVertical)
+            int frameDisplayTime, Color color, float displayedScale, bool loop, int spriteSheetHorizontal, int spriteSheetVertical, bool mirrored)
         {
             this.sprite = sprite;
             this.position = position;
@@ -66,61 +72,82 @@ namespace RPG.Animations
             this.loop = loop;
             this.spriteSheetHorizontal = spriteSheetHorizontal;
             this.spriteSheetVertical = spriteSheetVertical;
-
+            this.mirrored = mirrored;
             //Zeit wird auf 0 gesetzt
-            this.elapsedTime = 0;
-            this.currentVerticalFrame = 0;
-            this.currentHorizontalFrame = 0;
-
+            elapsedTime = 0;
+            if (!mirrored)
+            {
+                currentVerticalFrame = 0;
+                currentHorizontalFrame = 0;
+            }
+            else if(mirrored)
+            {
+                currentVerticalFrame = spriteSheetVertical;
+                currentHorizontalFrame = spriteSheetHorizontal;
+            }
             //standartmäßig Animation aktiv setzen
-            this.active = true;
+            active = true;
 
         }
 
         public void Update(GameTime gameTime)
         {
-            if (this.active == false)
+            if (active == false)
             {
                 return;
             }
             //vergangene Zeit updaten
-            this.elapsedTime += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
+            elapsedTime += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
 
+            
             //Wenn vergangene Zeit größer als anzeigezeit ist, wird das aktuelle Frame geändert
-            if (this.elapsedTime > this.frameDisplayTime)
+            if (elapsedTime > frameDisplayTime)
             {
-                this.currentVerticalFrame++;
-                if (this.currentVerticalFrame == this.spriteSheetVertical)
+                    if (!mirrored)
+                    {
+                    currentVerticalFrame++;
+                        if (currentVerticalFrame == spriteSheetVertical)
                 {
-                    this.currentVerticalFrame = 0;
-                    this.currentHorizontalFrame++;
-                    if(this.currentHorizontalFrame == this.spriteSheetHorizontal)
+                            currentVerticalFrame = 0;
+                            currentHorizontalFrame++;
+                            if (currentHorizontalFrame == spriteSheetHorizontal)
                     {
-                        this.currentHorizontalFrame = 0;
+                        currentHorizontalFrame = 0;
                     }
-                    if (!this.loop)
+                            if (!loop)
+                            {
+                                active = false;
+                            }
+                        }
+                    }
+                    else if(mirrored)
                     {
-                        this.active = false;
+                    currentVerticalFrame--;
+                    if (currentVerticalFrame == 0)
+                    {
+                        currentVerticalFrame = spriteSheetVertical;
+                        if (!loop)
+                    {
+                        active = false;
                     }
                 }
-
+                    }
                 //vergangene Zeit wird zurückgesetzt
-                this.elapsedTime = 0;
+                elapsedTime = 0;
             }
-            this.sourceRect = new Rectangle(this.frameWidth *this.currentVerticalFrame, this.frameHeight *this.currentHorizontalFrame, this.frameWidth, this.frameHeight);
+                sourceRect = new Rectangle(frameWidth * currentVerticalFrame, frameHeight * currentHorizontalFrame, frameWidth, frameHeight);
 
             //Ziel des anzuzeigenden Frames
-            this.destinationRect = new Rectangle((int) this.position.X - (int)(this.frameWidth *this.displayedScale) / 2, 
-            (int) this.position.Y - (int)(this.frameHeight *this.displayedScale) / 2, (int)(this.frameWidth *this.displayedScale), (int)(this.frameHeight *this.displayedScale));
-                
+                destinationRect = new Rectangle((int)position.X - (int)(frameWidth * displayedScale) / 2,
+                (int)position.Y - (int)(frameHeight * displayedScale) / 2, (int)(frameWidth * displayedScale), (int)(frameHeight * displayedScale));
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             //nur wenn die Animation aktiv ist wird sie dargestellt
-            if(this.active)
+            if(active)
             {
-                spriteBatch.Draw(this.sprite, this.destinationRect, this.sourceRect, this.color);
+                spriteBatch.Draw(sprite,destinationRect,sourceRect,color);
             }
         }
     }

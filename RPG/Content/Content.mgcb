@@ -13,3 +13,26 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Fonts/AwesomeFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:Fonts/AwesomeFont.spritefont
+
+#begin Intro/Good Feel Inc Intro.wmv
+/importer:WmvImporter
+/processor:VideoProcessor
+/build:Intro/Good Feel Inc Intro.wmv
+
+#begin Sounds/Hitman_Reborn.wma
+/importer:WmaImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/Hitman_Reborn.wma
+
+#begin Sounds/Umineko_Life.wma
+/importer:WmaImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/Umineko_Life.wma
+

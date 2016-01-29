@@ -1,15 +1,19 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 
-namespace RPG.Screen_Manager
+namespace RPG
 {
     class TextElement
     {
         
         Controls controls = new Controls();
-        SpriteFont BasicFont;
+        SpriteFont AwesomeFont;
         private Vector2 fontSize;
 
         private string skillName;
@@ -20,7 +24,7 @@ namespace RPG.Screen_Manager
 
         public delegate void tElementClicked(string element);
         public event tElementClicked tclickEvent;
-        public TextElement(string skillName, int positionY, int positionX)
+        public TextElement(string skillName, int positionX, int positionY)
         {
             this.skillName = skillName;
             this.positionX = positionX;
@@ -30,25 +34,25 @@ namespace RPG.Screen_Manager
         public void LoadContent(ContentManager content)
         {
             //Font mit dem Namen "BasicFont" wird geladen
-            this.BasicFont = content.Load<SpriteFont>("Fonts\\BasicFont");
-            this.fontSize = this.BasicFont.MeasureString(this.skillName);
-            this.textRect = new Rectangle(this.positionX, this.positionY, (int) this.fontSize.X, (int) this.fontSize.Y);
+            AwesomeFont = content.Load<SpriteFont>("Fonts\\AwesomeFont");
+            fontSize = AwesomeFont.MeasureString(skillName);
+            textRect = new Rectangle(positionX, positionY, (int)fontSize.X, (int)fontSize.Y);
         }
 
         public void Update()
         {
-            this.controls.Update();
-            if(this.textRect.Contains(this.controls.CursorPos) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+            controls.Update();
+            if(textRect.Contains(controls.CursorPos) && Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
-                this.tclickEvent(this.skillName);
+                tclickEvent(skillName);
             }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(this.BasicFont, this.skillName, new Vector2(this.positionX, this.positionY), Color.White);
-            if (this.textRect.Contains(this.controls.CursorPos))
+            spriteBatch.DrawString(AwesomeFont, skillName, new Vector2(positionX, positionY), Color.White);
+            if (textRect.Contains(controls.CursorPos))
             {
-                spriteBatch.DrawString(this.BasicFont, this.skillName, new Vector2(this.positionX, this.positionY), Color.DarkBlue);
+                spriteBatch.DrawString(AwesomeFont, skillName, new Vector2(positionX, positionY), Color.DarkBlue);
             }
         }
       }

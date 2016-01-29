@@ -18,8 +18,8 @@ namespace RPG
             {
                 game.Window.Title = "RPG";
                 game.Run();
-            }
         }
+    }
     }
 #endif
 }

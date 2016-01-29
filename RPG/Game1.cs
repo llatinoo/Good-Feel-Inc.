@@ -1,13 +1,7 @@
-﻿using System;
-using System.Configuration;
-using System.Diagnostics;
-using System.Linq;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 using RPG.Screen_Manager;
-using RPG.Sounds;
 
 namespace RPG
 {
@@ -16,16 +10,16 @@ namespace RPG
     /// </summary>
     public class Game1 : Game
     {
-        //Tolles Kommentar
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Screen Screen = new Screen();
+        Screen screen = new Screen();
         Cursor MouseCursor = new Cursor();
-        Sound sound = new Sound();
+        Movie Intro = new Movie("Intro\\Good Feel Inc Intro");
+
         public Game1()
         {
-            this.graphics = new GraphicsDeviceManager(this);
-            this.Content.RootDirectory = "Content\\";
+            graphics = new GraphicsDeviceManager(this);
+            Content.RootDirectory = "Content\\";
         }
 
         /// <summary>
@@ -37,10 +31,11 @@ namespace RPG
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            this.graphics.PreferredBackBufferHeight = 576;
-            this.graphics.PreferredBackBufferWidth = 720;
-            this.graphics.ApplyChanges();
-            this.IsMouseVisible = false;
+            graphics.PreferredBackBufferHeight = 576;
+            graphics.PreferredBackBufferWidth = 720;
+            graphics.ApplyChanges();
+            IsMouseVisible = false;
+            Intro.Initialize();
             
             base.Initialize();
         }
@@ -52,12 +47,12 @@ namespace RPG
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            this.Screen.LoadContent(this.Content);
-            this.MouseCursor.LoadContent(this.Content);
-            this.sound.LoadContent(this.Content);
+            screen.LoadContent(Content);
+            MouseCursor.LoadContent(Content);
+            Intro.LoadContent(Content);
         }
         
         /// <summary>
@@ -67,7 +62,7 @@ namespace RPG
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
-            this.Content.Unload();
+            Content.Unload();
         }
 
         /// <summary>
@@ -78,18 +73,17 @@ namespace RPG
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Back))
-                this.Exit();
+              Exit();
 
             // TODO: Add your update logic here
             base.Update(gameTime);
-            this.Screen.Update(gameTime);
-            this.MouseCursor.Update();
-
-            if (this.Screen.ExitGame)
+            screen.Update(gameTime);
+            MouseCursor.Update();
+            Intro.Update();
+            if (screen.ExitGame)
             {
                 this.Exit();
             }
-            
         }
 
         /// <summary>
@@ -98,13 +92,14 @@ namespace RPG
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            this.GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            this.spriteBatch.Begin();
-            this.Screen.Draw(this.spriteBatch);
-            this.MouseCursor.Draw(this.spriteBatch);
-            this.spriteBatch.End();
+            spriteBatch.Begin();
+            screen.Draw(spriteBatch);
+            MouseCursor.Draw(spriteBatch);
+            Intro.Draw(spriteBatch);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
