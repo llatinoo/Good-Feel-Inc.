@@ -100,20 +100,20 @@ namespace RPG
             elapsedTime += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
 
             
-                //Wenn vergangene Zeit größer als anzeigezeit ist, wird das aktuelle Frame geändert
-                if (elapsedTime > frameDisplayTime)
-                {
+            //Wenn vergangene Zeit größer als anzeigezeit ist, wird das aktuelle Frame geändert
+            if (elapsedTime > frameDisplayTime)
+            {
                     if (!mirrored)
                     {
                     currentVerticalFrame++;
                         if (currentVerticalFrame == spriteSheetVertical)
-                        {
+                {
                             currentVerticalFrame = 0;
                             currentHorizontalFrame++;
                             if (currentHorizontalFrame == spriteSheetHorizontal)
-                            {
-                                currentHorizontalFrame = 0;
-                            }
+                    {
+                        currentHorizontalFrame = 0;
+                    }
                             if (!loop)
                             {
                                 active = false;
@@ -127,20 +127,20 @@ namespace RPG
                     {
                         currentVerticalFrame = spriteSheetVertical;
                         if (!loop)
-                            {
-                                active = false;
-                            }
-                        }
+                    {
+                        active = false;
+                    }
+                }
                     }
                 //vergangene Zeit wird zurückgesetzt
                 elapsedTime = 0;
-                }
+            }
                 sourceRect = new Rectangle(frameWidth * currentVerticalFrame, frameHeight * currentHorizontalFrame, frameWidth, frameHeight);
 
-                //Ziel des anzuzeigenden Frames
+            //Ziel des anzuzeigenden Frames
                 destinationRect = new Rectangle((int)position.X - (int)(frameWidth * displayedScale) / 2,
                 (int)position.Y - (int)(frameHeight * displayedScale) / 2, (int)(frameWidth * displayedScale), (int)(frameHeight * displayedScale));
-            } 
+        }
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -150,5 +150,5 @@ namespace RPG
                 spriteBatch.Draw(sprite,destinationRect,sourceRect,color);
             }
         }
-}
+    }
 }

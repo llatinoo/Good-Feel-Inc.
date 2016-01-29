@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPG", "RPG\RPG.csproj", "{B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPGTests", "RPGTests\RPGTests.csproj", "{B492D835-6CDF-4AB9-A996-337A42D259AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DialogToXML", "DialogToXML\DialogToXML.csproj", "{6DD8EFE5-9BFF-44F9-BAB9-DB008A60973E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,14 @@ Global
 		{B492D835-6CDF-4AB9-A996-337A42D259AF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B492D835-6CDF-4AB9-A996-337A42D259AF}.Release|x86.ActiveCfg = Release|Any CPU
 		{B492D835-6CDF-4AB9-A996-337A42D259AF}.Release|x86.Build.0 = Release|Any CPU
+		{6DD8EFE5-9BFF-44F9-BAB9-DB008A60973E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DD8EFE5-9BFF-44F9-BAB9-DB008A60973E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DD8EFE5-9BFF-44F9-BAB9-DB008A60973E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6DD8EFE5-9BFF-44F9-BAB9-DB008A60973E}.Debug|x86.Build.0 = Debug|Any CPU
+		{6DD8EFE5-9BFF-44F9-BAB9-DB008A60973E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DD8EFE5-9BFF-44F9-BAB9-DB008A60973E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DD8EFE5-9BFF-44F9-BAB9-DB008A60973E}.Release|x86.ActiveCfg = Release|Any CPU
+		{6DD8EFE5-9BFF-44F9-BAB9-DB008A60973E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

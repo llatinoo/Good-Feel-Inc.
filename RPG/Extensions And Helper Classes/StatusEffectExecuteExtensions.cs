@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace RPG
 {
-    internal static class Extensions
+    internal static class StatusEffectExecuteExtensions
     {
         public static void AddStatuseffectToTargets(this List<Character> targets, Func<Character, IStatuseffect> getStatuseffectFunc)
         {            
@@ -17,6 +17,16 @@ namespace RPG
                 if (target.Statuseffects.All(effect => effect.GetType() != statuseffect.GetType()))
                 {
                     target.Statuseffects.Add(statuseffect);
+                }
+                else
+                {
+                    foreach (var effect in target.Statuseffects)
+                    {
+                        if (effect.GetType() == statuseffect.GetType())
+                        {
+                            effect.UpdateDuration(statuseffect.Duration);
+                        }
+                    }
                 }
             }
         }

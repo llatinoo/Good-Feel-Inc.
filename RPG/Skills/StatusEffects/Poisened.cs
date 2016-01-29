@@ -1,5 +1,6 @@
 ﻿using RPG.Characters;
 using System;
+using Microsoft.Xna.Framework;
 
 namespace RPG.Skills.StatusEffects
 {
@@ -10,7 +11,8 @@ namespace RPG.Skills.StatusEffects
 
         public Poisoned(Character source)
         {
-            this.Damage = Convert.ToInt32((source.FightMagic / 4) / (source.FightResistance / 2));
+            this.Duration = 0;
+            this.Damage = Convert.ToInt32((source.FightMagic / 4) / (MathHelper.Clamp(source.FightResistance / 4, 1, 5)));
         }
 
         public int ExecuteStatus()
@@ -21,6 +23,10 @@ namespace RPG.Skills.StatusEffects
         public bool IsDone()
         {
             return false;
+        }
+        public void UpdateDuration(int durationToAdd)
+        {
+            this.Duration += durationToAdd;
         }
     }
 }

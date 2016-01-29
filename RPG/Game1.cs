@@ -35,7 +35,7 @@ namespace RPG
             graphics.ApplyChanges();
             IsMouseVisible = false;
             Intro.Initialize();
-
+            
             base.Initialize();
         }
 
@@ -53,7 +53,7 @@ namespace RPG
             MouseCursor.LoadContent(Content);
             Intro.LoadContent(Content);
         }
-
+        
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// game-specific content.

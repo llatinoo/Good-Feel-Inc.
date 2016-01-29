@@ -1,14 +1,13 @@
-﻿using RPG.Characters;
-using RPG.Skills.StatusEffects;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using RPG.Characters;
 
-namespace RPG.Skills
+namespace RPG.Skills.Effects
 {
     public enum Attributes
     {
         FightVitality,
-        FightMana,
+        FightManaPool,
         FightStrength,
         FightMagic,
         FightDefense,
@@ -23,11 +22,11 @@ namespace RPG.Skills
     }
 
     //Klasse zur Unterscheidung der Buffs und Debuffs
-    public class StatActions
+    public class AttributeActions
     {
         //Je nach Aufruf Subtraktion oder Addition, erzeugt intern ein neues Objekt
-        public static StatActions Add = new StatActions((value, delta) => value + delta);
-        public static StatActions Substract = new StatActions((value, delta) => value - delta);
+        public static AttributeActions Add = new AttributeActions((value, delta) => value + delta);
+        public static AttributeActions Substract = new AttributeActions((value, delta) => value - delta);
 
         public int GetActionResult(int value, int delta)
         {            
@@ -37,20 +36,20 @@ namespace RPG.Skills
         private readonly Func<int, int, int> actionFunc;
 
         //Es können keine Instanzen von außen erzeugt werden
-        private StatActions(Func<int, int, int> actionFunc)
+        private AttributeActions(Func<int, int, int> actionFunc)
         {
             this.actionFunc = actionFunc;
         }
     }
 
-    public class StatsChange : IEffect
+    public class AttributesChangeEffect : IEffect
     {
         public Attributes Attribute { get; private set; }
-        public StatActions StatAction { get; private set; }
+        public AttributeActions AttributeAction { get; private set; }
 
-        public StatsChange(StatActions statAction, Attributes attributeToBuff)
+        public AttributesChangeEffect(AttributeActions attributeAction, Attributes attributeToBuff)
         {
-            this.StatAction = statAction;
+            this.AttributeAction = attributeAction;
             this.Attribute = attributeToBuff;
         }
 
@@ -69,7 +68,7 @@ namespace RPG.Skills
             {
                 var oldValue = (int)propertyInfo.GetValue(target, null);
 
-                var newValue = this.StatAction.GetActionResult(oldValue, valueDelta);
+                var newValue = this.AttributeAction.GetActionResult(oldValue, valueDelta);
 
                 propertyInfo.SetValue(target, newValue, null);
             }

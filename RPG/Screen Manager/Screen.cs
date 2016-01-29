@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -82,7 +80,7 @@ namespace RPG
             mainMenu.Insert(1, new GUIElement("Buttons\\New_Game_Button"));
             mainMenu.Insert(2, new GUIElement("Buttons\\Load_Game_Button"));
             mainMenu.Insert(3, new GUIElement("Buttons\\Quit_Button"));
-            
+
 
             options.Insert(0, new GUIElement("Backgrounds\\Menus\\Options_Screen_Background"));
             options.Insert(1, new GUIElement("Buttons\\Continue_Button"));
@@ -102,7 +100,7 @@ namespace RPG
             storyText.Insert(1, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", (int)textLine_2.X, (int)textLine_2.Y));
             storyText.Insert(2, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", (int)textLine_3.X, (int)textLine_3.Y));
             storyText.Insert(3, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", (int)textLine_4.X, (int)textLine_4.Y));
-
+            
         }
 
         public void LoadContent(ContentManager content)
@@ -293,7 +291,7 @@ namespace RPG
                             Mouse.SetPosition(mainMenu.ElementAt<GUIElement>(3).getGUIRect.Center.X, mainMenu.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
                         }
                     }
-                    break;
+                        break;
                 case GameState.options:
                     foreach (GUIElement element in options)
                     {
@@ -363,7 +361,7 @@ namespace RPG
                         testSkill9.Update(gameTime);
                     }
                     break;
-                    }
+            }
 
                     
             
