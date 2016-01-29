@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using RPG.Animations;
@@ -10,7 +11,7 @@ namespace RPG.Characters
     public enum MainAttributes
     {
         Vitality,
-        Mana,
+        ManaPool,
         Strength,
         Magic,
         Defense,
@@ -50,6 +51,8 @@ namespace RPG.Characters
         public string Name { get; private set; }
         //Klasse
         public Classes Class { get; private set; }
+        public int Initiative { get; private set; }
+
         //Rasse
         public string Race { get; private set; }
 
@@ -72,7 +75,7 @@ namespace RPG.Characters
         }
 
 
-        //Leben und Mana im Kampf
+        //Leben und ManaPool im Kampf
         public int Life
         {
             get { return this.life; }
@@ -86,7 +89,7 @@ namespace RPG.Characters
 
 
         //Kampfwerte die im Kampf verändert werden können
-        //Vitalität und Manapool regulieren auch Mana und Leben, da diese Werte nicht über deren Kampfwerte liegen dürfen
+        //Vitalität und Manapool regulieren auch ManaPool und Leben, da diese Werte nicht über deren Kampfwerte liegen dürfen
         public int FightVitality
         {
             get { return this.fightVitality; }
@@ -118,15 +121,12 @@ namespace RPG.Characters
             get { return this.fightLuck; }
             set { this.fightLuck = MathHelper.Clamp(value, 0, 70); }
         }
-
-
-        //Level Attribute
-        public int Level { get; set; }
-
-
+        
         //Fähigkeiten Attribute
         public List<Skill> Skills { get; private set; }
+        //public List<string> SkillTree { get; private set; }
 
+        public int Level { get; set; }
 
         //Auf den Charakter wirkende Effekte
         public List<IStatuseffect> Statuseffects { get; set; }
@@ -146,10 +146,10 @@ namespace RPG.Characters
             this.FightResistance = this.Resistance = resistance;
             this.FightLuck = this.Luck = luck;
 
-            this.Level = 1;
-
             this.Skills = new List<Skill>();
             this.Statuseffects = new List<IStatuseffect>();
+
+            this.Level = 0;
         }
 
         public void AddSkill(Skill newSkill)
@@ -167,6 +167,35 @@ namespace RPG.Characters
             var propertyInfo = typeof(Character).GetProperty(mainAttributeToUpdate.ToString());
             var oldValue = (int)propertyInfo.GetValue(this, null);
             propertyInfo.SetValue(this, oldValue + updateAmmount, null);
+        }
+
+        public void SetInitiative()
+        {
+            if (this.Class == Classes.Coloss)
+            {
+                this.Initiative = 1;
+            }
+            if (this.Class == Classes.Warrior)
+            {
+                this.Initiative = 2;
+            }
+            if (this.Class == Classes.Harasser)
+            {
+                this.Initiative = 3;
+            }
+            if (this.Class == Classes.Patron)
+            {
+                this.Initiative = 4;
+            }
+            if (this.Class == Classes.DamageDealer)
+            {
+                this.Initiative = 5;
+            }
+        }
+
+        public int GetInitiative()
+        {
+            return this.Initiative + (new Random().Next(this.Initiative, (this.Initiative + 4) * 1000) / 1000);
         }
     }
 }
