@@ -24,9 +24,15 @@
 /processor:VideoProcessor
 /build:Intro/Good Feel Inc Intro.wmv
 
-#begin Sounds/Life_converted_wma.wma
+#begin Sounds/Hitman_Reborn.wma
 /importer:WmaImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/build:Sounds/Life_converted_wma.wma
+/build:Sounds/Hitman_Reborn.wma
+
+#begin Sounds/Umineko_Life.wma
+/importer:WmaImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/Umineko_Life.wma
 

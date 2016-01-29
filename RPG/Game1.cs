@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 namespace RPG
 {
@@ -12,9 +11,8 @@ namespace RPG
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Screen Screen = new Screen();
+        Screen screen = new Screen();
         Cursor MouseCursor = new Cursor();
-        Sound sound = new Sound("Content\\Sounds\\Life_converted.wav");
         Movie Intro = new Movie("Intro\\Good Feel Inc Intro");
 
         public Game1()
@@ -51,10 +49,9 @@ namespace RPG
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            Screen.LoadContent(Content);
+            screen.LoadContent(Content);
             MouseCursor.LoadContent(Content);
             Intro.LoadContent(Content);
-            //sound.LoadContent();
         }
 
         /// <summary>
@@ -79,10 +76,10 @@ namespace RPG
 
             // TODO: Add your update logic here
             base.Update(gameTime);
-            Screen.Update(gameTime);
+            screen.Update(gameTime);
             MouseCursor.Update();
             Intro.Update();
-            if (Screen.ExitGame)
+            if (screen.ExitGame)
             {
                 this.Exit();
             }
@@ -98,7 +95,7 @@ namespace RPG
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            Screen.Draw(spriteBatch);
+            screen.Draw(spriteBatch);
             MouseCursor.Draw(spriteBatch);
             Intro.Draw(spriteBatch);
             spriteBatch.End();

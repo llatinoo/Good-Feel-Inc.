@@ -6,11 +6,17 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace RPG
 {
     class Screen
     {
+        bool stateChanged = false;
+        Song mainMenuTheme;
+        Song storyScreenTheme;
+        Song battleScreenTheme;
+
         Controls controls = new Controls();
         //Skill Animation wird erstellt
         private SkillAnimation testSkill = new SkillAnimation();
@@ -32,7 +38,7 @@ namespace RPG
         }
         private GameState oldGameState;
 
-        //Liste der GUI Elemente
+        //Listen der GUI und Text Elemente
         private List<GUIElement> mainMenu = new List<GUIElement>();
         private List<GUIElement> options = new List<GUIElement>();
         private List<GUIElement> storyScreen = new List<GUIElement>();
@@ -40,7 +46,7 @@ namespace RPG
         private List<TextElement> battleScreenSkills = new List<TextElement>();
         private List<TextElement> storyText = new List<TextElement>();
 
-        
+        //Gibt an ob das Spiel geschlossen werden soll
         private bool exitGame = false;
         public bool ExitGame
         {
@@ -101,6 +107,10 @@ namespace RPG
 
         public void LoadContent(ContentManager content)
         {
+            mainMenuTheme = content.Load<Song>("Sounds\\Umineko_Life");
+            battleScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
+            storyScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
+            MediaPlayer.IsRepeating = true;
 
             foreach (TextElement element in storyText)
             {
@@ -206,10 +216,36 @@ namespace RPG
         {
             controls.Update();
 
+            //Wenn das options Menu geöffnet wird, wird der Gamestate gespeichert um nach dem pausieren fortzufahren
             if (controls.CurrentKeyboardState.IsKeyDown(Keys.Escape) && gameState != GameState.mainMenu && gameState != GameState.options)
             {
                 oldGameState = gameState;
                 gameState = GameState.options;
+            }
+
+            //Je nach gamestate startet ein anderes Lied
+            if (stateChanged)
+            {
+                MediaPlayer.Stop();
+                switch (gameState)
+                {
+                    case GameState.mainMenu:
+                        MediaPlayer.Play(mainMenuTheme);
+                        break;
+                    case GameState.battleScreen:
+                        MediaPlayer.Play(battleScreenTheme);
+                        break;
+                    case GameState.storyScreen:
+                        MediaPlayer.Play(storyScreenTheme);
+                        break;
+                }
+                stateChanged = false;
+            }
+
+            //nachdem Das Intro abgespielt wurde, startet die Backgroundmusic
+            if (gameTime.TotalGameTime.Seconds == 5)
+            {
+                MediaPlayer.Play(mainMenuTheme);
             }
 
             switch (gameState)
@@ -397,10 +433,12 @@ namespace RPG
             if (element == "Buttons\\Load_Game_Button")
             {
                 gameState = GameState.storyScreen;
+                stateChanged = true;
             }
             if (element == "Buttons\\New_Game_Button")
             {
                 gameState = GameState.battleScreen;
+                stateChanged = true;
             }
             if (element == "Buttons\\Quit_Button")
             {
@@ -413,10 +451,12 @@ namespace RPG
             if (element == "Skill1")
             {
                 gameState = GameState.storyScreen;
+                stateChanged = true;
             }
             if (element == "Skill2")
             {
                 gameState = GameState.mainMenu;
+                stateChanged = true;
             }
         }
     }
