@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 
-namespace RPG.Data_Section_Classes
+namespace RPG
 {
     public class PartySkillCadreDataSection : ConfigurationSection
     {
@@ -38,9 +38,9 @@ namespace RPG.Data_Section_Classes
             get { return "Char"; }
         }
 
-        public SkillElement this[int index]
+        public CharElement this[int index]
         {
-            get { return (SkillElement)this.BaseGet(index); }
+            get { return (CharElement)this.BaseGet(index); }
             set
             {
                 if (this.BaseGet(index) != null)
@@ -152,7 +152,7 @@ namespace RPG.Data_Section_Classes
             }
         }
 
-        [ConfigurationProperty("level", IsRequired = true, IsKey = true)]
+        [ConfigurationProperty("level", IsRequired = true, IsKey = false)]
         public string Level
         {
             get

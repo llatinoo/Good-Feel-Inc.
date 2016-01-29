@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using RPG.Characters;
-using RPG.Data_Section_Classes;
+using RPG;
 using RPG.Skills;
 using RPG.Skills.Effects;
 

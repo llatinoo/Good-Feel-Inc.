@@ -10,7 +10,6 @@ namespace RPG.Characters
     public class PartyMember : Character
     {
         //Level Attribute
-        public int Level { get; set; }
         public int Exp { get; set; }
         public List<int> LevelList { get; private set; }
 
@@ -24,7 +23,6 @@ namespace RPG.Characters
             int def, int res, int luck, List<int> levellist, int ultimatePointsToCast)
             : base(charName, className, race, vita, mana, strength, mag, def, res, luck)
         {
-            this.Level = 0;
             this.Exp = 0;
             this.LevelList = levellist;
 

@@ -26,19 +26,6 @@ namespace RPG
         {
             this.graphics = new GraphicsDeviceManager(this);
             this.Content.RootDirectory = "Content\\";
-
-            var dialogsDataSection =
-                ConfigurationManager.GetSection("Story") as StoryDialogsDataSection;
-
-            var testScene =
-                dialogsDataSection.Scenes.Cast<SceneElement>()
-                    .SingleOrDefault(scene => scene.Id == "0");
-
-
-            if (testScene == null)
-            {
-                throw new NullReferenceException();
-            }
         }
 
         /// <summary>

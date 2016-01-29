@@ -126,6 +126,7 @@ namespace RPG.Characters
         public List<Skill> Skills { get; private set; }
         //public List<string> SkillTree { get; private set; }
 
+        public int Level { get; set; }
 
         //Auf den Charakter wirkende Effekte
         public List<IStatuseffect> Statuseffects { get; set; }
@@ -147,6 +148,8 @@ namespace RPG.Characters
 
             this.Skills = new List<Skill>();
             this.Statuseffects = new List<IStatuseffect>();
+
+            this.Level = 0;
         }
 
         public void AddSkill(Skill newSkill)
