@@ -65,6 +65,9 @@
     <Compile Include="Characters\PartyMember.cs" />
     <Compile Include="Characters\Player.cs" />
     <Compile Include="Data Section Classes\PartySkillCadreDataSection.cs" />
+    <Compile Include="Events\BattleEvent.cs" />
+    <Compile Include="Events\IEvent.cs" />
+    <Compile Include="Events\StoryEvent.cs" />
     <Compile Include="Extensions And Helper Classes\GetEffectFactory.cs" />
     <Compile Include="Extensions And Helper Classes\LoadSkillHelperClass.cs" />
     <Compile Include="Extensions And Helper Classes\RandomStatusEffectHelperClass.cs" />
@@ -890,6 +893,9 @@
     <None Include="obj\x86\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\x86\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="obj\x86\Debug\RPG.csprojResolveAssemblyReference.cache" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
