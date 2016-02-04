@@ -1,6 +1,4 @@
 ﻿using System;
-using RPG.Characters;
-using RPG.Skills.StatusEffects;
 using System.Collections.Generic;
 using System.Linq;
 

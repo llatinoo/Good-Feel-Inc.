@@ -1,10 +1,7 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
+﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace RPG.Characters
+namespace RPG
 {
     //Klasse zur Unterscheidung von Verbündeten
     public class PartyMember : Character

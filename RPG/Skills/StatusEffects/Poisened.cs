@@ -1,8 +1,7 @@
-﻿using RPG.Characters;
-using System;
+﻿using System;
 using Microsoft.Xna.Framework;
 
-namespace RPG.Skills.StatusEffects
+namespace RPG
 {
     public class Poisoned : IStatuseffect
     {

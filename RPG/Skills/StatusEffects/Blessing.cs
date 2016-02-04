@@ -1,4 +1,4 @@
-﻿namespace RPG.Skills.StatusEffects
+﻿namespace RPG
 {
     public class Blessing : IStatuseffect
     {

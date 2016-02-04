@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Linq;
-using System.Text;
 
 namespace RPG
 {
@@ -81,6 +78,79 @@ namespace RPG
             }
         }
 
+        [ConfigurationProperty("Parts")]
+        public PartsElementCollection Parts
+        {
+            get
+            {
+                return this["Parts"] as PartsElementCollection;
+            }
+        }
+    }
+
+    public class PartsElementCollection : ConfigurationElementCollection
+    {
+        protected override ConfigurationElement CreateNewElement()
+        {
+            return new PartElement();
+        }
+
+        protected override object GetElementKey(ConfigurationElement element)
+        {
+            return ((PartElement)element).Id;
+        }
+
+        public override ConfigurationElementCollectionType CollectionType
+        {
+            get { return ConfigurationElementCollectionType.BasicMap; }
+        }
+
+        protected override string ElementName
+        {
+            get { return "Part"; }
+        }
+
+        public PartElement this[int index]
+        {
+            get { return (PartElement)this.BaseGet(index); }
+            set
+            {
+                if (this.BaseGet(index) != null)
+                {
+                    this.BaseRemoveAt(index);
+                }
+                this.BaseAdd(index, value);
+            }
+        }
+
+        new public PartElement this[string id]
+        {
+            get { return (PartElement)this.BaseGet(id); }
+        }
+
+        public bool ContainsKey(string key)
+        {
+            var keys = this.BaseGetAllKeys();
+
+            return keys.Any(keyToCompare => (string)keyToCompare == key);
+        }
+    }
+
+    public class PartElement : ConfigurationElement
+    {
+        [ConfigurationProperty("id", IsRequired = true, IsKey = true)]
+        public string Id
+        {
+            get
+            {
+                return this["id"] as string;
+            }
+            set
+            {
+                this["id"] = value;
+            }
+        }
+
         [ConfigurationProperty("TextBoxes")]
         public TextBoxesElementCollection TextBoxes
         {
@@ -90,6 +160,7 @@ namespace RPG
             }
         }
     }
+
 
     public class TextBoxesElementCollection : ConfigurationElementCollection
     {

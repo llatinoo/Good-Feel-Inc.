@@ -1,14 +1,8 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RPG;
-using RPG.Characters;
-using RPG.Skills;
 using RPG.Skills.Effects;
-using RPG.Skills.StatusEffects;
 
 namespace RPGTests
 {

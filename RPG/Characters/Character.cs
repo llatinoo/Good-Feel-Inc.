@@ -1,11 +1,9 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using RPG.Skills;
-using RPG.Skills.StatusEffects;
 
-namespace RPG.Characters
+namespace RPG
 {
     public enum MainAttributes
     {

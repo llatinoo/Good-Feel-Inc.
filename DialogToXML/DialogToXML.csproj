@@ -46,9 +46,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\RPG\RPG.csproj">
       <Project>{be6c7fe4-e607-4205-8e00-377341791cf3}</Project>
       <Name>RPG</Name>

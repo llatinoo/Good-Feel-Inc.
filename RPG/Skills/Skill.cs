@@ -1,8 +1,6 @@
-﻿using RPG.Characters;
-using System.Collections.Generic;
-using RPG.Skills.Effects;
+﻿using System.Collections.Generic;
 
-namespace RPG.Skills
+namespace RPG
 {
     public class Skill
     {

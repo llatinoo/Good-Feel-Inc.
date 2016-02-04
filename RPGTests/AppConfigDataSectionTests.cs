@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Diagnostics;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RPG;
-using RPG.Characters;
-using RPG.Extensions_And_Helper_Classes;
 using RPG.Skills;
-using RPG.Skills.Effects;
 
 namespace RPGTests
 {
@@ -21,7 +16,7 @@ namespace RPGTests
     {
         private Configuration GetConfiguration()
         {
-            var fileMap = new ConfigurationFileMap(@"C:\Users\dengler\Documents\GitHubVisualStudio\RPG-Game\RPG\App.config");
+            var fileMap = new ConfigurationFileMap(@"C:\Users\dengler\Documents\GitHubVisualStudio\Good-Feel-Inc\RPG\App.config");
             return ConfigurationManager.OpenMappedMachineConfiguration(fileMap);
         }
 
@@ -38,17 +33,13 @@ namespace RPGTests
                 dialogsDataSection.Scenes.Cast<SceneElement>()
                     .SingleOrDefault(scene => scene.Id == "0");
 
-            foreach (TextBoxElement textBox in testScene.TextBoxes)
+            var testPart =
+                testScene.Parts.Cast<PartElement>()
+                    .SingleOrDefault(part => part.Id == "0");
+
+            foreach (TextBoxElement box in testPart.TextBoxes)
             {
-                Assert.IsNotNull(textBox.Id);
-                Assert.IsNotNull(textBox.Speaker);
-                Assert.IsNotNull(textBox.SpeakerPicture);
-                Assert.IsNotNull(textBox.Listener);
-                Assert.IsNotNull(textBox.ListenerPicture);
-                Assert.IsNotNull(textBox.Row1);
-                Assert.IsNotNull(textBox.Row2);
-                Assert.IsNotNull(textBox.Row3);
-                Assert.IsNotNull(textBox.Row4);
+                Assert.IsNotNull(box.Id);
             }
         }
 
