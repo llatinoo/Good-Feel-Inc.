@@ -25,7 +25,7 @@ namespace RPG
         Vector2 speakerPicturePosition = new Vector2();
         Vector2 listenerPicturePosition = new Vector2();
 
-        //Elemente die auf dem bildshcirm angezeigt werden
+        //Elemente die auf dem bildschirm angezeigt werden
         GUIElement speakerPicture;
         GUIElement listenerPicture;
 
@@ -35,20 +35,25 @@ namespace RPG
         TextElement row2;
         TextElement row3;
         TextElement row4;
+        private int v1;
+        private int v2;
 
-        StoryEvent(int sceneNumber, int partNumber)
+        public StoryEvent(int sceneNumber, int partNumber)
         {
-            getScene(sceneNumber);
+            getScene(sceneNumber, partNumber);
 
         }
-        void getScene(int SceneNr)
+
+        void getScene(int sceneNumber, int partNumber)
         {
             var getStory =
                 ConfigurationManager.GetSection("Story") as StoryDialogsDataSection;
             var getScene =
-                getStory.Scenes.Cast<SceneElement>().SingleOrDefault(scene => scene.Id == ""+SceneNr);
+                getStory.Scenes.Cast<SceneElement>().SingleOrDefault(scene => scene.Id == ""+ sceneNumber);
+            var getPart =
+                getScene.Parts.Cast<PartElement>().SingleOrDefault(Part => Part.Id == "" + partNumber);
 
-            foreach (TextBoxElement textBox in getScene.Parts)
+            foreach (TextBoxElement textBox in getPart.TextBoxes)
             {
                 
                 speakerPicture = new GUIElement(textBox.SpeakerPicture, (int)speakerPicturePosition.X, (int)speakerPicturePosition.Y);

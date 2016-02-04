@@ -10,6 +10,8 @@ namespace RPG
 {
     class Screen
     {
+        StoryEvent test = new StoryEvent(0, 0);
+
         bool stateChanged = false;
         Song mainMenuTheme;
         Song storyScreenTheme;
@@ -105,16 +107,17 @@ namespace RPG
 
         public void LoadContent(ContentManager content)
         {
+            test.LoadContent(content);
             mainMenuTheme = content.Load<Song>("Sounds\\Umineko_Life");
             battleScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
             storyScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
             MediaPlayer.IsRepeating = true;
 
-            foreach (TextElement element in storyText)
+            /*foreach (TextElement element in storyText)
             {
                 element.LoadContent(content);
                 element.tclickEvent += OnClick;
-            }
+            }*/
             foreach (TextElement element in battleScreenSkills)
             {
                 element.LoadContent(content);
@@ -387,10 +390,11 @@ namespace RPG
                     {
                         element.Draw(spriteBatch);
                     }
-                    foreach (TextElement element in storyText)
+                    /*foreach (TextElement element in storyText)
                     {
                         element.Draw(spriteBatch);
-                    }
+                    }*/
+                    test.Draw(spriteBatch);
                     break;
                 case GameState.battleScreen:
                     foreach (GUIElement element in battleScreen)
