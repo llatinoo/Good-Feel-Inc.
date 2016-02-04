@@ -35,13 +35,10 @@ namespace RPG
         TextElement row2;
         TextElement row3;
         TextElement row4;
-        private int v1;
-        private int v2;
 
         public StoryEvent(int sceneNumber, int partNumber)
         {
             getScene(sceneNumber, partNumber);
-
         }
 
         void getScene(int sceneNumber, int partNumber)

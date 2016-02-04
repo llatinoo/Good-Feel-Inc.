@@ -11,6 +11,7 @@ namespace RPG
     class Screen
     {
         StoryEvent test = new StoryEvent(0, 0);
+        StoryEvent test1 = new StoryEvent(1, 1);
 
         bool stateChanged = false;
         Song mainMenuTheme;
@@ -70,12 +71,6 @@ namespace RPG
         Vector2 normalBossPosition;
         Vector2 finalBossPosition;
 
-        //position des Textes
-        Vector2 textLine_1 = new Vector2(150, 422);
-        Vector2 textLine_2 = new Vector2(150, 447);
-        Vector2 textLine_3 = new Vector2(150, 472);
-        Vector2 textLine_4 = new Vector2(150, 497);
-
         public Screen()
         {
             mainMenu.Insert(0, new GUIElement("Backgrounds\\Menus\\Title_Screen_Background"));
@@ -97,27 +92,18 @@ namespace RPG
 
             battleScreenSkills.Insert(0,new TextElement("Skill1", 400, 450));
             battleScreenSkills.Insert(1, new TextElement("Skill2", 400, 480));
-
-            storyText.Insert(0, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", (int)textLine_1.X, (int)textLine_1.Y));
-            storyText.Insert(1, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", (int)textLine_2.X, (int)textLine_2.Y));
-            storyText.Insert(2, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", (int)textLine_3.X, (int)textLine_3.Y));
-            storyText.Insert(3, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", (int)textLine_4.X, (int)textLine_4.Y));
             
         }
 
         public void LoadContent(ContentManager content)
         {
             test.LoadContent(content);
+            test1.LoadContent(content);
             mainMenuTheme = content.Load<Song>("Sounds\\Umineko_Life");
             battleScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
             storyScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
             MediaPlayer.IsRepeating = true;
 
-            /*foreach (TextElement element in storyText)
-            {
-                element.LoadContent(content);
-                element.tclickEvent += OnClick;
-            }*/
             foreach (TextElement element in battleScreenSkills)
             {
                 element.LoadContent(content);
@@ -390,11 +376,14 @@ namespace RPG
                     {
                         element.Draw(spriteBatch);
                     }
-                    /*foreach (TextElement element in storyText)
+                    if (!controls.PreviousKeyboardState.IsKeyDown(Keys.Enter))
                     {
-                        element.Draw(spriteBatch);
-                    }*/
-                    test.Draw(spriteBatch);
+                        test.Draw(spriteBatch);
+                    }
+                    if(controls.CurrentKeyboardState.IsKeyDown(Keys.Enter))
+                    {
+                        test1.Draw(spriteBatch);
+                    }
                     break;
                 case GameState.battleScreen:
                     foreach (GUIElement element in battleScreen)
