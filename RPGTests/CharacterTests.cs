@@ -1,14 +1,8 @@
-﻿using System;
-using System.Linq.Expressions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RPG;
 
 namespace RPGTests
 {
-    using Microsoft.Xna.Framework;
-    using RPG.Characters;
-    using RPG.Skills;
-    using RPG.Skills.StatusEffects;
     using System.Collections.Generic;
 
     [TestClass]

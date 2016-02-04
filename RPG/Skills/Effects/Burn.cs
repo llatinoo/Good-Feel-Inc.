@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using RPG.Characters;
-using RPG.Skills.StatusEffects;
 
-namespace RPG.Skills.Effects
+namespace RPG
 {
     public class Burn : IEffect
     {

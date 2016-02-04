@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using RPG.Skills.Effects;
+﻿using RPG.Skills.Effects;
 
-namespace RPG.Extensions_And_Helper_Classes
+namespace RPG
 {
     public static class GetEffectFactory
     {

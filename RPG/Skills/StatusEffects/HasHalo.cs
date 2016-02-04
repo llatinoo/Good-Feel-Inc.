@@ -1,7 +1,6 @@
-﻿using RPG.Characters;
-using System;
+﻿using System;
 
-namespace RPG.Skills.StatusEffects
+namespace RPG
 {
     public class HasHalo : IStatuseffect
     {
