@@ -15,6 +15,8 @@ namespace RPG
         //Größe des Elements
         private Rectangle GUIRect;
 
+        int PositionX;
+        int PositionY;
         public Rectangle getGUIRect
         {
             get { return this.GUIRect; }
@@ -30,14 +32,23 @@ namespace RPG
         //Event das beim drücken auf ein GUI Element ausgeführt wird
         public delegate void ElementClicked(string element);
         public event ElementClicked clickEvent;
+
         public GUIElement(string assetName)
         {
             this.assetName = assetName;
+            PositionX = 0;
+            PositionY = 0;
+        }
+        public GUIElement(string assetName,int PositionX, int PositionY)
+        {
+            this.assetName = assetName;
+            this.PositionX = PositionX;
+            this.PositionY = PositionY;
         }
         public void LoadContent(ContentManager content)
         {
             this.GUITexture = content.Load<Texture2D>(this.assetName);
-            this.GUIRect = new Rectangle(0, 0, this.GUITexture.Width, this.GUITexture.Height);
+            this.GUIRect = new Rectangle(PositionX, PositionY, this.GUITexture.Width, this.GUITexture.Height);
         }
         public void Draw(SpriteBatch spriteBatch)
         {
