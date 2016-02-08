@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace RPG
 {
-    public class Shcmetterschlag : IEffect
+    public class Schmetterschlag : IEffect
     {
         private Random r1 = new Random();
         public void Execute(Character source, List<Character> targets)

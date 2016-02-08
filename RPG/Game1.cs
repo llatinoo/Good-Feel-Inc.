@@ -14,10 +14,7 @@ namespace RPG
         SpriteBatch spriteBatch;
         Screen screen = new Screen();
         Cursor MouseCursor = new Cursor();
-        Movie Intro = new Movie("Intro\\Good Feel Inc Intro");
-        //IScene actualScene;
-        //int i = 0;
-        //List<IScene> sceneList = new List<IScene>() { hardcoded scenes };
+        
 
         public Game1()
         {
@@ -38,8 +35,8 @@ namespace RPG
             graphics.PreferredBackBufferWidth = 720;
             graphics.ApplyChanges();
             IsMouseVisible = false;
-            Intro.Initialize();
-            
+
+            screen.Initialize();
             base.Initialize();
         }
 
@@ -55,7 +52,7 @@ namespace RPG
             // TODO: use this.Content to load your game content here
             screen.LoadContent(Content);
             MouseCursor.LoadContent(Content);
-            Intro.LoadContent(Content);
+            
         }
         
         /// <summary>
@@ -75,16 +72,6 @@ namespace RPG
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            //if(actualScene == null)
-            //{
-            //    this.actualscene = sceneList.ElementAt(i);
-            //}
-            //if(actualScene.IsDone)
-            //{
-            //    i++;
-            //    actualScene = null;
-            //}
-
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Back))
               Exit();
 
@@ -92,7 +79,6 @@ namespace RPG
             base.Update(gameTime);
             screen.Update(gameTime);
             MouseCursor.Update();
-            Intro.Update();
             if (screen.ExitGame)
             {
                 this.Exit();
@@ -111,7 +97,6 @@ namespace RPG
             spriteBatch.Begin();
             screen.Draw(spriteBatch);
             MouseCursor.Draw(spriteBatch);
-            Intro.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }

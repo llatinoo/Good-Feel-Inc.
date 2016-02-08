@@ -38,6 +38,7 @@ namespace RPG
             }
         }
 
+
         public static void AddCertainSkillToParty(PartyMember member)
         {
             var skillCadreDataSection =

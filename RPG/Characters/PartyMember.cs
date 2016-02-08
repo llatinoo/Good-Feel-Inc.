@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using RPG.Extensions_And_Helper_Classes;
 
 namespace RPG
 {
@@ -27,18 +28,21 @@ namespace RPG
             this.UltimatePointsToCast = ultimatePointsToCast;
         }
 
-        public void CheckLelve()
+        public void CheckLevel()
         {
             this.LevelList.OrderBy(x => x.ToString());
             if (this.Exp >= this.LevelList.ElementAt(0))
             {
-                
+                this.LevelUp();
+                LevelList.Remove(this.LevelList.ElementAt(0));
             }
         }
 
-        public void LevelUP()
+        public void LevelUp()
         {
-            
+            this.Level++;
+            this.LevelUpAttributes(LevelUpClass.LevelUpAttributes(this.Class));
+            LoadSkillHelperClass.AddCertainSkillToParty(this);
         }
     }
 }

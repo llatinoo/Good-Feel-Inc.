@@ -1,11 +1,12 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Graphics;
+using System.Linq;
 using RPG.Skills;
 
 namespace RPG
 {
-    //
     public enum MainAttributes
     {
         Vitality,
@@ -25,6 +26,7 @@ namespace RPG
         Harasser
     }
 
+
     //Technische Daten eines Charakters
     public class Character
     {
@@ -40,20 +42,18 @@ namespace RPG
         private int mana;
         private int fightManaPool;
 
+        private Animation animation;
+        private Vector2 position;
 
         //Grafikdaten des Charakters
         public Animation Sprite { get; private set; }
 
-
         //Name
         public string Name { get; private set; }
+
         //Klasse
         public Classes Class { get; private set; }
         public int Initiative { get; private set; }
-
-        //Rasse
-        public string Race { get; private set; }
-
 
         //Festwerte die durch aufleveln gesteigert werden
         public int Vitality { get; private set; }
@@ -134,7 +134,6 @@ namespace RPG
         {
             this.Name = charName;
             this.Class = className;
-            this.Race = race;
 
             this.FightVitality = this.Vitality = vitality;
             this.FightManaPool = this.Manapool = mana;
@@ -194,6 +193,33 @@ namespace RPG
         public int GetInitiative()
         {
             return this.Initiative + (new Random().Next(this.Initiative, (this.Initiative + 4) * 1000) / 1000);
+        }
+
+        public void LoadContent(Animation animation, Vector2 position)
+        {
+            this.animation = animation;
+            this.position = position;
+        }
+        public void Update(GameTime gameTime)
+        {
+            animation.position = this.position;
+            animation.Update(gameTime);
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            animation.Draw(spriteBatch);
+        }
+
+        public void LevelUpAttributes(List<int> stats)
+        {
+            this.Vitality += stats.ElementAt(0);
+            this.Manapool += stats.ElementAt(1);
+            this.Strength += stats.ElementAt(2);
+            this.Magic += stats.ElementAt(3);
+            this.Defense += stats.ElementAt(4);
+            this.Resistance += stats.ElementAt(5);
+            this.Luck += stats.ElementAt(6);
         }
     }
 }
