@@ -34,7 +34,7 @@ namespace RPG
                     skillToAddEffects.Add(GetEffectFactory.GetEffect(effect.Name));
                 }
 
-                character.AddSkill(new Skill(skillToAdd.Name, Convert.ToInt32(skillToAdd.ManaCosts), skillToAddEffects));
+                character.AddSkill(new Skill(skillToAdd.Name, Convert.ToInt32(skillToAdd.ManaCosts), skillToAdd.Target, skillToAddEffects));
             }
         }
 
@@ -68,7 +68,7 @@ namespace RPG
                         skillToAddEffects.Add(GetEffectFactory.GetEffect(effect.Name));
                     }
 
-                    member.AddSkill(new Skill(skillToAdd.Name, Convert.ToInt32(skillToAdd.ManaCosts), skillToAddEffects));
+                    member.AddSkill(new Skill(skillToAdd.Name, Convert.ToInt32(skillToAdd.ManaCosts), skillToAdd.Target, skillToAddEffects));
                 }
             }
         }

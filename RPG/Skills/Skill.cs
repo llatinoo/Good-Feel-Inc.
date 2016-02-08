@@ -8,17 +8,21 @@ namespace RPG
     {
         private Animation animation;
         private Vector2 position;
+
         public string Name { get; private set; }
         public int Manacosts { get; private set; }
+        public string Target { get; private set; }
+
         public Animation Animation { get; private set; }
 
         //Liste von Effekten die der Skill verursacht
         public IEnumerable<IEffect> Effects { get; set; }
 
-        public Skill(string skillName, int manacosts, IEnumerable<IEffect> skilleffects)
+        public Skill(string skillName, int manacosts, string target, IEnumerable<IEffect> skilleffects)
         {
             this.Name = skillName;
             this.Manacosts = manacosts;
+            this.Target = target;
             this.Effects = skilleffects;
         }
 
