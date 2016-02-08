@@ -9,7 +9,7 @@ namespace RPG
     {
         List<PartyMember> Group { get; }
         List<PartyMember> FightCadre { get; }
-        List<Enemy> Enemys { get; }
+        List<Enemy> Enemies { get; }
 
         List<IEvent> Events { get; }
 
