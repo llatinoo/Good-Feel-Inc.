@@ -85,7 +85,7 @@
     <Compile Include="Skills\Ultis\Horizont.cs" />
     <Compile Include="Skills\Ultis\Hyperstrahl.cs" />
     <Compile Include="Skills\Ultis\Schlachtruf.cs" />
-    <Compile Include="Skills\Ultis\Shcmetterschlag.cs" />
+    <Compile Include="Skills\Ultis\Schmetterschlag.cs" />
     <Compile Include="Skills\Ultis\Ultimatum.cs" />
     <Compile Include="Skills\Ultis\Woog.cs" />
     <Compile Include="Skills\Ultis\Wundergranate.cs" />
