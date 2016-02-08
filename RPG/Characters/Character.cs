@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using RPG.Skills;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace RPG
 {
@@ -40,6 +40,8 @@ namespace RPG
         private int mana;
         private int fightManaPool;
 
+        private Animation animation;
+        private Vector2 position;
 
         //Grafikdaten des Charakters
         public Animation Sprite { get; private set; }
@@ -189,6 +191,22 @@ namespace RPG
         public int GetInitiative()
         {
             return this.Initiative + (new Random().Next(this.Initiative, (this.Initiative + 4) * 1000) / 1000);
+        }
+
+        public void LoadContent(Animation animation, Vector2 position)
+        {
+            this.animation = animation;
+            this.position = position;
+        }
+        public void Update(GameTime gameTime)
+        {
+            animation.position = this.position;
+            animation.Update(gameTime);
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            animation.Draw(spriteBatch);
         }
     }
 }

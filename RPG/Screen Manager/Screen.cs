@@ -10,6 +10,8 @@ namespace RPG
 {
     class Screen
     {
+        Movie Intro = new Movie("Intro\\Good Feel Inc Intro");
+
         StoryEvent test = new StoryEvent(0, 0);
         StoryEvent test1 = new StoryEvent(1, 1);
 
@@ -31,7 +33,7 @@ namespace RPG
         private SkillAnimation testSkill9 = new SkillAnimation();
 
         //SpielStatus
-        public enum GameState {mainMenu, options, storyScreen, battleScreen}
+        public enum GameState {intro, mainMenu, options, storyScreen, battleScreen}
         private GameState gameState;
         public GameState getGameState
         {
@@ -95,6 +97,10 @@ namespace RPG
             
         }
 
+        public void Initialize()
+        {
+            Intro.Initialize();
+        }
         public void LoadContent(ContentManager content)
         {
             test.LoadContent(content);
@@ -103,6 +109,7 @@ namespace RPG
             battleScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
             storyScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
             MediaPlayer.IsRepeating = true;
+            Intro.LoadContent(content);
 
             foreach (TextElement element in battleScreenSkills)
             {
@@ -216,9 +223,6 @@ namespace RPG
                 MediaPlayer.Stop();
                 switch (gameState)
                 {
-                    case GameState.mainMenu:
-                        MediaPlayer.Play(mainMenuTheme);
-                        break;
                     case GameState.battleScreen:
                         MediaPlayer.Play(battleScreenTheme);
                         break;
@@ -230,13 +234,17 @@ namespace RPG
             }
 
             //nachdem Das Intro abgespielt wurde, startet die Backgroundmusic
-            if (gameTime.TotalGameTime.Seconds == 5)
+            if (gameTime.TotalGameTime.Seconds == 6)
             {
+                gameState = GameState.mainMenu;
                 MediaPlayer.Play(mainMenuTheme);
             }
 
             switch (gameState)
             {
+                case GameState.intro:
+                Intro.Update();
+                    break;
                 case GameState.mainMenu:
                     foreach (GUIElement element in mainMenu)
                     {
@@ -359,6 +367,9 @@ namespace RPG
         {
             switch (gameState)
             {
+                case GameState.intro:
+                    Intro.Draw(spriteBatch);
+                    break;
                 case GameState.mainMenu:
                     foreach (GUIElement element in mainMenu)
                     {
