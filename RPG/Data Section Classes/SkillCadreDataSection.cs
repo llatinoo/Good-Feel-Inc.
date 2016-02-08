@@ -93,6 +93,32 @@ namespace RPG
             }
         }
 
+        [ConfigurationProperty("target", IsRequired = true, IsKey = false)]
+        public string Target
+        {
+            get
+            {
+                return this["target"] as string;
+            }
+            set
+            {
+                this["target"] = value;
+            }
+        }
+
+        [ConfigurationProperty("areaOfEffect", IsRequired = true, IsKey = false)]
+        public string AreaOfEffect
+        {
+            get
+            {
+                return this["areaOfEffect"] as string;
+            }
+            set
+            {
+                this["areaOfEffect"] = value;
+            }
+        }
+
         [ConfigurationProperty("Effects")]
         public EffectsElementCollection Effects
         {

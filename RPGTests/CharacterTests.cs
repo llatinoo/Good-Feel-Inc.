@@ -22,7 +22,10 @@ namespace RPGTests
                     100,
                     100,
                     100,
-                    10
+                    10,
+                    "",
+                    "",
+                    ""
                 );
 
             var enemy = new Enemy
@@ -37,7 +40,11 @@ namespace RPGTests
                     100,
                     100,
                     100,
-                    10
+                    10,
+                    "",
+                    "",
+                    "", 
+                    false
                 );
 
             var partymember = new PartyMember
@@ -53,7 +60,10 @@ namespace RPGTests
                     100,
                     10,
                     new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
-                    100
+                    100,
+                    "",
+                    "",
+                    ""
                 );
 
             var player = new Player
@@ -71,7 +81,10 @@ namespace RPGTests
                 new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
                 100,
                 new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
-                new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 }
+                new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
+                "",
+                "",
+                ""
             );
 
             List<Character> Chars = new List<Character>() {player, enemy, character, partymember};

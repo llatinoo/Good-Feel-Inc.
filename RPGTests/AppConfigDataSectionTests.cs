@@ -58,7 +58,8 @@ namespace RPGTests
                     100,
                     100,
                     100,
-                    10
+                    10,
+                    ""
                 );
 
             var configuration = this.GetConfiguration();
@@ -89,7 +90,7 @@ namespace RPGTests
                     skillToAddEffects.Add(GetEffectFactory.GetEffect(effect.Name));
                 }
 
-                enemy.AddSkill(new Skill(skillToAdd.Name, Convert.ToInt32(skillToAdd.ManaCosts), skillToAddEffects));
+                enemy.AddSkill(new Skill(skillToAdd.Name, Convert.ToInt32(skillToAdd.ManaCosts), skillToAdd.Target, skillToAdd.AreaOfEffect, skillToAddEffects));
             }
         }
     }

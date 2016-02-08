@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using RPG.Extensions_And_Helper_Classes;
 
 namespace RPG
 {
@@ -18,8 +17,8 @@ namespace RPG
 
 
         public PartyMember(string charName, Classes className, string race, int vita, int mana, int strength, int mag,
-            int def, int res, int luck, List<int> levellist, int ultimatePointsToCast)
-            : base(charName, className, race, vita, mana, strength, mag, def, res, luck)
+            int def, int res, int luck, List<int> levellist, int ultimatePointsToCast,string standardAnimationPath, string attackAnimationPath, string deathAnimationPath)
+            : base(charName, className, race, vita, mana, strength, mag, def, res, luck, standardAnimationPath, attackAnimationPath, deathAnimationPath)
         {
             this.Exp = 0;
             this.LevelList = levellist;
@@ -30,7 +29,7 @@ namespace RPG
 
         public void CheckLevel()
         {
-            this.LevelList.OrderBy(x => x.ToString());
+            this.LevelList.OrderBy(x => x);
             if (this.Exp >= this.LevelList.ElementAt(0))
             {
                 this.LevelUp();
