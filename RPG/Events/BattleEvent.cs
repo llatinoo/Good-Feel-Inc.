@@ -11,7 +11,7 @@ namespace RPG.Events
     class BattleEvent
     {
         //Alle Character im BattleEvent
-        List<Character> fightClub = new List<Character>();
+        List<Character> FightClub = new List<Character>();
 
         //Benutzer Gruppe
         List<PartyMember> FightCadre = new List<PartyMember>();
@@ -43,6 +43,10 @@ namespace RPG.Events
         private Vector2 skillPosition_4 = new Vector2();
         private Vector2 ultiPosition = new Vector2();
 
+        //Animation Speed
+        private int animationSpeed = 300;
+
+        //Member Skills
         private int member_1_Skills;
         private int member_2_Skills;
         private int member_3_Skills;
@@ -64,24 +68,35 @@ namespace RPG.Events
             //FightCader wird der Liste FightClub hinzugefügt
             foreach(Character character in FightCadre)
             {
-                fightClub.Add(character);
+                FightClub.Add(character);
             }
 
             //Enemies wird der Liste FightClub hinzugefügt
             foreach (Character character in Enemies)
             {
-                fightClub.Add(character);
+                FightClub.Add(character);
             }
 
             // FightClub Member werden nach dem Initiative wert sortiert
-            fightClub.OrderBy(character => character.GetInitiative());
+            FightClub.OrderBy(character => character.GetInitiative());
+
+
 
             //FightCadre.ElementAt<PartyMember>(0);
         }
 
         public void LoadContent(ContentManager content)
         {
-        
+            //Animation erstellt
+            Animation charAnimation_1 = new Animation();
+            Animation charAnimation_2 = new Animation();
+            Animation charAnimation_3 = new Animation();
+            Animation charAnimation_4 = new Animation();
+
+            //Anpassung benötigt da am Ende Festwerte eingetragen wurden
+            charAnimation_1.LoadContent(content.Load<Texture2D>(FightCadre.ElementAt<Character>(0).texturePath),Vector2.Zero,characterSize,characterSize,animationSpeed,Color.White,1f,true,1,3,false);
+                
+
 
         }
 
