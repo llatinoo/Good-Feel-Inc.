@@ -58,7 +58,8 @@ namespace RPGTests
                     100,
                     100,
                     100,
-                    10
+                    10,
+                    ""
                 );
 
             var configuration = this.GetConfiguration();
