@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using System.Linq;
 using RPG.Skills;
 
 namespace RPG
@@ -189,6 +190,17 @@ namespace RPG
         public int GetInitiative()
         {
             return this.Initiative + (new Random().Next(this.Initiative, (this.Initiative + 4) * 1000) / 1000);
+        }
+
+        public void LevelUpAttributes(List<int> stats)
+        {
+            this.Vitality += stats.ElementAt(0);
+            this.Manapool += stats.ElementAt(1);
+            this.Strength += stats.ElementAt(2);
+            this.Magic += stats.ElementAt(3);
+            this.Defense += stats.ElementAt(4);
+            this.Resistance += stats.ElementAt(5);
+            this.Luck += stats.ElementAt(6);
         }
     }
 }

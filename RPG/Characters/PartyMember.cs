@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using RPG.Extensions_And_Helper_Classes;
 
 namespace RPG
 {
@@ -40,7 +41,7 @@ namespace RPG
         public void LevelUp()
         {
             this.Level++;
-
+            this.LevelUpAttributes(LevelUpClass.LevelUpAttributes(this.Class));
             LoadSkillHelperClass.AddCertainSkillToParty(this);
         }
     }
