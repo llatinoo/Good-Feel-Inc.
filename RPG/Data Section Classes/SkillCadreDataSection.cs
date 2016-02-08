@@ -106,6 +106,19 @@ namespace RPG
             }
         }
 
+        [ConfigurationProperty("areaOfEffect", IsRequired = true, IsKey = false)]
+        public string AreaOfEffect
+        {
+            get
+            {
+                return this["areaOfEffect"] as string;
+            }
+            set
+            {
+                this["areaOfEffect"] = value;
+            }
+        }
+
         [ConfigurationProperty("Effects")]
         public EffectsElementCollection Effects
         {
