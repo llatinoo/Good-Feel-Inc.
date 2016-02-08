@@ -43,7 +43,8 @@ namespace RPGTests
                     10,
                     "",
                     "",
-                    ""
+                    "", 
+                    false
                 );
 
             var partymember = new PartyMember
