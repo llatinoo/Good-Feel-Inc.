@@ -27,18 +27,21 @@ namespace RPG
             this.UltimatePointsToCast = ultimatePointsToCast;
         }
 
-        public void CheckLelve()
+        public void CheckLevel()
         {
             this.LevelList.OrderBy(x => x.ToString());
             if (this.Exp >= this.LevelList.ElementAt(0))
             {
-                
+                this.LevelUp();
+                LevelList.Remove(this.LevelList.ElementAt(0));
             }
         }
 
-        public void LevelUP()
+        public void LevelUp()
         {
-            
+            this.Level++;
+
+            LoadSkillHelperClass.AddCertainSkillToParty(this);
         }
     }
 }

@@ -5,7 +5,6 @@ using RPG.Skills;
 
 namespace RPG
 {
-    //
     public enum MainAttributes
     {
         Vitality,
@@ -24,6 +23,7 @@ namespace RPG
         Patron,
         Harasser
     }
+
 
     //Technische Daten eines Charakters
     public class Character
@@ -44,16 +44,12 @@ namespace RPG
         //Grafikdaten des Charakters
         public Animation Sprite { get; private set; }
 
-
         //Name
         public string Name { get; private set; }
+
         //Klasse
         public Classes Class { get; private set; }
         public int Initiative { get; private set; }
-
-        //Rasse
-        public string Race { get; private set; }
-
 
         //Festwerte die durch aufleveln gesteigert werden
         public int Vitality { get; private set; }
@@ -134,7 +130,6 @@ namespace RPG
         {
             this.Name = charName;
             this.Class = className;
-            this.Race = race;
 
             this.FightVitality = this.Vitality = vitality;
             this.FightManaPool = this.Manapool = mana;
