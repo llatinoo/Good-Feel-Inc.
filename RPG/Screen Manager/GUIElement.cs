@@ -55,10 +55,8 @@ namespace RPG
                 spriteBatch.Draw(this.GUITexture, this.GUIRect, this.color);
                 if (this.GUIRect.Contains(this.controls.CursorPos) && Mouse.GetState().LeftButton != ButtonState.Pressed && this.assetName.Contains("Button"))
                 {
-                    spriteBatch.Draw(this.GUITexture, this.GUIRect, Color.LightYellow);
+                    spriteBatch.Draw(this.GUITexture, this.GUIRect, Color.PaleVioletRed);
                 }
-
-                spriteBatch.Draw(this.GUITexture, this.GUIRect, this.color);
         }
         
         public void Update()
