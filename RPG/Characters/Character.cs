@@ -5,6 +5,7 @@ using RPG.Skills;
 
 namespace RPG
 {
+    //
     public enum MainAttributes
     {
         Vitality,

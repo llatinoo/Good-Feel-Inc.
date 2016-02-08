@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace RPG
 {
@@ -14,6 +15,9 @@ namespace RPG
         Screen screen = new Screen();
         Cursor MouseCursor = new Cursor();
         Movie Intro = new Movie("Intro\\Good Feel Inc Intro");
+        //IScene actualScene;
+        //int i = 0;
+        //List<IScene> sceneList = new List<IScene>() { hardcoded scenes };
 
         public Game1()
         {
@@ -71,6 +75,16 @@ namespace RPG
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            //if(actualScene == null)
+            //{
+            //    this.actualscene = sceneList.ElementAt(i);
+            //}
+            //if(actualScene.IsDone)
+            //{
+            //    i++;
+            //    actualScene = null;
+            //}
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Back))
               Exit();
 

@@ -78,6 +78,7 @@ namespace RPG
 
         public void Draw(SpriteBatch spriteBatch)
         {
+
             speakerPicture.Draw(spriteBatch);
             listenerPicture.Draw(spriteBatch);
             speaker.Draw(spriteBatch);
