@@ -42,11 +42,11 @@ namespace RPG
         private int mana;
         private int fightManaPool;
 
-        private Animation animation;
-        private Vector2 position;
 
         //Grafikdaten des Charakters
         public Animation Sprite { get; private set; }
+        private Animation animation;
+        private Vector2 position;
 
         //Name
         public string Name { get; private set; }
@@ -147,6 +147,8 @@ namespace RPG
             this.Statuseffects = new List<IStatuseffect>();
 
             this.Level = 0;
+
+            this.SetInitiative();
         }
 
         public void AddSkill(Skill newSkill)
@@ -159,6 +161,7 @@ namespace RPG
             this.Skills.Remove(removeSkill);
         }
 
+        //Update ein bestimmtes Value
         public void UpdateStat(int updateAmmount, MainAttributes mainAttributeToUpdate)
         {
             var propertyInfo = typeof(Character).GetProperty(mainAttributeToUpdate.ToString());
