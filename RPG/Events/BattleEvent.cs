@@ -88,15 +88,41 @@ namespace RPG.Events
         public void LoadContent(ContentManager content)
         {
             //Animation erstellt
-            Animation charAnimation_1 = new Animation();
-            Animation charAnimation_2 = new Animation();
-            Animation charAnimation_3 = new Animation();
-            Animation charAnimation_4 = new Animation();
+            Animation charAnimation = new Animation();
+            int i=0;
+           foreach(Character chars in FightCadre)
+            {
+                //Anpassung benötigt da am Ende Festwerte eingetragen wurden
 
-            //Anpassung benötigt da am Ende Festwerte eingetragen wurden
-            charAnimation_1.LoadContent(content.Load<Texture2D>(FightCadre.ElementAt<Character>(0).texturePath),Vector2.Zero,characterSize,characterSize,animationSpeed,Color.White,1f,true,1,3,false);
-                
+                if (i == 0)
+                {
+                    charAnimation.LoadContent(content.Load<Texture2D>(FightCadre.ElementAt<Character>(0).texturePath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
+                    FightCadre.ElementAt<Character>(0).LoadContent(charAnimation, characterPosition_1);
+                }
 
+                if (i==1)
+                {
+                    charAnimation.LoadContent(content.Load<Texture2D>(FightCadre.ElementAt<Character>(0).texturePath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
+                    FightCadre.ElementAt<Character>(0).LoadContent(charAnimation, characterPosition_1);
+                }
+                    
+                if(i==2)
+                {
+                    charAnimation.LoadContent(content.Load<Texture2D>(FightCadre.ElementAt<Character>(0).texturePath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
+                    FightCadre.ElementAt<Character>(0).LoadContent(charAnimation, characterPosition_1);
+                }
+
+                if (i==3)
+                { 
+                    charAnimation.LoadContent(content.Load<Texture2D>(FightCadre.ElementAt<Character>(0).texturePath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
+                    FightCadre.ElementAt<Character>(0).LoadContent(charAnimation, characterPosition_1);
+                }
+
+                i++;
+            }
+           
+
+            FightCadre.ElementAt<Character>(0).LoadContent(charAnimation_1,characterPosition_1);
 
         }
 
