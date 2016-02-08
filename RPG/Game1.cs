@@ -14,7 +14,7 @@ namespace RPG
         SpriteBatch spriteBatch;
         Screen screen = new Screen();
         Cursor MouseCursor = new Cursor();
-        Movie Intro = new Movie("Intro\\Good Feel Inc Intro");
+        
 
         public Game1()
         {
@@ -35,8 +35,8 @@ namespace RPG
             graphics.PreferredBackBufferWidth = 720;
             graphics.ApplyChanges();
             IsMouseVisible = false;
-            Intro.Initialize();
-            
+
+            screen.Initialize();
             base.Initialize();
         }
 
@@ -52,7 +52,7 @@ namespace RPG
             // TODO: use this.Content to load your game content here
             screen.LoadContent(Content);
             MouseCursor.LoadContent(Content);
-            Intro.LoadContent(Content);
+            
         }
         
         /// <summary>
@@ -79,7 +79,6 @@ namespace RPG
             base.Update(gameTime);
             screen.Update(gameTime);
             MouseCursor.Update();
-            Intro.Update();
             if (screen.ExitGame)
             {
                 this.Exit();
@@ -98,7 +97,6 @@ namespace RPG
             spriteBatch.Begin();
             screen.Draw(spriteBatch);
             MouseCursor.Draw(spriteBatch);
-            Intro.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }

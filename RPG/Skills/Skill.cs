@@ -1,9 +1,13 @@
 ﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace RPG
 {
     public class Skill
     {
+        private Animation animation;
+        private Vector2 position;
         public string Name { get; private set; }
         public int Manacosts { get; private set; }
         public Animation Animation { get; private set; }
@@ -32,6 +36,22 @@ namespace RPG
         public void SetAnimation(Animation animation)
         {
             this.Animation = animation;
+        }
+
+        public void LoadContent(Animation animation, Vector2 position)
+        {
+            this.animation = animation;
+            this.position = position;
+        }
+        public void Update(GameTime gameTime)
+        {
+            this.animation.position = this.position;
+            this.animation.Update(gameTime);
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            this.animation.Draw(spriteBatch);
         }
     }
 }
