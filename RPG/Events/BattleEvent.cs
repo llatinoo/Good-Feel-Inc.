@@ -94,25 +94,25 @@ namespace RPG.Events
 
                 if (i == 0)
                 {
-                    charAnimation.LoadContent(content.Load<Texture2D>(FightCadre.ElementAt<Character>(0).texturePath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
+                    charAnimation.LoadContent(content.Load<Texture2D>(FightCadre.ElementAt<Character>(0).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
                     FightCadre.ElementAt<Character>(0).LoadContent(charAnimation, characterPosition_1);
                 }
 
                 if (i==1)
                 {
-                    charAnimation.LoadContent(content.Load<Texture2D>(FightCadre.ElementAt<Character>(0).texturePath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
+                    charAnimation.LoadContent(content.Load<Texture2D>(FightCadre.ElementAt<Character>(0).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
                     FightCadre.ElementAt<Character>(0).LoadContent(charAnimation, characterPosition_2);
                 }
                     
                 if(i==2)
                 {
-                    charAnimation.LoadContent(content.Load<Texture2D>(FightCadre.ElementAt<Character>(0).texturePath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
+                    charAnimation.LoadContent(content.Load<Texture2D>(FightCadre.ElementAt<Character>(0).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
                     FightCadre.ElementAt<Character>(0).LoadContent(charAnimation, characterPosition_3);
                 }
 
                 if (i==3)
                 { 
-                    charAnimation.LoadContent(content.Load<Texture2D>(FightCadre.ElementAt<Character>(0).texturePath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
+                    charAnimation.LoadContent(content.Load<Texture2D>(FightCadre.ElementAt<Character>(0).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
                     FightCadre.ElementAt<Character>(0).LoadContent(charAnimation, characterPosition_4);
                 }
 

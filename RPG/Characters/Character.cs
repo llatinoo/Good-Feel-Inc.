@@ -47,7 +47,9 @@ namespace RPG
 
         //Grafikdaten des Charakters
         public Animation Sprite { get; private set; }
-        public String texturePath { get; private set; }
+        public String standardAnimationPath { get; private set; }
+        public String deathAnimationPath {get; private set; }
+        public String attackAnimationPath { get; private set; }
 
         //Name
         public string Name { get; private set; }
@@ -131,7 +133,7 @@ namespace RPG
         public List<IStatuseffect> Statuseffects { get; set; }
 
 
-        public Character(string charName, Classes className, string race, int vitality, int mana, int strength, int magic, int defense, int resistance, int luck, String texturePath)
+        public Character(string charName, Classes className, string race, int vitality, int mana, int strength, int magic, int defense, int resistance, int luck, string standardAnimationPath,  string attackAnimationPath, string deathAnimationPath)
         {
             this.Name = charName;
             this.Class = className;
@@ -148,7 +150,9 @@ namespace RPG
             this.Statuseffects = new List<IStatuseffect>();
 
             this.Level = 0;
-            this.texturePath = texturePath;
+            this.standardAnimationPath = standardAnimationPath;
+            this.deathAnimationPath = deathAnimationPath;
+            this.attackAnimationPath = attackAnimationPath;
         }
 
         public void AddSkill(Skill newSkill)

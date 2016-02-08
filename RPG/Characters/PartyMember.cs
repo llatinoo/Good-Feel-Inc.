@@ -17,8 +17,8 @@ namespace RPG
 
 
         public PartyMember(string charName, Classes className, string race, int vita, int mana, int strength, int mag,
-            int def, int res, int luck, List<int> levellist, int ultimatePointsToCast,string texturePath)
-            : base(charName, className, race, vita, mana, strength, mag, def, res, luck, texturePath)
+            int def, int res, int luck, List<int> levellist, int ultimatePointsToCast,string standardAnimationPath, string attackAnimationPath, string deathAnimationPath)
+            : base(charName, className, race, vita, mana, strength, mag, def, res, luck, standardAnimationPath, attackAnimationPath, deathAnimationPath)
         {
             this.Exp = 0;
             this.LevelList = levellist;
