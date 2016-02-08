@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using RPG.Extensions_And_Helper_Classes;
 
 namespace RPG
 {
@@ -30,7 +29,7 @@ namespace RPG
 
         public void CheckLevel()
         {
-            this.LevelList.OrderBy(x => x.ToString());
+            this.LevelList.OrderBy(x => x);
             if (this.Exp >= this.LevelList.ElementAt(0))
             {
                 this.LevelUp();

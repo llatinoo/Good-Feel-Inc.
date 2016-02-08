@@ -76,6 +76,10 @@ namespace RPG
             if (effectName.ToLower() == "Damage".ToLower())
                 return new Damage();
 
+            //Damage
+            if (effectName.ToLower() == "MagicalDamage".ToLower())
+                return new MagicalDamage();
+
             //Drain
             if (effectName.ToLower() == "Drain".ToLower())
                 return new Drain();
