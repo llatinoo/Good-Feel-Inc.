@@ -12,17 +12,19 @@ namespace RPG
         public string Name { get; private set; }
         public int Manacosts { get; private set; }
         public string Target { get; private set; }
+        public string AreaOfEffect { get; private set; }
 
         public Animation Animation { get; private set; }
 
         //Liste von Effekten die der Skill verursacht
         public IEnumerable<IEffect> Effects { get; set; }
 
-        public Skill(string skillName, int manacosts, string target, IEnumerable<IEffect> skilleffects)
+        public Skill(string skillName, int manacosts, string target, string areaOfEffect, IEnumerable<IEffect> skilleffects)
         {
             this.Name = skillName;
             this.Manacosts = manacosts;
             this.Target = target;
+            this.AreaOfEffect = areaOfEffect;
             this.Effects = skilleffects;
         }
 
