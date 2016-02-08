@@ -73,6 +73,7 @@
     <Compile Include="Extensions And Helper Classes\RandomStatusEffectHelperClass.cs" />
     <Compile Include="Data Section Classes\ClassSkillCadreDataSection.cs" />
     <Compile Include="Data Section Classes\SkillCadreDataSection.cs" />
+    <Compile Include="Scenes\IScene.cs" />
     <Compile Include="Skills\Effects\Drain.cs" />
     <Compile Include="Skills\Effects\RandomBuffEffect.cs" />
     <Compile Include="Skills\Effects\RandomDebuffEffect.cs" />

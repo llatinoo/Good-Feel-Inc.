@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RPG.Events
+namespace RPG
 {
-    interface IEvent
+    public interface IEvent
     {
         void Execute();
         
