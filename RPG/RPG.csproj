@@ -66,6 +66,7 @@
     <Compile Include="Characters\Player.cs" />
     <Compile Include="Data Section Classes\PartySkillCadreDataSection.cs" />
     <Compile Include="Events\BattleEvent.cs" />
+    <Compile Include="Events\ChooseCadreEvent.cs" />
     <Compile Include="Events\IEvent.cs" />
     <Compile Include="Events\StoryEvent.cs" />
     <Compile Include="Extensions And Helper Classes\GetEffectFactory.cs" />
@@ -557,223 +558,223 @@
     <Content Include="Content\Enemies\Monster\Succubus.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Anna\Anna_Cry_Face.png">
+    <Content Include="Content\Faces\Anna\Anna_Cry_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Anna\Anna_Happy_Face.png">
+    <Content Include="Content\Faces\Anna\Anna_Happy_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Anna\Anna_NotAmused_Face.png">
+    <Content Include="Content\Faces\Anna\Anna_NotAmused_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Anna\Anna_Provoke_Face.png">
+    <Content Include="Content\Faces\Anna\Anna_Provoke_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Anna\Anna_Shoked_Face.png">
+    <Content Include="Content\Faces\Anna\Anna_Shoked_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Anna\Anna_Standard_Face.png">
+    <Content Include="Content\Faces\Anna\Anna_Standard_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Anna\Anna_Thoughtful_Face.png">
+    <Content Include="Content\Faces\Anna\Anna_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Elena\Elena_Happy_Face.png">
+    <Content Include="Content\Faces\Elena\Elena_Happy_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Elena\Elena_NotAmused_Face.png">
+    <Content Include="Content\Faces\Elena\Elena_NotAmused_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Elena\Elena_Provoke_Face.png">
+    <Content Include="Content\Faces\Elena\Elena_Provoke_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Elena\Elena_Shocked_Face.png">
+    <Content Include="Content\Faces\Elena\Elena_Shocked_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Elena\Elena_Standard_Face.png">
+    <Content Include="Content\Faces\Elena\Elena_Standard_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Elena\Elena_Thoughtful_Face.png">
+    <Content Include="Content\Faces\Elena\Elena_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Ells\Ells_Cry_Face.png">
+    <Content Include="Content\Faces\Ells\Ells_Cry_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Ells\Ells_Happy_Face.png">
+    <Content Include="Content\Faces\Ells\Ells_Happy_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Ells\Ells_NotAmused_Face.png">
+    <Content Include="Content\Faces\Ells\Ells_NotAmused_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Ells\Ells_Provoke_Face.png">
+    <Content Include="Content\Faces\Ells\Ells_Provoke_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Ells\Ells_Shocked_Face.png">
+    <Content Include="Content\Faces\Ells\Ells_Shocked_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Ells\Ells_Standard_Face.png">
+    <Content Include="Content\Faces\Ells\Ells_Standard_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Ells\Ells_Thoughtful_Face.png">
+    <Content Include="Content\Faces\Ells\Ells_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Genefe\Genefe_Cry_Face.png">
+    <Content Include="Content\Faces\Genefe\Genefe_Cry_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Genefe\Genefe_Happy_Face.png">
+    <Content Include="Content\Faces\Genefe\Genefe_Happy_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Genefe\Genefe_NotAmused_Face.png">
+    <Content Include="Content\Faces\Genefe\Genefe_NotAmused_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Genefe\Genefe_Provoke_Face.png">
+    <Content Include="Content\Faces\Genefe\Genefe_Provoke_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Genefe\Genefe_Shocked_Face.png">
+    <Content Include="Content\Faces\Genefe\Genefe_Shocked_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Genefe\Genefe_Standard_Face.png">
+    <Content Include="Content\Faces\Genefe\Genefe_Standard_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Genefe\Genefe_Thoughtful_Face.png">
+    <Content Include="Content\Faces\Genefe\Genefe_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Irene\Irene_Standard_Face.png">
+    <Content Include="Content\Faces\Irene\Irene_Standard_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Marlein\Marlein_Cry_Face.png">
+    <Content Include="Content\Faces\Marlein\Marlein_Cry_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Marlein\Marlein_Happy_Face.png">
+    <Content Include="Content\Faces\Marlein\Marlein_Happy_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Marlein\Marlein_NotAmused_Face.png">
+    <Content Include="Content\Faces\Marlein\Marlein_NotAmused_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Marlein\Marlein_Provoke_Face.png">
+    <Content Include="Content\Faces\Marlein\Marlein_Provoke_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Marlein\Marlein_Shocked_Face.png">
+    <Content Include="Content\Faces\Marlein\Marlein_Shocked_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Marlein\Marlein_Standard_Face.png">
+    <Content Include="Content\Faces\Marlein\Marlein_Standard_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Marlein\Marlein_Thoughtful_Face.png">
+    <Content Include="Content\Faces\Marlein\Marlein_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Capsar\Caspar_Happy_Face.png">
+    <Content Include="Content\Faces\Capsar\Caspar_Happy_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Capsar\Caspar_NotAmused_Face.png">
+    <Content Include="Content\Faces\Capsar\Caspar_NotAmused_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Capsar\Caspar_Provoke_Face.png">
+    <Content Include="Content\Faces\Capsar\Caspar_Provoke_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Capsar\Caspar_Shocked_Face.png">
+    <Content Include="Content\Faces\Capsar\Caspar_Shocked_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Capsar\Caspar_Standard_Face.png">
+    <Content Include="Content\Faces\Capsar\Caspar_Standard_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Capsar\Caspar_Thoughtful_Face.png">
+    <Content Include="Content\Faces\Capsar\Caspar_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Jos\Jos_Happy_Face.png">
+    <Content Include="Content\Faces\Jos\Jos_Happy_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Jos\Jos_NotAmused_Face.png">
+    <Content Include="Content\Faces\Jos\Jos_NotAmused_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Jos\Jos_Provoke_Face.png">
+    <Content Include="Content\Faces\Jos\Jos_Provoke_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Jos\Jos_Shocked_Face.png">
+    <Content Include="Content\Faces\Jos\Jos_Shocked_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Jos\Jos_Standard_Face.png">
+    <Content Include="Content\Faces\Jos\Jos_Standard_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Jos\Jos_Thoughtful_Face.png">
+    <Content Include="Content\Faces\Jos\Jos_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Kaiser\Kaiser_Happy_Face.png">
+    <Content Include="Content\Faces\Kaiser\Kaiser_Happy_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Kaiser\Kaiser_NotAmused_Face.png">
+    <Content Include="Content\Faces\Kaiser\Kaiser_NotAmused_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Kaiser\Kaiser_Provoke_Face.png">
+    <Content Include="Content\Faces\Kaiser\Kaiser_Provoke_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Kaiser\Kaiser_Shocked_Face.png">
+    <Content Include="Content\Faces\Kaiser\Kaiser_Shocked_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Kaiser\Kaiser_Standard_Face.png">
+    <Content Include="Content\Faces\Kaiser\Kaiser_Standard_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Kaiser\Kaiser_Thoightful_Face.png">
+    <Content Include="Content\Faces\Kaiser\Kaiser_Thoightful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Michael\Michael_Standard_Face.png">
+    <Content Include="Content\Faces\Michael\Michael_Standard_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Nick\Nick_Happy_Face.png">
+    <Content Include="Content\Faces\Nick\Nick_Happy_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Nick\Nick_NotAmused_Face.png">
+    <Content Include="Content\Faces\Nick\Nick_NotAmused_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Nick\Nick_Provoke_Face.png">
+    <Content Include="Content\Faces\Nick\Nick_Provoke_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Nick\Nick_Shocked_Face.png">
+    <Content Include="Content\Faces\Nick\Nick_Shocked_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Nick\Nick_Standard_Face.png">
+    <Content Include="Content\Faces\Nick\Nick_Standard_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Nick\Nick_Thoughtful_Face.png">
+    <Content Include="Content\Faces\Nick\Nick_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Reinhardt\Reinhardt_Standard_Face.png">
+    <Content Include="Content\Faces\Reinhardt\Reinhardt_Standard_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seitz\Seitz_Happy_Face.png">
+    <Content Include="Content\Faces\Seitz\Seitz_Happy_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seitz\Seitz_NotAmused_Face.png">
+    <Content Include="Content\Faces\Seitz\Seitz_NotAmused_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seitz\Seitz_Provoke_Face.png">
+    <Content Include="Content\Faces\Seitz\Seitz_Provoke_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seitz\Seitz_Shocked_Face.png">
+    <Content Include="Content\Faces\Seitz\Seitz_Shocked_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seitz\Seitz_Standard_Face.png">
+    <Content Include="Content\Faces\Seitz\Seitz_Standard_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seitz\Seitz_Thoughtful_Face.png">
+    <Content Include="Content\Faces\Seitz\Seitz_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seyfrid\Seyfrid_Happy_Face.png">
+    <Content Include="Content\Faces\Seyfrid\Seyfrid_Happy_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seyfrid\Seyfrid_NotAmused_Face.png">
+    <Content Include="Content\Faces\Seyfrid\Seyfrid_NotAmused_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seyfrid\Seyfrid_Provoke_Face.png">
+    <Content Include="Content\Faces\Seyfrid\Seyfrid_Provoke_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seyfrid\Seyfrid_Shocked_Face.png">
+    <Content Include="Content\Faces\Seyfrid\Seyfrid_Shocked_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seyfrid\Seyfrid_Standard_Face.png">
+    <Content Include="Content\Faces\Seyfrid\Seyfrid_Standard_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seyfrid\Seyfrid_Thoughtful_Face.png">
+    <Content Include="Content\Faces\Seyfrid\Seyfrid_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Icons\Blessed_Icon.png">
