@@ -18,7 +18,7 @@ namespace RPG.Events
         
         //Gegner Gruppe
         List<Enemy> Enemies = new List<Enemy>();
-        
+
         //Character in Pixeln
         private int characterSize = 64;
 
@@ -85,9 +85,22 @@ namespace RPG.Events
         public void LoadContent(ContentManager content)
         {
             //Animation erstellt
-            Animation charAnimation = new Animation();
-            Animation enemyAnimation = new Animation();
-            GUIElement enemy;
+            Animation charAnimation_1 = new Animation();
+            Animation charAnimation_2 = new Animation();
+            Animation charAnimation_3 = new Animation();
+            Animation charAnimation_4 = new Animation();
+
+            Animation enemyAnimation_1 = new Animation();
+            Animation enemyAnimation_2 = new Animation();
+            Animation enemyAnimation_3 = new Animation();
+            Animation enemyAnimation_4 = new Animation();
+
+            //GUIElemente für die Statischen Gegner erstellt
+            GUIElement enemy_1;
+            GUIElement enemy_2;
+            GUIElement enemy_3;
+            GUIElement enemy_4;
+
             int groupCount=0;
             int enemyCount = 0;
 
@@ -96,26 +109,27 @@ namespace RPG.Events
                 //Anpassung benötigt da am Ende Festwerte eingetragen wurden
                 if (groupCount == 0)
                 {
-                    charAnimation.LoadContent(content.Load<Texture2D>(FightCadre.ElementAt<Character>(0).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
-                    FightCadre.ElementAt<Character>(0).LoadContent(charAnimation, characterPosition_1);
+                    charAnimation_1.LoadContent(content.Load<Texture2D>(FightCadre.ElementAt<Character>(0).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
+                    FightCadre.ElementAt<Character>(0).LoadContent(charAnimation_1, characterPosition_1);
+
                 }
 
                 if (groupCount==1)
                 {
-                    charAnimation.LoadContent(content.Load<Texture2D>(FightCadre.ElementAt<Character>(1).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
-                    FightCadre.ElementAt<Character>(1).LoadContent(charAnimation, characterPosition_2);
+                    charAnimation_2.LoadContent(content.Load<Texture2D>(FightCadre.ElementAt<Character>(1).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
+                    FightCadre.ElementAt<Character>(1).LoadContent(charAnimation_2, characterPosition_2);
                 }
                     
                 if(groupCount==2)
                 {
-                    charAnimation.LoadContent(content.Load<Texture2D>(FightCadre.ElementAt<Character>(2).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
-                    FightCadre.ElementAt<Character>(2).LoadContent(charAnimation, characterPosition_3);
+                    charAnimation_3.LoadContent(content.Load<Texture2D>(FightCadre.ElementAt<Character>(2).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
+                    FightCadre.ElementAt<Character>(2).LoadContent(charAnimation_3, characterPosition_3);
                 }
 
                 if (groupCount==3)
                 { 
-                    charAnimation.LoadContent(content.Load<Texture2D>(FightCadre.ElementAt<Character>(3).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
-                    FightCadre.ElementAt<Character>(3).LoadContent(charAnimation, characterPosition_4);
+                    charAnimation_4.LoadContent(content.Load<Texture2D>(FightCadre.ElementAt<Character>(3).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
+                    FightCadre.ElementAt<Character>(3).LoadContent(charAnimation_4, characterPosition_4);
                 }
 
                 groupCount++;
@@ -129,26 +143,26 @@ namespace RPG.Events
                 {
                     if (enemyCount == 0)
                     {
-                        charAnimation.LoadContent(content.Load<Texture2D>(Enemies.ElementAt<Enemy>(0).standardAnimationPath), Vector2.Zero, 400, 400, animationSpeed, Color.White, 1f, true, 1, 3, false);
-                        Enemies.ElementAt<Enemy>(0).LoadContent(charAnimation, enemyPosition_1);
+                        enemyAnimation_1.LoadContent(content.Load<Texture2D>(Enemies.ElementAt<Enemy>(0).standardAnimationPath), Vector2.Zero, 400, 400, animationSpeed, Color.White, 1f, true, 1, 3, false);
+                        Enemies.ElementAt<Enemy>(0).LoadContent(enemyAnimation_1, enemyPosition_1);
                     }
 
                     if (enemyCount == 1)
                     {
-                        charAnimation.LoadContent(content.Load<Texture2D>(Enemies.ElementAt<Enemy>(1).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
-                        Enemies.ElementAt<Enemy>(1).LoadContent(charAnimation, characterPosition_2);
+                        enemyAnimation_2.LoadContent(content.Load<Texture2D>(Enemies.ElementAt<Enemy>(1).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
+                        Enemies.ElementAt<Enemy>(1).LoadContent(enemyAnimation_2, characterPosition_2);
                     }
 
                     if (enemyCount == 2)
                     {
-                        charAnimation.LoadContent(content.Load<Texture2D>(Enemies.ElementAt<Enemy>(2).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
-                        Enemies.ElementAt<Enemy>(2).LoadContent(charAnimation, characterPosition_3);
+                        enemyAnimation_3.LoadContent(content.Load<Texture2D>(Enemies.ElementAt<Enemy>(2).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
+                        Enemies.ElementAt<Enemy>(2).LoadContent(enemyAnimation_3, characterPosition_3);
                     }
 
                     if (enemyCount == 3)
                     {
-                        charAnimation.LoadContent(content.Load<Texture2D>(Enemies.ElementAt<Enemy>(3).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
-                        Enemies.ElementAt<Enemy>(3).LoadContent(charAnimation, characterPosition_4);
+                        enemyAnimation_4.LoadContent(content.Load<Texture2D>(Enemies.ElementAt<Enemy>(3).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
+                        Enemies.ElementAt<Enemy>(3).LoadContent(enemyAnimation_4, characterPosition_4);
                     }
 
                     enemyCount++;
@@ -159,24 +173,24 @@ namespace RPG.Events
 
                     if (enemyCount == 0)
                     {
-                        enemy = new GUIElement(Enemies.ElementAt<Enemy>(0).standardAnimationPath,(int) enemyPosition_1.X, (int) enemyPosition_1.Y);
+                        enemy_1 = new GUIElement(Enemies.ElementAt<Enemy>(0).standardAnimationPath,(int) enemyPosition_1.X, (int) enemyPosition_1.Y);
                     }
 
                     if (enemyCount == 1)
                     {
-                        enemy = new GUIElement(Enemies.ElementAt<Enemy>(1).standardAnimationPath,(int) enemyPosition_2.X, (int) enemyPosition_2.Y);
+                        enemy_2 = new GUIElement(Enemies.ElementAt<Enemy>(1).standardAnimationPath,(int) enemyPosition_2.X, (int) enemyPosition_2.Y);
                     }
 
                     if (enemyCount == 2)
                     {
-                        enemy = new GUIElement(Enemies.ElementAt<Enemy>(2).standardAnimationPath,(int) enemyPosition_3.X, (int) enemyPosition_3.Y);
+                        enemy_3 = new GUIElement(Enemies.ElementAt<Enemy>(2).standardAnimationPath,(int) enemyPosition_3.X, (int) enemyPosition_3.Y);
                     }
 
                     if (enemyCount == 3)
                     {
-                        enemy = new GUIElement(Enemies.ElementAt<Enemy>(3).standardAnimationPath, (int) enemyPosition_4.X, (int) enemyPosition_4.Y);
+                        enemy_4 = new GUIElement(Enemies.ElementAt<Enemy>(3).standardAnimationPath, (int) enemyPosition_4.X, (int) enemyPosition_4.Y);
                     }
-
+                    enemyCount++;
                 }
 
             }
