@@ -46,24 +46,113 @@ namespace RPG.Events
         //Animation Speed
         private int animationSpeed = 300;
 
-        //Member Skills
-        private int member_1_Skills;
-        private int member_2_Skills;
-        private int member_3_Skills;
-        private int member_4_Skills;
+        //Skills draw
+        TextElement skill1;
+        TextElement skill2;
+        TextElement skill3;
+        TextElement skill4;
+
+        public  void Battle(SpriteBatch spriteBatch)
+        {
+            int counter = 0;
+
+            do
+            {
+                foreach (Character character in FightClub)
+                {
+                    if (character.GetType() == typeof(PartyMember))
+                    {
+                        foreach (Skill skill in character.Skills)
+                        {
+                            if (counter == 0)
+                            {
+                                skill1 = new TextElement(skill.Name, (int)skillPosition_1.X, (int)skillPosition_1.Y);
+                            }
+                            if(counter == 1)
+                            {
+                                skill2 = new TextElement(skill.Name, (int)skillPosition_2.X, (int)skillPosition_2.Y);
+                            }
+                            if (counter == 2)
+                            {
+                                skill3 = new TextElement(skill.Name, (int)skillPosition_3.X, (int)skillPosition_3.Y);
+                            }
+                            if (counter == 3)
+                            {
+                                skill4 = new TextElement(skill.Name, (int)skillPosition_4.X, (int)skillPosition_4.Y);
+                            }
+                            counter++;
+                        }
+
+                        skill1.Draw(spriteBatch);
+                        skill2.Draw(spriteBatch);
+                        skill3.Draw(spriteBatch);
+                        skill4.Draw(spriteBatch);
+
+                    }
 
 
-        public BattleEvent(List<PartyMember> FightCadre, List<Enemy> Enemies)
+
+
+                }
+
+
+
+            }
+            while (FightCadre.All(character=> character.Life>0) && Enemies.All(Enemies=> Enemies.Life>0));
+
+
+
+        }
+
+        public void OnClickSkill(String skillname)
+        {
+            foreach (Character character in FightClub)
+            {
+                if (character.GetType() == typeof(PartyMember))
+
+                    foreach (Skill skill in character.Skills)
+                    {
+                        if (skillname == skill.Name)
+
+                            if (skill.Target.ToLower() == "single".ToLower())
+                            {
+
+
+                            }
+                            else
+                            {
+                                if(skill.AreaOfEffect.ToLower() == "enemy".ToLower())
+                                {
+                                    List<Character> targets = new List<Character>();
+                                    foreach (Enemy enemy in Enemies)
+                                    {
+                                        targets.Add(enemy);
+                                    }
+                                    skill.Execute(character, targets);
+                                }
+
+                                
+                            }
+
+                    }
+
+            }
+        }
+
+        public String OnClickEnemie()
+        {
+
+
+        }
+
+
+
+
+        public BattleEvent(List<PartyMember> fightCadre, List<Enemy> enemies)
         {
             //Zuweisung der Listen
-            this.FightCadre = FightCadre;
-            this.Enemies = Enemies;
-
-            //Skill Counter 
-            member_1_Skills = FightCadre.ElementAt<PartyMember>(0).Skills.Count();
-            member_2_Skills = FightCadre.ElementAt<PartyMember>(1).Skills.Count();
-            member_3_Skills = FightCadre.ElementAt<PartyMember>(2).Skills.Count();
-            member_4_Skills = FightCadre.ElementAt<PartyMember>(3).Skills.Count();
+            this.FightCadre = fightCadre;
+            this.Enemies = enemies;
 
             //FightCader wird der Liste FightClub hinzugefügt
             foreach(Character character in FightCadre)
