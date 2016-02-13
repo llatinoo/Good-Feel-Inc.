@@ -139,12 +139,6 @@ namespace RPG.Events
             }
         }
 
-        public String OnClickEnemie()
-        {
-
-
-        }
-
 
 
 
