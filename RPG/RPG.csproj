@@ -82,6 +82,7 @@
     <Compile Include="Skills\Effects\RandomBuffEffect.cs" />
     <Compile Include="Skills\Effects\RandomDebuffEffect.cs" />
     <Compile Include="Skills\Effects\RandomEffect.cs" />
+    <Compile Include="Skills\Effects\Recover.cs" />
     <Compile Include="Skills\Effects\Resurrection.cs" />
     <Compile Include="Skills\Ultis\BaumDesLebens.cs" />
     <Compile Include="Skills\Ultis\Fegefeuer.cs" />

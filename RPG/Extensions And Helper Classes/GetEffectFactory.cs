@@ -112,6 +112,10 @@ namespace RPG
             if (effectName.ToLower() == "RandomEffect".ToLower())
                 return new RandomEffect();
 
+            //Recover
+            if (effectName.ToLower() == "Recover".ToLower())
+                return new Recover();
+
             //RemoveStatus
             if (effectName.ToLower() == "RemoveStatus".ToLower())
                 return new RemoveStatusEffect();
