@@ -46,15 +46,41 @@ namespace RPG.Events
         //Animation Speed
         private int animationSpeed = 300;
 
+        //Boolean for Drawings
+        Boolean singleTargetParty = false;
+        Boolean singleTargetEnemies = false;
+        Boolean partyTargetParty = false;
+        Boolean partyTargetEnemie = false;
+
+
+
         //Skills draw
-        TextElement skill1;
-        TextElement skill2;
-        TextElement skill3;
-        TextElement skill4;
+        TextElement attackskill;
+        TextElement restskill;
+
+        TextElement character1skill1;
+        TextElement character1skill2;
+        TextElement character1skill3;
+        TextElement character1skill4;
+
+        TextElement character2skill1;
+        TextElement character2skill2;
+        TextElement character2skill3;
+        TextElement character2skill4;
+
+        TextElement character3skill1;
+        TextElement character3skill2;
+        TextElement character3skill3;
+        TextElement character3skill4;
+
+        TextElement character4skill1;
+        TextElement character4skill2;
+        TextElement character4skill3;
+        TextElement character4skill4;
 
         public  void Battle(SpriteBatch spriteBatch)
         {
-            int counter = 0;
+            
 
             do
             {
@@ -62,32 +88,11 @@ namespace RPG.Events
                 {
                     if (character.GetType() == typeof(PartyMember))
                     {
-                        foreach (Skill skill in character.Skills)
-                        {
-                            if (counter == 0)
-                            {
-                                skill1 = new TextElement(skill.Name, (int)skillPosition_1.X, (int)skillPosition_1.Y);
-                            }
-                            if(counter == 1)
-                            {
-                                skill2 = new TextElement(skill.Name, (int)skillPosition_2.X, (int)skillPosition_2.Y);
-                            }
-                            if (counter == 2)
-                            {
-                                skill3 = new TextElement(skill.Name, (int)skillPosition_3.X, (int)skillPosition_3.Y);
-                            }
-                            if (counter == 3)
-                            {
-                                skill4 = new TextElement(skill.Name, (int)skillPosition_4.X, (int)skillPosition_4.Y);
-                            }
-                            counter++;
-                        }
-
-                        skill1.Draw(spriteBatch);
-                        skill2.Draw(spriteBatch);
-                        skill3.Draw(spriteBatch);
-                        skill4.Draw(spriteBatch);
-
+                       
+                          //  skill1.Draw(spriteBatch);
+                          //  skill2.Draw(spriteBatch);
+                          //  skill3.Draw(spriteBatch);
+                          //  skill4.Draw(spriteBatch);
                     }
 
 
@@ -104,8 +109,124 @@ namespace RPG.Events
 
         }
 
+        public void LoadCharacterTextboxData()
+        {
+            int skillCounter = 0;
+            int charCounter = 0;
+
+            attackskill = new TextElement("Angriff", (int)skillPosition_1.X, (int)skillPosition_1.Y);
+            restskill = new TextElement("Ausruhen", (int)skillPosition_1.X, (int)skillPosition_1.Y);
+
+            foreach (Character character in FightCadre)
+            {
+
+                if (character.GetType() == typeof(PartyMember))
+                {
+                    if(charCounter==0)
+                        foreach (Skill skill in character.Skills)
+                        {
+                            if (skillCounter == 0)
+                            {
+                                character1skill1 = new TextElement(skill.Name, (int)skillPosition_1.X, (int)skillPosition_1.Y);
+                            }
+                            if (skillCounter == 1)
+                            {
+                                character1skill2 = new TextElement(skill.Name, (int)skillPosition_2.X, (int)skillPosition_2.Y);
+                            }
+                            if (skillCounter == 2)
+                            {
+                                character1skill3 = new TextElement(skill.Name, (int)skillPosition_3.X, (int)skillPosition_3.Y);
+                            }
+                            if (skillCounter == 3)
+                            {
+                                character1skill4 = new TextElement(skill.Name, (int)skillPosition_4.X, (int)skillPosition_4.Y);
+                            }
+                            skillCounter++;
+                        }
+                
+
+                    if (charCounter == 1)
+                        foreach (Skill skill in character.Skills)
+                        {
+                            if (skillCounter == 0)
+                            {
+                                character2skill1 = new TextElement(skill.Name, (int)skillPosition_1.X, (int)skillPosition_1.Y);
+                            }
+                            if (skillCounter == 1)
+                            {
+                                character2skill2 = new TextElement(skill.Name, (int)skillPosition_2.X, (int)skillPosition_2.Y);
+                            }
+                            if (skillCounter == 2)
+                            {
+                                character2skill3 = new TextElement(skill.Name, (int)skillPosition_3.X, (int)skillPosition_3.Y);
+                            }
+                            if (skillCounter == 3)
+                            {
+                                character2skill4 = new TextElement(skill.Name, (int)skillPosition_4.X, (int)skillPosition_4.Y);
+                            }
+
+                            skillCounter++;
+                        }
+
+                    if (charCounter == 2)
+                        foreach (Skill skill in character.Skills)
+                        {
+                            if (skillCounter == 0)
+                            {
+                                character3skill1 = new TextElement(skill.Name, (int)skillPosition_1.X, (int)skillPosition_1.Y);
+                            }
+                            if (skillCounter == 1)
+                            {
+                                character3skill2 = new TextElement(skill.Name, (int)skillPosition_2.X, (int)skillPosition_2.Y);
+                            }
+                            if (skillCounter == 2)
+                            {
+                                character3skill3 = new TextElement(skill.Name, (int)skillPosition_3.X, (int)skillPosition_3.Y);
+                            }
+                            if (skillCounter == 3)
+                            {
+                                character3skill4 = new TextElement(skill.Name, (int)skillPosition_4.X, (int)skillPosition_4.Y);
+                            }
+
+                            skillCounter++;
+                        }
+
+                    if (charCounter == 3)
+                        foreach (Skill skill in character.Skills)
+                        {
+                            if (skillCounter == 0)
+                            {
+                                character3skill1 = new TextElement(skill.Name, (int)skillPosition_1.X, (int)skillPosition_1.Y);
+                            }
+                            if (skillCounter == 1)
+                            {
+                                character3skill2 = new TextElement(skill.Name, (int)skillPosition_2.X, (int)skillPosition_2.Y);
+                            }
+                            if (skillCounter == 2)
+                            {
+                                character3skill3 = new TextElement(skill.Name, (int)skillPosition_3.X, (int)skillPosition_3.Y);
+                            }
+                            if (skillCounter == 3)
+                            {
+                                character3skill4 = new TextElement(skill.Name, (int)skillPosition_4.X, (int)skillPosition_4.Y);
+                            }
+                            skillCounter++;
+                        }
+
+                        
+                    skillCounter = 0;
+                    charCounter++;
+                }
+            }
+        }
+
+
+
+
         public void OnClickSkill(String skillname)
         {
+            List<Character> targets = new List<Character>();
+
             foreach (Character character in FightClub)
             {
                 if (character.GetType() == typeof(PartyMember))
@@ -116,14 +237,31 @@ namespace RPG.Events
 
                             if (skill.Target.ToLower() == "single".ToLower())
                             {
+                                if (skill.AreaOfEffect.ToLower() == "party".ToLower())
+                                {
+                                    singleTargetParty = true;
+                                }
 
-
+                                else if (skill.AreaOfEffect.ToLower() == "enemy".ToLower())
+                                {
+                                    singleTargetEnemies = true;
+                                }
                             }
                             else
                             {
-                                if(skill.AreaOfEffect.ToLower() == "enemy".ToLower())
+                                if (skill.AreaOfEffect.ToLower() == "party".ToLower())
                                 {
-                                    List<Character> targets = new List<Character>();
+                                    partyTargetParty = true;
+                                    foreach(PartyMember member in FightCadre)
+                                    {
+                                        targets.Add(member);
+                                    }
+
+                                    skill.Execute(character, targets);
+                                }
+                                else if(skill.AreaOfEffect.ToLower() == "enemy".ToLower())
+                                {
+                                    partyTargetEnemie = true;
                                     foreach (Enemy enemy in Enemies)
                                     {
                                         targets.Add(enemy);
@@ -141,7 +279,7 @@ namespace RPG.Events
 
         public String OnClickEnemie()
         {
-
+            return "";
 
         }
 
