@@ -114,7 +114,7 @@ namespace RPG.Events
                         {
 
                         }
-                        while (boolTurnOver);
+                        while (!boolTurnOver);
                     }
                 }
             }
