@@ -65,7 +65,7 @@
     <Compile Include="Characters\PartyMember.cs" />
     <Compile Include="Characters\Player.cs" />
     <Compile Include="Data Section Classes\PartySkillCadreDataSection.cs" />
-    <Compile Include="Scenes\BattleEvent.cs" />
+    <Compile Include="Events\BattleEvent.cs" />
     <Compile Include="Events\ChooseCadreEvent.cs" />
     <Compile Include="Events\IEvent.cs" />
     <Compile Include="Events\StoryEvent.cs" />
