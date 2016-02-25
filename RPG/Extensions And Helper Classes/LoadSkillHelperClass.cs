@@ -55,7 +55,7 @@ namespace RPG
             foreach ( CharSkillElement charSkill in Char.CharSkills)
             {
                 if (!member.Skills.All(Skill => Skill.Name == charSkill.Name) &&
-                    member.Level >= Convert.ToInt32(charSkill.Level))
+                    member.Level <= Convert.ToInt32(charSkill.Level))
                 {
                     var skillToAdd =
                      skillCadreDataSection.Skills.Cast<SkillElement>()
