@@ -39,7 +39,7 @@ namespace RPG
         }
 
 
-        public static void AddCertainSkillToParty(PartyMember member)
+        public static void AddLevelUpSkillToParty(PartyMember member)
         {
             var skillCadreDataSection =
                 ConfigurationManager.GetSection("SkillCadre") as SkillCadreDataSection;
@@ -71,6 +71,39 @@ namespace RPG
                     member.AddSkill(new Skill(skillToAdd.Name, Convert.ToInt32(skillToAdd.ManaCosts), skillToAdd.Target, skillToAdd.AreaOfEffect, skillToAddEffects));
                 }
             }
+        }
+
+        public static void AddStandardSkills(Character member)
+        {
+            var skillCadreDataSection =
+                ConfigurationManager.GetSection("SkillCadre") as SkillCadreDataSection;
+
+            var attackSkill =
+                     skillCadreDataSection.Skills.Cast<SkillElement>()
+                         .SingleOrDefault(
+                             cadreSkill => cadreSkill.Name == "Angriff");
+
+            var recoverSkill =
+                     skillCadreDataSection.Skills.Cast<SkillElement>()
+                         .SingleOrDefault(
+                             cadreSkill => cadreSkill.Name == "Ausruhen");
+
+
+            var attackSkillEffects = new List<IEffect>();
+            foreach (EffectElement effect in attackSkill.Effects)
+            {
+                attackSkillEffects.Add(GetEffectFactory.GetEffect(effect.Name));
+            }
+
+            var recoverSkillEffects = new List<IEffect>();
+            foreach (EffectElement effect in recoverSkill.Effects)
+            {
+                recoverSkillEffects.Add(GetEffectFactory.GetEffect(effect.Name));
+            }
+
+
+            member.AddSkill(new Skill(attackSkill.Name, Convert.ToInt32(attackSkill.ManaCosts), attackSkill.Target, attackSkill.AreaOfEffect, attackSkillEffects));
+            member.AddSkill(new Skill(recoverSkill.Name, Convert.ToInt32(recoverSkill.ManaCosts), recoverSkill.Target, recoverSkill.AreaOfEffect, recoverSkillEffects));
         }
     }
 }

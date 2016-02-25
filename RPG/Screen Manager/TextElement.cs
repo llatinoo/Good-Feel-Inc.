@@ -12,7 +12,7 @@ namespace RPG
         SpriteFont AwesomeFont;
         private Vector2 fontSize;
 
-        private string skillName;
+        public string skillName;
         private int positionX;
         private int positionY;
 

@@ -125,8 +125,6 @@ namespace RPG
         
         //Fähigkeiten Attribute
         public List<Skill> Skills { get; private set; }
-        //public List<string> SkillTree { get; private set; }
-
         public int Level { get; set; }
 
         //Auf den Charakter wirkende Effekte
@@ -153,24 +151,16 @@ namespace RPG
             this.standardAnimationPath = standardAnimationPath;
             this.deathAnimationPath = deathAnimationPath;
             this.attackAnimationPath = attackAnimationPath;
+
+            LoadSkillHelperClass.AddStandardSkills(this);
         }
+
 
         public void AddSkill(Skill newSkill)
         {
             this.Skills.Add(newSkill);
         }
 
-        public void RemoveSkill(Skill removeSkill)
-        {
-            this.Skills.Remove(removeSkill);
-        }
-
-        public void UpdateStat(int updateAmmount, MainAttributes mainAttributeToUpdate)
-        {
-            var propertyInfo = typeof(Character).GetProperty(mainAttributeToUpdate.ToString());
-            var oldValue = (int)propertyInfo.GetValue(this, null);
-            propertyInfo.SetValue(this, oldValue + updateAmmount, null);
-        }
 
         public void SetInitiative()
         {
@@ -195,6 +185,7 @@ namespace RPG
                 this.Initiative = 5;
             }
         }
+
 
         public int GetInitiative()
         {

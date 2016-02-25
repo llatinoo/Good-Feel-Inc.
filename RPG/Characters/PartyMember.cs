@@ -41,7 +41,7 @@ namespace RPG
         {
             this.Level++;
             this.LevelUpAttributes(LevelUpClass.LevelUpAttributes(this.Class));
-            LoadSkillHelperClass.AddCertainSkillToParty(this);
+            LoadSkillHelperClass.AddLevelUpSkillToParty(this);
         }
     }
 }
