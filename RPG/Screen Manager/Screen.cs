@@ -5,11 +5,14 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using RPG.Events;
 
 namespace RPG
 {
     class Screen
     {
+        PartyMember char1 = new PartyMember("Anna", Classes.Coloss, "lol", 20, 30, 30, 20, 20, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Female\\Anna\\Anna_Standard_Anmation", "Animations\\Battlers\\Female\\Anna\\Anna_Attack_Anmation", "Animations\\Battlers\\Female\\Anna\\Anna_Death_Anmation");
+        Enemy enemy1 = new Enemy("Anna", Classes.Coloss, false,"bla", 20, 30, 30, 20, 20, 20, 20, "Animations\\Battlers\\Female\\Anna\\Anna_Standard_Anmation", "Animations\\Battlers\\Female\\Anna\\Anna_Attack_Anmation", "Animations\\Battlers\\Female\\Anna\\Anna_Death_Anmation", true);
         Movie Intro = new Movie("Intro\\Good Feel Inc Intro");
 
         StoryEvent test = new StoryEvent(0, 0);
