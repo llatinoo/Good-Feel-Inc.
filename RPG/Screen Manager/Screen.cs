@@ -11,12 +11,12 @@ namespace RPG
 {
     class Screen
     {
-        PartyMember char1 = new PartyMember("Anna", Classes.Patron, "lol", 20, 30, 30, 20, 20, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Female\\Anna\\Anna_Standard_Animation", "Animations\\Battlers\\Female\\Anna\\Anna_Attack_Animation", "Animations\\Battlers\\Female\\Anna\\Anna_Death_Animation");
+        PartyMember char1 = new PartyMember("Anna", Classes.DamageDealer, "lol", 20, 30, 30, 20, 20, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Female\\Anna\\Anna_Standard_Animation", "Animations\\Battlers\\Female\\Anna\\Anna_Attack_Animation", "Animations\\Battlers\\Female\\Anna\\Anna_Death_Animation");
         Enemy enemy1 = new Enemy("Anna", Classes.Patron, false,"bla", 20, 30, 30, 20, 20, 20, 20, "Enemies\\Bosse\\Human\\Anna\\Anna_Standard_Animation", "Enemies\\Bosse\\Human\\Anna\\Anna_Attack_Animation", "Enemies\\Bosse\\Human\\Anna\\Anna_Death_Animation", true);
 
-        PartyMember char2 = new PartyMember("Caspar", Classes.Patron, "lol", 20, 30, 30, 20, 20, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Male\\Caspar\\Caspar_Standard_Animation", "Animations\\Battlers\\Male\\Caspar\\Caspar_Attack_Animation", "Animations\\Battlers\\Male\\Caspar\\Caspar_Death_Animation");
-        PartyMember char3 = new PartyMember("Elena", Classes.Patron, "lol", 20, 30, 30, 20, 20, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Female\\Elena\\Elena_Standard_Animation", "Animations\\Battlers\\Female\\Elena\\Elena_Attack_Animation", "Animations\\Battlers\\Female\\Elena\\Elena_Death_Animation");
-        PartyMember char4 = new PartyMember("Genefe", Classes.Patron, "lol", 20, 30, 30, 20, 20, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Female\\Genefe\\Genefe_Standard_Animation", "Animations\\Battlers\\Female\\Genefe\\Genefe_Attack_Animation", "Animations\\Battlers\\Female\\Genefe\\Genefe_Death_Animation");
+        PartyMember char2 = new PartyMember("Caspar", Classes.DamageDealer, "lol", 20, 30, 30, 20, 20, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Male\\Caspar\\Caspar_Standard_Animation", "Animations\\Battlers\\Male\\Caspar\\Caspar_Attack_Animation", "Animations\\Battlers\\Male\\Caspar\\Caspar_Death_Animation");
+        PartyMember char3 = new PartyMember("Elena", Classes.DamageDealer, "lol", 20, 30, 30, 20, 20, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Female\\Elena\\Elena_Standard_Animation", "Animations\\Battlers\\Female\\Elena\\Elena_Attack_Animation", "Animations\\Battlers\\Female\\Elena\\Elena_Death_Animation");
+        PartyMember char4 = new PartyMember("Genefe", Classes.DamageDealer, "lol", 20, 30, 30, 20, 20, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Female\\Genefe\\Genefe_Standard_Animation", "Animations\\Battlers\\Female\\Genefe\\Genefe_Attack_Animation", "Animations\\Battlers\\Female\\Genefe\\Genefe_Death_Animation");
 
 
         BattleEvent testevent;
@@ -266,6 +266,8 @@ namespace RPG
                 Intro.Update();
                     break;
                 case GameState.mainMenu:
+                    testevent.Update(gameTime);
+                    /*
                     foreach (GUIElement element in mainMenu)
                     {
                         element.Update();
@@ -307,7 +309,7 @@ namespace RPG
                         {
                             Mouse.SetPosition(mainMenu.ElementAt<GUIElement>(3).getGUIRect.Center.X, mainMenu.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
                         }
-                    }
+                    }*/
                         break;
                 case GameState.options:
                     foreach (GUIElement element in options)
@@ -360,8 +362,8 @@ namespace RPG
                     }
                     break;
                 case GameState.battleScreen:
-                    testevent.Battle();
-                    testevent.Update(gameTime);
+                    //testevent.Battle();
+                    
                     /*
                     foreach (GUIElement element in battleScreen)
                     {
@@ -394,6 +396,8 @@ namespace RPG
                     Intro.Draw(spriteBatch);
                     break;
                 case GameState.mainMenu:
+                    testevent.Draw(spriteBatch);
+                    /*
                     foreach (GUIElement element in mainMenu)
                     {
                         element.Draw(spriteBatch);
@@ -417,12 +421,11 @@ namespace RPG
                     if(controls.CurrentKeyboardState.IsKeyDown(Keys.Enter))
                     {
                         test1.Draw(spriteBatch);
-                    }
+                    }*/
                     break;
                 case GameState.battleScreen:
 
-                    testevent.Draw(spriteBatch);
-                    testevent.DrawTargetBox(spriteBatch);
+                    
 
                     /*
                     foreach (GUIElement element in battleScreen)

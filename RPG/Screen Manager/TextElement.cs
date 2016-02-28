@@ -16,7 +16,8 @@ namespace RPG
         private int positionX;
         private int positionY;
 
-        Rectangle textRect;
+        public Rectangle textRect;
+
 
         public delegate void tElementClicked(string element);
         public event tElementClicked tclickEvent;
