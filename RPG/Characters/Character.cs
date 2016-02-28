@@ -125,6 +125,8 @@ namespace RPG
         
         //Fähigkeiten Attribute
         public List<Skill> Skills { get; private set; }
+        public Skill AttackSkill { get; private set; }
+        public Skill RestSkill { get; private set; }
         public int Level { get; set; }
 
         //Auf den Charakter wirkende Effekte
@@ -161,6 +163,11 @@ namespace RPG
             this.Skills.Add(newSkill);
         }
 
+        public void SetStandardSkills(Skill atk, Skill res)
+        {
+            this.AttackSkill = atk;
+            this.RestSkill = res;
+        }
 
         public void SetInitiative()
         {

@@ -884,6 +884,7 @@
     <None Include="bin\Windows\Debug\RPG.vshost.exe.config" />
     <None Include="bin\Windows\Debug\RPG.vshost.exe.manifest" />
     <None Include="bin\Windows\Debug\RPGTest.vshost.exe.manifest" />
+    <None Include="Content.mgcb" />
     <None Include="Content\bin\Windows\Fonts\AwesomeFont.xnb" />
     <None Include="Content\bin\Windows\Intro\Good Feel Inc Intro.xnb" />
     <None Include="Content\bin\Windows\Sounds\Hitman_Reborn.xnb" />
