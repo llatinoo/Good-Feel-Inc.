@@ -11,8 +11,17 @@ namespace RPG
 {
     class Screen
     {
-        PartyMember char1 = new PartyMember("Anna", Classes.Coloss, "lol", 20, 30, 30, 20, 20, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Female\\Anna\\Anna_Standard_Anmation", "Animations\\Battlers\\Female\\Anna\\Anna_Attack_Anmation", "Animations\\Battlers\\Female\\Anna\\Anna_Death_Anmation");
-        Enemy enemy1 = new Enemy("Anna", Classes.Coloss, false,"bla", 20, 30, 30, 20, 20, 20, 20, "Animations\\Battlers\\Female\\Anna\\Anna_Standard_Anmation", "Animations\\Battlers\\Female\\Anna\\Anna_Attack_Anmation", "Animations\\Battlers\\Female\\Anna\\Anna_Death_Anmation", true);
+        PartyMember char1 = new PartyMember("Anna", Classes.Patron, "lol", 20, 30, 30, 20, 20, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Female\\Anna\\Anna_Standard_Animation", "Animations\\Battlers\\Female\\Anna\\Anna_Attack_Animation", "Animations\\Battlers\\Female\\Anna\\Anna_Death_Animation");
+        Enemy enemy1 = new Enemy("Anna", Classes.Patron, false,"bla", 20, 30, 30, 20, 20, 20, 20, "Enemies\\Bosse\\Human\\Anna\\Anna_Standard_Animation", "Enemies\\Bosse\\Human\\Anna\\Anna_Attack_Animation", "Enemies\\Bosse\\Human\\Anna\\Anna_Death_Animation", true);
+
+        PartyMember char2 = new PartyMember("Caspar", Classes.Patron, "lol", 20, 30, 30, 20, 20, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Male\\Caspar\\Caspar_Standard_Animation", "Animations\\Battlers\\Male\\Caspar\\Caspar_Attack_Animation", "Animations\\Battlers\\Male\\Caspar\\Caspar_Death_Animation");
+        PartyMember char3 = new PartyMember("Elena", Classes.Patron, "lol", 20, 30, 30, 20, 20, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Female\\Elena\\Elena_Standard_Animation", "Animations\\Battlers\\Female\\Elena\\Elena_Attack_Animation", "Animations\\Battlers\\Female\\Elena\\Elena_Death_Animation");
+        PartyMember char4 = new PartyMember("Genefe", Classes.Patron, "lol", 20, 30, 30, 20, 20, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Female\\Genefe\\Genefe_Standard_Animation", "Animations\\Battlers\\Female\\Genefe\\Genefe_Attack_Animation", "Animations\\Battlers\\Female\\Genefe\\Genefe_Death_Animation");
+
+
+        BattleEvent testevent;
+
+
         Movie Intro = new Movie("Intro\\Good Feel Inc Intro");
 
         StoryEvent test = new StoryEvent(0, 0);
@@ -102,10 +111,17 @@ namespace RPG
 
         public void Initialize()
         {
+            LoadSkillHelperClass.AddAllClassSkills(char1);
+            LoadSkillHelperClass.AddAllClassSkills(char2);
+            LoadSkillHelperClass.AddAllClassSkills(char3);
+            LoadSkillHelperClass.AddAllClassSkills(char4);
             Intro.Initialize();
+            testevent = new BattleEvent(new List<PartyMember> { char1, char2, char3, char4 }, new List<Enemy> { enemy1 });
         }
         public void LoadContent(ContentManager content)
         {
+            testevent.LoadContent(content);
+
             test.LoadContent(content);
             test1.LoadContent(content);
             mainMenuTheme = content.Load<Song>("Sounds\\Umineko_Life");
@@ -211,6 +227,7 @@ namespace RPG
         
         public void Update(GameTime gameTime)
         {
+            
             controls.Update();
 
             //Wenn das options Menu geöffnet wird, wird der Gamestate gespeichert um nach dem pausieren fortzufahren
@@ -343,6 +360,9 @@ namespace RPG
                     }
                     break;
                 case GameState.battleScreen:
+                    testevent.Battle();
+                    testevent.Update(gameTime);
+                    /*
                     foreach (GUIElement element in battleScreen)
                     {
                         element.Update();
@@ -359,7 +379,7 @@ namespace RPG
                         testSkill7.Update(gameTime);
                         testSkill8.Update(gameTime);
                         testSkill9.Update(gameTime);
-                    }
+                    }*/
                     break;
             }
 
@@ -400,6 +420,11 @@ namespace RPG
                     }
                     break;
                 case GameState.battleScreen:
+
+                    testevent.Draw(spriteBatch);
+                    testevent.DrawTargetBox(spriteBatch);
+
+                    /*
                     foreach (GUIElement element in battleScreen)
                     {
                         element.Draw(spriteBatch);
@@ -418,6 +443,7 @@ namespace RPG
                         testSkill8.Draw(spriteBatch);
                         testSkill9.Draw(spriteBatch);
                     }
+                    */
                     break;
             }
         }

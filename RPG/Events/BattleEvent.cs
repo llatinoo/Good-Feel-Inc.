@@ -25,8 +25,8 @@ namespace RPG.Events
         //Boolean für Drawings
         Boolean singleTargetParty = false;
         Boolean singleTargetEnemies = false;
-        Boolean partyTargetParty = false;
-        Boolean partyTargetEnemie = false;
+        Boolean skillClicked = false;
+        Boolean targetClicked = false;
 
         //Boolean für das Ende der Runde
         Boolean boolTurnOver = false;
@@ -51,17 +51,17 @@ namespace RPG.Events
         Vector2 finalBossPosition;
 
         //Skill Position
-        private Vector2 skillPosition_1 = new Vector2();
-        private Vector2 skillPosition_2 = new Vector2();
-        private Vector2 skillPosition_3 = new Vector2();
-        private Vector2 skillPosition_4 = new Vector2();
+        private Vector2 skillPosition_1 = new Vector2(100,75);
+        private Vector2 skillPosition_2 = new Vector2(100,100);
+        private Vector2 skillPosition_3 = new Vector2(100,125);
+        private Vector2 skillPosition_4 = new Vector2(100,150);
         private Vector2 ultiPosition = new Vector2();
 
 
-        private Vector2 targetPosition_1 = new Vector2();
-        private Vector2 targetPosition_2 = new Vector2();
-        private Vector2 targetPosition_3 = new Vector2();
-        private Vector2 targetPosition_4 = new Vector2();
+        private Vector2 targetPosition_1 = new Vector2(100,75);
+        private Vector2 targetPosition_2 = new Vector2(100,100);
+        private Vector2 targetPosition_3 = new Vector2(100,125);
+        private Vector2 targetPosition_4 = new Vector2(100,150);
 
         //Animation Speed
         private int animationSpeed = 300;
@@ -107,7 +107,33 @@ namespace RPG.Events
         GUIElement haloIco;
         GUIElement toxicIco;
 
-        public void Battle(SpriteBatch spriteBatch)
+
+        public BattleEvent(List<PartyMember> fightCadre, List<Enemy> enemies)
+        {
+            //Zuweisung der Listen
+            this.FightCadre = fightCadre;
+            this.Enemies = enemies;
+
+            //FightCader wird der Liste FightClub hinzugefügt
+            foreach (Character character in FightCadre)
+            {
+                FightClub.Add(character);
+            }
+
+            //Enemies wird der Liste FightClub hinzugefügt
+            foreach (Character character in Enemies)
+            {
+                FightClub.Add(character);
+            }
+
+            // FightClub Member werden nach dem Initiative wert sortiert
+            FightClub.OrderBy(character => character.GetInitiative());
+            activeChar = fightCadre.ElementAt<PartyMember>(0);
+        }
+
+
+
+        public void Battle()
         {
             do
             {
@@ -129,7 +155,7 @@ namespace RPG.Events
 
         public void LoadContent(ContentManager content)
         {
-            LoadTextures();
+            LoadTextures(content);
             //Animation erstellt
             Animation charStandardAnimation_1 = new Animation();
             Animation charStandardAnimation_2 = new Animation();
@@ -209,19 +235,19 @@ namespace RPG.Events
                 {
                     if (enemyCount == 0)
                     {
-                        enemyStandardAnimation_1.LoadContent(content.Load<Texture2D>(Enemies.ElementAt<Enemy>(0).standardAnimationPath), Vector2.Zero, 400, 400, animationSpeed, Color.White, 1f, true, 1, 3, false);
+                        enemyStandardAnimation_1.LoadContent(content.Load<Texture2D>(Enemies.ElementAt<Enemy>(0).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 0, 2, true);
                         Enemies.ElementAt<Enemy>(0).LoadContent(enemyStandardAnimation_1, enemyPosition_1);
                     }
 
                     if (enemyCount == 1)
                     {
-                        enemyStandardAnimation_2.LoadContent(content.Load<Texture2D>(Enemies.ElementAt<Enemy>(1).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
+                        enemyStandardAnimation_2.LoadContent(content.Load<Texture2D>(Enemies.ElementAt<Enemy>(1).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 0, 2, true);
                         Enemies.ElementAt<Enemy>(1).LoadContent(enemyStandardAnimation_2, characterPosition_2);
                     }
 
                     if (enemyCount == 2)
                     {
-                        enemyStandardAnimation_3.LoadContent(content.Load<Texture2D>(Enemies.ElementAt<Enemy>(2).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 1, 3, false);
+                        enemyStandardAnimation_3.LoadContent(content.Load<Texture2D>(Enemies.ElementAt<Enemy>(2).standardAnimationPath), Vector2.Zero, characterSize, characterSize, animationSpeed, Color.White, 1f, true, 0, 2, true);
                         Enemies.ElementAt<Enemy>(2).LoadContent(enemyStandardAnimation_3, characterPosition_3);
                     }
 
@@ -262,14 +288,16 @@ namespace RPG.Events
 
         }
 
-        public void LoadTextures()
+        public void LoadTextures(ContentManager content)
         {
             int skillCounter = 0;
             int charCounter = 0;
             int enemieCounter = 0;
 
             attackskill = new TextElement("Angriff", (int)skillPosition_1.X, (int)skillPosition_1.Y);
+            attackskill.LoadContent(content);
             restskill = new TextElement("Ausruhen", (int)skillPosition_1.X, (int)skillPosition_1.Y);
+            restskill.LoadContent(content);
 
             mindBlownIco = new GUIElement("Icons\\Mindblown_Icon");
             bleedIco = new GUIElement("Icons\\Bleed_Icon");
@@ -290,21 +318,26 @@ namespace RPG.Events
                             {
                                 Character1Name = new TextElement(character.Name, (int)targetPosition_1.X, (int)targetPosition_1.Y); 
                                 character1skill1 = new TextElement(skill.Name, (int)skillPosition_1.X, (int)skillPosition_1.Y);
+                                character1skill1.LoadContent(content);
+                                Character1Name.LoadContent(content);
                                 character1skill1.tclickEvent += OnClickSkill;
                             }
                             if (skillCounter == 1)
                             {
                                 character1skill2 = new TextElement(skill.Name, (int)skillPosition_2.X, (int)skillPosition_2.Y);
+                                character1skill2.LoadContent(content);
                                 character1skill2.tclickEvent += OnClickSkill;
                             }
                             if (skillCounter == 2)
                             {
                                 character1skill3 = new TextElement(skill.Name, (int)skillPosition_3.X, (int)skillPosition_3.Y);
+                                character1skill3.LoadContent(content);
                                 character1skill3.tclickEvent += OnClickSkill;
                             }
                             if (skillCounter == 3)
                             {
                                 character1skill4 = new TextElement(skill.Name, (int)skillPosition_4.X, (int)skillPosition_4.Y);
+                                character1skill4.LoadContent(content);
                                 character1skill4.tclickEvent += OnClickSkill;
                             }
                             skillCounter++;
@@ -317,21 +350,26 @@ namespace RPG.Events
                             {
                                 Character2Name = new TextElement(character.Name, (int)targetPosition_2.X, (int)targetPosition_2.Y);
                                 character2skill1 = new TextElement(skill.Name, (int)skillPosition_1.X, (int)skillPosition_1.Y);
+                                character2skill1.LoadContent(content);
+                                Character2Name.LoadContent(content);
                                 character2skill1.tclickEvent += OnClickSkill;
                             }
                             if (skillCounter == 1)
                             {
                                 character2skill2 = new TextElement(skill.Name, (int)skillPosition_2.X, (int)skillPosition_2.Y);
+                                character2skill2.LoadContent(content);
                                 character2skill2.tclickEvent += OnClickSkill;
                             }
                             if (skillCounter == 2)
                             {
                                 character2skill3 = new TextElement(skill.Name, (int)skillPosition_3.X, (int)skillPosition_3.Y);
-                                character2skill2.tclickEvent += OnClickSkill;
+                                character2skill3.LoadContent(content);
+                                character2skill3.tclickEvent += OnClickSkill;
                             }
                             if (skillCounter == 3)
                             {
                                 character2skill4 = new TextElement(skill.Name, (int)skillPosition_4.X, (int)skillPosition_4.Y);
+                                character2skill4.LoadContent(content);
                                 character2skill4.tclickEvent += OnClickSkill;
                             }
 
@@ -345,21 +383,26 @@ namespace RPG.Events
                             {
                                 Character3Name = new TextElement(character.Name, (int)targetPosition_3.X, (int)targetPosition_3.Y);
                                 character3skill1 = new TextElement(skill.Name, (int)skillPosition_1.X, (int)skillPosition_1.Y);
+                                character3skill1.LoadContent(content);
+                                Character3Name.LoadContent(content);
                                 character3skill1.tclickEvent += OnClickSkill;
                             }
                             if (skillCounter == 1)
                             {
                                 character3skill2 = new TextElement(skill.Name, (int)skillPosition_2.X, (int)skillPosition_2.Y);
+                                character3skill2.LoadContent(content);
                                 character3skill2.tclickEvent += OnClickSkill;
                             }
                             if (skillCounter == 2)
                             {
                                 character3skill3 = new TextElement(skill.Name, (int)skillPosition_3.X, (int)skillPosition_3.Y);
+                                character3skill3.LoadContent(content);
                                 character3skill3.tclickEvent += OnClickSkill;
                             }
                             if (skillCounter == 3)
                             {
                                 character3skill4 = new TextElement(skill.Name, (int)skillPosition_4.X, (int)skillPosition_4.Y);
+                                character3skill4.LoadContent(content);
                                 character3skill4.tclickEvent += OnClickSkill;
                             }
 
@@ -372,23 +415,28 @@ namespace RPG.Events
                             if (skillCounter == 0)
                             {
                                 Character4Name = new TextElement(character.Name, (int)targetPosition_4.X, (int)targetPosition_4.Y);
-                                character3skill1 = new TextElement(skill.Name, (int)skillPosition_1.X, (int)skillPosition_1.Y);
-                                character3skill1.tclickEvent += OnClickSkill;
+                                character4skill1 = new TextElement(skill.Name, (int)skillPosition_1.X, (int)skillPosition_1.Y);
+                                character4skill1.LoadContent(content);
+                                Character4Name.LoadContent(content);
+                                character4skill1.tclickEvent += OnClickSkill;
                             }
                             if (skillCounter == 1)
                             {
-                                character3skill2 = new TextElement(skill.Name, (int)skillPosition_2.X, (int)skillPosition_2.Y);
-                                character3skill2.tclickEvent += OnClickSkill;
+                                character4skill2 = new TextElement(skill.Name, (int)skillPosition_2.X, (int)skillPosition_2.Y);
+                                character4skill2.LoadContent(content);
+                                character4skill2.tclickEvent += OnClickSkill;
                             }
                             if (skillCounter == 2)
                             {
-                                character3skill3 = new TextElement(skill.Name, (int)skillPosition_3.X, (int)skillPosition_3.Y);
-                                character3skill3.tclickEvent += OnClickSkill;
+                                character4skill3 = new TextElement(skill.Name, (int)skillPosition_3.X, (int)skillPosition_3.Y);
+                                character4skill3.LoadContent(content);
+                                character4skill3.tclickEvent += OnClickSkill;
                             }
                             if (skillCounter == 3)
                             {
-                                character3skill4 = new TextElement(skill.Name, (int)skillPosition_4.X, (int)skillPosition_4.Y);
-                                character3skill4.tclickEvent += OnClickSkill;
+                                character4skill4 = new TextElement(skill.Name, (int)skillPosition_4.X, (int)skillPosition_4.Y);
+                                character4skill4.LoadContent(content);
+                                character4skill4.tclickEvent += OnClickSkill;
                             }
                             skillCounter++;
                         }
@@ -399,15 +447,26 @@ namespace RPG.Events
             }
             foreach(Enemy enemy in Enemies)
             {
-                if(enemieCounter == 0)
+                if (enemieCounter == 0)
+                {
                     Enemie1Name = new TextElement(enemy.Name, (int)targetPosition_1.X, (int)targetPosition_1.Y);
-                if(enemieCounter == 1)
+                    Enemie1Name.LoadContent(content);
+                }
+                if (enemieCounter == 1)
+                {
                     Enemie2Name = new TextElement(enemy.Name, (int)targetPosition_2.X, (int)targetPosition_2.Y);
-                if(enemieCounter == 2)
+                    Enemie1Name.LoadContent(content);
+                }
+                if (enemieCounter == 2)
+                {
                     Enemie3Name = new TextElement(enemy.Name, (int)targetPosition_3.X, (int)targetPosition_3.Y);
-                if(enemieCounter == 3)
+                    Enemie1Name.LoadContent(content);
+                }
+                if (enemieCounter == 3)
+                {
                     Enemie3Name = new TextElement(enemy.Name, (int)targetPosition_4.X, (int)targetPosition_4.Y);
-
+                    Enemie1Name.LoadContent(content);
+                }
                 enemieCounter++;
             }
         }
@@ -418,29 +477,40 @@ namespace RPG.Events
 
             if (singleTargetParty)
             {
-                if(Character1Name != null)
-                Character1Name.Draw(spriteBatch);
-                if(Character2Name != null)
-                Character2Name.Draw(spriteBatch);
-                if(Character3Name != null)
-                Character3Name.Draw(spriteBatch);
-                if(Character4Name != null)
-                Character4Name.Draw(spriteBatch);
+                if (!targetClicked)
+                {
+                    if (Character1Name != null)
+                        Character1Name.Draw(spriteBatch);
+                    if (Character2Name != null)
+                        Character2Name.Draw(spriteBatch);
+                    if (Character3Name != null)
+                        Character3Name.Draw(spriteBatch);
+                    if (Character4Name != null)
+                        Character4Name.Draw(spriteBatch);
+                }
             }
 
             if (singleTargetEnemies)
             {
-                if (Enemie1Name != null)
-                    Enemie1Name.Draw(spriteBatch);
-                if (Enemie2Name != null)
-                    Enemie2Name.Draw(spriteBatch);
-                if (Enemie3Name != null)
-                    Enemie3Name.Draw(spriteBatch);
-                if (Enemie4Name != null)
-                    Enemie4Name.Draw(spriteBatch);
+                if (!targetClicked)
+                {
+                    if (Enemie1Name != null)
+                        Enemie1Name.Draw(spriteBatch);
+                    if (Enemie2Name != null)
+                        Enemie2Name.Draw(spriteBatch);
+                    if (Enemie3Name != null)
+                        Enemie3Name.Draw(spriteBatch);
+                    if (Enemie4Name != null)
+                        Enemie4Name.Draw(spriteBatch);
+                }
             }
 
             Character1Name.tclickEvent += onClickTarget;
+            Character2Name.tclickEvent += onClickTarget;
+            Character3Name.tclickEvent += onClickTarget;
+            Character4Name.tclickEvent += onClickTarget;
+
+            Enemie1Name.tclickEvent += onClickTarget;
         }
 
         public void onClickTarget(String target)
@@ -451,6 +521,9 @@ namespace RPG.Events
                 {
                     activeSkill.Execute(activeChar, new List<Character> {character});
                     boolTurnOver = true;
+                    activeChar = FightCadre.ElementAt<PartyMember>(1);
+                    skillClicked = false;
+                    targetClicked = true;
                 }
             }
         }
@@ -460,7 +533,7 @@ namespace RPG.Events
         {
             // List der Gegner
             List<Character> targets = new List<Character>();
-
+            skillClicked = true;
             //Skill wird überprüft
             foreach (Skill skills in activeChar.Skills)
             {
@@ -509,32 +582,37 @@ namespace RPG.Events
                 }
             }
         }
-
-        public BattleEvent(List<PartyMember> fightCadre, List<Enemy> enemies)
-        {
-            //Zuweisung der Listen
-            this.FightCadre = fightCadre;
-            this.Enemies = enemies;
-
-            //FightCader wird der Liste FightClub hinzugefügt
-            foreach(Character character in FightCadre)
-            {
-                FightClub.Add(character);
-            }
-
-            //Enemies wird der Liste FightClub hinzugefügt
-            foreach (Character character in Enemies)
-            {
-                FightClub.Add(character);
-            }
-
-            // FightClub Member werden nach dem Initiative wert sortiert
-            FightClub.OrderBy(character => character.GetInitiative());
-
-        }
-
         public void Update(GameTime gameTime)
         {
+            character1skill1.Update();
+            character1skill2.Update();
+            character1skill3.Update();
+            character1skill4.Update();
+
+            character2skill1.Update();
+            character2skill2.Update();
+            character2skill3.Update();
+            character2skill4.Update();
+
+            character3skill1.Update();
+            character3skill2.Update();
+            character3skill3.Update();
+            character3skill4.Update();
+
+            character4skill1.Update();
+            character4skill2.Update();
+            character4skill3.Update();
+            character4skill4.Update();
+
+            Character1Name.Update();
+            Character2Name.Update();
+            Character3Name.Update();
+            Character4Name.Update();
+
+            Enemie1Name.Update();
+
+
+
             //Animationen der befreundeten Charakter werden geladen
             foreach (Character chars in FightCadre)
             {
@@ -560,61 +638,48 @@ namespace RPG.Events
 
             if (i == 0)
             {
-               character1skill1.Draw(spriteBatch);
-               character1skill2.Draw(spriteBatch);
-               character1skill3.Draw(spriteBatch);
-               character1skill4.Draw(spriteBatch);
+                if (!skillClicked)
+                {
+                    character1skill1.Draw(spriteBatch);
+                    character1skill2.Draw(spriteBatch);
+                    character1skill3.Draw(spriteBatch);
+                    character1skill4.Draw(spriteBatch);
+                }
             }
             if(i == 1)
             {
-                character2skill1.Draw(spriteBatch);
-                character2skill2.Draw(spriteBatch);
-                character2skill3.Draw(spriteBatch);
-                character2skill4.Draw(spriteBatch);
+                if (!skillClicked)
+                {
+                    character2skill1.Draw(spriteBatch);
+                    character2skill2.Draw(spriteBatch);
+                    character2skill3.Draw(spriteBatch);
+                    character2skill4.Draw(spriteBatch);
+                }
             }
             if (i == 2)
             {
-                character3skill1.Draw(spriteBatch);
-                character3skill2.Draw(spriteBatch);
-                character3skill3.Draw(spriteBatch);
-                character3skill4.Draw(spriteBatch);
+                if (!skillClicked)
+                {
+                    character3skill1.Draw(spriteBatch);
+                    character3skill2.Draw(spriteBatch);
+                    character3skill3.Draw(spriteBatch);
+                    character3skill4.Draw(spriteBatch);
+                }
             }
             if (i == 3)
             {
-                character4skill1.Draw(spriteBatch);
-                character4skill2.Draw(spriteBatch);
-                character4skill3.Draw(spriteBatch);
-                character4skill4.Draw(spriteBatch);
-            }
-
-            attackskill.Draw(spriteBatch);
-            restskill.Draw(spriteBatch);
-
-            foreach (PartyMember member in FightCadre)
-            {
-                int charCounter = 0;
-                if (member.Statuseffects.All(effect => effect.GetType() == typeof(Mindblown)))
+                if (!skillClicked)
                 {
-                    mindBlownIco.Draw(spriteBatch);
-                    if (charCounter == 0)
-                    {
-                        mindBlownIco.moveElement((int)characterPosition_1.X + 30, (int)characterPosition_1.Y - 30);
-                    }
-                    if(charCounter == 1)
-                    {
-                        mindBlownIco.moveElement((int)characterPosition_2.X + 30, (int)characterPosition_2.Y - 30);
-                    }
-                    if (charCounter == 2)
-                    {
-                        mindBlownIco.moveElement((int)characterPosition_2.X + 30, (int)characterPosition_2.Y - 30);
-                    }
-                    if (charCounter == 3)
-                    {
-                        mindBlownIco.moveElement((int)characterPosition_2.X + 30, (int)characterPosition_2.Y - 30);
-                    }
-                    charCounter = 0;
+                    character4skill1.Draw(spriteBatch);
+                    character4skill2.Draw(spriteBatch);
+                    character4skill3.Draw(spriteBatch);
+                    character4skill4.Draw(spriteBatch);
                 }
             }
+
+            //attackskill.Draw(spriteBatch);
+            //restskill.Draw(spriteBatch);
+
 
             // Zeichnet die Charaktere auf dem Bildschirm
             foreach (Character chars in FightCadre)
