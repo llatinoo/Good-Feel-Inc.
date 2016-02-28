@@ -139,6 +139,16 @@ namespace RPG.Events
             {
                 foreach (Character character in FightClub)
                 {
+                    for (int i = 0; i == character.Statuseffects.Count - 1; i++)
+                    {
+                        IStatuseffect currentEffect = character.Statuseffects.ElementAt(i);
+                        character.Life -= currentEffect.ExecuteStatus();
+                        if(currentEffect.IsDone())
+                        {
+                            character.Statuseffects.Remove(character.Statuseffects.ElementAt(i));
+                        }
+                    }
+
                     if (character.GetType() == typeof(PartyMember) & character.Life>0)
                     {
                         this.activeChar = character;

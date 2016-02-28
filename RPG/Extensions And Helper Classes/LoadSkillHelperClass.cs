@@ -102,8 +102,10 @@ namespace RPG
             }
 
 
-            member.AddSkill(new Skill(attackSkill.Name, Convert.ToInt32(attackSkill.ManaCosts), attackSkill.Target, attackSkill.AreaOfEffect, attackSkillEffects));
-            member.AddSkill(new Skill(recoverSkill.Name, Convert.ToInt32(recoverSkill.ManaCosts), recoverSkill.Target, recoverSkill.AreaOfEffect, recoverSkillEffects));
+            member.SetStandardSkills(
+                new Skill(attackSkill.Name, Convert.ToInt32(attackSkill.ManaCosts), attackSkill.Target, attackSkill.AreaOfEffect, attackSkillEffects), 
+                new Skill(recoverSkill.Name, Convert.ToInt32(recoverSkill.ManaCosts), recoverSkill.Target, recoverSkill.AreaOfEffect, recoverSkillEffects)
+             );
         }
     }
 }
