@@ -27,8 +27,9 @@ namespace RPG
             this.UltimatePointsToCast = ultimatePointsToCast;
         }
 
-        public void CheckLevel()
+        public void GainExp(int exp)
         {
+            this.Exp += exp;
             this.LevelList.OrderBy(x => x);
             if (this.Exp >= this.LevelList.ElementAt(0))
             {
