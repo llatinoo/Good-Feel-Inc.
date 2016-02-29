@@ -128,6 +128,7 @@ namespace RPG.Events
 
             // FightClub Member werden nach dem Initiative wert sortiert
             FightClub.OrderBy(character => character.GetInitiative());
+            activeChar = fightCadre.ElementAt<PartyMember>(0);
         }
 
 
@@ -561,33 +562,38 @@ namespace RPG.Events
         }
         public void Update(GameTime gameTime)
         {
-            character1skill1.Update();
-            character1skill2.Update();
-            character1skill3.Update();
-            character1skill4.Update();
+            if (!skillClicked)
+            {
+                character1skill1.Update();
+                character1skill2.Update();
+                character1skill3.Update();
+                character1skill4.Update();
 
-            character2skill1.Update();
-            character2skill2.Update();
-            character2skill3.Update();
-            character2skill4.Update();
+                character2skill1.Update();
+                character2skill2.Update();
+                character2skill3.Update();
+                character2skill4.Update();
 
-            character3skill1.Update();
-            character3skill2.Update();
-            character3skill3.Update();
-            character3skill4.Update();
+                character3skill1.Update();
+                character3skill2.Update();
+                character3skill3.Update();
+                character3skill4.Update();
 
-            character4skill1.Update();
-            character4skill2.Update();
-            character4skill3.Update();
-            character4skill4.Update();
+                character4skill1.Update();
+                character4skill2.Update();
+                character4skill3.Update();
+                character4skill4.Update();
+            }
 
-            Character1Name.Update();
-            Character2Name.Update();
-            Character3Name.Update();
-            Character4Name.Update();
+            if (!targetClicked)
+            {
+                Character1Name.Update();
+                Character2Name.Update();
+                Character3Name.Update();
+                Character4Name.Update();
 
-            Enemie1Name.Update();
-
+                Enemie1Name.Update();
+            }
 
 
             //Animationen der befreundeten Charakter werden geladen
