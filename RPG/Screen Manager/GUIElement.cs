@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace RPG
+namespace RPG.Screen_Manager
 {
     class GUIElement
     {
@@ -36,8 +36,8 @@ namespace RPG
         public GUIElement(string assetName)
         {
             this.assetName = assetName;
-            PositionX = 0;
-            PositionY = 0;
+            this.PositionX = 0;
+            this.PositionY = 0;
         }
         public GUIElement(string assetName,int PositionX, int PositionY)
         {
@@ -48,7 +48,7 @@ namespace RPG
         public void LoadContent(ContentManager content)
         {
             this.GUITexture = content.Load<Texture2D>(this.assetName);
-            this.GUIRect = new Rectangle(PositionX, PositionY, this.GUITexture.Width, this.GUITexture.Height);
+            this.GUIRect = new Rectangle(this.PositionX, this.PositionY, this.GUITexture.Width, this.GUITexture.Height);
         }
         public void Draw(SpriteBatch spriteBatch)
         {

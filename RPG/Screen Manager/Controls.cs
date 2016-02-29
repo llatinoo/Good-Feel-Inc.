@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace RPG
+namespace RPG.Screen_Manager
 {
     class Controls
     {
@@ -10,14 +10,14 @@ namespace RPG
 
         public Point CursorPos
         {
-            get { return cursorPos; }
+            get { return this.cursorPos; }
         }
 
         private Vector2 vecCursorPos;
 
         public Vector2 VecCursorPos
         {
-            get { return vecCursorPos; }
+            get { return this.vecCursorPos; }
         }
 
         //Tastatur Status
@@ -26,21 +26,21 @@ namespace RPG
 
         public KeyboardState CurrentKeyboardState
         {
-            get { return currentKeyboardState; }
+            get { return this.currentKeyboardState; }
         }
 
         public KeyboardState PreviousKeyboardState
         {
-            get { return previousKeyboardState; }
+            get { return this.previousKeyboardState; }
         }
 
 
         public void Update()
         {
-            vecCursorPos = new Vector2(Mouse.GetState().Position.X, Mouse.GetState().Position.Y);
-            cursorPos = new Point(Mouse.GetState().Position.X, Mouse.GetState().Position.Y);
-            previousKeyboardState = currentKeyboardState;
-            currentKeyboardState = Keyboard.GetState();
+            this.vecCursorPos = new Vector2(Mouse.GetState().Position.X, Mouse.GetState().Position.Y);
+            this.cursorPos = new Point(Mouse.GetState().Position.X, Mouse.GetState().Position.Y);
+            this.previousKeyboardState = this.currentKeyboardState;
+            this.currentKeyboardState = Keyboard.GetState();
         }
     }
 }

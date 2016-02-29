@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RPG;
+using RPG.Characters;
 
 namespace RPGTests
 {
@@ -15,7 +16,6 @@ namespace RPGTests
                 (
                     "Char",
                     Classes.Warrior, 
-                    "Dämon",
                     100,
                     100,
                     100,
@@ -33,7 +33,6 @@ namespace RPGTests
                     "Enemy",
                     Classes.Coloss,
                     false,
-                    "Human",
                     100,
                     100,
                     100,
@@ -51,7 +50,6 @@ namespace RPGTests
                 (
                     "Char",
                     Classes.DamageDealer,
-                    "Dämon",
                     100,
                     100,
                     100,
@@ -70,7 +68,6 @@ namespace RPGTests
             (
                 "Char",
                 Classes.Patron,
-                "Dämon",
                 100,
                 100,
                 100,

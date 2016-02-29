@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using RPG.Characters;
+using RPG.Skills.Effects;
 
-namespace RPG
+namespace RPG.Skills.Ultis
 {
     public class Götterlanze : IEffect
     {

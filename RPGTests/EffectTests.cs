@@ -2,7 +2,9 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RPG;
+using RPG.Characters;
 using RPG.Skills.Effects;
+using RPG.Skills.StatusEffects;
 
 namespace RPGTests
 {
@@ -20,7 +22,6 @@ namespace RPGTests
                 "Enemy",
                 Classes.Coloss,
                 false,
-                "Human",
                 1000, //vita
                 100, //mana
                 100, //strength
@@ -38,7 +39,6 @@ namespace RPGTests
             (
                 "Char",
                 Classes.DamageDealer,
-                "Dämon",
                 100,
                 100,
                 100,
@@ -120,7 +120,6 @@ namespace RPGTests
                 "Enemy",
                 Classes.Coloss,
                 false,
-                "Human",
                 1000, //vita
                 100, //mana
                 100, //strength
@@ -138,7 +137,6 @@ namespace RPGTests
             (
                 "Char",
                 Classes.DamageDealer,
-                "Dämon",
                 100,
                 100,
                 100,
@@ -246,7 +244,6 @@ namespace RPGTests
                 "Enemy",
                 Classes.Coloss,
                 false,
-                "Human",
                 1000, //vita
                 100, //mana
                 100, //strength
@@ -271,7 +268,6 @@ namespace RPGTests
             (
                 "Char",
                 Classes.DamageDealer,
-                "Dämon",
                 100,
                 100,
                 100,

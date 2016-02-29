@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using RPG.Characters;
 
-namespace RPG
+namespace RPG.Skills.Effects
 {
     public class CriticalDamage : IEffect
     {
@@ -9,6 +10,7 @@ namespace RPG
 
         public int CausedDamage { get; private set; }
 
+        //Verursacht einen 100% kritischen Treffer
         public void Execute(Character source, List<Character> targets)
         {
             foreach (var target in targets)

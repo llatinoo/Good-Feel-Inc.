@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
+﻿using System.Collections.Generic;
+using RPG.Characters;
 
-namespace RPG
+namespace RPG.Extensions_And_Helper_Classes
 {
     public static class LevelUpClass
     {
+        //Gibt die Änderung der Festwerte der spezifischen Klasse bei Level Up zurück
         public static List<int> LevelUpAttributes(Classes charClass)
         {
             if (charClass.Equals(Classes.Warrior))

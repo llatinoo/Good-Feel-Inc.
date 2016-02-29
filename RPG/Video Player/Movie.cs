@@ -1,9 +1,9 @@
-﻿using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
-namespace RPG
+namespace RPG.Video_Player
 {
     class Movie
     {
@@ -23,38 +23,38 @@ namespace RPG
 
         public void Initialize()
         {
-            videoPlayer = new VideoPlayer();
+            this.videoPlayer = new VideoPlayer();
         }
         public void LoadContent(ContentManager content)
         {
-            video = content.Load<Video>(videoPath);
-            screenSize = new Rectangle(0, 0, 720, 576);
-            if (state == 0)
+            this.video = content.Load<Video>(this.videoPath);
+            this.screenSize = new Rectangle(0, 0, 720, 576);
+            if (this.state == 0)
             {
-                videoPlayer.Play(video);
+                this.videoPlayer.Play(this.video);
             }
         }
 
         public void Update()
         {
-            if (videoPlayer.State == MediaState.Stopped && state != 1)
+            if (this.videoPlayer.State == MediaState.Stopped && this.state != 1)
             {
-                state = 1;
+                this.state = 1;
             }
 
             // Nur wenn Video abgespielt wird oder Pausiert ist wird GetTexture aufgerufen
-            if (videoPlayer.State != MediaState.Stopped)
+            if (this.videoPlayer.State != MediaState.Stopped)
             {
-                videoTexture = videoPlayer.GetTexture();
+                this.videoTexture = this.videoPlayer.GetTexture();
             }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            switch (state)
+            switch (this.state)
             {
                 case 0:
-                    spriteBatch.Draw(videoTexture, screenSize, Color.White);
+                    spriteBatch.Draw(this.videoTexture, this.screenSize, Color.White);
                     break;
                 case 1:
                     break;

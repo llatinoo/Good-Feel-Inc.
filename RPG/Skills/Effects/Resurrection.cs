@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using RPG.Characters;
 
-namespace RPG
+namespace RPG.Skills.Effects
 {
     public class Resurrection : IEffect
     {
+        //Wiederbelebung eines Charakters
         public void Execute(Character source, List<Character> targets)
         {
             foreach (var target in targets)
