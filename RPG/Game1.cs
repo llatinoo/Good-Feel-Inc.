@@ -18,8 +18,8 @@ namespace RPG
 
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content\\";
+            this.graphics = new GraphicsDeviceManager(this);
+            this.Content.RootDirectory = "Content\\";
         }
 
         /// <summary>
@@ -31,12 +31,12 @@ namespace RPG
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            graphics.PreferredBackBufferHeight = 576;
-            graphics.PreferredBackBufferWidth = 720;
-            graphics.ApplyChanges();
-            IsMouseVisible = false;
+            this.graphics.PreferredBackBufferHeight = 576;
+            this.graphics.PreferredBackBufferWidth = 720;
+            this.graphics.ApplyChanges();
+            this.IsMouseVisible = false;
 
-            screen.Initialize();
+            this.screen.Initialize();
             base.Initialize();
         }
 
@@ -47,11 +47,11 @@ namespace RPG
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            screen.LoadContent(Content);
-            MouseCursor.LoadContent(Content);
+            this.screen.LoadContent(this.Content);
+            this.MouseCursor.LoadContent(this.Content);
             
         }
         
@@ -62,7 +62,7 @@ namespace RPG
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
-            Content.Unload();
+            this.Content.Unload();
         }
 
         /// <summary>
@@ -73,13 +73,13 @@ namespace RPG
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Back))
-              Exit();
+                this.Exit();
 
             // TODO: Add your update logic here
             base.Update(gameTime);
-            screen.Update(gameTime);
-            MouseCursor.Update();
-            if (screen.ExitGame)
+            this.screen.Update(gameTime);
+            this.MouseCursor.Update();
+            if (this.screen.ExitGame)
             {
                 this.Exit();
             }
@@ -91,13 +91,13 @@ namespace RPG
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            this.GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
-            screen.Draw(spriteBatch);
-            MouseCursor.Draw(spriteBatch);
-            spriteBatch.End();
+            this.spriteBatch.Begin();
+            this.screen.Draw(this.spriteBatch);
+            this.MouseCursor.Draw(this.spriteBatch);
+            this.spriteBatch.End();
             base.Draw(gameTime);
         }
     }

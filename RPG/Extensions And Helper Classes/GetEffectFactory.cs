@@ -4,9 +4,9 @@ namespace RPG
 {
     public static class GetEffectFactory
     {
+        //Gibt den durch einen String gesuchten Effekt zurück
         public static IEffect GetEffect(string effectName)
         {
-            //Attributes Change
             //Vit
             if (effectName.ToLower() == "VitalityBuff".ToLower())
                 return new AttributesChangeEffect(AttributeActions.Add, Attributes.FightVitality);

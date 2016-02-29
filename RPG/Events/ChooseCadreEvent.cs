@@ -14,7 +14,7 @@ namespace RPG.Events
         List<PartyMember> fightCadre = new List<PartyMember>();
         public List<PartyMember> Fightcadre
         {
-            get { return fightCadre; }
+            get { return this.fightCadre; }
         }
         List<PartyMember> Group = new List<PartyMember>();
 
@@ -63,84 +63,84 @@ namespace RPG.Events
         public void LoadContent(ContentManager content)
         {
             int CountMember = 0;
-            foreach(PartyMember groupMember in Group)
+            foreach(PartyMember groupMember in this.Group)
             {
                 if (CountMember == 0)
                 {
-                    Face_1 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)FacePosition_1.X, (int)FacePosition_1.Y);
-                    Faces.Add(Face_1);
+                    this.Face_1 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_1.X, (int) this.FacePosition_1.Y);
+                    this.Faces.Add(this.Face_1);
                 }
                 if (CountMember == 1)
                 {
-                    Face_2 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)FacePosition_2.X, (int)FacePosition_2.Y);
-                    Faces.Add(Face_2);
+                    this.Face_2 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_2.X, (int) this.FacePosition_2.Y);
+                    this.Faces.Add(this.Face_2);
                 }
                 if (CountMember == 2)
                 {
-                    Face_3 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)FacePosition_3.X, (int)FacePosition_3.Y);
-                    Faces.Add(Face_3);
+                    this.Face_3 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_3.X, (int) this.FacePosition_3.Y);
+                    this.Faces.Add(this.Face_3);
                 }
                 if (CountMember == 3)
                 {
-                    Face_4 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)FacePosition_4.X, (int)FacePosition_4.Y);
-                    Faces.Add(Face_4);
+                    this.Face_4 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_4.X, (int) this.FacePosition_4.Y);
+                    this.Faces.Add(this.Face_4);
                 }
                 if (CountMember == 4)
                 {
-                    Face_5 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)FacePosition_5.X, (int)FacePosition_5.Y);
-                    Faces.Add(Face_5);
+                    this.Face_5 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_5.X, (int) this.FacePosition_5.Y);
+                    this.Faces.Add(this.Face_5);
                 }
                 if (CountMember == 5)
                 {
-                    Face_6 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)FacePosition_6.X, (int)FacePosition_6.Y);
-                    Faces.Add(Face_6);
+                    this.Face_6 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_6.X, (int) this.FacePosition_6.Y);
+                    this.Faces.Add(this.Face_6);
                 }
                 if (CountMember == 6)
                 {
-                    Face_7 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)FacePosition_7.X, (int)FacePosition_7.Y);
-                    Faces.Add(Face_7);
+                    this.Face_7 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_7.X, (int) this.FacePosition_7.Y);
+                    this.Faces.Add(this.Face_7);
                 }
                 if (CountMember == 7)
                 {
-                    Face_8 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)FacePosition_8.X, (int)FacePosition_8.Y);
-                    Faces.Add(Face_8);
+                    this.Face_8 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_8.X, (int) this.FacePosition_8.Y);
+                    this.Faces.Add(this.Face_8);
                 }
                 if (CountMember == 8)
                 {
-                    Face_9 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)FacePosition_9.X, (int)FacePosition_9.Y);
-                    Faces.Add(Face_9);
+                    this.Face_9 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_9.X, (int) this.FacePosition_9.Y);
+                    this.Faces.Add(this.Face_9);
                 }
                 if (CountMember == 9)
                 {
-                    Face_10 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)FacePosition_10.X, (int)FacePosition_10.Y);
-                    Faces.Add(Face_10);
+                    this.Face_10 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_10.X, (int) this.FacePosition_10.Y);
+                    this.Faces.Add(this.Face_10);
                 }
                 if (CountMember == 10)
                 {
-                    Face_11 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)FacePosition_11.X, (int)FacePosition_11.Y);
-                    Faces.Add(Face_11);
+                    this.Face_11 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_11.X, (int) this.FacePosition_11.Y);
+                    this.Faces.Add(this.Face_11);
                 }
                 if (CountMember == 11)
                 {
-                    Face_12 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)FacePosition_12.X, (int)FacePosition_12.Y);
-                    Faces.Add(Face_12);
+                    this.Face_12 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_12.X, (int) this.FacePosition_12.Y);
+                    this.Faces.Add(this.Face_12);
                 }
                 if (CountMember == 12)
                 {
-                    Face_13 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)FacePosition_13.X, (int)FacePosition_13.Y);
-                    Faces.Add(Face_13);
+                    this.Face_13 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_13.X, (int) this.FacePosition_13.Y);
+                    this.Faces.Add(this.Face_13);
                 }
                 if (CountMember == 13)
                 {
-                    Face_14 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)FacePosition_14.X, (int)FacePosition_14.Y);
-                    Faces.Add(Face_14);
+                    this.Face_14 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_14.X, (int) this.FacePosition_14.Y);
+                    this.Faces.Add(this.Face_14);
                 }
                 CountMember++;
             }
-            foreach(GUIElement face in Faces)
+            foreach(GUIElement face in this.Faces)
             {
                 face.LoadContent(content);
-                face.clickEvent += OnClick;
+                face.clickEvent += this.OnClick;
             }
         }
         public void Update()
@@ -149,13 +149,13 @@ namespace RPG.Events
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach(GUIElement face in Faces)
+            foreach(GUIElement face in this.Faces)
             {
                 face.Draw(spriteBatch);
             }
-            foreach(PartyMember member in fightCadre)
+            foreach(PartyMember member in this.fightCadre)
             {
-                foreach (GUIElement face in Faces)
+                foreach (GUIElement face in this.Faces)
                 {
                     if(face.AssetName.Contains(member.Name))
                     {
@@ -166,14 +166,14 @@ namespace RPG.Events
         }
         public void OnClick(String element)
         {
-            foreach (PartyMember groupMember in Group)
+            foreach (PartyMember groupMember in this.Group)
             {
                 if (element == "Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face")
                 {
-                    if(fightCadre.Contains<PartyMember>(groupMember))
+                    if(this.fightCadre.Contains<PartyMember>(groupMember))
                     {
-                        fightCadre.RemoveAt(fightCadre.IndexOf(groupMember));
-                        foreach(GUIElement face in Faces)
+                        this.fightCadre.RemoveAt(this.fightCadre.IndexOf(groupMember));
+                        foreach(GUIElement face in this.Faces)
                         {
                             if(face.AssetName.Contains(groupMember.Name))
                             {
@@ -181,9 +181,9 @@ namespace RPG.Events
                             }
                         }
                     }
-                    else if (fightCadre.Count < 3)
+                    else if (this.fightCadre.Count < 3)
                     {
-                        fightCadre.Add(groupMember);
+                        this.fightCadre.Add(groupMember);
                     }
                 }
             }

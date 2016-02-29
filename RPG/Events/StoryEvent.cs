@@ -38,7 +38,7 @@ namespace RPG
 
         public StoryEvent(int sceneNumber, int partNumber)
         {
-            getScene(sceneNumber, partNumber);
+            this.getScene(sceneNumber, partNumber);
         }
 
         void getScene(int sceneNumber, int partNumber)
@@ -52,41 +52,39 @@ namespace RPG
 
             foreach (TextBoxElement textBox in getPart.TextBoxes)
             {
-                
-                speakerPicture = new GUIElement(textBox.SpeakerPicture, (int)speakerPicturePosition.X, (int)speakerPicturePosition.Y);
-                listenerPicture = new GUIElement (textBox.ListenerPicture, (int)listenerPicturePosition.X, (int)listenerPicturePosition.Y);
-                speaker = new TextElement(textBox.Speaker, (int)listenerNamePosition.X, (int)listenerNamePosition.X);
-                listener = new TextElement(textBox.Listener, (int)listenerNamePosition.X, (int)listenerNamePosition.X);
-                row1 = new TextElement(textBox.Row1, (int)textLine_1.X, (int)textLine_1.Y);
-                row2 = new TextElement(textBox.Row2, (int)textLine_2.X, (int)textLine_2.Y);
-                row3 = new TextElement(textBox.Row3, (int)textLine_3.X, (int)textLine_3.Y);
-                row4 = new TextElement(textBox.Row4, (int)textLine_4.X, (int)textLine_4.Y);
+                this.speakerPicture = new GUIElement(textBox.SpeakerPicture, (int) this.speakerPicturePosition.X, (int) this.speakerPicturePosition.Y);
+                this.listenerPicture = new GUIElement (textBox.ListenerPicture, (int) this.listenerPicturePosition.X, (int) this.listenerPicturePosition.Y);
+                this.speaker = new TextElement(textBox.Speaker, (int) this.listenerNamePosition.X, (int) this.listenerNamePosition.X);
+                this.listener = new TextElement(textBox.Listener, (int) this.listenerNamePosition.X, (int) this.listenerNamePosition.X);
+                this.row1 = new TextElement(textBox.Row1, (int) this.textLine_1.X, (int) this.textLine_1.Y);
+                this.row2 = new TextElement(textBox.Row2, (int) this.textLine_2.X, (int) this.textLine_2.Y);
+                this.row3 = new TextElement(textBox.Row3, (int) this.textLine_3.X, (int) this.textLine_3.Y);
+                this.row4 = new TextElement(textBox.Row4, (int) this.textLine_4.X, (int) this.textLine_4.Y);
             }
         }
 
         public void LoadContent(ContentManager content)
         {
-            speakerPicture.LoadContent(content);
-            listenerPicture.LoadContent(content);
-            speaker.LoadContent(content);
-            listener.LoadContent(content);
-            row1.LoadContent(content);
-            row2.LoadContent(content);
-            row3.LoadContent(content);
-            row4.LoadContent(content);
+            this.speakerPicture.LoadContent(content);
+            this.listenerPicture.LoadContent(content);
+            this.speaker.LoadContent(content);
+            this.listener.LoadContent(content);
+            this.row1.LoadContent(content);
+            this.row2.LoadContent(content);
+            this.row3.LoadContent(content);
+            this.row4.LoadContent(content);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
-            speakerPicture.Draw(spriteBatch);
-            listenerPicture.Draw(spriteBatch);
-            speaker.Draw(spriteBatch);
-            listener.Draw(spriteBatch);
-            row1.Draw(spriteBatch);
-            row2.Draw(spriteBatch);
-            row3.Draw(spriteBatch);
-            row4.Draw(spriteBatch);
+            this.speakerPicture.Draw(spriteBatch);
+            this.listenerPicture.Draw(spriteBatch);
+            this.speaker.Draw(spriteBatch);
+            this.listener.Draw(spriteBatch);
+            this.row1.Draw(spriteBatch);
+            this.row2.Draw(spriteBatch);
+            this.row3.Draw(spriteBatch);
+            this.row4.Draw(spriteBatch);
         }
 
 

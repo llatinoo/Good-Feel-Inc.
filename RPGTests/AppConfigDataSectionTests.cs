@@ -42,7 +42,6 @@ namespace RPGTests
                     "Test",
                     Classes.Warrior,
                     false,
-                    "Dämon",
                     100,
                     100,
                     100,

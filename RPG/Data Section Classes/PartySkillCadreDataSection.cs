@@ -3,8 +3,10 @@ using System.Linq;
 
 namespace RPG
 {
+    //Section für Party-Skill zuordnung
     public class PartySkillCadreDataSection : ConfigurationSection
     {
+        //Benennung der Section
         [ConfigurationProperty("Chars")]
         public CharsElementCollection Chars
         {
@@ -12,7 +14,9 @@ namespace RPG
         }
     }
 
+    //Struktur der Section
 
+    //Ansammlung von Charakter-Elementen
     public class CharsElementCollection : ConfigurationElementCollection
     {
         protected override ConfigurationElement CreateNewElement()
@@ -61,6 +65,8 @@ namespace RPG
         }
     }
 
+
+    //Konkretes Charakter-Element
     public class CharElement : ConfigurationElement
     {
         [ConfigurationProperty("name", IsRequired = true, IsKey = true)]
@@ -87,6 +93,7 @@ namespace RPG
     }
 
 
+    //Ansammlung Charakter-Skill-Element-Referenzen
     public class CharSkillsElementCollection : ConfigurationElementCollection
     {
         protected override ConfigurationElement CreateNewElement()
@@ -134,6 +141,8 @@ namespace RPG
         }
     }
 
+
+    //Konkrete Charakter-Skill-Element Referenz mit Level begrenzung
     public class CharSkillElement : ConfigurationElement
     {
         [ConfigurationProperty("name", IsRequired = true, IsKey = true)]

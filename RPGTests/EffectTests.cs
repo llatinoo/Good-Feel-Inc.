@@ -20,7 +20,6 @@ namespace RPGTests
                 "Enemy",
                 Classes.Coloss,
                 false,
-                "Human",
                 1000, //vita
                 100, //mana
                 100, //strength
@@ -38,7 +37,6 @@ namespace RPGTests
             (
                 "Char",
                 Classes.DamageDealer,
-                "Dämon",
                 100,
                 100,
                 100,
@@ -120,7 +118,6 @@ namespace RPGTests
                 "Enemy",
                 Classes.Coloss,
                 false,
-                "Human",
                 1000, //vita
                 100, //mana
                 100, //strength
@@ -138,7 +135,6 @@ namespace RPGTests
             (
                 "Char",
                 Classes.DamageDealer,
-                "Dämon",
                 100,
                 100,
                 100,
@@ -246,7 +242,6 @@ namespace RPGTests
                 "Enemy",
                 Classes.Coloss,
                 false,
-                "Human",
                 1000, //vita
                 100, //mana
                 100, //strength
@@ -271,7 +266,6 @@ namespace RPGTests
             (
                 "Char",
                 Classes.DamageDealer,
-                "Dämon",
                 100,
                 100,
                 100,

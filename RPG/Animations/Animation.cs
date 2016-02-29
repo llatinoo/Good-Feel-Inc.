@@ -69,80 +69,80 @@ namespace RPG
             this.spriteSheetVertical = spriteSheetVertical;
             this.mirrored = mirrored;
             //Zeit wird auf 0 gesetzt
-            elapsedTime = 0;
+            this.elapsedTime = 0;
             if (!mirrored)
             {
-                currentVerticalFrame = 0;
-                currentHorizontalFrame = 0;
+                this.currentVerticalFrame = 0;
+                this.currentHorizontalFrame = 0;
             }
             else if(mirrored)
             {
-                currentVerticalFrame = spriteSheetVertical;
-                currentHorizontalFrame = spriteSheetHorizontal;
+                this.currentVerticalFrame = spriteSheetVertical;
+                this.currentHorizontalFrame = spriteSheetHorizontal;
             }
             //standartmäßig Animation aktiv setzen
-            active = true;
+            this.active = true;
 
         }
 
         public void Update(GameTime gameTime)
         {
-            if (active == false)
+            if (this.active == false)
             {
                 return;
             }
             //vergangene Zeit updaten
-            elapsedTime += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
+            this.elapsedTime += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
 
             
             //Wenn vergangene Zeit größer als anzeigezeit ist, wird das aktuelle Frame geändert
-            if (elapsedTime > frameDisplayTime)
+            if (this.elapsedTime > this.frameDisplayTime)
             {
-                    if (!mirrored)
+                    if (!this.mirrored)
                     {
-                    currentVerticalFrame++;
-                        if (currentVerticalFrame == spriteSheetVertical)
+                        this.currentVerticalFrame++;
+                        if (this.currentVerticalFrame == this.spriteSheetVertical)
                 {
-                            currentVerticalFrame = 0;
-                            currentHorizontalFrame++;
-                            if (currentHorizontalFrame == spriteSheetHorizontal)
+                    this.currentVerticalFrame = 0;
+                    this.currentHorizontalFrame++;
+                            if (this.currentHorizontalFrame == this.spriteSheetHorizontal)
                     {
-                        currentHorizontalFrame = 0;
+                        this.currentHorizontalFrame = 0;
                     }
-                            if (!loop)
+                            if (!this.loop)
                             {
-                                active = false;
+                                this.active = false;
                             }
                         }
                     }
-                    else if(mirrored)
+                    else if(this.mirrored)
                     {
-                    currentVerticalFrame--;
-                    if (currentVerticalFrame == 0)
+                        this.currentVerticalFrame--;
+                    if (this.currentVerticalFrame == 0)
                     {
-                        currentVerticalFrame = spriteSheetVertical;
-                        if (!loop)
+                        this.currentVerticalFrame = this.spriteSheetVertical;
+                        if (!this.loop)
                     {
-                        active = false;
+                        this.active = false;
                     }
                 }
                     }
                 //vergangene Zeit wird zurückgesetzt
-                elapsedTime = 0;
+                this.elapsedTime = 0;
             }
-                sourceRect = new Rectangle(frameWidth * currentVerticalFrame, frameHeight * currentHorizontalFrame, frameWidth, frameHeight);
+            this.sourceRect = new Rectangle(this.frameWidth *this.currentVerticalFrame, this.frameHeight *this.currentHorizontalFrame, this.frameWidth, this.frameHeight);
 
             //Ziel des anzuzeigenden Frames
-                destinationRect = new Rectangle((int)position.X - (int)(frameWidth * displayedScale) / 2,
-                (int)position.Y - (int)(frameHeight * displayedScale) / 2, (int)(frameWidth * displayedScale), (int)(frameHeight * displayedScale));
+            this.destinationRect = new Rectangle((int) this.position.X - (int)(this.frameWidth *this.displayedScale) / 2,
+                (int) this.position.Y - (int)(this.frameHeight *this.displayedScale) / 2, (int)(this.frameWidth *this.displayedScale), (int)(this.frameHeight *this.displayedScale));
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             //nur wenn die Animation aktiv ist wird sie dargestellt
-            if(active)
+            if(this.active)
             {
-                spriteBatch.Draw(sprite,destinationRect,sourceRect,color);
+                spriteBatch.Draw(this.sprite, this.destinationRect, this.sourceRect, this.color);
             }
         }
     }

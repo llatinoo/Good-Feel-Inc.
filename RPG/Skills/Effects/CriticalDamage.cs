@@ -15,6 +15,7 @@ namespace RPG
             {
                 this.CausedDamage = Convert.ToInt32((source.FightStrength + (this.r1.Next(1, (source.FightStrength / 7) * 1000)) / 1000));
 
+                //Automatischer Kritischer-Treffer
                 this.CausedDamage = Convert.ToInt32(this.CausedDamage * 1.5);
                 this.CausedDamage -= target.FightDefense;
 

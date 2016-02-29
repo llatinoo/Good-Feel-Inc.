@@ -6,6 +6,7 @@ namespace RPG
     {
         public void Execute(Character source, List<Character> targets)
         {
+            //Verursacht einen Statuseffekt
             //In Extension.cs
             targets.AddStatuseffectToTargets(target => new Burning(source));
         }

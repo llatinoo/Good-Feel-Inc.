@@ -3,6 +3,7 @@ using System.Linq;
 
 namespace RPG
 {
+    //Section für alle Skills
     public class SkillCadreDataSection : ConfigurationSection
     {
         [ConfigurationProperty("Skills")]
@@ -15,7 +16,9 @@ namespace RPG
         }
     }
 
+    //Struktur der Section
 
+    //Ansammlung von Skill-Elementen
     public class SkillsElementCollection : ConfigurationElementCollection
     {
         protected override ConfigurationElement CreateNewElement()
@@ -65,6 +68,7 @@ namespace RPG
     }
 
 
+    //Konkretes Skill Element
     public class SkillElement : ConfigurationElement
     {
         [ConfigurationProperty("name", IsRequired = true, IsKey = true)]
@@ -130,6 +134,7 @@ namespace RPG
     }
 
 
+    //Ansammlung von Effekt-Elementen
     public class EffectsElementCollection : ConfigurationElementCollection
     {
         protected override ConfigurationElement CreateNewElement()
@@ -178,6 +183,7 @@ namespace RPG
     }
 
 
+    //Konkretes Effekt-Element
     public class EffectElement : ConfigurationElement
     {
         [ConfigurationProperty("name", IsRequired = true, IsKey = true)]

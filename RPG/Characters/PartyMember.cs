@@ -6,19 +6,20 @@ namespace RPG
     //Klasse zur Unterscheidung von Verbündeten
     public class PartyMember : Character
     {
-        //Level Attribute
+        //Erfahrung des Charakters
         public int Exp { get; set; }
+        //Punkte an denen ein Charakter Aufsteigt
         public List<int> LevelList { get; private set; }
 
 
-        //Ultimative Fähigkeit
+        //Ultimative Fähigkeit und Punkte die zum Aktivieren benötigt werden
         public int UltimatePoints { get; set; }
         public int UltimatePointsToCast { get; set; }
 
 
-        public PartyMember(string charName, Classes className, string race, int vita, int mana, int strength, int mag,
+        public PartyMember(string charName, Classes className, int vita, int mana, int strength, int mag,
             int def, int res, int luck, List<int> levellist, int ultimatePointsToCast,string standardAnimationPath, string attackAnimationPath, string deathAnimationPath)
-            : base(charName, className, race, vita, mana, strength, mag, def, res, luck, standardAnimationPath, attackAnimationPath, deathAnimationPath)
+            : base(charName, className, vita, mana, strength, mag, def, res, luck, standardAnimationPath, attackAnimationPath, deathAnimationPath)
         {
             this.Exp = 0;
             this.LevelList = levellist;
@@ -27,17 +28,23 @@ namespace RPG
             this.UltimatePointsToCast = ultimatePointsToCast;
         }
 
+
+        //Erhalten von Exp und gegebenfalls LevelUp ausführen
         public void GainExp(int exp)
         {
             this.Exp += exp;
             this.LevelList.OrderBy(x => x);
-            if (this.Exp >= this.LevelList.ElementAt(0))
+
+            while (this.Exp >= this.LevelList.ElementAt(0))
             {
                 this.LevelUp();
-                LevelList.Remove(this.LevelList.ElementAt(0));
+                this.LevelList.Remove(this.LevelList.ElementAt(0));
+                this.LevelList.OrderBy(x => x);
             }
         }
 
+
+        //Levelupaufruf
         public void LevelUp()
         {
             this.Level++;

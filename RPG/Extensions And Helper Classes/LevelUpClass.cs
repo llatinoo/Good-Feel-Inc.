@@ -8,6 +8,7 @@ namespace RPG
 {
     public static class LevelUpClass
     {
+        //Gibt die Änderung der Festwerte der spezifischen Klasse bei Level Up zurück
         public static List<int> LevelUpAttributes(Classes charClass)
         {
             if (charClass.Equals(Classes.Warrior))

@@ -3,6 +3,7 @@ using System.Linq;
 
 namespace RPG
 {
+    //Section für Story-Dialoge
     public class StoryDialogsDataSection : ConfigurationSection
     {
         [ConfigurationProperty("Scenes")]
@@ -15,6 +16,9 @@ namespace RPG
         }
     }
 
+    //Struktur der Section
+
+    //Ansammlung von Szenen
     public class ScenesElementCollection : ConfigurationElementCollection
     {
         protected override ConfigurationElement CreateNewElement()
@@ -63,6 +67,8 @@ namespace RPG
         }
     }
 
+
+    //Konkretes Szenen-Element
     public class SceneElement : ConfigurationElement
     {
         [ConfigurationProperty("id", IsRequired = true, IsKey = true)]
@@ -88,6 +94,8 @@ namespace RPG
         }
     }
 
+
+    //Ansammlung von Parts
     public class PartsElementCollection : ConfigurationElementCollection
     {
         protected override ConfigurationElement CreateNewElement()
@@ -136,6 +144,8 @@ namespace RPG
         }
     }
 
+
+    //Konkretes Part-Element
     public class PartElement : ConfigurationElement
     {
         [ConfigurationProperty("id", IsRequired = true, IsKey = true)]
@@ -162,6 +172,7 @@ namespace RPG
     }
 
 
+    //Ansammlung von Textboxen
     public class TextBoxesElementCollection : ConfigurationElementCollection
     {
         protected override ConfigurationElement CreateNewElement()
@@ -209,6 +220,8 @@ namespace RPG
         }
     }
 
+
+    //Konkrete Textbox
     public class TextBoxElement : ConfigurationElement
     {
         [ConfigurationProperty("id", IsRequired = true, IsKey = true)]

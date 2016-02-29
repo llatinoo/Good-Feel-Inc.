@@ -31,25 +31,25 @@ namespace RPG
         public void LoadContent(ContentManager content)
         {
             //Font mit dem Namen "BasicFont" wird geladen
-            AwesomeFont = content.Load<SpriteFont>("Fonts\\AwesomeFont");
-            fontSize = AwesomeFont.MeasureString(skillName);
-            textRect = new Rectangle(positionX, positionY, (int)fontSize.X, (int)fontSize.Y);
+            this.AwesomeFont = content.Load<SpriteFont>("Fonts\\AwesomeFont");
+            this.fontSize = this.AwesomeFont.MeasureString(this.skillName);
+            this.textRect = new Rectangle(this.positionX, this.positionY, (int) this.fontSize.X, (int) this.fontSize.Y);
         }
 
         public void Update()
         {
-            controls.Update();
-            if(textRect.Contains(controls.CursorPos) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+            this.controls.Update();
+            if(this.textRect.Contains(this.controls.CursorPos) && Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
-                tclickEvent(skillName);
+                this.tclickEvent(this.skillName);
             }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(AwesomeFont, skillName, new Vector2(positionX, positionY), Color.White);
-            if (textRect.Contains(controls.CursorPos))
+            spriteBatch.DrawString(this.AwesomeFont, this.skillName, new Vector2(this.positionX, this.positionY), Color.White);
+            if (this.textRect.Contains(this.controls.CursorPos))
             {
-                spriteBatch.DrawString(AwesomeFont, skillName, new Vector2(positionX, positionY), Color.DarkBlue);
+                spriteBatch.DrawString(this.AwesomeFont, this.skillName, new Vector2(this.positionX, this.positionY), Color.DarkBlue);
             }
         }
       }
