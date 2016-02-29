@@ -142,13 +142,15 @@ namespace RPG
             this.Name = charName;
             this.Class = className;
 
-            this.FightVitality = this.Vitality = vitality;
-            this.FightManaPool = this.Manapool = mana;
-            this.FightStrength = this.Strength = strength;
-            this.FightMagic = this.Magic = magic;
-            this.FightDefense = this.Defense = defense;
-            this.FightResistance = this.Resistance = resistance;
-            this.FightLuck = this.Luck = luck;
+            this.Vitality = vitality;
+            this.Manapool = mana;
+            this.Strength = strength;
+            this.Magic = magic;
+            this.Defense = defense;
+            this.Resistance = resistance;
+            this.Luck = luck;
+
+            this.SetFightAttributes();
 
             this.Skills = new List<Skill>();
             this.Statuseffects = new List<IStatuseffect>();
@@ -241,6 +243,19 @@ namespace RPG
         public void Draw(SpriteBatch spriteBatch)
         {
             this.animation.Draw(spriteBatch);
+        }
+
+        public void SetFightAttributes()
+        {
+            this.FightVitality = this.Vitality;
+            this.FightManaPool = this.Manapool;
+            this.FightStrength = this.Strength;
+            this.FightMagic = this.Magic;
+            this.FightDefense = this.Defense;
+            this.FightResistance = this.Resistance;
+            this.FightLuck = this.Luck;
+            this.Life = Vitality;
+            this.Mana = Manapool;
         }
     }
 }
