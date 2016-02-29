@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace RPG.Screen_Manager
+namespace RPG
 {
     class Controls
     {

@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RPG;
-using RPG.Characters;
 
 namespace RPGTests
 {

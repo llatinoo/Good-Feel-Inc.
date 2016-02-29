@@ -4,9 +4,6 @@ using System.Configuration;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RPG;
-using RPG.Characters;
-using RPG.Data_Section_Classes;
-using RPG.Extensions_And_Helper_Classes;
 
 namespace RPGTests
 {

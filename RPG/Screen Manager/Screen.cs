@@ -5,13 +5,9 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using RPG.Animations;
-using RPG.Characters;
 using RPG.Events;
-using RPG.Extensions_And_Helper_Classes;
-using RPG.Video_Player;
 
-namespace RPG.Screen_Manager
+namespace RPG
 {
     class Screen
     {

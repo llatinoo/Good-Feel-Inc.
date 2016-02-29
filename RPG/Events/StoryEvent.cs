@@ -1,12 +1,13 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Configuration;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using RPG.Data_Section_Classes;
-using RPG.Screen_Manager;
 
-namespace RPG.Events
+namespace RPG
 {
     class StoryEvent
     {

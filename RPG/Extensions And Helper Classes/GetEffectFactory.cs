@@ -1,6 +1,6 @@
 ﻿using RPG.Skills.Effects;
 
-namespace RPG.Extensions_And_Helper_Classes
+namespace RPG
 {
     public static class GetEffectFactory
     {

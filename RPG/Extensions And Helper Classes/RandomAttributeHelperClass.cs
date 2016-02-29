@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using RPG.Skills.Effects;
 
-namespace RPG.Extensions_And_Helper_Classes
+namespace RPG
 {
     public static class RandomAttributeHelperClass
     {

@@ -2,9 +2,7 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RPG;
-using RPG.Characters;
 using RPG.Skills.Effects;
-using RPG.Skills.StatusEffects;
 
 namespace RPGTests
 {

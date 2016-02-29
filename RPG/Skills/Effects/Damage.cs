@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using RPG.Characters;
 
-namespace RPG.Skills.Effects
+namespace RPG
 {
     public class Damage : IEffect
     {
@@ -11,7 +10,6 @@ namespace RPG.Skills.Effects
 
         public int CausedDamage { get; private set; }
 
-        //Verursacht Shcaden mit der Chance auf einen kritischen Treffer
         public void Execute(Character source, List<Character> targets)
         {
             foreach(Character target in targets)

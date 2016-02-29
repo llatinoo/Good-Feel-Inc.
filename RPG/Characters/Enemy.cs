@@ -1,4 +1,6 @@
-﻿namespace RPG.Characters
+﻿using Microsoft.Xna.Framework;
+
+namespace RPG
 {
     //Klasse zur Unterscheidung von Gegnern
     public class Enemy : Character

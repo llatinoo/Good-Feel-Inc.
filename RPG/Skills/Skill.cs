@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using RPG.Animations;
-using RPG.Characters;
-using RPG.Skills.Effects;
 
-namespace RPG.Skills
+namespace RPG
 {
     public class Skill
     {

@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using RPG.Characters;
-using RPG.Data_Section_Classes;
 using RPG.Skills;
-using RPG.Skills.Effects;
 
-namespace RPG.Extensions_And_Helper_Classes
+namespace RPG
 {
     public static class LoadSkillHelperClass
     {

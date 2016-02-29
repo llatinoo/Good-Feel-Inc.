@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using System.Linq;
 
-namespace RPG.Data_Section_Classes
+namespace RPG
 {
     //Section für Party-Skill zuordnung
     public class PartySkillCadreDataSection : ConfigurationSection

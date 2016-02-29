@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using RPG.Skills;
+﻿using RPG.Skills;
+using System.Collections.Generic;
 
-namespace RPG.Characters
+namespace RPG
 {
     //Klasse für Spielerdaten
     public class Player : PartyMember
