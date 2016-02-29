@@ -24,8 +24,9 @@ namespace RPG
 
         Movie Intro = new Movie("Intro\\Good Feel Inc Intro");
 
-        StoryEvent test = new StoryEvent(0, 0);
-        StoryEvent test1 = new StoryEvent(1, 1);
+        //Musste die Parameter von 0,0 auf 0,1 ändern, da es zwar eine Szene 0 gibt, Parts (Genau wie Texteboxen) immer bei 1 anfangen
+        StoryEvent test = new StoryEvent(0, 1);
+        StoryEvent test1 = new StoryEvent(0, 1);
 
         bool stateChanged = false;
         Song mainMenuTheme;

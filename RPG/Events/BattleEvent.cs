@@ -138,24 +138,38 @@ namespace RPG.Events
             {
                 foreach (Character character in FightClub)
                 {
-                    for (int i = 0; i == character.Statuseffects.Count - 1; i++)
+                    if (character.Statuseffects.All(effect => effect.GetType() != typeof (Mindblown)))
                     {
-                        IStatuseffect currentEffect = character.Statuseffects.ElementAt(i);
-                        character.Life -= currentEffect.ExecuteStatus();
-                        if(currentEffect.IsDone())
+                        for (int i = 0; i == character.Statuseffects.Count - 1; i++)
                         {
-                            character.Statuseffects.Remove(character.Statuseffects.ElementAt(i));
+                            IStatuseffect currentEffect = character.Statuseffects.ElementAt(i);
+                            character.Life -= currentEffect.ExecuteStatus();
+                            if (currentEffect.IsDone())
+                            {
+                                character.Statuseffects.Remove(character.Statuseffects.ElementAt(i));
+                            }
+                        }
+
+                        if (character.GetType() == typeof (PartyMember) & character.Life > 0)
+                        {
+                            this.activeChar = character;
+                            do
+                            {
+
+                            } while (!boolTurnOver);
                         }
                     }
-
-                    if (character.GetType() == typeof(PartyMember) & character.Life>0)
+                    else
                     {
-                        this.activeChar = character;
-                        do
+                        for (int i = 0; i == character.Statuseffects.Count - 1; i++)
                         {
-
+                            IStatuseffect currentEffect = character.Statuseffects.ElementAt(i);
+                            character.Life -= currentEffect.ExecuteStatus();
+                            if (currentEffect.IsDone())
+                            {
+                                character.Statuseffects.Remove(character.Statuseffects.ElementAt(i));
+                            }
                         }
-                        while (!boolTurnOver);
                     }
                 }
             }
