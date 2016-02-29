@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace RPG
+namespace RPG.Screen_Manager
 {
     class Cursor
     {

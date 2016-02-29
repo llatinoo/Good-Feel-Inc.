@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using RPG.Characters;
+using RPG.Skills.Effects;
 
-namespace RPG
+namespace RPG.Skills.Ultis
 {
     public class Genozid : IEffect
     {

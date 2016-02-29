@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
+﻿using System.Collections.Generic;
+using RPG.Characters;
 
-namespace RPG
+namespace RPG.Extensions_And_Helper_Classes
 {
     public static class LevelUpClass
     {

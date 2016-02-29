@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using RPG.Extensions_And_Helper_Classes;
 
-namespace RPG
+namespace RPG.Characters
 {
     //Klasse zur Unterscheidung von Verbündeten
     public class PartyMember : Character

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using RPG.Characters;
+using RPG.Skills.StatusEffects;
 
-namespace RPG
+namespace RPG.Extensions_And_Helper_Classes
 {
     internal static class StatusEffectExecuteExtensions
     {

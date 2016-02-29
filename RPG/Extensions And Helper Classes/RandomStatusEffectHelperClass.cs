@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using RPG.Skills.Effects;
 
-namespace RPG
+namespace RPG.Extensions_And_Helper_Classes
 {
     public static class RandomStatusEffectHelperClass
     {

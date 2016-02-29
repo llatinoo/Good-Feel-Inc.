@@ -1,4 +1,6 @@
-﻿namespace RPG
+﻿using RPG.Characters;
+
+namespace RPG.Skills.StatusEffects
 {
     public class Mindblown : IStatuseffect
     {

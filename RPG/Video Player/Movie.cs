@@ -1,9 +1,9 @@
-﻿using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
-namespace RPG
+namespace RPG.Video_Player
 {
     class Movie
     {

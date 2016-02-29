@@ -1,7 +1,8 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using RPG.Characters;
 
-namespace RPG
+namespace RPG.Skills.StatusEffects
 {
     public class Burning : IStatuseffect
     {

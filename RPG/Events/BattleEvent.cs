@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using RPG.Animations;
+using RPG.Characters;
+using RPG.Screen_Manager;
+using RPG.Skills;
+using RPG.Skills.StatusEffects;
 
 namespace RPG.Events
 {

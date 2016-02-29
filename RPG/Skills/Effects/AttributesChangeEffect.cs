@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using RPG.Characters;
 
-namespace RPG
+namespace RPG.Skills.Effects
 {
     //Alle Haupt-Attribute die Existieren
     public enum Attributes
@@ -44,6 +45,7 @@ namespace RPG
     }
 
     //Eigentlicher Effekt
+    //Ändert bestimmte die Kampfwerte des Ziels
     public class AttributesChangeEffect : IEffect
     {
         public Attributes Attribute { get; private set; }
