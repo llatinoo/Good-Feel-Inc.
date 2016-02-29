@@ -25,8 +25,8 @@ namespace RPG
         Movie Intro = new Movie("Intro\\Good Feel Inc Intro");
 
         //Musste die Parameter von 0,0 auf 0,1 ändern, da es zwar eine Szene 0 gibt, Parts (Genau wie Texteboxen) immer bei 1 anfangen
-        StoryEvent test = new StoryEvent(0, 1);
-        StoryEvent test1 = new StoryEvent(0, 1);
+        //StoryEvent test = new StoryEvent(0, 1);
+        //StoryEvent test1 = new StoryEvent(0, 1);
 
         bool stateChanged = false;
         Song mainMenuTheme;
@@ -123,8 +123,8 @@ namespace RPG
         {
             this.testevent.LoadContent(content);
 
-            this.test.LoadContent(content);
-            this.test1.LoadContent(content);
+            //this.test.LoadContent(content);
+            //this.test1.LoadContent(content);
             this.mainMenuTheme = content.Load<Song>("Sounds\\Umineko_Life");
             this.battleScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
             this.storyScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
@@ -266,6 +266,7 @@ namespace RPG
                     this.Intro.Update();
                     break;
                 case GameState.mainMenu:
+                    this.testevent.Battle();
                     this.testevent.Update(gameTime);
                     /*
                     foreach (GUIElement element in mainMenu)

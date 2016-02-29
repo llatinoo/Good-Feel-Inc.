@@ -129,6 +129,7 @@ namespace RPG.Events
 
             // FightClub Member werden nach dem Initiative wert sortiert
             this.FightClub.OrderBy(character => character.GetInitiative());
+            //activeChar = fightCadre.ElementAt<PartyMember>(0);
         }
 
         private void ExecuteStatuseffects(Character character)
