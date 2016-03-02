@@ -43,7 +43,7 @@
 
         public int ExecuteStatus()
         {
-            this.Target.CanFight = false;
+            this.Target.IsMindBlown = false;
 
             this.Duration--;
             return this.Damage;

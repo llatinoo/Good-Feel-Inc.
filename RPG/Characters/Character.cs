@@ -133,7 +133,7 @@ namespace RPG
 
 
         //Gibt an ob der Charakter kämpfen kann
-        public bool CanFight { get; set; }
+        public bool IsMindBlown { get; set; }
 
 
         //Konstruktor
@@ -161,7 +161,7 @@ namespace RPG
             this.attackAnimationPath = attackAnimationPath;
 
             LoadSkillHelperClass.AddStandardSkills(this);
-            this.CanFight = true;
+            this.IsMindBlown = false;
         }
 
 
