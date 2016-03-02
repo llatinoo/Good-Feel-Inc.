@@ -131,6 +131,7 @@ namespace RPG.Events
             this.FightClub.OrderBy(character => character.GetInitiative());
         }
 
+
         private void ExecuteStatuseffects(Character character)
         {
                     for (int i = 0; i == character.Statuseffects.Count - 1; i++)
