@@ -514,74 +514,74 @@ namespace RPG.Events
                 if (skillName == skill.Name)
                 {
                     usedSkill = skill;
-                }
-                else if(skillName.ToLower().Equals("Angriff".ToLower()))
-                {
-                    usedSkill = activeChar.AttackSkill;
-                }
-                else if (skillName.ToLower().Equals("Ausruhen".ToLower()))
-                {
-                    skill.Execute(activeChar, new List<Character> { activeChar});
-                    if (activeCharCounter == FightClub.Count - 1)
-                    {
-                        activeCharCounter = 0;
-                        activeChar = FightClub.ElementAt<Character>(activeCharCounter);
-                    }
-                    else if (activeCharCounter != FightClub.Count - 1)
-                    {
-                        activeCharCounter++;
-                        activeChar = FightClub.ElementAt<Character>(activeCharCounter);
-                    }
-                    boolTurnOver = true;
-                    break;
-                }
-                else
-                {
-                    usedSkill = skill;
-                }
 
+                    /*else if(skillName.ToLower().Equals("Angriff".ToLower()))
+                    {
+                        usedSkill = activeChar.AttackSkill;
+                    }
+                    else if (skillName.ToLower().Equals("Ausruhen".ToLower()))
+                    {
+                        skill.Execute(activeChar, new List<Character> { activeChar});
+                        if (activeCharCounter == FightClub.Count - 1)
+                        {
+                            activeCharCounter = 0;
+                            activeChar = FightClub.ElementAt<Character>(activeCharCounter);
+                        }
+                        else if (activeCharCounter != FightClub.Count - 1)
+                        {
+                            activeCharCounter++;
+                            activeChar = FightClub.ElementAt<Character>(activeCharCounter);
+                        }
+                        boolTurnOver = true;
+                        break;
+                    }
+                    else
+                    {
+                        usedSkill = skill;
+                    }
+                    */
                     //Wenn der Skill auf einzelne Charaktere zielt wird das ausgeführt
-                    if (usedSkill.Target.ToLower() == "single".ToLower())
+                    if (skill.Target.ToLower() == "single".ToLower())
                     {
                         //Wenn der Skill sich auf PartyMember bezieht soll singleTarget True gesetzt werden
-                        if (usedSkill.AreaOfEffect.ToLower() == "party".ToLower())
+                        if (skill.AreaOfEffect.ToLower() == "party".ToLower())
                         {
                             this.singleTargetParty = true;
-                            this.activeSkill = usedSkill;
+                            this.activeSkill = skill;
                         }
 
                         // Sonst wird über prüft ob der Skill für einen Gegner bestimmt ist wenn ja dann soll singleTargetEnemies True gesetzt werden
-                        else if (usedSkill.AreaOfEffect.ToLower() == "enemy".ToLower())
+                        else if (skill.AreaOfEffect.ToLower() == "enemy".ToLower())
                         {
                             this.singleTargetEnemies = true;
-                            this.activeSkill = usedSkill;
+                            this.activeSkill = skill;
                         }
                     }
                     else
                     {
                         //Wenn der Skill sich auf eine Gruppe bezieht wird der skill ausgeführt dabei wird differenziert zwischen party und enemys
-                        if (usedSkill.AreaOfEffect.ToLower() == "party".ToLower())
+                        if (skill.AreaOfEffect.ToLower() == "party".ToLower())
                         {
                             foreach (PartyMember member in this.FightCadre)
                             {
                                 targets.Add(member);
                             }
 
-                            usedSkill.Execute(this.activeChar, targets);
+                            skill.Execute(this.activeChar, targets);
                             this.boolTurnOver = true;
                         }
-                        else if (usedSkill.AreaOfEffect.ToLower() == "enemy".ToLower())
+                        else if (skill.AreaOfEffect.ToLower() == "enemy".ToLower())
                         {
 
                             foreach (Enemy enemy in this.Enemies)
                             {
                                 targets.Add(enemy);
                             }
-                            usedSkill.Execute(this.activeChar, targets);
+                            skill.Execute(this.activeChar, targets);
                             this.boolTurnOver = true;
                         }
                     }
-
+                }
             }
         }
 
