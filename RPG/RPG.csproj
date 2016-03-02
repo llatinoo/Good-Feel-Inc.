@@ -69,6 +69,7 @@
     <Compile Include="Events\ChooseCadreEvent.cs" />
     <Compile Include="Events\IEvent.cs" />
     <Compile Include="Events\StoryEvent.cs" />
+    <Compile Include="Extensions And Helper Classes\BattleEventManager.cs" />
     <Compile Include="Extensions And Helper Classes\GetEffectFactory.cs" />
     <Compile Include="Extensions And Helper Classes\LevelUpClass.cs" />
     <Compile Include="Extensions And Helper Classes\LoadSkillHelperClass.cs" />
