@@ -33,6 +33,7 @@ namespace RPG.Events
         Boolean boolTurnOver = false;
         //Aktiver Charakter
         Character activeChar;
+        int activeCharCounter;
 
         //Character in Pixeln
         private int characterSize = 64;
@@ -129,7 +130,8 @@ namespace RPG.Events
 
             // FightClub Member werden nach dem Initiative wert sortiert
             this.FightClub.OrderBy(character => character.GetInitiative());
-            //activeChar = fightCadre.ElementAt<PartyMember>(0);
+            activeChar = FightClub.ElementAt<Character>(0);
+            activeCharCounter = 0;
         }
 
         private void ExecuteStatuseffects(Character character)
@@ -145,7 +147,7 @@ namespace RPG.Events
                     }
         }
 
-        public void Battle()
+        /*public void Battle()
                     {
             do
             {
@@ -195,7 +197,7 @@ namespace RPG.Events
                 }
             }
             while (this.FightCadre.All(character => character.Life > 0) && this.Enemies.All(Enemies => Enemies.Life > 0));
-        }
+        }*/
 
         public void LoadContent(ContentManager content)
         {
@@ -210,7 +212,7 @@ namespace RPG.Events
             Animation charAttackAnimation_2 = new Animation();
             Animation charAttackAnimation_3 = new Animation();
             Animation charAttackAnimation_4 = new Animation();
-
+             
             Animation charDeathAnimation_1 = new Animation();
             Animation charDeathAnimation_2 = new Animation();
             Animation charDeathAnimation_3 = new Animation();
@@ -536,6 +538,18 @@ namespace RPG.Events
                     this.targetClicked = true;
                     this.singleTargetEnemies = false;
                     this.singleTargetParty = false;
+
+                    if (activeCharCounter == FightClub.Count - 1)
+                    {
+                        activeCharCounter = 0;
+                        activeChar = FightClub.ElementAt<Character>(activeCharCounter);
+                    }
+                    else
+                    {
+                        activeCharCounter++;
+                        activeChar = FightClub.ElementAt<Character>(activeCharCounter);
+                    }
+                    
                 }
             }
         }
@@ -546,6 +560,7 @@ namespace RPG.Events
             // List der Gegner
             List<Character> targets = new List<Character>();
             this.skillClicked = true;
+            this.targetClicked = false;
             //Skill wird überprüft
             foreach (Skill skills in this.activeChar.Skills)
             {
@@ -596,39 +611,56 @@ namespace RPG.Events
         }
         public void Update(GameTime gameTime)
         {
-            if (!skillClicked)
+            if (activeChar.GetType() == typeof(Enemy))
             {
-                character1skill1.Update();
-                character1skill2.Update();
-                character1skill3.Update();
-                character1skill4.Update();
-
-                this.character2skill1.Update();
-                this.character2skill2.Update();
-                this.character2skill3.Update();
-                this.character2skill4.Update();
-
-                this.character3skill1.Update();
-                this.character3skill2.Update();
-                this.character3skill3.Update();
-                this.character3skill4.Update();
-
-                this.character4skill1.Update();
-                this.character4skill2.Update();
-                this.character4skill3.Update();
-                this.character4skill4.Update();
+                //führe KI aus
+                if (activeCharCounter == FightClub.Count - 1)
+                {
+                    activeCharCounter = 0;
+                    activeChar = FightClub.ElementAt<Character>(activeCharCounter);
+                }
+                else if(activeCharCounter != FightClub.Count - 1)
+                {
+                    activeCharCounter++;
+                    activeChar = FightClub.ElementAt<Character>(activeCharCounter);
+                }
+               
             }
-
-            if (!targetClicked)
+            else
             {
-                this.Character1Name.Update();
-                this.Character2Name.Update();
-                this.Character3Name.Update();
-                this.Character4Name.Update();
+                if (!skillClicked)
+                {
+                    character1skill1.Update();
+                    character1skill2.Update();
+                    character1skill3.Update();
+                    character1skill4.Update();
 
-                Enemie1Name.Update();
+                    this.character2skill1.Update();
+                    this.character2skill2.Update();
+                    this.character2skill3.Update();
+                    this.character2skill4.Update();
+
+                    this.character3skill1.Update();
+                    this.character3skill2.Update();
+                    this.character3skill3.Update();
+                    this.character3skill4.Update();
+
+                    this.character4skill1.Update();
+                    this.character4skill2.Update();
+                    this.character4skill3.Update();
+                    this.character4skill4.Update();
+                }
+
+                if (!targetClicked)
+                {
+                    this.Character1Name.Update();
+                    this.Character2Name.Update();
+                    this.Character3Name.Update();
+                    this.Character4Name.Update();
+
+                    Enemie1Name.Update();
+                }
             }
-
 
             //Animationen der befreundeten Charakter werden geladen
             foreach (Character chars in this.FightCadre)
@@ -646,6 +678,7 @@ namespace RPG.Events
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            
             int i;
             for (i = 0; i < this.FightCadre.Count - 1; i++)
             {
@@ -662,6 +695,7 @@ namespace RPG.Events
                     this.character1skill3.Draw(spriteBatch);
                     this.character1skill4.Draw(spriteBatch);
                 }
+                i = 0;
             }
             if (i == 1)
             {
@@ -672,6 +706,7 @@ namespace RPG.Events
                     this.character2skill3.Draw(spriteBatch);
                     this.character2skill4.Draw(spriteBatch);
                 }
+                i = 0;
             }
             if (i == 2)
             {
@@ -682,6 +717,7 @@ namespace RPG.Events
                     this.character3skill3.Draw(spriteBatch);
                     this.character3skill4.Draw(spriteBatch);
                 }
+                i = 0;
             }
             if (i == 3)
             {
@@ -692,42 +728,45 @@ namespace RPG.Events
                     this.character4skill3.Draw(spriteBatch);
                     this.character4skill4.Draw(spriteBatch);
                 }
+                i = 0;
             }
 
             //attackskill.Draw(spriteBatch);
             //restskill.Draw(spriteBatch);
 
-            if (this.singleTargetParty)
+            if (activeChar.GetType() != typeof(Enemy))
             {
-                if (!this.targetClicked)
+                if (this.singleTargetParty)
                 {
-                    if (this.Character1Name != null)
-                        this.Character1Name.Draw(spriteBatch);
-                    if (this.Character2Name != null)
-                        this.Character2Name.Draw(spriteBatch);
-                    if (this.Character3Name != null)
-                        this.Character3Name.Draw(spriteBatch);
-                    if (this.Character4Name != null)
-                        this.Character4Name.Draw(spriteBatch);
+                    if (!this.targetClicked)
+                    {
+                        if (this.Character1Name != null)
+                            this.Character1Name.Draw(spriteBatch);
+                        if (this.Character2Name != null)
+                            this.Character2Name.Draw(spriteBatch);
+                        if (this.Character3Name != null)
+                            this.Character3Name.Draw(spriteBatch);
+                        if (this.Character4Name != null)
+                            this.Character4Name.Draw(spriteBatch);
+                    }
                 }
-            }
 
-            if (this.singleTargetEnemies)
-            {
-                if (!this.targetClicked)
+                if (this.singleTargetEnemies)
                 {
-                    if (this.Enemie1Name != null)
-                        this.Enemie1Name.Draw(spriteBatch);
-                    if (this.Enemie2Name != null)
-                        this.Enemie2Name.Draw(spriteBatch);
-                    if (this.Enemie3Name != null)
-                        this.Enemie3Name.Draw(spriteBatch);
-                    if (this.Enemie4Name != null)
-                        this.Enemie4Name.Draw(spriteBatch);
+                    if (!this.targetClicked)
+                    {
+                        if (this.Enemie1Name != null)
+                            this.Enemie1Name.Draw(spriteBatch);
+                        if (this.Enemie2Name != null)
+                            this.Enemie2Name.Draw(spriteBatch);
+                        if (this.Enemie3Name != null)
+                            this.Enemie3Name.Draw(spriteBatch);
+                        if (this.Enemie4Name != null)
+                            this.Enemie4Name.Draw(spriteBatch);
+                    }
                 }
+
             }
-
-
             // Zeichnet die Charaktere auf dem Bildschirm
             foreach (Character chars in this.FightCadre)
             {
