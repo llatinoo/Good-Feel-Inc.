@@ -12,7 +12,7 @@ namespace RPG
     class Screen
     {
         PartyMember char1 = new PartyMember("Anna", Classes.DamageDealer, 20, 30, 30, 20, 20, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Female\\Anna\\Anna_Standard_Animation", "Animations\\Battlers\\Female\\Anna\\Anna_Attack_Animation", "Animations\\Battlers\\Female\\Anna\\Anna_Death_Animation");
-        Enemy enemy1 = new Enemy("Anna", Classes.Patron, false, 20, 30, 30, 20, 20, 20, 20, "Enemies\\Bosse\\Human\\Anna\\Anna_Standard_Animation", "Enemies\\Bosse\\Human\\Anna\\Anna_Attack_Animation", "Enemies\\Bosse\\Human\\Anna\\Anna_Death_Animation", true);
+        Enemy enemy1 = new Enemy("Kaiser", Classes.Patron, false, 20, 30, 30, 20, 20, 20, 20, "Enemies\\Bosse\\Human\\Anna\\Anna_Standard_Animation", "Enemies\\Bosse\\Human\\Anna\\Anna_Attack_Animation", "Enemies\\Bosse\\Human\\Anna\\Anna_Death_Animation", true);
 
         PartyMember char2 = new PartyMember("Caspar", Classes.DamageDealer, 20, 30, 30, 20, 20, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Male\\Caspar\\Caspar_Standard_Animation", "Animations\\Battlers\\Male\\Caspar\\Caspar_Attack_Animation", "Animations\\Battlers\\Male\\Caspar\\Caspar_Death_Animation");
         PartyMember char3 = new PartyMember("Elena", Classes.DamageDealer, 20, 30, 30, 20, 20, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Female\\Elena\\Elena_Standard_Animation", "Animations\\Battlers\\Female\\Elena\\Elena_Attack_Animation", "Animations\\Battlers\\Female\\Elena\\Elena_Death_Animation");
@@ -25,8 +25,8 @@ namespace RPG
         Movie Intro = new Movie("Intro\\Good Feel Inc Intro");
 
         //Musste die Parameter von 0,0 auf 0,1 ändern, da es zwar eine Szene 0 gibt, Parts (Genau wie Texteboxen) immer bei 1 anfangen
-        StoryEvent test = new StoryEvent(0, 1);
-        StoryEvent test1 = new StoryEvent(0, 1);
+        //StoryEvent test = new StoryEvent(0, 1);
+        //StoryEvent test1 = new StoryEvent(0, 1);
 
         bool stateChanged = false;
         Song mainMenuTheme;
@@ -123,8 +123,8 @@ namespace RPG
         {
             this.testevent.LoadContent(content);
 
-            this.test.LoadContent(content);
-            this.test1.LoadContent(content);
+            //this.test.LoadContent(content);
+            //this.test1.LoadContent(content);
             this.mainMenuTheme = content.Load<Song>("Sounds\\Umineko_Life");
             this.battleScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
             this.storyScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
@@ -266,6 +266,7 @@ namespace RPG
                     this.Intro.Update();
                     break;
                 case GameState.mainMenu:
+                    //this.testevent.Battle();
                     this.testevent.Update(gameTime);
                     /*
                     foreach (GUIElement element in mainMenu)
@@ -362,7 +363,6 @@ namespace RPG
                     }
                     break;
                 case GameState.battleScreen:
-                    //testevent.Battle();
                     
                     /*
                     foreach (GUIElement element in battleScreen)

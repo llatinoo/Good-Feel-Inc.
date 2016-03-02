@@ -161,6 +161,7 @@ namespace RPG
             this.attackAnimationPath = attackAnimationPath;
 
             LoadSkillHelperClass.AddStandardSkills(this);
+            this.CanFight = true;
         }
 
 
