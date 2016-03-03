@@ -816,7 +816,7 @@
 /processorParam:TextureFormat=Color
 /build:Content/Backgrounds/Story/Winterbach_Story_Background.png
 
-#begin Content/Boxes/SkillBox_RPG.png
+#begin Content/Boxes/SkillBox.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -825,9 +825,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Boxes/SkillBox_RPG.png
+/build:Content/Boxes/SkillBox.png
 
-#begin Content/Boxes/TextBox_Heroic_RPG.png
+#begin Content/Boxes/TextBox_Heroic.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -836,9 +836,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Boxes/TextBox_Heroic_RPG.png
+/build:Content/Boxes/TextBox_Heroic.png
 
-#begin Content/Boxes/TextBox_RPG.png
+#begin Content/Boxes/TextBox_Normal.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -847,7 +847,7 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Boxes/TextBox_RPG.png
+/build:Content/Boxes/TextBox_Normal.png
 
 #begin Content/Buttons/Continue_Button.png
 /importer:TextureImporter
@@ -1421,7 +1421,7 @@
 /processorParam:TextureFormat=Color
 /build:Content/Enemies/Monster/Succubus.png
 
-#begin Content/Faces/Female/Anna/Anna_Cry_Face.png
+#begin Content/Faces/Anna/Anna_Cry_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1430,9 +1430,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Anna/Anna_Cry_Face.png
+/build:Content/Faces/Anna/Anna_Cry_Face.png
 
-#begin Content/Faces/Female/Anna/Anna_Happy_Face.png
+#begin Content/Faces/Anna/Anna_Happy_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1441,9 +1441,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Anna/Anna_Happy_Face.png
+/build:Content/Faces/Anna/Anna_Happy_Face.png
 
-#begin Content/Faces/Female/Anna/Anna_NotAmused_Face.png
+#begin Content/Faces/Anna/Anna_NotAmused_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1452,9 +1452,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Anna/Anna_NotAmused_Face.png
+/build:Content/Faces/Anna/Anna_NotAmused_Face.png
 
-#begin Content/Faces/Female/Anna/Anna_Provoke_Face.png
+#begin Content/Faces/Anna/Anna_Provoke_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1463,9 +1463,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Anna/Anna_Provoke_Face.png
+/build:Content/Faces/Anna/Anna_Provoke_Face.png
 
-#begin Content/Faces/Female/Anna/Anna_Shoked_Face.png
+#begin Content/Faces/Anna/Anna_Shoked_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1474,9 +1474,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Anna/Anna_Shoked_Face.png
+/build:Content/Faces/Anna/Anna_Shoked_Face.png
 
-#begin Content/Faces/Female/Anna/Anna_Standard_Face.png
+#begin Content/Faces/Anna/Anna_Standard_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1485,9 +1485,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Anna/Anna_Standard_Face.png
+/build:Content/Faces/Anna/Anna_Standard_Face.png
 
-#begin Content/Faces/Female/Anna/Anna_Thoughtful_Face.png
+#begin Content/Faces/Anna/Anna_Thoughtful_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1496,9 +1496,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Anna/Anna_Thoughtful_Face.png
+/build:Content/Faces/Anna/Anna_Thoughtful_Face.png
 
-#begin Content/Faces/Female/Elena/Elena_Happy_Face.png
+#begin Content/Faces/Capsar/Caspar_Happy_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1507,9 +1507,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Elena/Elena_Happy_Face.png
+/build:Content/Faces/Capsar/Caspar_Happy_Face.png
 
-#begin Content/Faces/Female/Elena/Elena_NotAmused_Face.png
+#begin Content/Faces/Capsar/Caspar_NotAmused_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1518,9 +1518,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Elena/Elena_NotAmused_Face.png
+/build:Content/Faces/Capsar/Caspar_NotAmused_Face.png
 
-#begin Content/Faces/Female/Elena/Elena_Provoke_Face.png
+#begin Content/Faces/Capsar/Caspar_Provoke_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1529,9 +1529,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Elena/Elena_Provoke_Face.png
+/build:Content/Faces/Capsar/Caspar_Provoke_Face.png
 
-#begin Content/Faces/Female/Elena/Elena_Shocked_Face.png
+#begin Content/Faces/Capsar/Caspar_Shocked_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1540,9 +1540,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Elena/Elena_Shocked_Face.png
+/build:Content/Faces/Capsar/Caspar_Shocked_Face.png
 
-#begin Content/Faces/Female/Elena/Elena_Standard_Face.png
+#begin Content/Faces/Capsar/Caspar_Standard_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1551,9 +1551,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Elena/Elena_Standard_Face.png
+/build:Content/Faces/Capsar/Caspar_Standard_Face.png
 
-#begin Content/Faces/Female/Elena/Elena_Thoughtful_Face.png
+#begin Content/Faces/Capsar/Caspar_Thoughtful_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1562,9 +1562,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Elena/Elena_Thoughtful_Face.png
+/build:Content/Faces/Capsar/Caspar_Thoughtful_Face.png
 
-#begin Content/Faces/Female/Ells/Ells_Cry_Face.png
+#begin Content/Faces/Elena/Elena_Happy_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1573,9 +1573,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Ells/Ells_Cry_Face.png
+/build:Content/Faces/Elena/Elena_Happy_Face.png
 
-#begin Content/Faces/Female/Ells/Ells_Happy_Face.png
+#begin Content/Faces/Elena/Elena_NotAmused_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1584,9 +1584,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Ells/Ells_Happy_Face.png
+/build:Content/Faces/Elena/Elena_NotAmused_Face.png
 
-#begin Content/Faces/Female/Ells/Ells_NotAmused_Face.png
+#begin Content/Faces/Elena/Elena_Provoke_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1595,9 +1595,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Ells/Ells_NotAmused_Face.png
+/build:Content/Faces/Elena/Elena_Provoke_Face.png
 
-#begin Content/Faces/Female/Ells/Ells_Provoke_Face.png
+#begin Content/Faces/Elena/Elena_Shocked_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1606,9 +1606,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Ells/Ells_Provoke_Face.png
+/build:Content/Faces/Elena/Elena_Shocked_Face.png
 
-#begin Content/Faces/Female/Ells/Ells_Shocked_Face.png
+#begin Content/Faces/Elena/Elena_Standard_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1617,9 +1617,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Ells/Ells_Shocked_Face.png
+/build:Content/Faces/Elena/Elena_Standard_Face.png
 
-#begin Content/Faces/Female/Ells/Ells_Standard_Face.png
+#begin Content/Faces/Elena/Elena_Thoughtful_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1628,9 +1628,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Ells/Ells_Standard_Face.png
+/build:Content/Faces/Elena/Elena_Thoughtful_Face.png
 
-#begin Content/Faces/Female/Ells/Ells_Thoughtful_Face.png
+#begin Content/Faces/Ells/Ells_Cry_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1639,9 +1639,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Ells/Ells_Thoughtful_Face.png
+/build:Content/Faces/Ells/Ells_Cry_Face.png
 
-#begin Content/Faces/Female/Genefe/Genefe_Cry_Face.png
+#begin Content/Faces/Ells/Ells_Happy_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1650,9 +1650,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Genefe/Genefe_Cry_Face.png
+/build:Content/Faces/Ells/Ells_Happy_Face.png
 
-#begin Content/Faces/Female/Genefe/Genefe_Happy_Face.png
+#begin Content/Faces/Ells/Ells_NotAmused_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1661,9 +1661,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Genefe/Genefe_Happy_Face.png
+/build:Content/Faces/Ells/Ells_NotAmused_Face.png
 
-#begin Content/Faces/Female/Genefe/Genefe_NotAmused_Face.png
+#begin Content/Faces/Ells/Ells_Provoke_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1672,9 +1672,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Genefe/Genefe_NotAmused_Face.png
+/build:Content/Faces/Ells/Ells_Provoke_Face.png
 
-#begin Content/Faces/Female/Genefe/Genefe_Provoke_Face.png
+#begin Content/Faces/Ells/Ells_Shocked_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1683,9 +1683,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Genefe/Genefe_Provoke_Face.png
+/build:Content/Faces/Ells/Ells_Shocked_Face.png
 
-#begin Content/Faces/Female/Genefe/Genefe_Shocked_Face.png
+#begin Content/Faces/Ells/Ells_Standard_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1694,9 +1694,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Genefe/Genefe_Shocked_Face.png
+/build:Content/Faces/Ells/Ells_Standard_Face.png
 
-#begin Content/Faces/Female/Genefe/Genefe_Standard_Face.png
+#begin Content/Faces/Ells/Ells_Thoughtful_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1705,9 +1705,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Genefe/Genefe_Standard_Face.png
+/build:Content/Faces/Ells/Ells_Thoughtful_Face.png
 
-#begin Content/Faces/Female/Genefe/Genefe_Thoughtful_Face.png
+#begin Content/Faces/Genefe/Genefe_Cry_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1716,9 +1716,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Genefe/Genefe_Thoughtful_Face.png
+/build:Content/Faces/Genefe/Genefe_Cry_Face.png
 
-#begin Content/Faces/Female/Irene/Irene_Standard_Face.png
+#begin Content/Faces/Genefe/Genefe_Happy_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1727,9 +1727,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Irene/Irene_Standard_Face.png
+/build:Content/Faces/Genefe/Genefe_Happy_Face.png
 
-#begin Content/Faces/Female/Marlein/Marlein_Cry_Face.png
+#begin Content/Faces/Genefe/Genefe_NotAmused_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1738,9 +1738,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Marlein/Marlein_Cry_Face.png
+/build:Content/Faces/Genefe/Genefe_NotAmused_Face.png
 
-#begin Content/Faces/Female/Marlein/Marlein_Happy_Face.png
+#begin Content/Faces/Genefe/Genefe_Provoke_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1749,9 +1749,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Marlein/Marlein_Happy_Face.png
+/build:Content/Faces/Genefe/Genefe_Provoke_Face.png
 
-#begin Content/Faces/Female/Marlein/Marlein_NotAmused_Face.png
+#begin Content/Faces/Genefe/Genefe_Shocked_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1760,9 +1760,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Marlein/Marlein_NotAmused_Face.png
+/build:Content/Faces/Genefe/Genefe_Shocked_Face.png
 
-#begin Content/Faces/Female/Marlein/Marlein_Provoke_Face.png
+#begin Content/Faces/Genefe/Genefe_Standard_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1771,9 +1771,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Marlein/Marlein_Provoke_Face.png
+/build:Content/Faces/Genefe/Genefe_Standard_Face.png
 
-#begin Content/Faces/Female/Marlein/Marlein_Shocked_Face.png
+#begin Content/Faces/Genefe/Genefe_Thoughtful_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1782,9 +1782,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Marlein/Marlein_Shocked_Face.png
+/build:Content/Faces/Genefe/Genefe_Thoughtful_Face.png
 
-#begin Content/Faces/Female/Marlein/Marlein_Standard_Face.png
+#begin Content/Faces/Irene/Irene_Standard_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1793,9 +1793,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Marlein/Marlein_Standard_Face.png
+/build:Content/Faces/Irene/Irene_Standard_Face.png
 
-#begin Content/Faces/Female/Marlein/Marlein_Thoughtful_Face.png
+#begin Content/Faces/Jos/Jos_Happy_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1804,9 +1804,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Female/Marlein/Marlein_Thoughtful_Face.png
+/build:Content/Faces/Jos/Jos_Happy_Face.png
 
-#begin Content/Faces/Male/Capsar/Caspar_Happy_Face.png
+#begin Content/Faces/Jos/Jos_NotAmused_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1815,9 +1815,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Capsar/Caspar_Happy_Face.png
+/build:Content/Faces/Jos/Jos_NotAmused_Face.png
 
-#begin Content/Faces/Male/Capsar/Caspar_NotAmused_Face.png
+#begin Content/Faces/Jos/Jos_Provoke_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1826,9 +1826,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Capsar/Caspar_NotAmused_Face.png
+/build:Content/Faces/Jos/Jos_Provoke_Face.png
 
-#begin Content/Faces/Male/Capsar/Caspar_Provoke_Face.png
+#begin Content/Faces/Jos/Jos_Shocked_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1837,9 +1837,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Capsar/Caspar_Provoke_Face.png
+/build:Content/Faces/Jos/Jos_Shocked_Face.png
 
-#begin Content/Faces/Male/Capsar/Caspar_Shocked_Face.png
+#begin Content/Faces/Jos/Jos_Standard_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1848,9 +1848,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Capsar/Caspar_Shocked_Face.png
+/build:Content/Faces/Jos/Jos_Standard_Face.png
 
-#begin Content/Faces/Male/Capsar/Caspar_Standard_Face.png
+#begin Content/Faces/Jos/Jos_Thoughtful_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1859,9 +1859,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Capsar/Caspar_Standard_Face.png
+/build:Content/Faces/Jos/Jos_Thoughtful_Face.png
 
-#begin Content/Faces/Male/Capsar/Caspar_Thoughtful_Face.png
+#begin Content/Faces/Kaiser/Kaiser_Happy_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1870,9 +1870,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Capsar/Caspar_Thoughtful_Face.png
+/build:Content/Faces/Kaiser/Kaiser_Happy_Face.png
 
-#begin Content/Faces/Male/Jos/Jos_Happy_Face.png
+#begin Content/Faces/Kaiser/Kaiser_NotAmused_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1881,9 +1881,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Jos/Jos_Happy_Face.png
+/build:Content/Faces/Kaiser/Kaiser_NotAmused_Face.png
 
-#begin Content/Faces/Male/Jos/Jos_NotAmused_Face.png
+#begin Content/Faces/Kaiser/Kaiser_Provoke_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1892,9 +1892,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Jos/Jos_NotAmused_Face.png
+/build:Content/Faces/Kaiser/Kaiser_Provoke_Face.png
 
-#begin Content/Faces/Male/Jos/Jos_Provoke_Face.png
+#begin Content/Faces/Kaiser/Kaiser_Shocked_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1903,9 +1903,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Jos/Jos_Provoke_Face.png
+/build:Content/Faces/Kaiser/Kaiser_Shocked_Face.png
 
-#begin Content/Faces/Male/Jos/Jos_Shocked_Face.png
+#begin Content/Faces/Kaiser/Kaiser_Standard_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1914,9 +1914,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Jos/Jos_Shocked_Face.png
+/build:Content/Faces/Kaiser/Kaiser_Standard_Face.png
 
-#begin Content/Faces/Male/Jos/Jos_Standard_Face.png
+#begin Content/Faces/Kaiser/Kaiser_Thoightful_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1925,9 +1925,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Jos/Jos_Standard_Face.png
+/build:Content/Faces/Kaiser/Kaiser_Thoightful_Face.png
 
-#begin Content/Faces/Male/Jos/Jos_Thoughtful_Face.png
+#begin Content/Faces/Marlein/Marlein_Cry_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1936,9 +1936,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Jos/Jos_Thoughtful_Face.png
+/build:Content/Faces/Marlein/Marlein_Cry_Face.png
 
-#begin Content/Faces/Male/Kaiser/Kaiser_Happy_Face.png
+#begin Content/Faces/Marlein/Marlein_Happy_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1947,9 +1947,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Kaiser/Kaiser_Happy_Face.png
+/build:Content/Faces/Marlein/Marlein_Happy_Face.png
 
-#begin Content/Faces/Male/Kaiser/Kaiser_NotAmused_Face.png
+#begin Content/Faces/Marlein/Marlein_NotAmused_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1958,9 +1958,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Kaiser/Kaiser_NotAmused_Face.png
+/build:Content/Faces/Marlein/Marlein_NotAmused_Face.png
 
-#begin Content/Faces/Male/Kaiser/Kaiser_Provoke_Face.png
+#begin Content/Faces/Marlein/Marlein_Provoke_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1969,9 +1969,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Kaiser/Kaiser_Provoke_Face.png
+/build:Content/Faces/Marlein/Marlein_Provoke_Face.png
 
-#begin Content/Faces/Male/Kaiser/Kaiser_Shocked_Face.png
+#begin Content/Faces/Marlein/Marlein_Shocked_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1980,9 +1980,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Kaiser/Kaiser_Shocked_Face.png
+/build:Content/Faces/Marlein/Marlein_Shocked_Face.png
 
-#begin Content/Faces/Male/Kaiser/Kaiser_Standard_Face.png
+#begin Content/Faces/Marlein/Marlein_Standard_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1991,9 +1991,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Kaiser/Kaiser_Standard_Face.png
+/build:Content/Faces/Marlein/Marlein_Standard_Face.png
 
-#begin Content/Faces/Male/Kaiser/Kaiser_Thoightful_Face.png
+#begin Content/Faces/Marlein/Marlein_Thoughtful_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2002,9 +2002,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Kaiser/Kaiser_Thoightful_Face.png
+/build:Content/Faces/Marlein/Marlein_Thoughtful_Face.png
 
-#begin Content/Faces/Male/Michael/Michael_Standard_Face.png
+#begin Content/Faces/Michael/Michael_Standard_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2013,9 +2013,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Michael/Michael_Standard_Face.png
+/build:Content/Faces/Michael/Michael_Standard_Face.png
 
-#begin Content/Faces/Male/Nick/Nick_Happy_Face.png
+#begin Content/Faces/Nick/Nick_Happy_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2024,9 +2024,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Nick/Nick_Happy_Face.png
+/build:Content/Faces/Nick/Nick_Happy_Face.png
 
-#begin Content/Faces/Male/Nick/Nick_NotAmused_Face.png
+#begin Content/Faces/Nick/Nick_NotAmused_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2035,9 +2035,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Nick/Nick_NotAmused_Face.png
+/build:Content/Faces/Nick/Nick_NotAmused_Face.png
 
-#begin Content/Faces/Male/Nick/Nick_Provoke_Face.png
+#begin Content/Faces/Nick/Nick_Provoke_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2046,9 +2046,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Nick/Nick_Provoke_Face.png
+/build:Content/Faces/Nick/Nick_Provoke_Face.png
 
-#begin Content/Faces/Male/Nick/Nick_Shocked_Face.png
+#begin Content/Faces/Nick/Nick_Shocked_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2057,9 +2057,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Nick/Nick_Shocked_Face.png
+/build:Content/Faces/Nick/Nick_Shocked_Face.png
 
-#begin Content/Faces/Male/Nick/Nick_Standard_Face.png
+#begin Content/Faces/Nick/Nick_Standard_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2068,9 +2068,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Nick/Nick_Standard_Face.png
+/build:Content/Faces/Nick/Nick_Standard_Face.png
 
-#begin Content/Faces/Male/Nick/Nick_Thoughtful_Face.png
+#begin Content/Faces/Nick/Nick_Thoughtful_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2079,9 +2079,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Nick/Nick_Thoughtful_Face.png
+/build:Content/Faces/Nick/Nick_Thoughtful_Face.png
 
-#begin Content/Faces/Male/Reinhardt/Reinhardt_Standard_Face.png
+#begin Content/Faces/Reinhardt/Reinhardt_Standard_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2090,9 +2090,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Reinhardt/Reinhardt_Standard_Face.png
+/build:Content/Faces/Reinhardt/Reinhardt_Standard_Face.png
 
-#begin Content/Faces/Male/Seitz/Seitz_Happy_Face.png
+#begin Content/Faces/Seitz/Seitz_Happy_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2101,9 +2101,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Seitz/Seitz_Happy_Face.png
+/build:Content/Faces/Seitz/Seitz_Happy_Face.png
 
-#begin Content/Faces/Male/Seitz/Seitz_NotAmused_Face.png
+#begin Content/Faces/Seitz/Seitz_NotAmused_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2112,9 +2112,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Seitz/Seitz_NotAmused_Face.png
+/build:Content/Faces/Seitz/Seitz_NotAmused_Face.png
 
-#begin Content/Faces/Male/Seitz/Seitz_Provoke_Face.png
+#begin Content/Faces/Seitz/Seitz_Provoke_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2123,9 +2123,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Seitz/Seitz_Provoke_Face.png
+/build:Content/Faces/Seitz/Seitz_Provoke_Face.png
 
-#begin Content/Faces/Male/Seitz/Seitz_Shocked_Face.png
+#begin Content/Faces/Seitz/Seitz_Shocked_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2134,9 +2134,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Seitz/Seitz_Shocked_Face.png
+/build:Content/Faces/Seitz/Seitz_Shocked_Face.png
 
-#begin Content/Faces/Male/Seitz/Seitz_Standard_Face.png
+#begin Content/Faces/Seitz/Seitz_Standard_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2145,9 +2145,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Seitz/Seitz_Standard_Face.png
+/build:Content/Faces/Seitz/Seitz_Standard_Face.png
 
-#begin Content/Faces/Male/Seitz/Seitz_Thoughtful_Face.png
+#begin Content/Faces/Seitz/Seitz_Thoughtful_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2156,9 +2156,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Seitz/Seitz_Thoughtful_Face.png
+/build:Content/Faces/Seitz/Seitz_Thoughtful_Face.png
 
-#begin Content/Faces/Male/Seyfrid/Seyfrid_Happy_Face.png
+#begin Content/Faces/Seyfrid/Seyfrid_Happy_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2167,9 +2167,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Seyfrid/Seyfrid_Happy_Face.png
+/build:Content/Faces/Seyfrid/Seyfrid_Happy_Face.png
 
-#begin Content/Faces/Male/Seyfrid/Seyfrid_NotAmused_Face.png
+#begin Content/Faces/Seyfrid/Seyfrid_NotAmused_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2178,9 +2178,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Seyfrid/Seyfrid_NotAmused_Face.png
+/build:Content/Faces/Seyfrid/Seyfrid_NotAmused_Face.png
 
-#begin Content/Faces/Male/Seyfrid/Seyfrid_Provoke_Face.png
+#begin Content/Faces/Seyfrid/Seyfrid_Provoke_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2189,9 +2189,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Seyfrid/Seyfrid_Provoke_Face.png
+/build:Content/Faces/Seyfrid/Seyfrid_Provoke_Face.png
 
-#begin Content/Faces/Male/Seyfrid/Seyfrid_Shocked_Face.png
+#begin Content/Faces/Seyfrid/Seyfrid_Shocked_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2200,9 +2200,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Seyfrid/Seyfrid_Shocked_Face.png
+/build:Content/Faces/Seyfrid/Seyfrid_Shocked_Face.png
 
-#begin Content/Faces/Male/Seyfrid/Seyfrid_Standard_Face.png
+#begin Content/Faces/Seyfrid/Seyfrid_Standard_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2211,9 +2211,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Seyfrid/Seyfrid_Standard_Face.png
+/build:Content/Faces/Seyfrid/Seyfrid_Standard_Face.png
 
-#begin Content/Faces/Male/Seyfrid/Seyfrid_Thoughtful_Face.png
+#begin Content/Faces/Seyfrid/Seyfrid_Thoughtful_Face.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2222,7 +2222,7 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:Content/Faces/Male/Seyfrid/Seyfrid_Thoughtful_Face.png
+/build:Content/Faces/Seyfrid/Seyfrid_Thoughtful_Face.png
 
 #begin Content/Fonts/AwesomeFont.spritefont
 /importer:FontDescriptionImporter
@@ -2235,6 +2235,17 @@
 /processor:
 /build:Content/Fonts/AwesomeFont.xnb
 
+#begin Content/Icons/Bleed_Icon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:Content/Icons/Bleed_Icon.png
+
 #begin Content/Icons/Blessed_Icon.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -2245,17 +2256,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
 /build:Content/Icons/Blessed_Icon.png
-
-#begin Content/Icons/Blood_Icon.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:TextureFormat=Color
-/build:Content/Icons/Blood_Icon.png
 
 #begin Content/Icons/Burn_Icon.png
 /importer:TextureImporter

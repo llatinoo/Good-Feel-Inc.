@@ -21,12 +21,15 @@ namespace RPG
 
         BattleEvent testevent;
 
+        GUIElement Background;
 
         Movie Intro = new Movie("Intro\\Good Feel Inc Intro");
 
         //Musste die Parameter von 0,0 auf 0,1 ändern, da es zwar eine Szene 0 gibt, Parts (Genau wie Texteboxen) immer bei 1 anfangen
-        //StoryEvent test = new StoryEvent(0, 1);
-        //StoryEvent test1 = new StoryEvent(0, 1);
+        ConversationEvent conversation1 = new ConversationEvent(0, 1, 1);
+        ConversationEvent conversation2 = new ConversationEvent(0, 1, 2);
+
+        StoryEvent Scene1;
 
         bool stateChanged = false;
         Song mainMenuTheme;
@@ -88,6 +91,8 @@ namespace RPG
 
         public Screen()
         {
+            
+
             this.mainMenu.Insert(0, new GUIElement("Backgrounds\\Menus\\Title_Screen_Background"));
             this.mainMenu.Insert(1, new GUIElement("Buttons\\New_Game_Button"));
             this.mainMenu.Insert(2, new GUIElement("Buttons\\Load_Game_Button"));
@@ -100,13 +105,13 @@ namespace RPG
             this.options.Insert(3, new GUIElement("Buttons\\Quit_Button"));
 
             this.storyScreen.Insert(0, new GUIElement("Backgrounds\\Story\\Triumphfelder_Story_Background"));
-            this.storyScreen.Insert(1, new GUIElement("Boxes\\TextBox_Heroic_RPG"));
+            this.storyScreen.Insert(1, new GUIElement("Boxes\\TextBox_Heroic"));
 
             this.battleScreen.Insert(0, new GUIElement("Backgrounds\\Battle\\Forest_Battle_Background"));
             this.battleScreen.Insert(1, new GUIElement("Icons\\Mindblown_Icon"));
 
-            this.battleScreenSkills.Insert(0,new TextElement("Skill1", 400, 450));
-            this.battleScreenSkills.Insert(1, new TextElement("Skill2", 400, 480));
+            this.battleScreenSkills.Insert(0,new TextElement("Skill1", 400, 450, false));
+            this.battleScreenSkills.Insert(1, new TextElement("Skill2", 400, 480, false));
             
         }
 
@@ -118,6 +123,9 @@ namespace RPG
             LoadSkillHelperClass.AddAllClassSkills(this.char4);
             this.Intro.Initialize();
             this.testevent = new BattleEvent(new List<PartyMember> {this.char1, this.char2, this.char3, this.char4 }, new List<Enemy> {this.enemy1 });
+
+            Scene1 = new StoryEvent(new List<ConversationEvent> { conversation1, conversation2 }, "Backgrounds\\Story\\Anlegestelle_Triumphfelder_Story_Background.png");
+
         }
         public void LoadContent(ContentManager content)
         {
@@ -125,6 +133,7 @@ namespace RPG
 
             //this.test.LoadContent(content);
             //this.test1.LoadContent(content);
+            Scene1.LoadContent(content);
             this.mainMenuTheme = content.Load<Song>("Sounds\\Umineko_Life");
             this.battleScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
             this.storyScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
@@ -266,8 +275,8 @@ namespace RPG
                     this.Intro.Update();
                     break;
                 case GameState.mainMenu:
-                    //this.testevent.Battle();
-                    this.testevent.Update(gameTime);
+                    //this.testevent.Update(gameTime);
+                    Scene1.Update();
                     /*
                     foreach (GUIElement element in mainMenu)
                     {
@@ -396,7 +405,8 @@ namespace RPG
                     this.Intro.Draw(spriteBatch);
                     break;
                 case GameState.mainMenu:
-                    this.testevent.Draw(spriteBatch);
+                    //this.testevent.Draw(spriteBatch);
+                    Scene1.Draw(spriteBatch);
                     /*
                     foreach (GUIElement element in mainMenu)
                     {

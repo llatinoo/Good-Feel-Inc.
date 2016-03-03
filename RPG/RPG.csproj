@@ -69,6 +69,7 @@
     <Compile Include="Events\ChooseCadreEvent.cs" />
     <Compile Include="Events\IEvent.cs" />
     <Compile Include="Events\StoryEvent.cs" />
+    <Compile Include="Events\ConversationEvent.cs" />
     <Compile Include="Extensions And Helper Classes\GetEffectFactory.cs" />
     <Compile Include="Extensions And Helper Classes\LevelUpClass.cs" />
     <Compile Include="Extensions And Helper Classes\LoadSkillHelperClass.cs" />
@@ -400,7 +401,7 @@
     <Content Include="Content\bin\Windows\Intro\Good Feel Inc Intro.wmv" />
     <Content Include="Content\bin\Windows\Sounds\Hitman_Reborn.wma" />
     <Content Include="Content\bin\Windows\Sounds\Umineko_Life.wma" />
-    <Content Include="Content\Boxes\SkillBox_RPG.png">
+    <Content Include="Content\Boxes\SkillBox.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Buttons\Continue_Button.png">
@@ -802,14 +803,14 @@
     <Content Include="Content\Sounds\Hitman_Reborn.wma">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Boxes\TextBox_Heroic_RPG.png">
+    <Content Include="Content\Boxes\TextBox_Heroic.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sounds\Umineko_Life.wma">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />
-    <Content Include="Content\Boxes\TextBox_RPG.png">
+    <Content Include="Content\Boxes\TextBox_Normal.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="obj\x86\Debug\RPG.csproj.FileListAbsolute.txt" />

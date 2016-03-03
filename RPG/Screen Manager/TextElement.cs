@@ -17,23 +17,27 @@ namespace RPG
         private int positionY;
 
         public Rectangle textRect;
-
+        bool clickAble;
 
         public delegate void tElementClicked(string element);
         public event tElementClicked tclickEvent;
-        public TextElement(string skillName, int positionX, int positionY)
+        public TextElement(string skillName, int positionX, int positionY, bool clickAble)
         {
             this.skillName = skillName;
             this.positionX = positionX;
             this.positionY = positionY;
+            this.clickAble = clickAble;
         }
 
         public void LoadContent(ContentManager content)
         {
             //Font mit dem Namen "BasicFont" wird geladen
             this.AwesomeFont = content.Load<SpriteFont>("Fonts\\AwesomeFont");
-            this.fontSize = this.AwesomeFont.MeasureString(this.skillName);
-            this.textRect = new Rectangle(this.positionX, this.positionY, (int) this.fontSize.X, (int) this.fontSize.Y);
+            if (clickAble)
+            {
+                this.fontSize = this.AwesomeFont.MeasureString(this.skillName);
+                this.textRect = new Rectangle(this.positionX, this.positionY, (int)this.fontSize.X, (int)this.fontSize.Y);
+            }
         }
 
         public void Update()

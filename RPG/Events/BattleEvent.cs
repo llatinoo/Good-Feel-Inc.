@@ -279,10 +279,10 @@ namespace RPG.Events
             int charCounter = 0;
             int enemieCounter = 0;
 
-            this.attackSkill = new TextElement("Angriff", (int) this.attackSkillPosition.X, (int) this.attackSkillPosition.Y);
+            this.attackSkill = new TextElement("Angriff", (int) this.attackSkillPosition.X, (int) this.attackSkillPosition.Y, true);
             this.attackSkill.LoadContent(content);
             this.attackSkill.tclickEvent += OnClickSkill;
-            this.restSkill = new TextElement("Ausruhen", (int) this.restSkillPosition.X, (int) this.restSkillPosition.Y);
+            this.restSkill = new TextElement("Ausruhen", (int) this.restSkillPosition.X, (int) this.restSkillPosition.Y, true);
             this.restSkill.LoadContent(content);
             this.restSkill.tclickEvent += OnClickSkill;
 
@@ -303,8 +303,8 @@ namespace RPG.Events
                         {
                             if (skillCounter == 0)
                             {
-                                this.Character1Name = new TextElement(character.Name, (int) this.targetPosition_1.X, (int) this.targetPosition_1.Y);
-                                this.character1skill1 = new TextElement(skill.Name, (int) this.skillPosition_1.X, (int) this.skillPosition_1.Y);
+                                this.Character1Name = new TextElement(character.Name, (int) this.targetPosition_1.X, (int) this.targetPosition_1.Y, true);
+                                this.character1skill1 = new TextElement(skill.Name, (int) this.skillPosition_1.X, (int) this.skillPosition_1.Y, true);
                                 this.character1skill1.LoadContent(content);
                                 this.Character1Name.LoadContent(content);
                                 this.character1skill1.tclickEvent += this.OnClickSkill;
@@ -312,19 +312,19 @@ namespace RPG.Events
                             }
                             if (skillCounter == 1)
                             {
-                                this.character1skill2 = new TextElement(skill.Name, (int) this.skillPosition_2.X, (int) this.skillPosition_2.Y);
+                                this.character1skill2 = new TextElement(skill.Name, (int) this.skillPosition_2.X, (int) this.skillPosition_2.Y, true);
                                 this.character1skill2.LoadContent(content);
                                 this.character1skill2.tclickEvent += this.OnClickSkill;
                             }
                             if (skillCounter == 2)
                             {
-                                this.character1skill3 = new TextElement(skill.Name, (int) this.skillPosition_3.X, (int) this.skillPosition_3.Y);
+                                this.character1skill3 = new TextElement(skill.Name, (int) this.skillPosition_3.X, (int) this.skillPosition_3.Y, true);
                                 this.character1skill3.LoadContent(content);
                                 this.character1skill3.tclickEvent += this.OnClickSkill;
                             }
                             if (skillCounter == 3)
                             {
-                                this.character1skill4 = new TextElement(skill.Name, (int) this.skillPosition_4.X, (int) this.skillPosition_4.Y);
+                                this.character1skill4 = new TextElement(skill.Name, (int) this.skillPosition_4.X, (int) this.skillPosition_4.Y, true);
                                 this.character1skill4.LoadContent(content);
                                 this.character1skill4.tclickEvent += this.OnClickSkill;
                             }
@@ -337,8 +337,8 @@ namespace RPG.Events
                         {
                             if (skillCounter == 0)
                             {
-                                this.Character2Name = new TextElement(character.Name, (int)this.targetPosition_2.X, (int)this.targetPosition_2.Y);
-                                this.character2skill1 = new TextElement(skill.Name, (int)this.skillPosition_1.X, (int)this.skillPosition_1.Y);
+                                this.Character2Name = new TextElement(character.Name, (int)this.targetPosition_2.X, (int)this.targetPosition_2.Y, true);
+                                this.character2skill1 = new TextElement(skill.Name, (int)this.skillPosition_1.X, (int)this.skillPosition_1.Y, true);
                                 this.character2skill1.LoadContent(content);
                                 this.Character2Name.LoadContent(content);
                                 this.character2skill1.tclickEvent += this.OnClickSkill;
@@ -346,19 +346,19 @@ namespace RPG.Events
                             }
                             if (skillCounter == 1)
                             {
-                                this.character2skill2 = new TextElement(skill.Name, (int)this.skillPosition_2.X, (int)this.skillPosition_2.Y);
+                                this.character2skill2 = new TextElement(skill.Name, (int)this.skillPosition_2.X, (int)this.skillPosition_2.Y, true);
                                 this.character2skill2.LoadContent(content);
                                 this.character2skill2.tclickEvent += this.OnClickSkill;
                             }
                             if (skillCounter == 2)
                             {
-                                this.character2skill3 = new TextElement(skill.Name, (int)this.skillPosition_3.X, (int)this.skillPosition_3.Y);
+                                this.character2skill3 = new TextElement(skill.Name, (int)this.skillPosition_3.X, (int)this.skillPosition_3.Y, true);
                                 this.character2skill3.LoadContent(content);
                                 this.character2skill3.tclickEvent += this.OnClickSkill;
                             }
                             if (skillCounter == 3)
                             {
-                                this.character2skill4 = new TextElement(skill.Name, (int)this.skillPosition_4.X, (int)this.skillPosition_4.Y);
+                                this.character2skill4 = new TextElement(skill.Name, (int)this.skillPosition_4.X, (int)this.skillPosition_4.Y, true);
                                 this.character2skill4.LoadContent(content);
                                 this.character2skill4.tclickEvent += this.OnClickSkill;
                             }
@@ -373,8 +373,8 @@ namespace RPG.Events
                         {
                             if (skillCounter == 0)
                             {
-                                this.Character3Name = new TextElement(character.Name, (int) this.targetPosition_3.X, (int) this.targetPosition_3.Y);
-                                this.character3skill1 = new TextElement(skill.Name, (int) this.skillPosition_1.X, (int) this.skillPosition_1.Y);
+                                this.Character3Name = new TextElement(character.Name, (int) this.targetPosition_3.X, (int) this.targetPosition_3.Y, true);
+                                this.character3skill1 = new TextElement(skill.Name, (int) this.skillPosition_1.X, (int) this.skillPosition_1.Y, true);
                                 this.character3skill1.LoadContent(content);
                                 this.Character3Name.LoadContent(content);
                                 this.character3skill1.tclickEvent += this.OnClickSkill;
@@ -382,19 +382,19 @@ namespace RPG.Events
                             }
                             if (skillCounter == 1)
                             {
-                                this.character3skill2 = new TextElement(skill.Name, (int) this.skillPosition_2.X, (int) this.skillPosition_2.Y);
+                                this.character3skill2 = new TextElement(skill.Name, (int) this.skillPosition_2.X, (int) this.skillPosition_2.Y, true);
                                 this.character3skill2.LoadContent(content);
                                 this.character3skill2.tclickEvent += this.OnClickSkill;
                             }
                             if (skillCounter == 2)
                             {
-                                this.character3skill3 = new TextElement(skill.Name, (int) this.skillPosition_3.X, (int) this.skillPosition_3.Y);
+                                this.character3skill3 = new TextElement(skill.Name, (int) this.skillPosition_3.X, (int) this.skillPosition_3.Y, true);
                                 this.character3skill3.LoadContent(content);
                                 this.character3skill3.tclickEvent += this.OnClickSkill;
                             }
                             if (skillCounter == 3)
                             {
-                                this.character3skill4 = new TextElement(skill.Name, (int) this.skillPosition_4.X, (int) this.skillPosition_4.Y);
+                                this.character3skill4 = new TextElement(skill.Name, (int) this.skillPosition_4.X, (int) this.skillPosition_4.Y, true);
                                 this.character3skill4.LoadContent(content);
                                 this.character3skill4.tclickEvent += this.OnClickSkill;
                             }
@@ -407,8 +407,8 @@ namespace RPG.Events
                         {
                             if (skillCounter == 0)
                             {
-                                this.Character4Name = new TextElement(character.Name, (int) this.targetPosition_4.X, (int) this.targetPosition_4.Y);
-                                this.character4skill1 = new TextElement(skill.Name, (int) this.skillPosition_1.X, (int) this.skillPosition_1.Y);
+                                this.Character4Name = new TextElement(character.Name, (int) this.targetPosition_4.X, (int) this.targetPosition_4.Y, true);
+                                this.character4skill1 = new TextElement(skill.Name, (int) this.skillPosition_1.X, (int) this.skillPosition_1.Y, true);
                                 this.character4skill1.LoadContent(content);
                                 this.Character4Name.LoadContent(content);
                                 this.character4skill1.tclickEvent += this.OnClickSkill;
@@ -416,19 +416,19 @@ namespace RPG.Events
                             }
                             if (skillCounter == 1)
                             {
-                                this.character4skill2 = new TextElement(skill.Name, (int) this.skillPosition_2.X, (int) this.skillPosition_2.Y);
+                                this.character4skill2 = new TextElement(skill.Name, (int) this.skillPosition_2.X, (int) this.skillPosition_2.Y, true);
                                 this.character4skill2.LoadContent(content);
                                 this.character4skill2.tclickEvent += this.OnClickSkill;
                             }
                             if (skillCounter == 2)
                             {
-                                this.character4skill3 = new TextElement(skill.Name, (int) this.skillPosition_3.X, (int) this.skillPosition_3.Y);
+                                this.character4skill3 = new TextElement(skill.Name, (int) this.skillPosition_3.X, (int) this.skillPosition_3.Y, true);
                                 this.character4skill3.LoadContent(content);
                                 this.character4skill3.tclickEvent += this.OnClickSkill;
                             }
                             if (skillCounter == 3)
                             {
-                                this.character4skill4 = new TextElement(skill.Name, (int) this.skillPosition_4.X, (int) this.skillPosition_4.Y);
+                                this.character4skill4 = new TextElement(skill.Name, (int) this.skillPosition_4.X, (int) this.skillPosition_4.Y, true);
                                 this.character4skill4.LoadContent(content);
                                 this.character4skill4.tclickEvent += this.OnClickSkill;
                             }
@@ -443,25 +443,25 @@ namespace RPG.Events
             {
                 if (enemieCounter == 0)
                 {
-                    this.Enemie1Name = new TextElement(enemy.Name, (int) this.targetPosition_1.X, (int) this.targetPosition_1.Y);
+                    this.Enemie1Name = new TextElement(enemy.Name, (int) this.targetPosition_1.X, (int) this.targetPosition_1.Y, true);
                     this.Enemie1Name.LoadContent(content);
                     this.Enemie1Name.tclickEvent += this.onClickTarget;
                 }
                 if (enemieCounter == 1)
                 {
-                    this.Enemie2Name = new TextElement(enemy.Name, (int) this.targetPosition_2.X, (int) this.targetPosition_2.Y);
+                    this.Enemie2Name = new TextElement(enemy.Name, (int) this.targetPosition_2.X, (int) this.targetPosition_2.Y, true);
                     this.Enemie2Name.LoadContent(content);
                     this.Enemie2Name.tclickEvent += this.onClickTarget;
                 }
                 if (enemieCounter == 2)
                 {
-                    this.Enemie3Name = new TextElement(enemy.Name, (int) this.targetPosition_3.X, (int) this.targetPosition_3.Y);
+                    this.Enemie3Name = new TextElement(enemy.Name, (int) this.targetPosition_3.X, (int) this.targetPosition_3.Y, true);
                     this.Enemie3Name.LoadContent(content);
                     this.Enemie3Name.tclickEvent += this.onClickTarget;
                 }
                 if (enemieCounter == 3)
                 {
-                    this.Enemie4Name = new TextElement(enemy.Name, (int) this.targetPosition_4.X, (int) this.targetPosition_4.Y);
+                    this.Enemie4Name = new TextElement(enemy.Name, (int) this.targetPosition_4.X, (int) this.targetPosition_4.Y, true);
                     this.Enemie4Name.LoadContent(content);
                     this.Enemie4Name.tclickEvent += this.onClickTarget;
                 }
