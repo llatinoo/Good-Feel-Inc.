@@ -1,5 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RPG;
+using RPG.Skills.Effects;
 
 namespace RPGTests
 {
@@ -147,7 +149,9 @@ namespace RPGTests
                     ""
                 );
 
-            Assert
+
+            Assert.IsTrue( Warrior.AttackSkill.Effects.All(effect => effect.GetType() == typeof(Damage)) && !Warrior.AttackSkill.Effects.All(effect => effect.GetType() == typeof(MagicalDamage)) );
+            Assert.IsTrue( Harasser.AttackSkill.Effects.All(effect => effect.GetType() == typeof(MagicalDamage)) && !Harasser.AttackSkill.Effects.All(effect => effect.GetType() == typeof(Damage)) );
         }
     }
 }

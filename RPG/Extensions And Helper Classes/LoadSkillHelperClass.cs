@@ -126,7 +126,6 @@ namespace RPG
             }
 
 
-
             var recoverSkillEffects = new List<IEffect>();
             foreach (EffectElement effect in recoverSkill.Effects)
             {
