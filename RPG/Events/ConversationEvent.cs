@@ -70,8 +70,8 @@ namespace RPG.Events
                 }
                 else
                 {
-                this.listenerPicture = new GUIElement("Faces\\Jos\\Jos_NotAmused_Face", (int)this.listenerPicturePosition.X, (int)this.listenerPicturePosition.Y);
-            }
+                    this.listenerPicture = new GUIElement("Faces\\Jos\\Jos_NotAmused_Face", (int)this.listenerPicturePosition.X, (int)this.listenerPicturePosition.Y);
+                }
                 this.speaker = new TextElement(getTextBox.Speaker, (int)this.speakerNamePosition.X, (int)this.speakerNamePosition.Y, false);
                 this.listener = new TextElement(getTextBox.Listener, (int)this.listenerNamePosition.X, (int)this.listenerNamePosition.Y, false);
                 this.row1 = new TextElement(getTextBox.Row1, (int)this.textLine_1.X, (int)this.textLine_1.Y, false);
