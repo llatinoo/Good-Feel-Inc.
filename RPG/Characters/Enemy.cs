@@ -14,15 +14,15 @@ namespace RPG
         //Abfrage ob der Gegner eine ANimation besitzt
         public bool isAnimated;
         //Liste von ausführbaren Skills
-        private List<Skill> performableSkills;
+        private List<Skill> performableSkills = new List<Skill>();
         //Liste von nutzbaren Skills
-        private List<Skill> useableSkills;
+        private List<Skill> useableSkills = new List<Skill>();
         //Skill der Ausgeführt werden soll
         private Skill skillToPerform;
         //Mögliche Ziele
-        private List<Character> possibleTargets;
+        private List<Character> possibleTargets = new List<Character>();
         //Ziele des Skills
-        private List<Character> targets;
+        private List<Character> targets = new List<Character>();
 
         public Enemy(string charName, Classes className, bool isboss, int vita, int mana, int strength,
             int mag, int def, int res, int luck, string standardAnimationPath, string attackAnimationPath, string deathAnimationPath, bool isAnimated)
