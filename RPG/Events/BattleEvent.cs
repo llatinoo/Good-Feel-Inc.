@@ -471,7 +471,7 @@ namespace RPG.Events
 
         public void onClickTarget(String target)
         {
-                this.targetClicked = false;
+            this.targetClicked = false;
             foreach (Character character in this.FightClub)
             {
                 if (character.Name.ToLower() == target.ToLower())
@@ -541,26 +541,26 @@ namespace RPG.Events
                     }
                     */
                     //Wenn der Skill auf einzelne Charaktere zielt wird das ausgeführt
-                    if (skill.Target.ToLower() == "single".ToLower())
+                    if (skill.Target.ToLower() == "Single".ToLower())
                     {
                         //Wenn der Skill sich auf PartyMember bezieht soll singleTarget True gesetzt werden
-                        if (skill.AreaOfEffect.ToLower() == "party".ToLower())
+                        if (skill.AreaOfEffect.ToLower() == "Party".ToLower())
                         {
                             this.singleTargetParty = true;
                             this.activeSkill = skill;
                         }
 
                         // Sonst wird über prüft ob der Skill für einen Gegner bestimmt ist wenn ja dann soll singleTargetEnemies True gesetzt werden
-                        else if (skill.AreaOfEffect.ToLower() == "enemy".ToLower())
+                        else if (skill.AreaOfEffect.ToLower() == "Enemy".ToLower())
                         {
                             this.singleTargetEnemies = true;
                             this.activeSkill = skill;
                         }
                     }
-                    else
+                    else if(skill.Target.ToLower() == "Group".ToLower())
                     {
                         //Wenn der Skill sich auf eine Gruppe bezieht wird der skill ausgeführt dabei wird differenziert zwischen party und enemys
-                        if (skill.AreaOfEffect.ToLower() == "party".ToLower())
+                        if (skill.AreaOfEffect.ToLower() == "Party".ToLower())
                         {
                             foreach (PartyMember member in this.FightCadre)
                             {
@@ -570,7 +570,7 @@ namespace RPG.Events
                             skill.Execute(this.activeChar, targets);
                             this.boolTurnOver = true;
                         }
-                        else if (skill.AreaOfEffect.ToLower() == "enemy".ToLower())
+                        else if (skill.AreaOfEffect.ToLower() == "Enemy".ToLower())
                         {
 
                             foreach (Enemy enemy in this.Enemies)
@@ -579,6 +579,9 @@ namespace RPG.Events
                             }
                             skill.Execute(this.activeChar, targets);
                             this.boolTurnOver = true;
+                            this.targetClicked = true;
+                            TurnStart();
+                            break;
                         }
                     }
                 }
@@ -589,14 +592,11 @@ namespace RPG.Events
         //führt die Logik aus wie beispielsweise die Steuerung oder das Abspielen der Animationen
         public void Update(GameTime gameTime)
         {
-            if(boolTurnOver)
-            {
-                TurnStart();
-            }
-
             if (activeChar.GetType() == typeof(Enemy))
             {
                 //führe KI aus
+                TurnStart();
+                /*
                 if (activeCharCounter == FightClub.Count - 1)
                 {
                     activeCharCounter = 0;
@@ -606,7 +606,7 @@ namespace RPG.Events
                 {
                     activeCharCounter++;
                     activeChar = FightClub.ElementAt<Character>(activeCharCounter);
-                }
+                }*/
                
             }
             else
@@ -819,6 +819,8 @@ namespace RPG.Events
 
             }
             boolTurnOver = false;
+            skillClicked = false;
+
         }
     }
 }

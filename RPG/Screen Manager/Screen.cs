@@ -275,8 +275,8 @@ namespace RPG
                     this.Intro.Update();
                     break;
                 case GameState.mainMenu:
-                    //this.testevent.Update(gameTime);
-                    Scene1.Update();
+                    this.testevent.Update(gameTime);
+                    //Scene1.Update();
                     /*
                     foreach (GUIElement element in mainMenu)
                     {
@@ -405,8 +405,8 @@ namespace RPG
                     this.Intro.Draw(spriteBatch);
                     break;
                 case GameState.mainMenu:
-                    //this.testevent.Draw(spriteBatch);
-                    Scene1.Draw(spriteBatch);
+                    this.testevent.Draw(spriteBatch);
+                    //Scene1.Draw(spriteBatch);
                     /*
                     foreach (GUIElement element in mainMenu)
                     {
