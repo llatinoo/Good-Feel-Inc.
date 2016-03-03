@@ -818,6 +818,20 @@ namespace RPG.Events
                 }
 
             }
+            else
+            {
+
+                if (activeCharCounter == FightClub.Count - 1)
+                {
+                    activeCharCounter = 0;
+                    activeChar = FightClub.ElementAt<Character>(activeCharCounter);
+                }
+                else if (activeCharCounter != FightClub.Count - 1)
+                {
+                    activeCharCounter++;
+                    activeChar = FightClub.ElementAt<Character>(activeCharCounter);
+                }
+            }
             boolTurnOver = false;
             skillClicked = false;
 
