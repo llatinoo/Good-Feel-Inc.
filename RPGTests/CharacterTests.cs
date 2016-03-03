@@ -111,5 +111,43 @@ namespace RPGTests
 
             Assert.IsNotNull(Chars);
         }
+
+        [TestMethod]
+        public void CharacterStandardSkillsTest()
+        {
+            var Warrior = new Character
+                (
+                    "Warrior",
+                    Classes.Warrior,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    10,
+                    "",
+                    "",
+                    ""
+                );
+
+            var Harasser = new Character
+                (
+                    "Harasser",
+                    Classes.Harasser,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    100,
+                    10,
+                    "",
+                    "",
+                    ""
+                );
+
+            Assert
+        }
     }
 }

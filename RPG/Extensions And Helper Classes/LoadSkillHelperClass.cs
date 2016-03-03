@@ -103,10 +103,29 @@ namespace RPG
 
 
             var attackSkillEffects = new List<IEffect>();
-            foreach (EffectElement effect in attackSkill.Effects)
+
+            if (member.Class.Equals(Classes.Harasser) || member.Class.Equals(Classes.Patron))
             {
-                attackSkillEffects.Add(GetEffectFactory.GetEffect(effect.Name));
+                foreach (EffectElement effect in attackSkill.Effects)
+                {
+                    if (effect.Name.Equals("MagicalDamage"))
+                    {
+                        attackSkillEffects.Add(GetEffectFactory.GetEffect(effect.Name));
+                    }
+                }
             }
+            else
+            {
+                foreach (EffectElement effect in attackSkill.Effects)
+                {
+                    if (effect.Name.Equals("Damage"))
+                    {
+                        attackSkillEffects.Add(GetEffectFactory.GetEffect(effect.Name));
+                    }
+                }
+            }
+
+
 
             var recoverSkillEffects = new List<IEffect>();
             foreach (EffectElement effect in recoverSkill.Effects)

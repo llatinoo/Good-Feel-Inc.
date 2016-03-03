@@ -65,6 +65,13 @@ namespace RPGTests
             new Damage().Execute(partymember, new List<Character>() { enemy });
             Assert.IsTrue(enemy.FightVitality > enemy.Life);
 
+            //MagicalDMG
+            enemy = this.ResetEnemy();
+            partymember = this.ResetPartyMember();
+
+            new MagicalDamage().Execute(partymember, new List<Character>() {enemy});
+            Assert.IsTrue(enemy.FightVitality > enemy.Life);
+
             //Drain
             enemy = this.ResetEnemy();
             partymember = this.ResetPartyMember();
