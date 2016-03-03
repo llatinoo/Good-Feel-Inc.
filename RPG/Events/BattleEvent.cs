@@ -770,8 +770,8 @@ namespace RPG.Events
                             this.Enemie4Name.Draw(spriteBatch);
                     }
                 }
-
             }
+
 
             // Zeichnet die Charaktere auf dem Bildschirm
             foreach (Character chars in this.FightCadre)
@@ -798,6 +798,7 @@ namespace RPG.Events
                 }
             }
         }
+
         public void TurnStart()
         {
             this.ExecuteStatuseffects(activeChar);
