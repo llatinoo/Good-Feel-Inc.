@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System.Threading;
 
 namespace RPG.Events
 {
@@ -24,13 +25,17 @@ namespace RPG.Events
         Skill activeSkill;
 
         //Boolean für Drawings
-        Boolean singleTargetParty = false;
-        Boolean singleTargetEnemies = false;
-        Boolean skillClicked = false;
-        Boolean targetClicked = false;
+        bool singleTargetParty = false;
+        bool singleTargetEnemies = false;
+        bool skillClicked = false;
+        bool targetClicked = false;
+        bool battleEnd = false;
+        public bool BattleEnd
+        {
+            get { return battleEnd; }
+        }
         
         //Boolean für das Ende der Runde
-        Boolean boolTurnOver = false;
         //Aktiver Charakter
         Character activeChar;
         int activeCharCounter;
@@ -54,20 +59,27 @@ namespace RPG.Events
         Vector2 finalBossPosition;
 
         //Skill Position
-        private Vector2 skillPosition_1 = new Vector2(400, 75);
-        private Vector2 skillPosition_2 = new Vector2(400, 100);
-        private Vector2 skillPosition_3 = new Vector2(400, 125);
-        private Vector2 skillPosition_4 = new Vector2(400, 150);
+        private Vector2 attackSkillPosition = new Vector2(400, 475);
+        private Vector2 restSkillPosition = new Vector2(400, 500);
+        private Vector2 skillPosition_1 = new Vector2(400, 525);
+        private Vector2 skillPosition_2 = new Vector2(400, 550);
+        private Vector2 skillPosition_3 = new Vector2(550, 475);
+        private Vector2 skillPosition_4 = new Vector2(550, 500);
 
+        private Vector2 targetPosition_1 = new Vector2(30, 480);
+        private Vector2 targetPosition_2 = new Vector2(30, 500);
+        private Vector2 targetPosition_3 = new Vector2(30, 520);
+        private Vector2 targetPosition_4 = new Vector2(30, 540);
 
-        private Vector2 attackSkillPosition = new Vector2(400, 50);
-        private Vector2 restSkillPosition = new Vector2(400, 25);
+        private Vector2 icoPositionCharacter_1 = new Vector2(655, 390);
+        private Vector2 icoPositionCharacter_2 = new Vector2(645, 350);
+        private Vector2 icoPositionCharacter_3 = new Vector2(635, 285);
+        private Vector2 icoPositionCharacter_4 = new Vector2(625, 220);
 
-
-        private Vector2 targetPosition_1 = new Vector2(100, 75);
-        private Vector2 targetPosition_2 = new Vector2(100, 100);
-        private Vector2 targetPosition_3 = new Vector2(100, 125);
-        private Vector2 targetPosition_4 = new Vector2(100, 150);
+        Vector2 icoPositionEnemy_1 = new Vector2(40, 390);
+        Vector2 icoPositionEnemy_2 = new Vector2(50, 350);
+        Vector2 icoPositionEnemy_3 = new Vector2(60, 285);
+        Vector2 icoPositionEnemy_4 = new Vector2(70, 220);
 
         //Animation Speed
         private int animationSpeed = 300;
@@ -106,19 +118,73 @@ namespace RPG.Events
         TextElement Enemie3Name;
         TextElement Enemie4Name;
 
-        GUIElement mindBlownIco;
-        GUIElement bleedIco;
-        GUIElement burnIco;
-        GUIElement blessedIco;
-        GUIElement haloIco;
-        GUIElement toxicIco;
+        GUIElement mindBlownIcoCharacter_1;
+        GUIElement bleedIcoCharacter_1;
+        GUIElement burnIcoCharacter_1;
+        GUIElement blessedIcoCharacter_1;
+        GUIElement haloIcoCharacter_1;
+        GUIElement toxicIcoCharacter_1;
+
+        GUIElement mindBlownIcoCharacter_2;
+        GUIElement bleedIcoCharacter_2;
+        GUIElement burnIcoCharacter_2;
+        GUIElement blessedIcoCharacter_2;
+        GUIElement haloIcoCharacter_2;
+        GUIElement toxicIcoCharacter_2;
+
+        GUIElement mindBlownIcoCharacter_3;
+        GUIElement bleedIcoCharacter_3;
+        GUIElement burnIcoCharacter_3;
+        GUIElement blessedIcoCharacter_3;
+        GUIElement haloIcoCharacter_3;
+        GUIElement toxicIcoCharacter_3;
+
+        GUIElement mindBlownIcoCharacter_4;
+        GUIElement bleedIcoCharacter_4;
+        GUIElement burnIcoCharacter_4;
+        GUIElement blessedIcoCharacter_4;
+        GUIElement haloIcoCharacter_4;
+        GUIElement toxicIcoCharacter_4;
+
+        GUIElement mindBlownIcoEnemy_1;
+        GUIElement bleedIcoEnemy_1;
+        GUIElement burnIcoEnemy_1;
+        GUIElement blessedIcoEnemy_1;
+        GUIElement haloIcoEnemy_1;
+        GUIElement toxicIcoEnemy_1;
+
+        GUIElement mindBlownIcoEnemy_2;
+        GUIElement bleedIcoEnemy_2;
+        GUIElement burnIcoEnemy_2;
+        GUIElement blessedIcoEnemy_2;
+        GUIElement haloIcoEnemy_2;
+        GUIElement toxicIcoEnemy_2;
+
+        GUIElement mindBlownIcoEnemy_3;
+        GUIElement bleedIcoEnemy_3;
+        GUIElement burnIcoEnemy_3;
+        GUIElement blessedIcoEnemy_3;
+        GUIElement haloIcoEnemy_3;
+        GUIElement toxicIcoEnemy_3;
+
+        GUIElement mindBlownIcoEnemy_4;
+        GUIElement bleedIcoEnemy_4;
+        GUIElement burnIcoEnemy_4;
+        GUIElement blessedIcoEnemy_4;
+        GUIElement haloIcoEnemy_4;
+        GUIElement toxicIcoEnemy_4;
+
+        GUIElement skillBox;
+        GUIElement targetBox;
+        GUIElement Background;
 
 
-        public BattleEvent(List<PartyMember> fightCadre, List<Enemy> enemies)
+        public BattleEvent(List<PartyMember> fightCadre, List<Enemy> enemies, string background)
         {
             //Zuweisung der Listen
             this.FightCadre = fightCadre;
             this.Enemies = enemies;
+            Background = new GUIElement(background);
 
             //FightCader wird der Liste FightClub hinzugefügt
             foreach (Character character in this.FightCadre)
@@ -279,6 +345,8 @@ namespace RPG.Events
             int charCounter = 0;
             int enemieCounter = 0;
 
+            Background.LoadContent(content);
+
             this.attackSkill = new TextElement("Angriff", (int) this.attackSkillPosition.X, (int) this.attackSkillPosition.Y, true);
             this.attackSkill.LoadContent(content);
             this.attackSkill.tclickEvent += OnClickSkill;
@@ -286,12 +354,130 @@ namespace RPG.Events
             this.restSkill.LoadContent(content);
             this.restSkill.tclickEvent += OnClickSkill;
 
-            this.mindBlownIco = new GUIElement("Icons\\Mindblown_Icon");
-            this.bleedIco = new GUIElement("Icons\\Bleed_Icon");
-            this.blessedIco = new GUIElement("Icons\\Blessed_Icon");
-            this.burnIco = new GUIElement("Icons\\Burn_Icon");
-            this.haloIco = new GUIElement("Icons\\Halo_Icon");
-            this.toxicIco = new GUIElement("Icons\\Toxic_Icon");
+            skillBox = new GUIElement("Boxes\\SkillBox");
+            skillBox.LoadContent(content);
+            skillBox.CenterElement(576,720);
+            skillBox.moveElement(185,245);
+
+            targetBox = new GUIElement("Boxes\\SkillBox");
+            targetBox.LoadContent(content);
+            targetBox.CenterElement(576, 720);
+            targetBox.moveElement(-300, 245);
+
+            this.mindBlownIcoCharacter_1 = new GUIElement("Icons\\Mindblown_Icon", (int)icoPositionCharacter_1.X, (int)icoPositionCharacter_1.Y);
+            this.bleedIcoCharacter_1 = new GUIElement("Icons\\Bleed_Icon", (int)icoPositionCharacter_1.X, (int)icoPositionCharacter_1.Y);
+            this.blessedIcoCharacter_1 = new GUIElement("Icons\\Blessed_Icon", (int)icoPositionCharacter_1.X, (int)icoPositionCharacter_1.Y);
+            this.burnIcoCharacter_1 = new GUIElement("Icons\\Burn_Icon", (int)icoPositionCharacter_1.X, (int)icoPositionCharacter_1.Y);
+            this.haloIcoCharacter_1 = new GUIElement("Icons\\Halo_Icon", (int)icoPositionCharacter_1.X, (int)icoPositionCharacter_1.Y);
+            this.toxicIcoCharacter_1 = new GUIElement("Icons\\Toxic_Icon", (int)icoPositionCharacter_1.X, (int)icoPositionCharacter_1.Y);
+
+            this.mindBlownIcoCharacter_2 = new GUIElement("Icons\\Mindblown_Icon", (int)icoPositionCharacter_2.X, (int)icoPositionCharacter_2.Y);
+            this.bleedIcoCharacter_2 = new GUIElement("Icons\\Bleed_Icon", (int)icoPositionCharacter_2.X, (int)icoPositionCharacter_2.Y);
+            this.blessedIcoCharacter_2 = new GUIElement("Icons\\Blessed_Icon", (int)icoPositionCharacter_2.X, (int)icoPositionCharacter_2.Y);
+            this.burnIcoCharacter_2 = new GUIElement("Icons\\Burn_Icon", (int)icoPositionCharacter_2.X, (int)icoPositionCharacter_2.Y);
+            this.haloIcoCharacter_2 = new GUIElement("Icons\\Halo_Icon", (int)icoPositionCharacter_2.X, (int)icoPositionCharacter_2.Y);
+            this.toxicIcoCharacter_2 = new GUIElement("Icons\\Toxic_Icon", (int)icoPositionCharacter_2.X, (int)icoPositionCharacter_2.Y);
+
+            this.mindBlownIcoCharacter_3 = new GUIElement("Icons\\Mindblown_Icon", (int)icoPositionCharacter_3.X, (int)icoPositionCharacter_3.Y);
+            this.bleedIcoCharacter_3 = new GUIElement("Icons\\Bleed_Icon", (int)icoPositionCharacter_3.X, (int)icoPositionCharacter_3.Y);
+            this.blessedIcoCharacter_3 = new GUIElement("Icons\\Blessed_Icon", (int)icoPositionCharacter_3.X, (int)icoPositionCharacter_3.Y);
+            this.burnIcoCharacter_3 = new GUIElement("Icons\\Burn_Icon", (int)icoPositionCharacter_3.X, (int)icoPositionCharacter_3.Y);
+            this.haloIcoCharacter_3 = new GUIElement("Icons\\Halo_Icon", (int)icoPositionCharacter_3.X, (int)icoPositionCharacter_3.Y);
+            this.toxicIcoCharacter_3 = new GUIElement("Icons\\Toxic_Icon", (int)icoPositionCharacter_3.X, (int)icoPositionCharacter_3.Y);
+
+            this.mindBlownIcoCharacter_4 = new GUIElement("Icons\\Mindblown_Icon", (int)icoPositionCharacter_4.X, (int)icoPositionCharacter_4.Y);
+            this.bleedIcoCharacter_4 = new GUIElement("Icons\\Bleed_Icon", (int)icoPositionCharacter_4.X, (int)icoPositionCharacter_4.Y);
+            this.blessedIcoCharacter_4 = new GUIElement("Icons\\Blessed_Icon", (int)icoPositionCharacter_4.X, (int)icoPositionCharacter_2.Y);
+            this.burnIcoCharacter_4 = new GUIElement("Icons\\Burn_Icon", (int)icoPositionCharacter_4.X, (int)icoPositionCharacter_4.Y);
+            this.haloIcoCharacter_4 = new GUIElement("Icons\\Halo_Icon", (int)icoPositionCharacter_4.X, (int)icoPositionCharacter_4.Y);
+            this.toxicIcoCharacter_4 = new GUIElement("Icons\\Toxic_Icon", (int)icoPositionCharacter_4.X, (int)icoPositionCharacter_4.Y);
+
+
+            this.mindBlownIcoEnemy_1 = new GUIElement("Icons\\Mindblown_Icon", (int)icoPositionEnemy_1.X, (int)icoPositionEnemy_1.Y);
+            this.bleedIcoEnemy_1 = new GUIElement("Icons\\Bleed_Icon", (int)icoPositionEnemy_1.X, (int)icoPositionEnemy_1.Y);
+            this.blessedIcoEnemy_1 = new GUIElement("Icons\\Blessed_Icon", (int)icoPositionEnemy_1.X, (int)icoPositionEnemy_1.Y);
+            this.burnIcoEnemy_1 = new GUIElement("Icons\\Burn_Icon", (int)icoPositionEnemy_1.X, (int)icoPositionEnemy_1.Y);
+            this.haloIcoEnemy_1 = new GUIElement("Icons\\Halo_Icon", (int)icoPositionEnemy_1.X, (int)icoPositionEnemy_1.Y);
+            this.toxicIcoEnemy_1 = new GUIElement("Icons\\Toxic_Icon", (int)icoPositionEnemy_1.X, (int)icoPositionEnemy_1.Y);
+
+            this.mindBlownIcoEnemy_2 = new GUIElement("Icons\\Mindblown_Icon", (int)icoPositionEnemy_2.X, (int)icoPositionEnemy_2.Y);
+            this.bleedIcoEnemy_2 = new GUIElement("Icons\\Bleed_Icon", (int)icoPositionEnemy_2.X, (int)icoPositionEnemy_2.Y);
+            this.blessedIcoEnemy_2 = new GUIElement("Icons\\Blessed_Icon", (int)icoPositionEnemy_2.X, (int)icoPositionEnemy_2.Y);
+            this.burnIcoEnemy_2 = new GUIElement("Icons\\Burn_Icon", (int)icoPositionEnemy_2.X, (int)icoPositionEnemy_2.Y);
+            this.haloIcoEnemy_2 = new GUIElement("Icons\\Halo_Icon", (int)icoPositionEnemy_2.X, (int)icoPositionEnemy_2.Y);
+            this.toxicIcoEnemy_2 = new GUIElement("Icons\\Toxic_Icon", (int)icoPositionEnemy_2.X, (int)icoPositionEnemy_2.Y);
+
+            this.mindBlownIcoEnemy_3 = new GUIElement("Icons\\Mindblown_Icon", (int)icoPositionEnemy_3.X, (int)icoPositionEnemy_3.Y);
+            this.bleedIcoEnemy_3 = new GUIElement("Icons\\Bleed_Icon", (int)icoPositionEnemy_3.X, (int)icoPositionEnemy_3.Y);
+            this.blessedIcoEnemy_3 = new GUIElement("Icons\\Blessed_Icon", (int)icoPositionEnemy_3.X, (int)icoPositionEnemy_3.Y);
+            this.burnIcoEnemy_3 = new GUIElement("Icons\\Burn_Icon", (int)icoPositionEnemy_3.X, (int)icoPositionEnemy_3.Y);
+            this.haloIcoEnemy_3 = new GUIElement("Icons\\Halo_Icon", (int)icoPositionEnemy_3.X, (int)icoPositionEnemy_3.Y);
+            this.toxicIcoEnemy_3 = new GUIElement("Icons\\Toxic_Icon", (int)icoPositionEnemy_3.X, (int)icoPositionEnemy_3.Y);
+
+            this.mindBlownIcoEnemy_4 = new GUIElement("Icons\\Mindblown_Icon", (int)icoPositionEnemy_4.X, (int)icoPositionEnemy_4.Y);
+            this.bleedIcoEnemy_4 = new GUIElement("Icons\\Bleed_Icon", (int)icoPositionEnemy_4.X, (int)icoPositionEnemy_4.Y);
+            this.blessedIcoEnemy_4 = new GUIElement("Icons\\Blessed_Icon", (int)icoPositionEnemy_4.X, (int)icoPositionEnemy_4.Y);
+            this.burnIcoEnemy_4 = new GUIElement("Icons\\Burn_Icon", (int)icoPositionEnemy_4.X, (int)icoPositionEnemy_4.Y);
+            this.haloIcoEnemy_4 = new GUIElement("Icons\\Halo_Icon", (int)icoPositionEnemy_4.X, (int)icoPositionEnemy_4.Y);
+            this.toxicIcoEnemy_4 = new GUIElement("Icons\\Toxic_Icon", (int)icoPositionEnemy_4.X, (int)icoPositionEnemy_4.Y);
+
+
+
+            mindBlownIcoCharacter_1.LoadContent(content);
+            bleedIcoCharacter_1.LoadContent(content);
+            blessedIcoCharacter_1.LoadContent(content);
+            burnIcoCharacter_1.LoadContent(content);
+            haloIcoCharacter_1.LoadContent(content);
+            toxicIcoCharacter_1.LoadContent(content);
+
+            mindBlownIcoCharacter_2.LoadContent(content);
+            bleedIcoCharacter_2.LoadContent(content);
+            blessedIcoCharacter_2.LoadContent(content);
+            burnIcoCharacter_2.LoadContent(content);
+            haloIcoCharacter_2.LoadContent(content);
+            toxicIcoCharacter_2.LoadContent(content);
+
+            mindBlownIcoCharacter_3.LoadContent(content);
+            bleedIcoCharacter_3.LoadContent(content);
+            blessedIcoCharacter_3.LoadContent(content);
+            burnIcoCharacter_3.LoadContent(content);
+            haloIcoCharacter_3.LoadContent(content);
+            toxicIcoCharacter_3.LoadContent(content);
+
+            mindBlownIcoCharacter_4.LoadContent(content);
+            bleedIcoCharacter_4.LoadContent(content);
+            blessedIcoCharacter_4.LoadContent(content);
+            burnIcoCharacter_4.LoadContent(content);
+            haloIcoCharacter_4.LoadContent(content);
+            toxicIcoCharacter_4.LoadContent(content);
+
+            mindBlownIcoEnemy_1.LoadContent(content);
+            bleedIcoEnemy_1.LoadContent(content);
+            blessedIcoEnemy_1.LoadContent(content);
+            burnIcoEnemy_1.LoadContent(content);
+            haloIcoEnemy_1.LoadContent(content);
+            toxicIcoEnemy_1.LoadContent(content);
+
+            mindBlownIcoEnemy_2.LoadContent(content);
+            bleedIcoEnemy_2.LoadContent(content);
+            blessedIcoEnemy_2.LoadContent(content);
+            burnIcoEnemy_2.LoadContent(content);
+            haloIcoEnemy_2.LoadContent(content);
+            toxicIcoEnemy_2.LoadContent(content);
+
+            mindBlownIcoEnemy_3.LoadContent(content);
+            bleedIcoEnemy_3.LoadContent(content);
+            blessedIcoEnemy_3.LoadContent(content);
+            burnIcoEnemy_3.LoadContent(content);
+            haloIcoEnemy_3.LoadContent(content);
+            toxicIcoEnemy_3.LoadContent(content);
+
+            mindBlownIcoEnemy_4.LoadContent(content);
+            bleedIcoEnemy_4.LoadContent(content);
+            blessedIcoEnemy_4.LoadContent(content);
+            burnIcoEnemy_4.LoadContent(content);
+            haloIcoEnemy_4.LoadContent(content);
+            toxicIcoEnemy_4.LoadContent(content);
 
             foreach (Character character in this.FightCadre)
             {
@@ -477,7 +663,6 @@ namespace RPG.Events
                 if (character.Name.ToLower() == target.ToLower())
                 {
                     this.activeSkill.Execute(this.activeChar, new List<Character> { character });
-                    this.boolTurnOver = true;
                     this.skillClicked = false;
                     this.targetClicked = true;
                     this.singleTargetEnemies = false;
@@ -568,7 +753,10 @@ namespace RPG.Events
                             }
 
                             skill.Execute(this.activeChar, targets);
-                            this.boolTurnOver = true;
+                            this.targetClicked = true;
+                            skillClicked = true;
+                            Thread.Sleep(100);
+                            TurnStart();
                         }
                         else if (skill.AreaOfEffect.ToLower() == "Enemy".ToLower())
                         {
@@ -578,10 +766,10 @@ namespace RPG.Events
                                 targets.Add(enemy);
                             }
                             skill.Execute(this.activeChar, targets);
-                            this.boolTurnOver = true;
                             this.targetClicked = true;
+                            skillClicked = true;
+                            Thread.Sleep(100);
                             TurnStart();
-                            break;
                         }
                     }
                 }
@@ -592,6 +780,14 @@ namespace RPG.Events
         //führt die Logik aus wie beispielsweise die Steuerung oder das Abspielen der Animationen
         public void Update(GameTime gameTime)
         {
+            if(FightCadre.All(member => member.Life == 0))
+            {
+                battleEnd = true;
+            }
+            else if(Enemies.All(enemie => enemie.Life == 0))
+            {
+                battleEnd = true;
+            }
             if (activeChar.GetType() == typeof(Enemy))
             {
                 //führe KI aus
@@ -695,8 +891,13 @@ namespace RPG.Events
         //zeichnet Charactere und Texte auf dem Bildschirm 
         public void Draw(SpriteBatch spriteBatch)
         {
+
+            Background.Draw(spriteBatch);
+            
+
             if (!this.skillClicked)
             {
+                skillBox.Draw(spriteBatch);
                 for (countFightCadre = 0; countFightCadre < this.FightCadre.Count - 1; countFightCadre++)
                 {
                     if (this.FightCadre.ElementAt(countFightCadre) == this.activeChar)
@@ -745,6 +946,7 @@ namespace RPG.Events
                 {
                     if (!this.targetClicked)
                     {
+                        targetBox.Draw(spriteBatch);
                         if (this.Character1Name != null)
                             this.Character1Name.Draw(spriteBatch);
                         if (this.Character2Name != null)
@@ -760,6 +962,7 @@ namespace RPG.Events
                 {
                     if (!this.targetClicked)
                     {
+                        targetBox.Draw(spriteBatch);
                         if (this.Enemie1Name != null)
                             this.Enemie1Name.Draw(spriteBatch);
                         if (this.Enemie2Name != null)
@@ -783,6 +986,228 @@ namespace RPG.Events
             foreach (Character chars in this.Enemies)
             {
                 chars.Draw(spriteBatch);
+            }
+            DrawIcons(spriteBatch);
+        }
+
+        public void DrawIcons(SpriteBatch spriteBatch)
+        {
+            foreach (Character character in FightClub)
+            {
+                foreach (IStatuseffect effect in character.Statuseffects)
+                {
+                    if (effect.GetType() == typeof(Bleeding))
+                    {
+                        if (character.Name.Equals(Character1Name.SkillName))
+                        {
+                            bleedIcoCharacter_1.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Character2Name.SkillName))
+                        {
+                            bleedIcoCharacter_2.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Character3Name.SkillName))
+                        {
+                            bleedIcoCharacter_3.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Character4Name.SkillName))
+                        {
+                            bleedIcoCharacter_4.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie1Name.SkillName))
+                        {
+                            bleedIcoEnemy_1.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie2Name.SkillName))
+                        {
+                            bleedIcoEnemy_2.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie3Name.SkillName))
+                        {
+                            bleedIcoEnemy_3.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie4Name.SkillName))
+                        {
+                            bleedIcoEnemy_4.Draw(spriteBatch);
+                        }
+                    }
+
+                    else if (effect.GetType() == typeof(Mindblown))
+                    {
+                        if (character.Name.Equals(Character1Name.SkillName))
+                        {
+                            mindBlownIcoCharacter_1.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Character2Name.SkillName))
+                        {
+                            mindBlownIcoCharacter_2.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Character3Name.SkillName))
+                        {
+                            mindBlownIcoCharacter_3.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Character4Name.SkillName))
+                        {
+                            mindBlownIcoCharacter_4.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie1Name.SkillName))
+                        {
+                            mindBlownIcoEnemy_1.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie2Name.SkillName))
+                        {
+                            mindBlownIcoEnemy_2.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie3Name.SkillName))
+                        {
+                            mindBlownIcoEnemy_3.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie4Name.SkillName))
+                        {
+                            mindBlownIcoEnemy_4.Draw(spriteBatch);
+                        }
+                    }
+                    else if (effect.GetType() == typeof(Blessing))
+                    {
+                        if (character.Name.Equals(Character1Name.SkillName))
+                        {
+                            blessedIcoCharacter_1.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Character2Name.SkillName))
+                        {
+                            blessedIcoCharacter_2.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Character3Name.SkillName))
+                        {
+                            blessedIcoCharacter_3.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Character4Name.SkillName))
+                        {
+                            blessedIcoCharacter_4.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie1Name.SkillName))
+                        {
+                            blessedIcoEnemy_1.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie2Name.SkillName))
+                        {
+                            blessedIcoEnemy_2.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie3Name.SkillName))
+                        {
+                            blessedIcoEnemy_3.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie4Name.SkillName))
+                        {
+                            blessedIcoEnemy_4.Draw(spriteBatch);
+                        }
+                    }
+                    else if (effect.GetType() == typeof(HasHalo))
+                    {
+                        if (character.Name.Equals(Character1Name.SkillName))
+                        {
+                            haloIcoCharacter_1.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Character2Name.SkillName))
+                        {
+                            haloIcoCharacter_2.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Character3Name.SkillName))
+                        {
+                            haloIcoCharacter_3.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Character4Name.SkillName))
+                        {
+                            haloIcoCharacter_4.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie1Name.SkillName))
+                        {
+                            haloIcoEnemy_1.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie2Name.SkillName))
+                        {
+                            haloIcoEnemy_2.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie3Name.SkillName))
+                        {
+                            haloIcoEnemy_3.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie4Name.SkillName))
+                        {
+                            haloIcoEnemy_4.Draw(spriteBatch);
+                        }
+                    }
+                    else if (effect.GetType() == typeof(Poisoned))
+                    {
+                        if (character.Name.Equals(Character1Name.SkillName))
+                        {
+                            toxicIcoCharacter_1.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Character2Name.SkillName))
+                        {
+                            toxicIcoCharacter_2.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Character3Name.SkillName))
+                        {
+                            toxicIcoCharacter_3.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Character4Name.SkillName))
+                        {
+                            toxicIcoCharacter_4.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie1Name.SkillName))
+                        {
+                            toxicIcoEnemy_1.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie2Name.SkillName))
+                        {
+                            toxicIcoEnemy_2.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie3Name.SkillName))
+                        {
+                            toxicIcoEnemy_3.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie4Name.SkillName))
+                        {
+                            toxicIcoEnemy_4.Draw(spriteBatch);
+                        }
+                    }
+                    else if (effect.GetType() == typeof(Burning))
+                    {
+                        if (character.Name.Equals(Character1Name.SkillName))
+                        {
+                            burnIcoCharacter_1.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Character2Name.SkillName))
+                        {
+                            burnIcoCharacter_2.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Character3Name.SkillName))
+                        {
+                            burnIcoCharacter_3.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Character4Name.SkillName))
+                        {
+                            burnIcoCharacter_4.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie1Name.SkillName))
+                        {
+                            burnIcoEnemy_1.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie2Name.SkillName))
+                        {
+                            burnIcoEnemy_2.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie3Name.SkillName))
+                        {
+                            burnIcoEnemy_3.Draw(spriteBatch);
+                        }
+                        else if (character.Name.Equals(Enemie4Name.SkillName))
+                        {
+                            burnIcoEnemy_4.Draw(spriteBatch);
+                        }
+                    }
+                }
             }
         }
 
@@ -833,7 +1258,6 @@ namespace RPG.Events
                     activeChar = FightClub.ElementAt<Character>(activeCharCounter);
                 }
             }
-            boolTurnOver = false;
             skillClicked = false;
 
         }
