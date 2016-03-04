@@ -19,7 +19,6 @@ namespace RPGTests
             (
                 "Enemy",
                 Classes.Coloss,
-                false,
                 1000, //vita
                 100, //mana
                 100, //strength
@@ -124,7 +123,6 @@ namespace RPGTests
             (
                 "Enemy",
                 Classes.Coloss,
-                false,
                 1000, //vita
                 100, //mana
                 100, //strength
@@ -248,7 +246,6 @@ namespace RPGTests
             (
                 "Enemy",
                 Classes.Coloss,
-                false,
                 1000, //vita
                 100, //mana
                 100, //strength

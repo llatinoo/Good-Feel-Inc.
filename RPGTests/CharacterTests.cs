@@ -33,7 +33,6 @@ namespace RPGTests
                 (
                     "Enemy",
                     Classes.Coloss,
-                    false,
                     100,
                     100,
                     100,

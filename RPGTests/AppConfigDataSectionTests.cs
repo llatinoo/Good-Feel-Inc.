@@ -41,7 +41,6 @@ namespace RPGTests
                 (
                     "Test",
                     Classes.Warrior,
-                    false,
                     100,
                     100,
                     100,
