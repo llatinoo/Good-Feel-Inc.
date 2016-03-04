@@ -49,7 +49,7 @@ namespace RPG
 
             this.SetPerformSkills(groupOfFoe);
 
-            this.SkillToPerform = this.performableSkills.ElementAt(r.Next(0, this.performableSkills.Count * 1000) / 1000);
+            this.SkillToPerform = this.performableSkills.ElementAt(r.Next(0, (this.performableSkills.Count - 1) * 1000) / 1000);
             this.SkillToPerformName = this.SkillToPerform.Name;
 
             if (this.SkillToPerform.Target.ToLower() == "Single".ToLower())
@@ -217,7 +217,7 @@ namespace RPG
             this.performableSkills.Add(this.AttackSkill);
 
 
-            if (this.useableSkills.All(skill => skill.Manacosts > this.Mana))
+            if (this.useableSkills.All(skill => skill.Manacosts > this.Mana) && useableSkills.Count > 0)
             {
                 this.performableSkills.Add(this.RestSkill);
                 this.performableSkills.Add(this.RestSkill);

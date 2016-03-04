@@ -24,8 +24,8 @@ namespace RPG
         Movie Intro = new Movie("Intro\\Good Feel Inc Intro");
 
         //Musste die Parameter von 0,0 auf 0,1 ändern, da es zwar eine Szene 0 gibt, Parts (Genau wie Texteboxen) immer bei 1 anfangen
-        ConversationEvent conversation1 = new ConversationEvent(0, 1, 1);
-        ConversationEvent conversation2 = new ConversationEvent(0, 1, 2);
+        //ConversationEvent conversation1 = new ConversationEvent(0, 1, 1);
+        //ConversationEvent conversation2 = new ConversationEvent(0, 1, 1);
 
         StoryEvent Scene1;
 
@@ -122,7 +122,7 @@ namespace RPG
             this.Intro.Initialize();
             this.testevent = new BattleEvent(new List<PartyMember> {this.char1, this.char2, this.char3, this.char4 }, new List<Enemy> {this.enemy1 }, "Backgrounds\\Battle\\Forest_Battle_Background");
 
-            Scene1 = new StoryEvent(new List<ConversationEvent> { conversation1, conversation2 }, "Backgrounds\\Story\\Anlegestelle_Triumphfelder_Story_Background.png");
+            //Scene1 = new StoryEvent(new List<ConversationEvent> { conversation1, conversation2 }, "Backgrounds\\Story\\Anlegestelle_Triumphfelder_Story_Background.png");
 
         }
         public void LoadContent(ContentManager content)
@@ -130,7 +130,7 @@ namespace RPG
             this.testevent.LoadContent(content);
             //this.test.LoadContent(content);
             //this.test1.LoadContent(content);
-            Scene1.LoadContent(content);
+            //Scene1.LoadContent(content);
             this.mainMenuTheme = content.Load<Song>("Sounds\\Umineko_Life");
             this.battleScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
             this.storyScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
