@@ -707,7 +707,6 @@ namespace RPG.Events
             //Skill wird überprüft
             foreach (Skill skill in this.activeChar.Skills)
             {
-
                 if(skillName == skill.Name)
                 {
 
@@ -760,6 +759,7 @@ namespace RPG.Events
                             TurnStart();
                         }
                     }
+                    break;
                 }
                 else if (skillName == "Ausruhen")
                 {
@@ -767,6 +767,7 @@ namespace RPG.Events
                     targetClicked = true;
                     Thread.Sleep(120);
                     TurnStart();
+                    break;
                 }
             }
         }
