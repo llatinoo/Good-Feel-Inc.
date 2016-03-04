@@ -802,6 +802,12 @@
     <Content Include="Content\Intro\Good Feel Inc Intro.wmv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Others\ActiveEnemyArrow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Others\ActivePartymemberArrow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Sounds\Hitman_Reborn.wma">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
