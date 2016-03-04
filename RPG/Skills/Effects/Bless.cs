@@ -8,7 +8,7 @@ namespace RPG.Skills.Effects
         {
             //Verursacht einen Statuseffekt
             //In Extension.cs
-            targets.AddStatuseffectToTargets(target => new Blessing());
+            targets.AddStatuseffectToTargets(target => new Blessing(target));
         }
     }
 }

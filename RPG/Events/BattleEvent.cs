@@ -743,7 +743,7 @@ namespace RPG.Events
                             this.targetClicked = true;
                             skillClicked = true;
                             Thread.Sleep(120);
-                            TurnStart();
+                            this.StartNextTurn();
                         }
                         else if (skill.AreaOfEffect.ToLower() == "Enemy".ToLower())
                         {
@@ -756,7 +756,7 @@ namespace RPG.Events
                             this.targetClicked = true;
                             skillClicked = true;
                             Thread.Sleep(120);
-                            TurnStart();
+                            this.StartNextTurn();
                         }
                     }
                     break;
@@ -767,7 +767,7 @@ namespace RPG.Events
                 this.activeChar.RestSkill.Execute(activeChar, new List<Character> { activeChar });
                 targetClicked = true;
                 Thread.Sleep(120);
-                TurnStart();
+                this.StartNextTurn();
             }
             if(skillName == "Angriff")
             {
@@ -792,8 +792,7 @@ namespace RPG.Events
             //Die KI wird ausgeführt wenn es sich bei dem Aktiven Character um einen Gegner handelt
             if (activeChar.GetType() == typeof(Enemy))
             {
-                //führe KI aus
-                TurnStart();
+                this.StartNextTurn();
             }
             //führt ein Update der Animationen und Texte aus wenn es sich bei dem aktiven Character um ein Gruppenmitglied handelt
             else
@@ -1245,9 +1244,17 @@ namespace RPG.Events
         }
 
         //Startet einen neuen Zug und weist den nächsten Character zu
-        public void TurnStart()
+        public void StartNextTurn()
         {
-            if (activeChar.Life <= 0 || activeChar.IsMindBlown)
+            this.ExecuteStatuseffects(activeChar);
+
+            
+            if (this.activeChar.Life <= 0 && this.activeChar.IsBlessed)
+            {
+                this.activeChar.IsBlessed = false;
+                this.activeChar.Life = 1;
+            }
+            else if (activeChar.Life <= 0 || activeChar.IsMindBlown)
             {
                 if (activeCharCounter == FightClub.Count - 1)
                 {

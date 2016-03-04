@@ -134,6 +134,8 @@ namespace RPG
 
         //Gibt an ob der Charakter kämpfen kann
         public bool IsMindBlown { get; set; }
+        //Gibt an ob der Charakter geschützt ist
+        public bool IsBlessed { get; set; }
 
 
         //Konstruktor
