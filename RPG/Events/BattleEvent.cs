@@ -1248,7 +1248,17 @@ namespace RPG.Events
         {
             this.ExecuteStatuseffects(activeChar);
 
-            
+            if (activeCharCounter == FightClub.Count - 1)
+            {
+                activeCharCounter = 0;
+                activeChar = FightClub.ElementAt<Character>(activeCharCounter);
+            }
+            else if (activeCharCounter != FightClub.Count - 1)
+            {
+                activeCharCounter++;
+                activeChar = FightClub.ElementAt<Character>(activeCharCounter);
+            }
+
             if (this.activeChar.Life <= 0 && this.activeChar.IsBlessed)
             {
                 this.activeChar.IsBlessed = false;
@@ -1266,24 +1276,7 @@ namespace RPG.Events
                     activeCharCounter++;
                     activeChar = FightClub.ElementAt<Character>(activeCharCounter);
                 }
-                this.ExecuteStatuseffects(activeChar);
-                activeChar.IsMindBlown = false;
             }
-            else
-            {
-                if (activeCharCounter == FightClub.Count - 1)
-                {
-                    activeCharCounter = 0;
-                    activeChar = FightClub.ElementAt<Character>(activeCharCounter);
-                }
-                else if (activeCharCounter != FightClub.Count - 1)
-                {
-                    activeCharCounter++;
-                    activeChar = FightClub.ElementAt<Character>(activeCharCounter);
-                }
-            }
-            this.ExecuteStatuseffects(activeChar);
-            skillClicked = false;
         }
     }
 }
