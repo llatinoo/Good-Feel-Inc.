@@ -397,7 +397,7 @@ namespace RPG.Events
 
             this.mindBlownIcoCharacter_4 = new GUIElement("Icons\\Mindblown_Icon", (int)icoPositionCharacter_4.X, (int)icoPositionCharacter_4.Y);
             this.bleedIcoCharacter_4 = new GUIElement("Icons\\Bleed_Icon", (int)icoPositionCharacter_4.X, (int)icoPositionCharacter_4.Y);
-            this.blessedIcoCharacter_4 = new GUIElement("Icons\\Blessed_Icon", (int)icoPositionCharacter_4.X, (int)icoPositionCharacter_2.Y);
+            this.blessedIcoCharacter_4 = new GUIElement("Icons\\Blessed_Icon", (int)icoPositionCharacter_4.X, (int)icoPositionCharacter_4.Y);
             this.burnIcoCharacter_4 = new GUIElement("Icons\\Burn_Icon", (int)icoPositionCharacter_4.X, (int)icoPositionCharacter_4.Y);
             this.haloIcoCharacter_4 = new GUIElement("Icons\\Halo_Icon", (int)icoPositionCharacter_4.X, (int)icoPositionCharacter_4.Y);
             this.toxicIcoCharacter_4 = new GUIElement("Icons\\Toxic_Icon", (int)icoPositionCharacter_4.X, (int)icoPositionCharacter_4.Y);
@@ -769,6 +769,13 @@ namespace RPG.Events
                 Thread.Sleep(120);
                 TurnStart();
             }
+            if(skillName == "Angriff")
+            {
+                activeSkill = this.activeChar.AttackSkill;
+                Thread.Sleep(120);
+                this.singleTargetEnemies = true;
+            }
+            
         }
 
         //führt die Logik aus wie beispielsweise die Steuerung oder das Abspielen der Animationen
@@ -1240,12 +1247,8 @@ namespace RPG.Events
         //Startet einen neuen Zug und weist den nächsten Character zu
         public void TurnStart()
         {
-            this.ExecuteStatuseffects(activeChar);
-
             if (activeChar.Life <= 0 || activeChar.IsMindBlown)
             {
-                activeChar.IsMindBlown = false;
-
                 if (activeCharCounter == FightClub.Count - 1)
                 {
                     activeCharCounter = 0;
@@ -1256,6 +1259,8 @@ namespace RPG.Events
                     activeCharCounter++;
                     activeChar = FightClub.ElementAt<Character>(activeCharCounter);
                 }
+                this.ExecuteStatuseffects(activeChar);
+                activeChar.IsMindBlown = false;
             }
             else
             {
@@ -1270,6 +1275,7 @@ namespace RPG.Events
                     activeChar = FightClub.ElementAt<Character>(activeCharCounter);
                 }
             }
+            this.ExecuteStatuseffects(activeChar);
             skillClicked = false;
         }
     }
