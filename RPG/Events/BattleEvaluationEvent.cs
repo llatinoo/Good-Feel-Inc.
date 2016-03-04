@@ -17,7 +17,7 @@ namespace RPG.Events
         TextElement Character_3_Name;
         TextElement Character_4_Name;
 
-        TextElement Character
+        private TextElement Character;
         public bool EndBattle
         {
             get { return endBattle; }

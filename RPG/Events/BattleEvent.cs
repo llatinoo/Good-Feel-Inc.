@@ -707,14 +707,8 @@ namespace RPG.Events
             //Skill wird überprüft
             foreach (Skill skill in this.activeChar.Skills)
             {
-                if(skillName == "Ausruhen")
-                {
-                    skill.Execute(activeChar, new List<Character> { activeChar });
-                    targetClicked = true;
-                    Thread.Sleep(120);
-                    TurnStart();
-                }
-                else if(skillName == skill.Name)
+
+                if(skillName == skill.Name)
                 {
 
                     //Wenn der Skill auf einzelne Charaktere zielt wird das ausgeführt
@@ -766,6 +760,13 @@ namespace RPG.Events
                             TurnStart();
                         }
                     }
+                }
+                else if (skillName == "Ausruhen")
+                {
+                    this.activeChar.RestSkill.Execute(activeChar, new List<Character> { activeChar });
+                    targetClicked = true;
+                    Thread.Sleep(120);
+                    TurnStart();
                 }
             }
         }
