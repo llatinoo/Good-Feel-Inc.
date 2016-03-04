@@ -272,7 +272,7 @@ namespace RPG
                     this.Intro.Update();
                     break;
                 case GameState.mainMenu:
-                    if (!testevent.BattleEnd)
+                    if (!testevent.BattleEvaluation.EndBattle)
                     {
                         this.testevent.Update(gameTime);
                     }
@@ -405,7 +405,7 @@ namespace RPG
                     this.Intro.Draw(spriteBatch);
                     break;
                 case GameState.mainMenu:
-                    if (!testevent.BattleEnd)
+                    if (!testevent.BattleEvaluation.EndBattle)
                     {
                         this.testevent.Draw(spriteBatch);
                     }

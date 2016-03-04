@@ -12,6 +12,14 @@ namespace RPG.Events
 {
     class BattleEvent
     {
+        GameOverEvent GameOver;
+        
+        BattleEvaluationEvent battleEvaluation;
+        public BattleEvaluationEvent BattleEvaluation
+        {
+            get { return battleEvaluation; }
+        }
+
         //Alle Character im BattleEvent
         List<Character> FightClub = new List<Character>();
 
@@ -29,11 +37,6 @@ namespace RPG.Events
         bool singleTargetEnemies = false;
         bool skillClicked = false;
         bool targetClicked = false;
-        bool battleEnd = false;
-        public bool BattleEnd
-        {
-            get { return battleEnd; }
-        }
         
         //Boolean für das Ende der Runde
         //Aktiver Charakter
@@ -71,10 +74,10 @@ namespace RPG.Events
         private Vector2 targetPosition_3 = new Vector2(30, 520);
         private Vector2 targetPosition_4 = new Vector2(30, 540);
 
-        private Vector2 icoPositionCharacter_1 = new Vector2(655, 390);
-        private Vector2 icoPositionCharacter_2 = new Vector2(645, 350);
-        private Vector2 icoPositionCharacter_3 = new Vector2(635, 285);
-        private Vector2 icoPositionCharacter_4 = new Vector2(625, 220);
+        private Vector2 icoPositionCharacter_1 = new Vector2(650, 380);
+        private Vector2 icoPositionCharacter_2 = new Vector2(645, 325);
+        private Vector2 icoPositionCharacter_3 = new Vector2(635, 260);
+        private Vector2 icoPositionCharacter_4 = new Vector2(625, 195);
 
         Vector2 icoPositionEnemy_1 = new Vector2(40, 390);
         Vector2 icoPositionEnemy_2 = new Vector2(50, 350);
@@ -204,6 +207,7 @@ namespace RPG.Events
             activeCharCounter = 0;
         }
 
+        //Läd alle Texturen und Daten die das Event benötigt
         public void LoadContent(ContentManager content)
         {
             this.LoadTextures(content);
@@ -346,6 +350,12 @@ namespace RPG.Events
             int enemieCounter = 0;
 
             Background.LoadContent(content);
+
+            GameOver = new GameOverEvent("Backgrounds\\Menus\\Options_Screen_Background");
+            GameOver.LoadContent(content);
+
+            battleEvaluation = new BattleEvaluationEvent("Backgrounds\\Menus\\Options_Screen_Background");
+            battleEvaluation.LoadContent(content);
 
             this.attackSkill = new TextElement("Angriff", (int) this.attackSkillPosition.X, (int) this.attackSkillPosition.Y, true);
             this.attackSkill.LoadContent(content);
@@ -655,6 +665,7 @@ namespace RPG.Events
             }
         }
 
+        //Führt aus was beim Klick auf ein Ziel passieren soll
         public void onClickTarget(String target)
         {
             this.targetClicked = false;
@@ -683,54 +694,36 @@ namespace RPG.Events
             }
         }
 
-        //Beim Klicken auf den Skill
+        //Führt aus was beim Klick auf einen Skill passieren soll
         public void OnClickSkill(String skillName)
         {
-            // List der Gegner
+            // Liste der Ziele auf die der Skill ausgeführt werden soll
             List<Character> targets = new List<Character>();
+
+            //Damit anstelle der Skills die möglichen Ziele gezeichnet werden, wird skillClicked auf true gesetzt und targetClicked auf false
             this.skillClicked = true;
             this.targetClicked = false;
-
-            Skill usedSkill;
 
             //Skill wird überprüft
             foreach (Skill skill in this.activeChar.Skills)
             {
-                if (skillName == skill.Name)
+                if(skillName == "Ausruhen")
                 {
-                    usedSkill = skill;
+                    skill.Execute(activeChar, new List<Character> { activeChar });
+                    targetClicked = true;
+                    Thread.Sleep(120);
+                    TurnStart();
+                }
+                else if(skillName == skill.Name)
+                {
 
-                    /*else if(skillName.ToLower().Equals("Angriff".ToLower()))
-                    {
-                        usedSkill = activeChar.AttackSkill;
-                    }
-                    else if (skillName.ToLower().Equals("Ausruhen".ToLower()))
-                    {
-                        skill.Execute(activeChar, new List<Character> { activeChar});
-                        if (activeCharCounter == FightClub.Count - 1)
-                        {
-                            activeCharCounter = 0;
-                            activeChar = FightClub.ElementAt<Character>(activeCharCounter);
-                        }
-                        else if (activeCharCounter != FightClub.Count - 1)
-                        {
-                            activeCharCounter++;
-                            activeChar = FightClub.ElementAt<Character>(activeCharCounter);
-                        }
-                        boolTurnOver = true;
-                        break;
-                    }
-                    else
-                    {
-                        usedSkill = skill;
-                    }
-                    */
                     //Wenn der Skill auf einzelne Charaktere zielt wird das ausgeführt
                     if (skill.Target.ToLower() == "Single".ToLower())
                     {
                         //Wenn der Skill sich auf PartyMember bezieht soll singleTarget True gesetzt werden
                         if (skill.AreaOfEffect.ToLower() == "Party".ToLower())
                         {
+                            Thread.Sleep(120);
                             this.singleTargetParty = true;
                             this.activeSkill = skill;
                         }
@@ -738,11 +731,12 @@ namespace RPG.Events
                         // Sonst wird über prüft ob der Skill für einen Gegner bestimmt ist wenn ja dann soll singleTargetEnemies True gesetzt werden
                         else if (skill.AreaOfEffect.ToLower() == "Enemy".ToLower())
                         {
+                            Thread.Sleep(120);
                             this.singleTargetEnemies = true;
                             this.activeSkill = skill;
                         }
                     }
-                    else if(skill.Target.ToLower() == "Group".ToLower())
+                    else if (skill.Target.ToLower() == "Group".ToLower())
                     {
                         //Wenn der Skill sich auf eine Gruppe bezieht wird der skill ausgeführt dabei wird differenziert zwischen party und enemys
                         if (skill.AreaOfEffect.ToLower() == "Party".ToLower())
@@ -755,7 +749,7 @@ namespace RPG.Events
                             skill.Execute(this.activeChar, targets);
                             this.targetClicked = true;
                             skillClicked = true;
-                            Thread.Sleep(100);
+                            Thread.Sleep(120);
                             TurnStart();
                         }
                         else if (skill.AreaOfEffect.ToLower() == "Enemy".ToLower())
@@ -768,7 +762,7 @@ namespace RPG.Events
                             skill.Execute(this.activeChar, targets);
                             this.targetClicked = true;
                             skillClicked = true;
-                            Thread.Sleep(100);
+                            Thread.Sleep(120);
                             TurnStart();
                         }
                     }
@@ -776,35 +770,24 @@ namespace RPG.Events
             }
         }
 
-
         //führt die Logik aus wie beispielsweise die Steuerung oder das Abspielen der Animationen
         public void Update(GameTime gameTime)
         {
             if(FightCadre.All(member => member.Life == 0))
             {
-                battleEnd = true;
+                GameOver.Update();
             }
             else if(Enemies.All(enemie => enemie.Life == 0))
             {
-                battleEnd = true;
+                battleEvaluation.Update(gameTime);
             }
+            //Die KI wird ausgeführt wenn es sich bei dem Aktiven Character um einen Gegner handelt
             if (activeChar.GetType() == typeof(Enemy))
             {
                 //führe KI aus
                 TurnStart();
-                /*
-                if (activeCharCounter == FightClub.Count - 1)
-                {
-                    activeCharCounter = 0;
-                    activeChar = FightClub.ElementAt<Character>(activeCharCounter);
-                }
-                else if(activeCharCounter != FightClub.Count - 1)
-                {
-                    activeCharCounter++;
-                    activeChar = FightClub.ElementAt<Character>(activeCharCounter);
-                }*/
-               
             }
+            //führt ein Update der Animationen und Texte aus wenn es sich bei dem aktiven Character um ein Gruppenmitglied handelt
             else
             {
                 if (!skillClicked)
@@ -888,108 +871,7 @@ namespace RPG.Events
 
         }
 
-        //zeichnet Charactere und Texte auf dem Bildschirm 
-        public void Draw(SpriteBatch spriteBatch)
-        {
-
-            Background.Draw(spriteBatch);
-            
-
-            if (!this.skillClicked)
-            {
-                skillBox.Draw(spriteBatch);
-                for (countFightCadre = 0; countFightCadre < this.FightCadre.Count - 1; countFightCadre++)
-                {
-                    if (this.FightCadre.ElementAt(countFightCadre) == this.activeChar)
-                        break;
-                }
-
-                if (countFightCadre == 0)
-                {
-                    this.character1skill1.Draw(spriteBatch);
-                    this.character1skill2.Draw(spriteBatch);
-                    this.character1skill3.Draw(spriteBatch);
-                    this.character1skill4.Draw(spriteBatch);
-                    countFightCadre = 0;
-                }
-                if (countFightCadre == 1)
-                {
-                    this.character2skill1.Draw(spriteBatch);
-                    this.character2skill2.Draw(spriteBatch);
-                    this.character2skill3.Draw(spriteBatch);
-                    this.character2skill4.Draw(spriteBatch);
-                    countFightCadre = 0;
-                }
-                if (countFightCadre == 2)
-                {
-                    this.character3skill1.Draw(spriteBatch);
-                    this.character3skill2.Draw(spriteBatch);
-                    this.character3skill3.Draw(spriteBatch);
-                    this.character3skill4.Draw(spriteBatch);
-                    countFightCadre = 0;
-                }
-                if (countFightCadre == 3)
-                {
-                    this.character4skill1.Draw(spriteBatch);
-                    this.character4skill2.Draw(spriteBatch);
-                    this.character4skill3.Draw(spriteBatch);
-                    this.character4skill4.Draw(spriteBatch);
-                    countFightCadre = 0;
-                }
-                this.restSkill.Draw(spriteBatch);
-                this.attackSkill.Draw(spriteBatch);
-            }
-
-            if (activeChar.GetType() != typeof(Enemy))
-            {
-                if (this.singleTargetParty)
-                {
-                    if (!this.targetClicked)
-                    {
-                        targetBox.Draw(spriteBatch);
-                        if (this.Character1Name != null)
-                            this.Character1Name.Draw(spriteBatch);
-                        if (this.Character2Name != null)
-                            this.Character2Name.Draw(spriteBatch);
-                        if (this.Character3Name != null)
-                            this.Character3Name.Draw(spriteBatch);
-                        if (this.Character4Name != null)
-                            this.Character4Name.Draw(spriteBatch);
-                    }
-                }
-
-                if (this.singleTargetEnemies)
-                {
-                    if (!this.targetClicked)
-                    {
-                        targetBox.Draw(spriteBatch);
-                        if (this.Enemie1Name != null)
-                            this.Enemie1Name.Draw(spriteBatch);
-                        if (this.Enemie2Name != null)
-                            this.Enemie2Name.Draw(spriteBatch);
-                        if (this.Enemie3Name != null)
-                            this.Enemie3Name.Draw(spriteBatch);
-                        if (this.Enemie4Name != null)
-                            this.Enemie4Name.Draw(spriteBatch);
-                    }
-                }
-                
-            }
-
-            // Zeichnet die Charaktere auf dem Bildschirm
-            foreach (Character chars in this.FightCadre)
-            {
-                chars.Draw(spriteBatch);
-            }
-
-            // Zeichnet die Gegner auf dem Bildschirm
-            foreach (Character chars in this.Enemies)
-            {
-                chars.Draw(spriteBatch);
-            }
-            DrawIcons(spriteBatch);
-        }
-
+        //Zeichnet die Icons
         public void DrawIcons(SpriteBatch spriteBatch)
         {
             foreach (Character character in FightClub)
@@ -1211,6 +1093,136 @@ namespace RPG.Events
             }
         }
 
+        //Stellt die Grafiken dar
+        public void Draw(SpriteBatch spriteBatch)
+        {
+
+            Background.Draw(spriteBatch);
+
+            if (FightCadre.All(member => member.Life == 0))
+            {
+                GameOver.Draw(spriteBatch);
+            }
+            if (Enemies.All(enemie => enemie.Life == 0))
+            {
+                BattleEvaluation.Draw(spriteBatch);
+            }
+            if (!Enemies.All(enemie => enemie.Life == 0))
+            {
+                if (!this.skillClicked)
+                {
+                    skillBox.Draw(spriteBatch);
+                    for (countFightCadre = 0; countFightCadre < this.FightCadre.Count - 1; countFightCadre++)
+                    {
+                        if (this.FightCadre.ElementAt(countFightCadre) == this.activeChar)
+                        break;
+                    }
+
+                    if (countFightCadre == 0)
+                    {
+                        this.character1skill1.Draw(spriteBatch);
+                        this.character1skill2.Draw(spriteBatch);
+                        this.character1skill3.Draw(spriteBatch);
+                        this.character1skill4.Draw(spriteBatch);
+                        countFightCadre = 0;
+                    }
+                    if (countFightCadre == 1)
+                    {
+                     this.character2skill1.Draw(spriteBatch);
+                        this.character2skill2.Draw(spriteBatch);
+                        this.character2skill3.Draw(spriteBatch);
+                        this.character2skill4.Draw(spriteBatch);
+                        countFightCadre = 0;
+                    }
+                    if (countFightCadre == 2)
+                    {
+                        this.character3skill1.Draw(spriteBatch);
+                        this.character3skill2.Draw(spriteBatch);
+                        this.character3skill3.Draw(spriteBatch);
+                        this.character3skill4.Draw(spriteBatch);
+                        countFightCadre = 0;
+                    }
+                    if (countFightCadre == 3)
+                    {
+                        this.character4skill1.Draw(spriteBatch);
+                        this.character4skill2.Draw(spriteBatch);
+                        this.character4skill3.Draw(spriteBatch);
+                        this.character4skill4.Draw(spriteBatch);
+                        countFightCadre = 0;
+                    }
+                    this.restSkill.Draw(spriteBatch);
+                    this.attackSkill.Draw(spriteBatch);
+                }
+
+                if (activeChar.GetType() != typeof(Enemy))
+                {
+                    if (this.singleTargetParty)
+                    {
+                        if (!this.targetClicked)
+                        {
+                            targetBox.Draw(spriteBatch);
+                            if (this.Character1Name != null)
+                            {
+                                this.Character1Name.Draw(spriteBatch);
+                            }
+                            if (this.Character2Name != null)
+                            {
+                                this.Character2Name.Draw(spriteBatch);
+                            }
+                            if (this.Character3Name != null)
+                            {
+                                this.Character3Name.Draw(spriteBatch);
+                            }
+                            if (this.Character4Name != null)
+                            {
+                                this.Character4Name.Draw(spriteBatch);
+                            }
+                        }
+                    }
+
+                    if (this.singleTargetEnemies)
+                    {
+                        if (!this.targetClicked)
+                        {
+                            targetBox.Draw(spriteBatch);
+                            if (this.Enemie1Name != null)
+                            {
+                                this.Enemie1Name.Draw(spriteBatch);
+                            }
+                            if (this.Enemie2Name != null)
+                            {
+                                this.Enemie2Name.Draw(spriteBatch);
+                            }
+                            if (this.Enemie3Name != null)
+                            {
+                                this.Enemie3Name.Draw(spriteBatch);
+                            }
+                            if (this.Enemie4Name != null)
+                            {
+                                this.Enemie4Name.Draw(spriteBatch);
+                            }
+                        }
+                    }
+                
+                }
+
+            
+                // Zeichnet die Charaktere auf dem Bildschirm
+                foreach (Character chars in this.FightCadre)
+                {
+                    chars.Draw(spriteBatch);
+                }
+
+                // Zeichnet die Gegner auf dem Bildschirm
+                foreach (Character chars in this.Enemies)
+                {
+                    chars.Draw(spriteBatch);
+                }
+                DrawIcons(spriteBatch);
+            }
+        }
+
+        //führt die Statuseffekte aus
         private void ExecuteStatuseffects(Character character)
         {
             for (int i = 0; i == character.Statuseffects.Count - 1; i++)
@@ -1223,6 +1235,8 @@ namespace RPG.Events
                 }
             }
         }
+
+        //Startet einen neuen Zug und weist den nächsten Character zu
         public void TurnStart()
         {
             this.ExecuteStatuseffects(activeChar);
@@ -1241,11 +1255,9 @@ namespace RPG.Events
                     activeCharCounter++;
                     activeChar = FightClub.ElementAt<Character>(activeCharCounter);
                 }
-
             }
             else
             {
-
                 if (activeCharCounter == FightClub.Count - 1)
                 {
                     activeCharCounter = 0;
@@ -1258,7 +1270,6 @@ namespace RPG.Events
                 }
             }
             skillClicked = false;
-
         }
     }
 }
