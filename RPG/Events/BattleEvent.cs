@@ -1239,6 +1239,7 @@ namespace RPG.Events
         //Startet einen neuen Zug und weist den nächsten Character zu
         public void StartNextTurn()
         {
+            
             if (this.activeChar.Life <= 0)
             {
                 this.activeChar.Statuseffects.RemoveAll(effect => effect.GetType() != typeof (Blessing));
@@ -1274,9 +1275,8 @@ namespace RPG.Events
                     activeCharCounter++;
                     activeChar = FightClub.ElementAt<Character>(activeCharCounter);
                 }
-
-                this.StartNextTurn();
             }
+            skillClicked = false;
         }
     }
 }
