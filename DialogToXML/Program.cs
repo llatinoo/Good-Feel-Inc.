@@ -38,7 +38,7 @@ namespace DialogToXML
 
                     if (Console.ReadLine().ToLower() == "j")
                     {
-                        string filePath = String.Format(@"C:\Users\DerSpecht\OneDrive\RPG\RPG Dokumente\RPGDialogs\szene{0}\part{1}\textbox{2}.xml", scene, part, i);
+                        string filePath = String.Format(@"C:\Users\dengler\OneDrive\RPG\RPG Dokumente\RPGDialogs\szene{0}\part{1}\textbox{2}.xml", scene, part, i);
                         string data = String.Format("<TextBox id=\"{8}\" speaker=\"{0}\" speakerPicture=\"{1}\" listener=\"{2}\" listenerPicture=\"{3}\" row1=\"{4}\" row2=\"{5}\" row3=\"{6}\" row4=\"{7}\"/>", speaker, speakerPicture, listener, listenerPicture, textRow1, textRow2, textRow3, textRow4, i);
                         File.AppendAllText(filePath, data + Environment.NewLine);
                         i++;
