@@ -12,6 +12,7 @@ namespace RPG.Events
 {
     class BattleEvent
     {
+        SpriteFont AwesomeFont;
         GameOverEvent GameOver;
         
         BattleEvaluationEvent battleEvaluation;
@@ -69,10 +70,10 @@ namespace RPG.Events
         private Vector2 skillPosition_3 = new Vector2(550, 475);
         private Vector2 skillPosition_4 = new Vector2(550, 500);
 
-        private Vector2 targetPosition_1 = new Vector2(30, 480);
-        private Vector2 targetPosition_2 = new Vector2(30, 500);
-        private Vector2 targetPosition_3 = new Vector2(30, 520);
-        private Vector2 targetPosition_4 = new Vector2(30, 540);
+        private Vector2 targetPosition_1 = new Vector2(30, 450);
+        private Vector2 targetPosition_2 = new Vector2(30, 475);
+        private Vector2 targetPosition_3 = new Vector2(30, 500);
+        private Vector2 targetPosition_4 = new Vector2(30, 525);
 
         private Vector2 icoPositionCharacter_1 = new Vector2(650, 380);
         private Vector2 icoPositionCharacter_2 = new Vector2(645, 325);
@@ -120,6 +121,8 @@ namespace RPG.Events
         TextElement Enemie2Name;
         TextElement Enemie3Name;
         TextElement Enemie4Name;
+
+        TextElement Back;
 
         GUIElement mindBlownIcoCharacter_1;
         GUIElement bleedIcoCharacter_1;
@@ -181,6 +184,16 @@ namespace RPG.Events
         GUIElement targetBox;
         GUIElement Background;
 
+        GUIElement ActivePartymember1Arrow;
+        GUIElement ActivePartymember2Arrow;
+        GUIElement ActivePartymember3Arrow;
+        GUIElement ActivePartymember4Arrow;
+
+        GUIElement ActiveEnemy1Arrow;
+        GUIElement ActiveEnemy2Arrow;
+        GUIElement ActiveEnemy3Arrow;
+        GUIElement ActiveEnemy4Arrow;
+
 
         public BattleEvent(List<PartyMember> fightCadre, List<Enemy> enemies, string background)
         {
@@ -205,6 +218,7 @@ namespace RPG.Events
             this.FightClub.OrderBy(character => character.GetInitiative());
             activeChar = FightClub.ElementAt<Character>(0);
             activeCharCounter = 0;
+            targetClicked = true;
         }
 
         //Läd alle Texturen und Daten die das Event benötigt
@@ -345,11 +359,33 @@ namespace RPG.Events
 
         public void LoadTextures(ContentManager content)
         {
+            AwesomeFont = content.Load<SpriteFont>("Fonts\\AwesomeFont");
             int skillCounter = 0;
             int charCounter = 0;
             int enemieCounter = 0;
 
             Background.LoadContent(content);
+            Back = new TextElement("Back", (int)targetPosition_4.X, (int)targetPosition_4.Y + 25, true);
+            Back.LoadContent(content);
+            Back.tclickEvent += OnClickElement;
+
+            ActivePartymember1Arrow = new GUIElement("Others\\ActivePartymemberArrow", (int)characterPosition_1.X - 60, (int)characterPosition_1.Y - 10);
+            ActivePartymember1Arrow.LoadContent(content);
+            ActivePartymember2Arrow = new GUIElement("Others\\ActivePartymemberArrow", (int)characterPosition_2.X - 60, (int)characterPosition_2.Y - 10);
+            ActivePartymember2Arrow.LoadContent(content);
+            ActivePartymember3Arrow = new GUIElement("Others\\ActivePartymemberArrow", (int)characterPosition_3.X - 60, (int)characterPosition_3.Y - 10);
+            ActivePartymember3Arrow.LoadContent(content);
+            ActivePartymember4Arrow = new GUIElement("Others\\ActivePartymemberArrow", (int)characterPosition_4.X - 60, (int)characterPosition_4.Y - 10);
+            ActivePartymember4Arrow.LoadContent(content);
+
+            ActiveEnemy1Arrow = new GUIElement("Others\\ActiveEnemyArrow", (int)enemyPosition_1.X - 60, (int)enemyPosition_1.Y - 10);
+            ActiveEnemy1Arrow.LoadContent(content);
+            ActiveEnemy2Arrow = new GUIElement("Others\\ActiveEnemyArrow", (int)enemyPosition_2.X - 60, (int)enemyPosition_2.Y - 10);
+            ActiveEnemy2Arrow.LoadContent(content);
+            ActiveEnemy3Arrow = new GUIElement("Others\\ActiveEnemyArrow", (int)enemyPosition_3.X - 60, (int)enemyPosition_3.Y - 10);
+            ActiveEnemy3Arrow.LoadContent(content);
+            ActiveEnemy4Arrow = new GUIElement("Others\\ActiveEnemyArrow", (int)enemyPosition_4.X - 60, (int)enemyPosition_4.Y - 10);
+            ActiveEnemy4Arrow.LoadContent(content);
 
             GameOver = new GameOverEvent("Backgrounds\\Menus\\Options_Screen_Background");
             GameOver.LoadContent(content);
@@ -367,7 +403,7 @@ namespace RPG.Events
             skillBox = new GUIElement("Boxes\\SkillBox");
             skillBox.LoadContent(content);
             skillBox.CenterElement(576,720);
-            skillBox.moveElement(185,245);
+            skillBox.moveElement(160,245);
 
             targetBox = new GUIElement("Boxes\\SkillBox");
             targetBox.LoadContent(content);
@@ -849,12 +885,17 @@ namespace RPG.Events
 
                     if (!targetClicked)
                     {
-                        this.Character1Name.Update();
-                        this.Character2Name.Update();
-                        this.Character3Name.Update();
-                        this.Character4Name.Update();
-
-                        this.Enemie1Name.Update();
+                            if (singleTargetParty)
+                            {
+                                this.Character1Name.Update();
+                                this.Character2Name.Update();
+                                this.Character3Name.Update();
+                                this.Character4Name.Update();
+                            }
+                            else if (singleTargetEnemies)
+                            {
+                                this.Enemie1Name.Update();
+                            }
                     }
                 }
             }
@@ -1125,6 +1166,7 @@ namespace RPG.Events
                         this.character1skill2.Draw(spriteBatch);
                         this.character1skill3.Draw(spriteBatch);
                         this.character1skill4.Draw(spriteBatch);
+                        ActivePartymember1Arrow.Draw(spriteBatch);
                         countFightCadre = 0;
                     }
                     if (countFightCadre == 1)
@@ -1133,6 +1175,7 @@ namespace RPG.Events
                         this.character2skill2.Draw(spriteBatch);
                         this.character2skill3.Draw(spriteBatch);
                         this.character2skill4.Draw(spriteBatch);
+                        ActivePartymember2Arrow.Draw(spriteBatch);
                         countFightCadre = 0;
                     }
                     if (countFightCadre == 2)
@@ -1141,6 +1184,7 @@ namespace RPG.Events
                         this.character3skill2.Draw(spriteBatch);
                         this.character3skill3.Draw(spriteBatch);
                         this.character3skill4.Draw(spriteBatch);
+                        ActivePartymember3Arrow.Draw(spriteBatch);
                         countFightCadre = 0;
                     }
                     if (countFightCadre == 3)
@@ -1149,6 +1193,7 @@ namespace RPG.Events
                         this.character4skill2.Draw(spriteBatch);
                         this.character4skill3.Draw(spriteBatch);
                         this.character4skill4.Draw(spriteBatch);
+                        ActivePartymember4Arrow.Draw(spriteBatch);
                         countFightCadre = 0;
                     }
                     this.restSkill.Draw(spriteBatch);
@@ -1159,48 +1204,66 @@ namespace RPG.Events
                 {
                     if (this.singleTargetParty)
                     {
+                        Back.Draw(spriteBatch);
                         if (!this.targetClicked)
                         {
                             targetBox.Draw(spriteBatch);
                             if (this.Character1Name != null)
                             {
                                 this.Character1Name.Draw(spriteBatch);
+                                spriteBatch.DrawString(AwesomeFont, "Leben: " + FightCadre.ElementAt<PartyMember>(0).Life + " \\ " + FightCadre.ElementAt<PartyMember>(0).FightVitality, new Vector2((int)targetPosition_1.X + 100, (int)targetPosition_1.Y), Color.White);
+                                spriteBatch.DrawString(AwesomeFont, "Mana: " + FightCadre.ElementAt<PartyMember>(0).Mana + " \\ " + FightCadre.ElementAt<PartyMember>(0).FightManaPool, new Vector2((int)targetPosition_1.X + 300, (int)targetPosition_1.Y), Color.White);
                             }
                             if (this.Character2Name != null)
                             {
                                 this.Character2Name.Draw(spriteBatch);
+                                spriteBatch.DrawString(AwesomeFont, "Leben: " + FightCadre.ElementAt<PartyMember>(1).Life + " \\ " + FightCadre.ElementAt<PartyMember>(1).FightVitality, new Vector2((int)targetPosition_2.X + 100, (int)targetPosition_2.Y), Color.White);
+                                spriteBatch.DrawString(AwesomeFont, "Mana: " + FightCadre.ElementAt<PartyMember>(1).Mana + " \\ " + FightCadre.ElementAt<PartyMember>(1).FightManaPool, new Vector2((int)targetPosition_2.X + 300, (int)targetPosition_2.Y), Color.White);
                             }
                             if (this.Character3Name != null)
                             {
                                 this.Character3Name.Draw(spriteBatch);
+                                spriteBatch.DrawString(AwesomeFont, "Leben: " + FightCadre.ElementAt<PartyMember>(2).Life + " \\ " + FightCadre.ElementAt<PartyMember>(2).FightVitality, new Vector2((int)targetPosition_3.X + 100, (int)targetPosition_3.Y), Color.White);
+                                spriteBatch.DrawString(AwesomeFont, "Mana: " + FightCadre.ElementAt<PartyMember>(2).Mana + " \\ " + FightCadre.ElementAt<PartyMember>(2).FightManaPool, new Vector2((int)targetPosition_3.X + 300, (int)targetPosition_3.Y), Color.White);
                             }
                             if (this.Character4Name != null)
                             {
                                 this.Character4Name.Draw(spriteBatch);
+                                spriteBatch.DrawString(AwesomeFont, "Leben: " + FightCadre.ElementAt<PartyMember>(3).Life + " \\ " + FightCadre.ElementAt<PartyMember>(3).FightVitality, new Vector2((int)targetPosition_4.X + 100, (int)targetPosition_4.Y), Color.White);
+                                spriteBatch.DrawString(AwesomeFont, "Mana: " + FightCadre.ElementAt<PartyMember>(3).Mana + " \\ " + FightCadre.ElementAt<PartyMember>(3).FightManaPool, new Vector2((int)targetPosition_4.X + 300, (int)targetPosition_4.Y), Color.White);
                             }
                         }
                     }
 
                     if (this.singleTargetEnemies)
                     {
+                        Back.Draw(spriteBatch);
                         if (!this.targetClicked)
                         {
                             targetBox.Draw(spriteBatch);
                             if (this.Enemie1Name != null)
                             {
                                 this.Enemie1Name.Draw(spriteBatch);
+                                spriteBatch.DrawString(AwesomeFont, "Leben: " + Enemies.ElementAt<Enemy>(0).Life + " \\ " + Enemies.ElementAt<Enemy>(0).FightVitality, new Vector2((int)targetPosition_1.X + 100, (int)targetPosition_1.Y), Color.White);
+                                spriteBatch.DrawString(AwesomeFont, "Mana: " + Enemies.ElementAt<Enemy>(0).Mana + " \\ " + Enemies.ElementAt<Enemy>(0).FightManaPool, new Vector2((int)targetPosition_1.X + 300, (int)targetPosition_1.Y), Color.White);
                             }
                             if (this.Enemie2Name != null)
                             {
                                 this.Enemie2Name.Draw(spriteBatch);
+                                spriteBatch.DrawString(AwesomeFont, "Leben: " + Enemies.ElementAt<Enemy>(1).Life + " \\ " + Enemies.ElementAt<Enemy>(1).FightVitality, new Vector2((int)targetPosition_2.X + 100, (int)targetPosition_2.Y), Color.White);
+                                spriteBatch.DrawString(AwesomeFont, "Mana: " + Enemies.ElementAt<Enemy>(1).Mana + " \\ " + Enemies.ElementAt<Enemy>(1).FightManaPool, new Vector2((int)targetPosition_2.X + 300, (int)targetPosition_2.Y), Color.White);
                             }
                             if (this.Enemie3Name != null)
                             {
                                 this.Enemie3Name.Draw(spriteBatch);
+                                spriteBatch.DrawString(AwesomeFont, "Leben: " + Enemies.ElementAt<Enemy>(2).Life + " \\ " + Enemies.ElementAt<Enemy>(2).FightVitality, new Vector2((int)targetPosition_3.X + 100, (int)targetPosition_3.Y), Color.White);
+                                spriteBatch.DrawString(AwesomeFont, "Mana: " + Enemies.ElementAt<Enemy>(2).Mana + " \\ " + Enemies.ElementAt<Enemy>(2).FightManaPool, new Vector2((int)targetPosition_3.X + 300, (int)targetPosition_3.Y), Color.White);
                             }
                             if (this.Enemie4Name != null)
                             {
                                 this.Enemie4Name.Draw(spriteBatch);
+                                spriteBatch.DrawString(AwesomeFont, "Leben: " + Enemies.ElementAt<Enemy>(3).Life + " \\ " + Enemies.ElementAt<Enemy>(3).FightVitality, new Vector2((int)targetPosition_4.X + 100, (int)targetPosition_4.Y), Color.White);
+                                spriteBatch.DrawString(AwesomeFont, "Mana: " + Enemies.ElementAt<Enemy>(3).Mana + " \\ " + Enemies.ElementAt<Enemy>(3).FightManaPool, new Vector2((int)targetPosition_4.X + 300, (int)targetPosition_4.Y), Color.White);
                             }
                         }
                     }
@@ -1278,6 +1341,14 @@ namespace RPG.Events
                 }
             }
             skillClicked = false;
+        }
+
+        public void OnClickElement(string element)
+        {
+            if(element == "back")
+            {
+
+            }
         }
     }
 }
