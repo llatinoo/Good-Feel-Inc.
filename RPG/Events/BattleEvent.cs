@@ -761,14 +761,13 @@ namespace RPG.Events
                     }
                     break;
                 }
-                else if (skillName == "Ausruhen")
-                {
-                    this.activeChar.RestSkill.Execute(activeChar, new List<Character> { activeChar });
-                    targetClicked = true;
-                    Thread.Sleep(120);
-                    TurnStart();
-                    break;
-                }
+            }
+            if (skillName == "Ausruhen")
+            {
+                this.activeChar.RestSkill.Execute(activeChar, new List<Character> { activeChar });
+                targetClicked = true;
+                Thread.Sleep(120);
+                TurnStart();
             }
         }
 
