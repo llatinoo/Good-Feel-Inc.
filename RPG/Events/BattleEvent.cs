@@ -772,89 +772,91 @@ namespace RPG.Events
         //führt die Logik aus wie beispielsweise die Steuerung oder das Abspielen der Animationen
         public void Update(GameTime gameTime)
         {
-            if(FightCadre.All(member => member.Life == 0))
+            if (FightCadre.All(member => member.Life == 0))
             {
                 GameOver.Update();
             }
-            else if(Enemies.All(enemie => enemie.Life == 0))
+            else if (Enemies.All(enemie => enemie.Life == 0))
             {
                 battleEvaluation.Update(gameTime);
             }
-            //Die KI wird ausgeführt wenn es sich bei dem Aktiven Character um einen Gegner handelt
-            if (activeChar.GetType() == typeof(Enemy))
-            {
-                this.StartNextTurn();
-            }
-            //führt ein Update der Animationen und Texte aus wenn es sich bei dem aktiven Character um ein Gruppenmitglied handelt
             else
             {
-                if (!skillClicked)
+                //Die KI wird ausgeführt wenn es sich bei dem Aktiven Character um einen Gegner handelt
+                if (activeChar.GetType() == typeof(Enemy))
                 {
-                    for (countFightCadre = 0; countFightCadre < this.FightCadre.Count - 1; countFightCadre++)
-                    {
-                        if (this.FightCadre.ElementAt(countFightCadre) == this.activeChar)
-                            break;
-                    }
-
-                    if (countFightCadre == 0)
-                    {
-                        if (!this.skillClicked)
-                        {
-                            this.character1skill1.Update();
-                            this.character1skill2.Update();
-                            this.character1skill3.Update();
-                            this.character1skill4.Update();
-                        }
-                        countFightCadre = 0;
-                    }
-                    if (countFightCadre == 1)
-                    {
-                        if (!this.skillClicked)
-                        {
-                            this.character2skill1.Update();
-                            this.character2skill2.Update();
-                            this.character2skill3.Update();
-                            this.character2skill4.Update();
-                        }
-                        countFightCadre = 0;
-                    }
-                    if (countFightCadre == 2)
-                    {
-                        if (!this.skillClicked)
-                        {
-                            this.character3skill1.Update();
-                            this.character3skill2.Update();
-                            this.character3skill3.Update();
-                            this.character3skill4.Update();
-                        }
-                        countFightCadre = 0;
-                    }
-                    if (countFightCadre == 3)
-                    {
-                        if (!this.skillClicked)
-                        {
-                            this.character4skill1.Update();
-                            this.character4skill2.Update();
-                            this.character4skill3.Update();
-                            this.character4skill4.Update();
-                        }
-                        countFightCadre = 0;
-                    }
-                    this.attackSkill.Update();
-                    this.restSkill.Update();
+                    this.StartNextTurn();
                 }
-
-                if (!targetClicked)
+                //führt ein Update der Animationen und Texte aus wenn es sich bei dem aktiven Character um ein Gruppenmitglied handelt
+                else
                 {
-                    this.Character1Name.Update();
-                    this.Character2Name.Update();
-                    this.Character3Name.Update();
-                    this.Character4Name.Update();
+                    if (!skillClicked)
+                    {
+                        for (countFightCadre = 0; countFightCadre < this.FightCadre.Count - 1; countFightCadre++)
+                        {
+                            if (this.FightCadre.ElementAt(countFightCadre) == this.activeChar)
+                                break;
+                        }
 
-                    this.Enemie1Name.Update();
+                        if (countFightCadre == 0)
+                        {
+                            if (!this.skillClicked)
+                            {
+                                this.character1skill1.Update();
+                                this.character1skill2.Update();
+                                this.character1skill3.Update();
+                                this.character1skill4.Update();
+                            }
+                            countFightCadre = 0;
+                        }
+                        if (countFightCadre == 1)
+                        {
+                            if (!this.skillClicked)
+                            {
+                                this.character2skill1.Update();
+                                this.character2skill2.Update();
+                                this.character2skill3.Update();
+                                this.character2skill4.Update();
+                            }
+                            countFightCadre = 0;
+                        }
+                        if (countFightCadre == 2)
+                        {
+                            if (!this.skillClicked)
+                            {
+                                this.character3skill1.Update();
+                                this.character3skill2.Update();
+                                this.character3skill3.Update();
+                                this.character3skill4.Update();
+                            }
+                            countFightCadre = 0;
+                        }
+                        if (countFightCadre == 3)
+                        {
+                            if (!this.skillClicked)
+                            {
+                                this.character4skill1.Update();
+                                this.character4skill2.Update();
+                                this.character4skill3.Update();
+                                this.character4skill4.Update();
+                            }
+                            countFightCadre = 0;
+                        }
+                        this.attackSkill.Update();
+                        this.restSkill.Update();
+                    }
+
+                    if (!targetClicked)
+                    {
+                        this.Character1Name.Update();
+                        this.Character2Name.Update();
+                        this.Character3Name.Update();
+                        this.Character4Name.Update();
+
+                        this.Enemie1Name.Update();
+                    }
                 }
             }
-
             //Wechselt die Frames der befreundeten Animationen
             foreach (Character chars in this.FightCadre)
             {
