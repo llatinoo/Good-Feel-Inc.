@@ -839,10 +839,22 @@ namespace RPG.Events
                         {
                             if (!this.skillClicked)
                             {
-                                this.character1skill1.Update();
-                                this.character1skill2.Update();
-                                this.character1skill3.Update();
-                                this.character1skill4.Update();
+                                if (character1skill1 != null)
+                                {
+                                    this.character1skill1.Update();
+                                }
+                                if (character1skill2 != null)
+                                {
+                                    this.character1skill2.Update();
+                                }
+                                if (character1skill3 != null)
+                                {
+                                    this.character1skill3.Update();
+                                }
+                                if (character1skill4 != null)
+                                {
+                                    this.character1skill4.Update();
+                                }
                             }
                             countFightCadre = 0;
                         }
@@ -850,10 +862,22 @@ namespace RPG.Events
                         {
                             if (!this.skillClicked)
                             {
-                                this.character2skill1.Update();
-                                this.character2skill2.Update();
-                                this.character2skill3.Update();
-                                this.character2skill4.Update();
+                                if (character2skill1 != null)
+                                {
+                                    this.character2skill1.Update();
+                                }
+                                if (character2skill2 != null)
+                                {
+                                    this.character2skill2.Update();
+                                }
+                                if (character2skill3 != null)
+                                {
+                                    this.character2skill3.Update();
+                                }
+                                if (character2skill4 != null)
+                                {
+                                    this.character2skill4.Update();
+                                }
                             }
                             countFightCadre = 0;
                         }
@@ -861,10 +885,22 @@ namespace RPG.Events
                         {
                             if (!this.skillClicked)
                             {
-                                this.character3skill1.Update();
-                                this.character3skill2.Update();
-                                this.character3skill3.Update();
-                                this.character3skill4.Update();
+                                if (character3skill1 != null)
+                                {
+                                    this.character1skill1.Update();
+                                }
+                                if (character3skill2 != null)
+                                {
+                                    this.character3skill2.Update();
+                                }
+                                if (character3skill3 != null)
+                                {
+                                    this.character3skill3.Update();
+                                }
+                                if (character3skill4 != null)
+                                {
+                                    this.character3skill4.Update();
+                                }
                             }
                             countFightCadre = 0;
                         }
@@ -872,10 +908,22 @@ namespace RPG.Events
                         {
                             if (!this.skillClicked)
                             {
-                                this.character4skill1.Update();
-                                this.character4skill2.Update();
-                                this.character4skill3.Update();
-                                this.character4skill4.Update();
+                                if (character4skill1 != null)
+                                {
+                                    this.character4skill1.Update();
+                                }
+                                if (character4skill2 != null)
+                                {
+                                    this.character4skill2.Update();
+                                }
+                                if (character4skill3 != null)
+                                {
+                                    this.character4skill3.Update();
+                                }
+                                if (character4skill4 != null)
+                                {
+                                    this.character4skill4.Update();
+                                }
                             }
                             countFightCadre = 0;
                         }
@@ -1162,37 +1210,85 @@ namespace RPG.Events
 
                     if (countFightCadre == 0)
                     {
-                        this.character1skill1.Draw(spriteBatch);
-                        this.character1skill2.Draw(spriteBatch);
-                        this.character1skill3.Draw(spriteBatch);
-                        this.character1skill4.Draw(spriteBatch);
+                        if (character1skill1 != null)
+                        {
+                            this.character1skill1.Draw(spriteBatch);
+                        }
+                        if (character1skill2 != null)
+                        {
+                            this.character1skill2.Draw(spriteBatch);
+                        }
+                        if (character1skill3 != null)
+                        {
+                            this.character1skill3.Draw(spriteBatch);
+                        }
+                        if (character1skill4 != null)
+                        {
+                            this.character1skill4.Draw(spriteBatch);
+                        }
                         ActivePartymember1Arrow.Draw(spriteBatch);
                         countFightCadre = 0;
                     }
                     if (countFightCadre == 1)
                     {
-                     this.character2skill1.Draw(spriteBatch);
-                        this.character2skill2.Draw(spriteBatch);
-                        this.character2skill3.Draw(spriteBatch);
-                        this.character2skill4.Draw(spriteBatch);
+                        if (character2skill1 != null)
+                        {
+                            this.character2skill1.Draw(spriteBatch);
+                        }
+                        if (character2skill2 != null)
+                        {
+                            this.character2skill2.Draw(spriteBatch);
+                        }
+                        if (character2skill3 != null)
+                        {
+                            this.character2skill3.Draw(spriteBatch);
+                        }
+                        if (character2skill4 != null)
+                        {
+                            this.character2skill4.Draw(spriteBatch);
+                        }
                         ActivePartymember2Arrow.Draw(spriteBatch);
                         countFightCadre = 0;
                     }
                     if (countFightCadre == 2)
                     {
-                        this.character3skill1.Draw(spriteBatch);
-                        this.character3skill2.Draw(spriteBatch);
-                        this.character3skill3.Draw(spriteBatch);
-                        this.character3skill4.Draw(spriteBatch);
+                        if (character3skill1 != null)
+                        {
+                            this.character3skill1.Draw(spriteBatch);
+                        }
+                        if (character3skill2 != null)
+                        {
+                            this.character3skill2.Draw(spriteBatch);
+                        }
+                        if (character3skill3 != null)
+                        {
+                            this.character3skill3.Draw(spriteBatch);
+                        }
+                        if (character3skill4 != null)
+                        {
+                            this.character3skill4.Draw(spriteBatch);
+                        }
                         ActivePartymember3Arrow.Draw(spriteBatch);
                         countFightCadre = 0;
                     }
                     if (countFightCadre == 3)
                     {
-                        this.character4skill1.Draw(spriteBatch);
-                        this.character4skill2.Draw(spriteBatch);
-                        this.character4skill3.Draw(spriteBatch);
-                        this.character4skill4.Draw(spriteBatch);
+                        if (character4skill1 != null)
+                        {
+                            this.character4skill1.Draw(spriteBatch);
+                        }
+                        if (character4skill2 != null)
+                        {
+                            this.character4skill2.Draw(spriteBatch);
+                        }
+                        if (character4skill3 != null)
+                        {
+                            this.character1skill3.Draw(spriteBatch);
+                        }
+                        if (character4skill4 != null)
+                        {
+                            this.character4skill4.Draw(spriteBatch);
+                        }
                         ActivePartymember4Arrow.Draw(spriteBatch);
                         countFightCadre = 0;
                     }
