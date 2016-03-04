@@ -39,7 +39,7 @@ namespace RPG
 
             this.SetPerformSkills(group);
 
-            this.skillToPerform = this.performableSkills.ElementAt(r.Next(0, this.performableSkills.Count));
+            this.skillToPerform = this.performableSkills.ElementAt(r.Next(0, this.performableSkills.Count * 1000) / 1000);
 
             if (this.skillToPerform.Target.ToLower() == "Single".ToLower())
             {
@@ -96,7 +96,7 @@ namespace RPG
         private void SetTargetForSingletargetDamageSkill(List<Character> enemys)
         {
             Random r = new Random();
-            this.targets = new List<Character>() { enemys.ElementAt(r.Next(0, enemys.Count)) };
+            this.targets = new List<Character>() { enemys.ElementAt(r.Next(0, enemys.Count * 1000) / 1000) };
         }
 
 
@@ -106,7 +106,7 @@ namespace RPG
             Random r = new Random();
             for (int i = 0; i <= 3; i++)
             {
-                this.useableSkills.Add(Skills.ElementAt(r.Next(0, this.Skills.Count)));
+                this.useableSkills.Add(Skills.ElementAt(r.Next(0, this.Skills.Count * 1000) / 1000));
             }
         }
 
@@ -114,11 +114,6 @@ namespace RPG
         //Setzen der ausführbaren Skills
         private void SetPerformSkills(List<Character> group)
         {
-            if ((this.Mana/this.Manapool)*100 <= 35)
-            {
-                this.performableSkills.Add(this.RestSkill);
-            }
-
             foreach (var skill in this.useableSkills)
             {
                 if (skill.Manacosts <= this.Mana)
@@ -178,6 +173,11 @@ namespace RPG
             foreach (var skill in this.performableSkills)
             {
                 this.performableSkills.Add(this.AttackSkill);
+            }
+
+            if ((this.Mana / this.Manapool) * 100 <= 35 || this.performableSkills.All(skill => skill.Manacosts > this.Mana))
+            {
+                this.performableSkills.Add(this.RestSkill);
             }
         }
     }
