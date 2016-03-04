@@ -84,16 +84,16 @@ namespace RPG
             }
         }
 
-        [ConfigurationProperty("manaCosts", IsRequired = true, IsKey = false)]
-        public string ManaCosts
+        [ConfigurationProperty("level", IsRequired = true, IsKey = false)]
+        public string Level
         {
             get
             {
-                return this["manaCosts"] as string;
+                return this["level"] as string;
             }
             set
             {
-                this["manaCosts"] = value;
+                this["level"] = value;
             }
         }
 

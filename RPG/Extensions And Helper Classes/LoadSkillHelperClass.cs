@@ -34,15 +34,20 @@ namespace RPG
                         .SingleOrDefault(
                             cadreSkill => cadreSkill.Name == classSkill.Name);
 
-                //Läd alle Effekte dieses Skills
-                skillToAddEffects = new List<IEffect>();
-                foreach (EffectElement effect in skillToAdd.Effects)
+                if (character.Level >= Convert.ToInt32(skillToAdd.Level))
                 {
-                    skillToAddEffects.Add(GetEffectFactory.GetEffect(effect.Name));
-                }
+                    //Läd alle Effekte dieses Skills
+                    skillToAddEffects = new List<IEffect>();
+                    foreach (EffectElement effect in skillToAdd.Effects)
+                    {
+                        skillToAddEffects.Add(GetEffectFactory.GetEffect(effect.Name));
+                    }
 
-                //Fügt dem Charakter den gewählten Skill hinzu
-                character.AddSkill(new Skill(skillToAdd.Name, Convert.ToInt32(skillToAdd.ManaCosts), skillToAdd.Target, skillToAdd.AreaOfEffect, skillToAddEffects));
+                    //Fügt dem Charakter den gewählten Skill hinzu
+                    character.AddSkill(new Skill(skillToAdd.Name,
+                        LoadSkillHelperClass.GetManaCosts(Convert.ToInt32(skillToAdd.Level)), skillToAdd.Target,
+                        skillToAdd.AreaOfEffect, skillToAddEffects));
+                }
             }
         }
 
@@ -65,21 +70,22 @@ namespace RPG
             {
                 //Überprufen ob der Charakter das erforderliche Level für den Skills besitzt
                 //und ob der Charakter diesen Skill bereits besitzt
-                if (!member.Skills.All(Skill => Skill.Name == charSkill.Name) &&
-                    member.Level <= Convert.ToInt32(charSkill.Level))
-                {
+                
                     var skillToAdd =
                      skillCadreDataSection.Skills.Cast<SkillElement>()
                          .SingleOrDefault(
                              cadreSkill => cadreSkill.Name == charSkill.Name);
 
+                if (!member.Skills.All(Skill => Skill.Name == charSkill.Name) &&
+                    member.Level <= Convert.ToInt32(skillToAdd.Level))
+                {
                     skillToAddEffects = new List<IEffect>();
                     foreach (EffectElement effect in skillToAdd.Effects)
                     {
                         skillToAddEffects.Add(GetEffectFactory.GetEffect(effect.Name));
                     }
 
-                    member.AddSkill(new Skill(skillToAdd.Name, Convert.ToInt32(skillToAdd.ManaCosts), skillToAdd.Target, skillToAdd.AreaOfEffect, skillToAddEffects));
+                    member.AddSkill(new Skill(skillToAdd.Name, LoadSkillHelperClass.GetManaCosts(Convert.ToInt32(skillToAdd.Level)), skillToAdd.Target, skillToAdd.AreaOfEffect, skillToAddEffects));
                 }
             }
         }
@@ -134,9 +140,31 @@ namespace RPG
 
 
             member.SetStandardSkills(
-                new Skill(attackSkill.Name, Convert.ToInt32(attackSkill.ManaCosts), attackSkill.Target, attackSkill.AreaOfEffect, attackSkillEffects), 
-                new Skill(recoverSkill.Name, Convert.ToInt32(recoverSkill.ManaCosts), recoverSkill.Target, recoverSkill.AreaOfEffect, recoverSkillEffects)
+                new Skill(attackSkill.Name, LoadSkillHelperClass.GetManaCosts(Convert.ToInt32(attackSkill.Level)), attackSkill.Target, attackSkill.AreaOfEffect, attackSkillEffects), 
+                new Skill(recoverSkill.Name, LoadSkillHelperClass.GetManaCosts(Convert.ToInt32(recoverSkill.Level)), recoverSkill.Target, recoverSkill.AreaOfEffect, recoverSkillEffects)
              );
+        }
+
+        public static int GetManaCosts(int level)
+        {
+            if (level == 2)
+            {
+                return 30;
+            }
+            if (level == 4)
+            {
+                return 50;
+            }
+            if (level == 6)
+            {
+                return 65;
+            }
+            if (level == 8)
+            {
+                return 80;
+            }
+
+            return 0;
         }
     }
 }

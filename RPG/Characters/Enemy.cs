@@ -50,6 +50,7 @@ namespace RPG
             this.SetPerformSkills(groupOfFoe);
 
             this.SkillToPerform = this.performableSkills.ElementAt(r.Next(0, this.performableSkills.Count * 1000) / 1000);
+            this.SkillToPerformName = this.SkillToPerform.Name;
 
             if (this.SkillToPerform.Target.ToLower() == "Single".ToLower())
             {
@@ -79,6 +80,7 @@ namespace RPG
             this.SkillToPerform.Execute(this, this.targets);
         }
 
+
         private void SetTargetForSingletargetFriendlySkill(List<Character> groupOfFoe)
         {
             foreach (var effect in this.SkillToPerform.Effects)
@@ -106,9 +108,9 @@ namespace RPG
                     break;
                 }
             }
-
             this.SetTargetNameForSingleTarget();
         }
+
 
         private void SetTargetForSingletargetDamageSkill(IEnumerable<Character> enemiesOfFoe)
         {
@@ -129,7 +131,11 @@ namespace RPG
             Random r = new Random();
             for (int i = 0; i <= 3; i++)
             {
-                this.useableSkills.Add(Skills.ElementAt(r.Next(0, this.Skills.Count * 1000) / 1000));
+                try
+                {
+                    this.useableSkills.Add(Skills.ElementAt(r.Next(0, this.Skills.Count*1000)/1000));
+                }catch(Exception e)
+                { }
             }
         }
 
@@ -198,6 +204,7 @@ namespace RPG
                     }
                 }
             }
+
 
             int performableSkillsCount = 0;
             MathHelper.Clamp(performableSkillsCount, 1, this.performableSkills.Count);

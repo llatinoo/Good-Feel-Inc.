@@ -157,18 +157,5 @@ namespace RPG
                 this["name"] = value;
             }
         }
-
-        [ConfigurationProperty("level", IsRequired = true, IsKey = false)]
-        public string Level
-        {
-            get
-            {
-                return this["level"] as string;
-            }
-            set
-            {
-                this["level"] = value;
-            }
-        }
     }
 }
