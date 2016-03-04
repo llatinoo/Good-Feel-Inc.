@@ -679,16 +679,7 @@ namespace RPG.Events
                     this.singleTargetEnemies = false;
                     this.singleTargetParty = false;
 
-                    if (activeCharCounter == FightClub.Count - 1)
-                    {
-                        activeCharCounter = 0;
-                        activeChar = FightClub.ElementAt<Character>(activeCharCounter);
-                    }
-                    else if(activeCharCounter != FightClub.Count - 1)
-                    {
-                        activeCharCounter++;
-                        activeChar = FightClub.ElementAt<Character>(activeCharCounter);
-                    }
+                    this.StartNextTurn();
                     
                 }
             }
@@ -1246,7 +1237,10 @@ namespace RPG.Events
         //Startet einen neuen Zug und weist den nächsten Character zu
         public void StartNextTurn()
         {
-            this.ExecuteStatuseffects(activeChar);
+            if (this.activeChar.Life <= 0)
+            {
+                this.activeChar.Statuseffects.RemoveAll(effect => effect.GetType() != typeof (Blessing));
+            }
 
             if (activeCharCounter == FightClub.Count - 1)
             {
@@ -1258,6 +1252,8 @@ namespace RPG.Events
                 activeCharCounter++;
                 activeChar = FightClub.ElementAt<Character>(activeCharCounter);
             }
+
+            this.ExecuteStatuseffects(activeChar);
 
             if (this.activeChar.Life <= 0 && this.activeChar.IsBlessed)
             {
@@ -1276,6 +1272,8 @@ namespace RPG.Events
                     activeCharCounter++;
                     activeChar = FightClub.ElementAt<Character>(activeCharCounter);
                 }
+
+                this.StartNextTurn();
             }
         }
     }
