@@ -148,9 +148,9 @@ namespace RPGTests
                     ""
                 );
 
-
-            Assert.IsTrue( Warrior.AttackSkill.Effects.All(effect => effect.GetType() == typeof(Damage)) && !Warrior.AttackSkill.Effects.All(effect => effect.GetType() == typeof(MagicalDamage)) );
-            Assert.IsTrue( Harasser.AttackSkill.Effects.All(effect => effect.GetType() == typeof(MagicalDamage)) && !Harasser.AttackSkill.Effects.All(effect => effect.GetType() == typeof(Damage)) );
+            Assert.IsTrue(Warrior.AttackSkill.Effects.All(effect => effect.GetType() == typeof(Damage)) && !Warrior.AttackSkill.Effects.All(effect => effect.GetType() == typeof(MagicalDamage)));
+            Assert.IsTrue(Harasser.AttackSkill.Effects.All(effect => effect.GetType() == typeof(MagicalDamage)) && !Harasser.AttackSkill.Effects.All(effect => effect.GetType() == typeof(Damage)));
+            Assert.IsNotNull(Warrior.RestSkill);
         }
     }
 }

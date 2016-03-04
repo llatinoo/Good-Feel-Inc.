@@ -60,6 +60,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AITest.cs" />
     <Compile Include="AppConfigDataSectionTests.cs" />
     <Compile Include="EffectTests.cs" />
     <Compile Include="CharacterTests.cs" />

@@ -785,6 +785,7 @@ namespace RPG.Events
                 //Die KI wird ausgeführt wenn es sich bei dem Aktiven Character um einen Gegner handelt
                 if (activeChar.GetType() == typeof(Enemy))
                 {
+                    ((Enemy)this.activeChar).PerformAI(this.FightCadre, this.Enemies.Cast<Character>().ToList());
                     this.StartNextTurn();
                 }
                 //führt ein Update der Animationen und Texte aus wenn es sich bei dem aktiven Character um ein Gruppenmitglied handelt

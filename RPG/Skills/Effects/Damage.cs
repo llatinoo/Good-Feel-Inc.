@@ -23,9 +23,9 @@ namespace RPG
 
                 this.CausedDamage -= target.FightDefense;
 
-                if (this.CausedDamage < 0)
+                if (this.CausedDamage < source.FightStrength / 6)
                 {
-                    this.CausedDamage = 0;
+                    this.CausedDamage = source.FightStrength / 6;
                 }
 
                 target.Life -= this.CausedDamage;
