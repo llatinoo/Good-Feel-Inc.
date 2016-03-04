@@ -9,8 +9,6 @@ namespace RPG
     //Klasse zur Unterscheidung von Gegnern
     public class Enemy : Character
     {
-        //Abfrage ob der Gegner ein Boss ist
-        public bool isBoss;
         //Abfrage ob der Gegner eine ANimation besitzt
         public bool isAnimated;
         //Liste von ausführbaren Skills
@@ -19,19 +17,18 @@ namespace RPG
         private List<Skill> useableSkills = new List<Skill>();
         //Skill der Ausgeführt werden soll
         private Skill skillToPerform;
-        //Mögliche Ziele
-        private List<Character> possibleTargets = new List<Character>();
         //Ziele des Skills
         private List<Character> targets = new List<Character>();
 
-        public Enemy(string charName, Classes className, bool isboss, int vita, int mana, int strength,
+
+
+        public Enemy(string charName, Classes className, int vita, int mana, int strength,
             int mag, int def, int res, int luck, string standardAnimationPath, string attackAnimationPath, string deathAnimationPath, bool isAnimated)
             : base(charName, className, vita, mana, strength, mag, def, res, luck, standardAnimationPath, attackAnimationPath, deathAnimationPath)
         {
-            this.isBoss = isboss;
             this.isAnimated = isAnimated;
             LoadSkillHelperClass.AddAllClassSkills(this);
-            this.CutSkills();
+            this.SelectUsableSkills();
         }
 
 
@@ -104,7 +101,7 @@ namespace RPG
 
 
         //Erstellung der nutzbaren Skills
-        private void CutSkills()
+        private void SelectUsableSkills()
         {
             Random r = new Random();
             for (int i = 0; i <= 3; i++)
@@ -128,32 +125,47 @@ namespace RPG
                 {
                     if (skill.Effects.All(effect => effect.GetType() == typeof(Resurrection)))
                     {
-                        if (!this.performableSkills.Contains(skill) && group.All(foe => foe.Life <= 0))
+                        if (!this.performableSkills.Contains(skill) && 
+                            group.All(foe => foe.Life <= 0))
+                        {
                             this.performableSkills.Add(skill);
+                        }
                     }
 
                     if (skill.Effects.All(effect => effect.GetType() == typeof(RemoveStatusEffect)))
                     {
-                        if (!this.performableSkills.Contains(skill) && group.All(foe => foe.Statuseffects.Count > 0))
+                        if (!this.performableSkills.Contains(skill) && 
+                            group.All(foe => foe.Statuseffects.Count > 0))
+                        {
                             this.performableSkills.Add(skill);
+                        }
                     }
 
                     if (skill.Effects.All(effect => effect.GetType() == typeof(Halo)))
                     {
-                        if (!this.performableSkills.Contains(skill) && group.All(foe => (foe.Life / foe.FightVitality) * 100 < 65))
+                        if (!this.performableSkills.Contains(skill) && 
+                            group.All(foe => (foe.Life/foe.FightVitality)*100 < 65))
+                        {
                             this.performableSkills.Add(skill);
+                        }
                     }
 
                     if (skill.Effects.All(effect => effect.GetType() == typeof(Heal)))
                     {
-                        if (!this.performableSkills.Contains(skill) && group.All(foe => (foe.Life / foe.FightVitality) * 100 < 45))
+                        if (!this.performableSkills.Contains(skill) &&
+                            group.All(foe => (foe.Life/foe.FightVitality)*100 < 45))
+                        {
                             this.performableSkills.Add(skill);
+                        }
                     }
 
                     if (skill.Effects.All(effect => effect.GetType() == typeof(Drain)))
                     {
-                        if (!this.performableSkills.Contains(skill) && (this.Life / this.FightVitality) * 100 < 55)
+                        if (!this.performableSkills.Contains(skill) && 
+                            (this.Life/this.FightVitality)*100 < 55)
+                        {
                             this.performableSkills.Add(skill);
+                        }
                     }
 
                     else
