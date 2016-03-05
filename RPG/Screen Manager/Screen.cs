@@ -14,9 +14,9 @@ namespace RPG
         PartyMember char1 = new PartyMember("Anna", Classes.Patron, 20, 30, 30, 20, 20, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Female\\Anna\\Anna_Standard_Animation", "Animations\\Battlers\\Female\\Anna\\Anna_Attack_Animation", "Animations\\Battlers\\Female\\Anna\\Anna_Death_Animation");
         Enemy enemy1 = new Enemy("Kaiser", Classes.Warrior, 20, 30, 30, 20, 20, 20, 20, "Enemies\\Bosse\\Human\\Anna\\Anna_Standard_Animation", "Enemies\\Bosse\\Human\\Anna\\Anna_Attack_Animation", "Enemies\\Bosse\\Human\\Anna\\Anna_Death_Animation", true);
 
-        PartyMember char2 = new PartyMember("Caspar", Classes.Harasser, 20, 30, 30, 20, 20, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Male\\Caspar\\Caspar_Standard_Animation", "Animations\\Battlers\\Male\\Caspar\\Caspar_Attack_Animation", "Animations\\Battlers\\Male\\Caspar\\Caspar_Death_Animation");
-        PartyMember char3 = new PartyMember("Elena", Classes.Coloss, 20, 30, 30, 20, 20, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Female\\Elena\\Elena_Standard_Animation", "Animations\\Battlers\\Female\\Elena\\Elena_Attack_Animation", "Animations\\Battlers\\Female\\Elena\\Elena_Death_Animation");
-        PartyMember char4 = new PartyMember("Genefe", Classes.Warrior, 20, 30, 30, 20, 20, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Female\\Genefe\\Genefe_Standard_Animation", "Animations\\Battlers\\Female\\Genefe\\Genefe_Attack_Animation", "Animations\\Battlers\\Female\\Genefe\\Genefe_Death_Animation");
+        PartyMember char2 = new PartyMember("Caspar", Classes.Harasser, 2000, 30, 30, 20, 2000, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Male\\Caspar\\Caspar_Standard_Animation", "Animations\\Battlers\\Male\\Caspar\\Caspar_Attack_Animation", "Animations\\Battlers\\Male\\Caspar\\Caspar_Death_Animation");
+        PartyMember char3 = new PartyMember("Elena", Classes.Coloss, 2000, 30, 30, 20, 2000, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Female\\Elena\\Elena_Standard_Animation", "Animations\\Battlers\\Female\\Elena\\Elena_Attack_Animation", "Animations\\Battlers\\Female\\Elena\\Elena_Death_Animation");
+        PartyMember char4 = new PartyMember("Genefe", Classes.Warrior, 2000, 30, 30, 20, 2000, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Female\\Genefe\\Genefe_Standard_Animation", "Animations\\Battlers\\Female\\Genefe\\Genefe_Attack_Animation", "Animations\\Battlers\\Female\\Genefe\\Genefe_Death_Animation");
 
 
         BattleEvent testevent;
@@ -179,33 +179,33 @@ namespace RPG
                 //Animation wird geladen und die Textur sowie die Breite und Höhe wird festeglegt
 
                 //Spieler Charactere
-                testAnimation.LoadContent(content.Load<Texture2D>("Animations\\Skills\\Dark_Hole_Animation"), Vector2.Zero, 468, 468, 80, Color.White, 1f, true, 32, 1, false);
+                testAnimation.LoadContent(content.Load<Texture2D>("Animations\\Skills\\Dark_Hole_Animation"), Vector2.Zero, 468, 468, 80, Color.White, 1f, true, 32, 1, false, false);
                 this.testSkill.LoadContent(testAnimation, new Vector2(400, 200));
 
-                testAnimation2.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Caspar\\Caspar_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 1, 3, false);
+                testAnimation2.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Caspar\\Caspar_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 1, 3, false, false);
                 this.testSkill2.LoadContent(testAnimation2, this.characterPosition_1);
 
-                testAnimation3.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Kaiser\\Kaiser_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 1, 3, false);
+                testAnimation3.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Kaiser\\Kaiser_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 1, 3, false, false);
                 this.testSkill3.LoadContent(testAnimation3, this.characterPosition_2);
 
-                testAnimation4.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Seitz\\Seitz_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 1, 3, false);
+                testAnimation4.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Seitz\\Seitz_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 1, 3, false, false);
                 this.testSkill4.LoadContent(testAnimation4, this.characterPosition_3);
 
-                testAnimation5.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Seyfrid\\Seyfrid_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 1, 3, false);
+                testAnimation5.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Seyfrid\\Seyfrid_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 1, 3, false, false);
                 this.testSkill5.LoadContent(testAnimation5, this.characterPosition_4);
 
 
                 //Gegner
-                testAnimation6.LoadContent(content.Load<Texture2D>("Enemies\\Bosse\\Human\\Anna\\Anna_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 0, 2, true);
+                testAnimation6.LoadContent(content.Load<Texture2D>("Enemies\\Bosse\\Human\\Anna\\Anna_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 0, 2, true, false);
                 this.testSkill6.LoadContent(testAnimation6, this.enemyPosition_1);
 
-                testAnimation7.LoadContent(content.Load<Texture2D>("Enemies\\Bosse\\Human\\Elena\\Elena_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 0, 2, true);
+                testAnimation7.LoadContent(content.Load<Texture2D>("Enemies\\Bosse\\Human\\Elena\\Elena_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 0, 2, true, false);
                 this.testSkill7.LoadContent(testAnimation7, this.enemyPosition_2);
 
-                testAnimation8.LoadContent(content.Load<Texture2D>("Enemies\\Bosse\\Human\\Ells\\Ells_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 0, 2, true);
+                testAnimation8.LoadContent(content.Load<Texture2D>("Enemies\\Bosse\\Human\\Ells\\Ells_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 0, 2, true, false);
                 this.testSkill8.LoadContent(testAnimation8, this.enemyPosition_3);
 
-                testAnimation9.LoadContent(content.Load<Texture2D>("Enemies\\Bosse\\Human\\Marlein\\Marlein_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 0, 2, true);
+                testAnimation9.LoadContent(content.Load<Texture2D>("Enemies\\Bosse\\Human\\Marlein\\Marlein_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 0, 2, true, false);
                 this.testSkill9.LoadContent(testAnimation9, this.enemyPosition_4);
 
             }
@@ -270,6 +270,11 @@ namespace RPG
             {
                 case GameState.intro:
                     this.Intro.Update();
+                    if(controls.CurrentKeyboardState.IsKeyDown(Keys.Enter))
+                    {
+                        Intro.Player.Stop();
+                        gameState = GameState.mainMenu;
+                    }
                     break;
                 case GameState.mainMenu:
                     if (!testevent.BattleEvaluation.EndBattle)

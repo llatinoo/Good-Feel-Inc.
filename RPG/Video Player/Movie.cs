@@ -7,8 +7,14 @@ namespace RPG
 {
     class Movie
     {
+        Controls controls = new Controls();
         Video video;
         VideoPlayer videoPlayer;
+        public VideoPlayer Player
+        {
+            get { return videoPlayer; }
+            set { videoPlayer = value; }
+        }
 
         Texture2D videoTexture;
         Rectangle screenSize;

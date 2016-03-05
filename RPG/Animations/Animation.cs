@@ -54,8 +54,10 @@ namespace RPG
         int currentVerticalFrame;
 
         private bool mirrored = false;
+        private bool death;
+        public bool Done = false;
         public void LoadContent(Texture2D sprite, Vector2 position, int frameWidth, int frameHeight,
-            int frameDisplayTime, Color color, float displayedScale, bool loop, int spriteSheetHorizontal, int spriteSheetVertical, bool mirrored)
+            int frameDisplayTime, Color color, float displayedScale, bool loop, int spriteSheetHorizontal, int spriteSheetVertical, bool mirrored, bool death)
         {
             this.sprite = sprite;
             this.position = position;
@@ -68,6 +70,7 @@ namespace RPG
             this.spriteSheetHorizontal = spriteSheetHorizontal;
             this.spriteSheetVertical = spriteSheetVertical;
             this.mirrored = mirrored;
+            this.death = death;
             //Zeit wird auf 0 gesetzt
             this.elapsedTime = 0;
             if (!mirrored)
@@ -98,35 +101,56 @@ namespace RPG
             //Wenn vergangene Zeit größer als anzeigezeit ist, wird das aktuelle Frame geändert
             if (this.elapsedTime > this.frameDisplayTime)
             {
-                    if (!this.mirrored)
+                if (!this.mirrored)
+                {
+                    if (death)
+                    {
+                        if (currentHorizontalFrame == 5)
+                        {
+                            currentHorizontalFrame = 5;
+                            currentVerticalFrame = 0;
+                        }
+                    }
+                    if (currentHorizontalFrame != 5)
                     {
                         this.currentVerticalFrame++;
-                        if (this.currentVerticalFrame == this.spriteSheetVertical)
-                {
-                    this.currentVerticalFrame = 0;
-                    this.currentHorizontalFrame++;
-                            if (this.currentHorizontalFrame == this.spriteSheetHorizontal)
-                    {
-                        this.currentHorizontalFrame = 0;
                     }
+
+                    if (this.currentVerticalFrame == this.spriteSheetVertical)
+                    {
+                            this.currentVerticalFrame = 0;
+                            this.currentHorizontalFrame++;
+                            if (this.currentHorizontalFrame == this.spriteSheetHorizontal)
+                            {
+                                this.currentHorizontalFrame = 0;
+                            }
                             if (!this.loop)
                             {
                                 this.active = false;
+                                Done = true;
+                            }
+                    }
+                }
+                else if (this.mirrored)
+                {
+                    this.currentVerticalFrame--;
+                    if (this.currentVerticalFrame == 0)
+                    {
+                        if (death)
+                        {
+
+                        }
+                        else
+                        {
+                            this.currentVerticalFrame = this.spriteSheetVertical;
+                            if (!this.loop)
+                            {
+                                this.active = false;
+                                Done = true;
                             }
                         }
                     }
-                    else if(this.mirrored)
-                    {
-                        this.currentVerticalFrame--;
-                    if (this.currentVerticalFrame == 0)
-                    {
-                        this.currentVerticalFrame = this.spriteSheetVertical;
-                        if (!this.loop)
-                    {
-                        this.active = false;
-                    }
                 }
-                    }
                 //vergangene Zeit wird zurückgesetzt
                 this.elapsedTime = 0;
             }
