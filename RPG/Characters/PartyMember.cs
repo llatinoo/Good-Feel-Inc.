@@ -17,9 +17,8 @@ namespace RPG
         public int UltimatePointsToCast { get; set; }
 
 
-        public PartyMember(string charName, Classes className, int vita, int mana, int strength, int mag,
-            int def, int res, int luck, List<int> levellist, int ultimatePointsToCast,string standardAnimationPath, string attackAnimationPath, string deathAnimationPath)
-            : base(charName, className, vita, mana, strength, mag, def, res, luck, standardAnimationPath, attackAnimationPath, deathAnimationPath)
+        public PartyMember(string charName, Classes className, List<int> levellist, int ultimatePointsToCast,string standardAnimationPath, string attackAnimationPath, string deathAnimationPath)
+            : base(charName, className, standardAnimationPath, attackAnimationPath, deathAnimationPath)
         {
             this.Exp = 0;
             this.LevelList = levellist;
@@ -48,7 +47,7 @@ namespace RPG
         public void LevelUp()
         {
             this.Level++;
-            this.LevelUpAttributes(LevelUpClass.LevelUpAttributes(this.Class));
+            this.SetAttributes(AttributesChange.LevelUpAttributes(this.Class));
             LoadSkillHelperClass.AddLevelUpSkillToParty(this);
         }
     }

@@ -139,19 +139,13 @@ namespace RPG
 
 
         //Konstruktor
-        public Character(string charName, Classes className, int vitality, int mana, int strength, int magic, int defense, int resistance, int luck, string standardAnimationPath,  string attackAnimationPath, string deathAnimationPath)
+        public Character(string charName, Classes className, string standardAnimationPath,  string attackAnimationPath, string deathAnimationPath)
         {
             this.Name = charName;
             this.Class = className;
 
-            this.Vitality = vitality;
-            this.Manapool = mana;
-            this.Strength = strength;
-            this.Magic = magic;
-            this.Defense = defense;
-            this.Resistance = resistance;
-            this.Luck = luck;
-
+            this.SetAttributes(AttributesChange.SetAttributes());
+            this.SetAttributes(AttributesChange.LevelUpAttributes(this.Class));
             this.SetFightAttributes();
 
             this.Skills = new List<Skill>();
@@ -183,7 +177,7 @@ namespace RPG
 
 
         //Das Aufleveln der Attribute
-        public void LevelUpAttributes(List<int> stats)
+        public void SetAttributes(List<int> stats)
         {
             this.Vitality += stats.ElementAt(0);
             this.Manapool += stats.ElementAt(1);

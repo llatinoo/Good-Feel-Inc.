@@ -6,7 +6,7 @@ using System.Text;
 
 namespace RPG
 {
-    public static class LevelUpClass
+    public static class AttributesChange
     {
         //Gibt die Änderung der Festwerte der spezifischen Klasse bei Level Up zurück
         public static List<int> LevelUpAttributes(Classes charClass)
@@ -39,6 +39,11 @@ namespace RPG
             {
                 return new List<int>() { 0,0,0,0,0,0,0 };
             }
+        }
+
+        public static List<int> SetAttributes()
+        {
+            return new List<int>() { 500, 100, 50, 50, 30, 1, 3 };
         }
     }
 }

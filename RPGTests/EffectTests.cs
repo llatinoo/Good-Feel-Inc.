@@ -19,13 +19,6 @@ namespace RPGTests
             (
                 "Enemy",
                 Classes.Coloss,
-                1000, //vita
-                100, //mana
-                100, //strength
-                100, //magic
-                50, //Defense
-                100, //Res
-                100, //Luck
                 "",
                 "",
                 "",
@@ -36,13 +29,6 @@ namespace RPGTests
             (
                 "Char",
                 Classes.DamageDealer,
-                100,
-                100,
-                100,
-                100,
-                100,
-                100,
-                10,
                 new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
                 100,
                 "",
@@ -123,13 +109,6 @@ namespace RPGTests
             (
                 "Enemy",
                 Classes.Coloss,
-                1000, //vita
-                100, //mana
-                100, //strength
-                100, //magic
-                50, //Defense
-                0, //Res
-                100, //Luck
                 "",
                 "",
                 "",
@@ -140,13 +119,6 @@ namespace RPGTests
             (
                 "Char",
                 Classes.DamageDealer,
-                100,
-                100,
-                100,
-                100,
-                100,
-                1,
-                100,
                 new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
                 100,
                 "",
@@ -246,13 +218,6 @@ namespace RPGTests
             (
                 "Enemy",
                 Classes.Coloss,
-                1000, //vita
-                100, //mana
-                100, //strength
-                100, //magic
-                50, //Defense
-                100, //Res
-                100, //Luck
                 "",
                 "",
                 "",
@@ -270,13 +235,6 @@ namespace RPGTests
             (
                 "Char",
                 Classes.DamageDealer,
-                100,
-                100,
-                100,
-                100,
-                100,
-                100,
-                10,
                 new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
                 100,
                 "",

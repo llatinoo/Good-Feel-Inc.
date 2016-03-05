@@ -12,12 +12,12 @@ namespace RPG
 {
     class Screen
     {
-        PartyMember char1 = new PartyMember("Anna", Classes.Patron, 20, 30, 30, 20, 20, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Female\\Anna\\Anna_Standard_Animation", "Animations\\Battlers\\Female\\Anna\\Anna_Attack_Animation", "Animations\\Battlers\\Female\\Anna\\Anna_Death_Animation");
-        Enemy enemy1 = new Enemy("Kaiser", Classes.Warrior, 20, 30, 30, 20, 20, 20, 20, "Enemies\\Bosse\\Human\\Anna\\Anna_Standard_Animation", "Enemies\\Bosse\\Human\\Anna\\Anna_Attack_Animation", "Enemies\\Bosse\\Human\\Anna\\Anna_Death_Animation", true);
+        PartyMember char1 = new PartyMember("Anna", Classes.Patron, new List<int>(10), 20, "Animations\\Battlers\\Female\\Anna\\Anna_Standard_Animation", "Animations\\Battlers\\Female\\Anna\\Anna_Attack_Animation", "Animations\\Battlers\\Female\\Anna\\Anna_Death_Animation");
+        Enemy enemy1 = new Enemy("Kaiser", Classes.Warrior, "Enemies\\Bosse\\Human\\Anna\\Anna_Standard_Animation", "Enemies\\Bosse\\Human\\Anna\\Anna_Attack_Animation", "Enemies\\Bosse\\Human\\Anna\\Anna_Death_Animation", true);
 
-        PartyMember char2 = new PartyMember("Caspar", Classes.Harasser, 2000, 30, 30, 20, 2000, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Male\\Caspar\\Caspar_Standard_Animation", "Animations\\Battlers\\Male\\Caspar\\Caspar_Attack_Animation", "Animations\\Battlers\\Male\\Caspar\\Caspar_Death_Animation");
-        PartyMember char3 = new PartyMember("Elena", Classes.Coloss, 2000, 30, 30, 20, 2000, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Female\\Elena\\Elena_Standard_Animation", "Animations\\Battlers\\Female\\Elena\\Elena_Attack_Animation", "Animations\\Battlers\\Female\\Elena\\Elena_Death_Animation");
-        PartyMember char4 = new PartyMember("Genefe", Classes.Warrior, 2000, 30, 30, 20, 2000, 20, 20, new List<int>(10), 20, "Animations\\Battlers\\Female\\Genefe\\Genefe_Standard_Animation", "Animations\\Battlers\\Female\\Genefe\\Genefe_Attack_Animation", "Animations\\Battlers\\Female\\Genefe\\Genefe_Death_Animation");
+        PartyMember char2 = new PartyMember("Caspar", Classes.Harasser, new List<int>(10), 20, "Animations\\Battlers\\Male\\Caspar\\Caspar_Standard_Animation", "Animations\\Battlers\\Male\\Caspar\\Caspar_Attack_Animation", "Animations\\Battlers\\Male\\Caspar\\Caspar_Death_Animation");
+        PartyMember char3 = new PartyMember("Elena", Classes.Coloss, new List<int>(10), 20, "Animations\\Battlers\\Female\\Elena\\Elena_Standard_Animation", "Animations\\Battlers\\Female\\Elena\\Elena_Attack_Animation", "Animations\\Battlers\\Female\\Elena\\Elena_Death_Animation");
+        PartyMember char4 = new PartyMember("Genefe", Classes.Warrior, new List<int>(10), 20, "Animations\\Battlers\\Female\\Genefe\\Genefe_Standard_Animation", "Animations\\Battlers\\Female\\Genefe\\Genefe_Attack_Animation", "Animations\\Battlers\\Female\\Genefe\\Genefe_Death_Animation");
 
 
         BattleEvent testevent;
