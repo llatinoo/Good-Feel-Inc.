@@ -14,6 +14,7 @@ namespace RPG.Events
 {
     class BattleEvent
     {
+        bool AllowDeathAnimation = false;
         Controls controls = new Controls();
         SpriteFont AwesomeFont;
         GameOverEvent GameOver;
@@ -1089,6 +1090,7 @@ namespace RPG.Events
                 this.FightCadre.ElementAt<PartyMember>(0).LoadContent(charStandardAnimation_1, this.characterPosition_1);
                 this.StartNextTurn();
                 charAttackAnimation_1.Done = false;
+                AllowDeathAnimation = true;
             }
             if (!charAttackAnimation_2.active && charAttackAnimation_2.Done)
             {
@@ -1097,6 +1099,7 @@ namespace RPG.Events
                 this.StartNextTurn();
                 this.FightCadre.ElementAt<PartyMember>(1).LoadContent(charStandardAnimation_2, this.characterPosition_2);
                 charAttackAnimation_2.Done = false;
+                AllowDeathAnimation = true;
             }
             if (!charAttackAnimation_3.active && charAttackAnimation_3.Done)
             {
@@ -1105,6 +1108,7 @@ namespace RPG.Events
                 this.StartNextTurn();
                 this.FightCadre.ElementAt<PartyMember>(2).LoadContent(charStandardAnimation_3, this.characterPosition_3);
                 charAttackAnimation_3.Done = false;
+                AllowDeathAnimation = true;
             }
             if (!charAttackAnimation_4.active && charAttackAnimation_4.Done)
             {
@@ -1113,6 +1117,7 @@ namespace RPG.Events
                 this.StartNextTurn();
                 this.FightCadre.ElementAt<PartyMember>(3).LoadContent(charStandardAnimation_4, this.characterPosition_4);
                 charAttackAnimation_4.Done = false;
+                AllowDeathAnimation = true;
             }
 
             if (!enemyAttackAnimation_1.active && enemyAttackAnimation_1.Done)
@@ -1122,6 +1127,7 @@ namespace RPG.Events
                 this.StartNextTurn();
                 this.Enemies.ElementAt<Enemy>(0).LoadContent(enemyStandardAnimation_1, this.enemyPosition_1);
                 enemyAttackAnimation_1.Done = false;
+                AllowDeathAnimation = true;
             }
             if (!enemyAttackAnimation_2.active && enemyAttackAnimation_2.Done)
             {
@@ -1130,6 +1136,7 @@ namespace RPG.Events
                 this.StartNextTurn();
                 this.Enemies.ElementAt<Enemy>(1).LoadContent(enemyStandardAnimation_2, this.enemyPosition_2);
                 enemyAttackAnimation_2.Done = false;
+                AllowDeathAnimation = true;
             }
             if (!enemyAttackAnimation_3.active && enemyAttackAnimation_3.Done)
             {
@@ -1138,6 +1145,7 @@ namespace RPG.Events
                 this.StartNextTurn();
                 this.Enemies.ElementAt<Enemy>(2).LoadContent(enemyStandardAnimation_3, this.enemyPosition_3);
                 enemyAttackAnimation_3.Done = false;
+                AllowDeathAnimation = true;
             }
             if (!enemyAttackAnimation_4.active && enemyAttackAnimation_4.Done)
             {
@@ -1146,113 +1154,118 @@ namespace RPG.Events
                 this.StartNextTurn();
                 this.Enemies.ElementAt<Enemy>(3).LoadContent(enemyStandardAnimation_4, this.enemyPosition_4);
                 enemyAttackAnimation_4.Done = false;
+                AllowDeathAnimation = true;
             }
         }
         public void UpdateDeathAnimations()
         {
-            if (FightCadre.Count == 1)
+            if (AllowDeathAnimation)
             {
-                if (FightCadre.ElementAt<PartyMember>(0).Life <= 0)
+                AllowDeathAnimation = false;
+                if (FightCadre.Count == 1)
                 {
-                    this.FightCadre.ElementAt<Character>(0).LoadContent(charDeathAnimation_1, this.characterPosition_1);
+                    if (FightCadre.ElementAt<PartyMember>(0).Life <= 0)
+                    {
+                        this.FightCadre.ElementAt<Character>(0).LoadContent(charDeathAnimation_1, this.characterPosition_1);
+                    }
                 }
-            }
-            if (FightCadre.Count == 2)
-            {
-                if (FightCadre.ElementAt<PartyMember>(0).Life <= 0)
+                if (FightCadre.Count == 2)
                 {
-                    this.FightCadre.ElementAt<Character>(0).LoadContent(charDeathAnimation_1, this.characterPosition_1);
+                    if (FightCadre.ElementAt<PartyMember>(0).Life <= 0)
+                    {
+                        this.FightCadre.ElementAt<Character>(0).LoadContent(charDeathAnimation_1, this.characterPosition_1);
+                    }
+                    if (FightCadre.ElementAt<PartyMember>(1).Life <= 0)
+                    {
+                        this.FightCadre.ElementAt<Character>(1).LoadContent(charDeathAnimation_2, this.characterPosition_2);
+                    }
                 }
-                if (FightCadre.ElementAt<PartyMember>(1).Life <= 0)
+                if (FightCadre.Count == 3)
                 {
-                    this.FightCadre.ElementAt<Character>(1).LoadContent(charDeathAnimation_2, this.characterPosition_2);
+                    if (FightCadre.ElementAt<PartyMember>(0).Life <= 0)
+                    {
+                        this.FightCadre.ElementAt<Character>(0).LoadContent(charDeathAnimation_1, this.characterPosition_1);
+                    }
+                    if (FightCadre.ElementAt<PartyMember>(1).Life <= 0)
+                    {
+                        this.FightCadre.ElementAt<Character>(1).LoadContent(charDeathAnimation_2, this.characterPosition_2);
+                    }
+                    if (FightCadre.ElementAt<PartyMember>(2).Life <= 0)
+                    {
+                        this.FightCadre.ElementAt<Character>(2).LoadContent(charDeathAnimation_3, this.characterPosition_3);
+                    }
                 }
-            }
-            if (FightCadre.Count == 3)
-            {
-                if (FightCadre.ElementAt<PartyMember>(0).Life <= 0)
+                if (FightCadre.Count == 4)
                 {
-                    this.FightCadre.ElementAt<Character>(0).LoadContent(charDeathAnimation_1, this.characterPosition_1);
+                    if (FightCadre.ElementAt<PartyMember>(0).Life <= 0)
+                    {
+                        this.FightCadre.ElementAt<Character>(0).LoadContent(charDeathAnimation_1, this.characterPosition_1);
+                    }
+                    if (FightCadre.ElementAt<PartyMember>(1).Life <= 0)
+                    {
+                        this.FightCadre.ElementAt<Character>(1).LoadContent(charDeathAnimation_2, this.characterPosition_2);
+                    }
+                    if (FightCadre.ElementAt<PartyMember>(2).Life <= 0)
+                    {
+                        this.FightCadre.ElementAt<Character>(2).LoadContent(charDeathAnimation_3, this.characterPosition_3);
+                    }
+                    if (FightCadre.ElementAt<PartyMember>(3).Life <= 0)
+                    {
+                        this.FightCadre.ElementAt<Character>(3).LoadContent(charDeathAnimation_4, this.characterPosition_4);
+                    }
                 }
-                if (FightCadre.ElementAt<PartyMember>(1).Life <= 0)
-                {
-                    this.FightCadre.ElementAt<Character>(1).LoadContent(charDeathAnimation_2, this.characterPosition_2);
-                }
-                if (FightCadre.ElementAt<PartyMember>(2).Life <= 0)
-                {
-                    this.FightCadre.ElementAt<Character>(2).LoadContent(charDeathAnimation_3, this.characterPosition_3);
-                }
-            }
-            if (FightCadre.Count == 4)
-            {
-                if (FightCadre.ElementAt<PartyMember>(0).Life <= 0)
-                {
-                    this.FightCadre.ElementAt<Character>(0).LoadContent(charDeathAnimation_1, this.characterPosition_1);
-                }
-                if (FightCadre.ElementAt<PartyMember>(1).Life <= 0)
-                {
-                    this.FightCadre.ElementAt<Character>(1).LoadContent(charDeathAnimation_2, this.characterPosition_2);
-                }
-                if (FightCadre.ElementAt<PartyMember>(2).Life <= 0)
-                {
-                    this.FightCadre.ElementAt<Character>(2).LoadContent(charDeathAnimation_3, this.characterPosition_3);
-                }
-                if (FightCadre.ElementAt<PartyMember>(3).Life <= 0)
-                {
-                    this.FightCadre.ElementAt<Character>(3).LoadContent(charDeathAnimation_4, this.characterPosition_4);
-                }
-            }
 
-            if (Enemies.Count == 1)
-            {
-                if (Enemies.ElementAt<Enemy>(0).Life == 0)
+                if (Enemies.Count == 1)
                 {
-                    this.Enemies.ElementAt<Enemy>(0).LoadContent(enemyDeathAnimation_1, this.enemyPosition_1);
+                    if (Enemies.ElementAt<Enemy>(0).Life == 0)
+                    {
+                        this.Enemies.ElementAt<Enemy>(0).LoadContent(enemyDeathAnimation_1, this.enemyPosition_1);
+                    }
                 }
-            }
-            if (Enemies.Count == 2)
-            {
-                if (Enemies.ElementAt<Enemy>(0).Life == 0)
+                if (Enemies.Count == 2)
                 {
-                    this.Enemies.ElementAt<Enemy>(0).LoadContent(enemyDeathAnimation_1, this.enemyPosition_1);
+                    if (Enemies.ElementAt<Enemy>(0).Life == 0)
+                    {
+                        this.Enemies.ElementAt<Enemy>(0).LoadContent(enemyDeathAnimation_1, this.enemyPosition_1);
+                    }
+                    if (Enemies.ElementAt<Enemy>(1).Life == 0)
+                    {
+                        this.Enemies.ElementAt<Enemy>(1).LoadContent(enemyDeathAnimation_2, this.enemyPosition_2);
+                    }
                 }
-                if (Enemies.ElementAt<Enemy>(1).Life == 0)
+                if (Enemies.Count == 3)
                 {
-                    this.Enemies.ElementAt<Enemy>(1).LoadContent(enemyDeathAnimation_2, this.enemyPosition_2);
+                    if (Enemies.ElementAt<Enemy>(0).Life == 0)
+                    {
+                        this.Enemies.ElementAt<Enemy>(0).LoadContent(enemyDeathAnimation_1, this.enemyPosition_1);
+                    }
+                    if (Enemies.ElementAt<Enemy>(1).Life == 0)
+                    {
+                        this.Enemies.ElementAt<Enemy>(1).LoadContent(enemyDeathAnimation_2, this.enemyPosition_2);
+                    }
+                    if (Enemies.ElementAt<Enemy>(2).Life == 0)
+                    {
+                        this.Enemies.ElementAt<Enemy>(2).LoadContent(enemyDeathAnimation_3, this.enemyPosition_3);
+                    }
                 }
-            }
-            if (Enemies.Count == 3)
-            {
-                if (Enemies.ElementAt<Enemy>(0).Life == 0)
+                if (Enemies.Count == 4)
                 {
-                    this.Enemies.ElementAt<Enemy>(0).LoadContent(enemyDeathAnimation_1, this.enemyPosition_1);
-                }
-                if (Enemies.ElementAt<Enemy>(1).Life == 0)
-                {
-                    this.Enemies.ElementAt<Enemy>(1).LoadContent(enemyDeathAnimation_2, this.enemyPosition_2);
-                }
-                if (Enemies.ElementAt<Enemy>(2).Life == 0)
-                {
-                    this.Enemies.ElementAt<Enemy>(2).LoadContent(enemyDeathAnimation_3, this.enemyPosition_3);
-                }
-            }
-            if (Enemies.Count == 4)
-            {
-                if (Enemies.ElementAt<Enemy>(0).Life == 0)
-                {
-                    this.Enemies.ElementAt<Enemy>(0).LoadContent(enemyDeathAnimation_1, this.enemyPosition_1);
-                }
-                if (Enemies.ElementAt<Enemy>(1).Life == 0)
-                {
-                    this.Enemies.ElementAt<Enemy>(1).LoadContent(enemyDeathAnimation_2, this.enemyPosition_2);
-                }
-                if (Enemies.ElementAt<Enemy>(2).Life == 0)
-                {
-                    this.Enemies.ElementAt<Enemy>(2).LoadContent(enemyDeathAnimation_3, this.enemyPosition_3);
-                }
-                if (Enemies.ElementAt<Enemy>(3).Life == 0)
-                {
-                    this.Enemies.ElementAt<Enemy>(3).LoadContent(enemyDeathAnimation_4, this.enemyPosition_4);
+                    if (Enemies.ElementAt<Enemy>(0).Life == 0)
+                    {
+                        this.Enemies.ElementAt<Enemy>(0).LoadContent(enemyDeathAnimation_1, this.enemyPosition_1);
+                    }
+                    if (Enemies.ElementAt<Enemy>(1).Life == 0)
+                    {
+                        this.Enemies.ElementAt<Enemy>(1).LoadContent(enemyDeathAnimation_2, this.enemyPosition_2);
+                    }
+                    if (Enemies.ElementAt<Enemy>(2).Life == 0)
+                    {
+                        this.Enemies.ElementAt<Enemy>(2).LoadContent(enemyDeathAnimation_3, this.enemyPosition_3);
+                    }
+                    if (Enemies.ElementAt<Enemy>(3).Life == 0)
+                    {
+                        this.Enemies.ElementAt<Enemy>(3).LoadContent(enemyDeathAnimation_4, this.enemyPosition_4);
+                    }
                 }
             }
         }
