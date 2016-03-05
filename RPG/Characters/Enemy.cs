@@ -28,6 +28,10 @@ namespace RPG
 
         //Ziele des Skills
         private List<Character> targets = new List<Character>();
+        public List<Character> Targets
+        {
+            get { return targets; }
+        }
         public string TargetName { get; private set; }
 
 

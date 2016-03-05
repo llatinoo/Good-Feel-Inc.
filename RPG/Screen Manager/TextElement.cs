@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 namespace RPG
 {
@@ -11,6 +12,8 @@ namespace RPG
         Controls controls = new Controls();
         SpriteFont AwesomeFont;
         private Vector2 fontSize;
+        SoundEffect MouseIntersect;
+        private bool rectangleContainedMouseBefore;
 
         string skillName;
         public string SkillName
@@ -35,6 +38,7 @@ namespace RPG
 
         public void LoadContent(ContentManager content)
         {
+            MouseIntersect = content.Load<SoundEffect>("Sounds\\Effects\\MouseIntersect");
             //Font mit dem Namen "BasicFont" wird geladen
             this.AwesomeFont = content.Load<SpriteFont>("Fonts\\AwesomeFont");
             if (clickAble)
@@ -47,8 +51,18 @@ namespace RPG
         public void Update()
         {
             this.controls.Update();
+            if(this.textRect.Contains(this.controls.CursorPos) && !rectangleContainedMouseBefore)
+            {
+                rectangleContainedMouseBefore = true;
+                MouseIntersect.Play();
+            }
+            if(!textRect.Contains(this.controls.CursorPos))
+            {
+                rectangleContainedMouseBefore = false;
+            }
             if(this.textRect.Contains(this.controls.CursorPos) && Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
+                rectangleContainedMouseBefore = false;
                 this.tclickEvent(this.skillName);
             }
         }

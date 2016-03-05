@@ -53,7 +53,7 @@ with.
     <CharacterRegions>
       <CharacterRegion>
         <Start>&#32;</Start>
-        <End>&#126;</End>
+        <End>&#256;</End>
       </CharacterRegion>
 
       <!--Character Region für ä-->
@@ -98,7 +98,7 @@ with.
         <Start>&#223;</Start>
         <End>&#223;</End>
       </CharacterRegion>
-
+      
     </CharacterRegions>
   </Asset>
 </XnaContent>

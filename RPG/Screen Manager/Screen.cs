@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using RPG.Events;
 
+
 namespace RPG
 {
     class Screen
@@ -33,6 +34,7 @@ namespace RPG
         Song mainMenuTheme;
         Song storyScreenTheme;
         Song battleScreenTheme;
+        
 
         Controls controls = new Controls();
         //Skill Animation wird erstellt
@@ -134,7 +136,9 @@ namespace RPG
             this.mainMenuTheme = content.Load<Song>("Sounds\\Umineko_Life");
             this.battleScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
             this.storyScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
+            
             MediaPlayer.IsRepeating = true;
+            MediaPlayer.Volume = 0.8f;
             this.Intro.LoadContent(content);
 
             foreach (TextElement element in this.battleScreenSkills)
@@ -249,6 +253,9 @@ namespace RPG
                 MediaPlayer.Stop();
                 switch (this.gameState)
                 {
+                    case GameState.mainMenu:
+                        MediaPlayer.Play(this.mainMenuTheme);
+                        break;
                     case GameState.battleScreen:
                         MediaPlayer.Play(this.battleScreenTheme);
                         break;
@@ -262,8 +269,11 @@ namespace RPG
             //nachdem Das Intro abgespielt wurde, startet die Backgroundmusic
             if (gameTime.TotalGameTime.Seconds == 6)
             {
-                this.gameState = GameState.mainMenu;
-                MediaPlayer.Play(this.mainMenuTheme);
+                if (gameState == GameState.intro)
+                {
+                    this.gameState = GameState.mainMenu;
+                    stateChanged = true;
+                }
             }
 
             switch (this.gameState)
@@ -274,6 +284,7 @@ namespace RPG
                     {
                         Intro.Player.Stop();
                         gameState = GameState.mainMenu;
+                        stateChanged = true;
                     }
                     break;
                 case GameState.mainMenu:

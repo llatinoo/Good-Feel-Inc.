@@ -295,6 +295,9 @@
     <Content Include="Content\Animations\Skills\Dark_Hole_Animation.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Animations\Skills\Heal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Animations\Skills\Physical_Hit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -403,6 +406,9 @@
     <Content Include="Content\bin\Windows\Intro\Good Feel Inc Intro.wmv" />
     <Content Include="Content\bin\Windows\Sounds\Hitman_Reborn.wma" />
     <Content Include="Content\bin\Windows\Sounds\Umineko_Life.wma" />
+    <Content Include="Content\Boxes\Character_Stat_Box.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Boxes\SkillBox.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -808,12 +814,15 @@
     <Content Include="Content\Others\ActivePartymemberArrow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Sounds\Effects\click.wav" />
     <Content Include="Content\Sounds\Hitman_Reborn.wma">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Boxes\TextBox_Heroic.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Sounds\Effects\MouseIntersect.wav" />
+    <Content Include="Content\Sounds\Effects\Punch.mp3" />
     <Content Include="Content\Sounds\Umineko_Life.wma">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -2,11 +2,14 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 namespace RPG
 {
     class GUIElement
     {
+        private bool rectangleContainedMouseBefore;
+        SoundEffect MouseIntersect;
         Controls controls = new Controls();
         //Farbe des GUI Elements
         Color color = Color.White;
@@ -49,6 +52,7 @@ namespace RPG
         {
             this.GUITexture = content.Load<Texture2D>(this.assetName);
             this.GUIRect = new Rectangle(this.PositionX, this.PositionY, this.GUITexture.Width, this.GUITexture.Height);
+            MouseIntersect = content.Load<SoundEffect>("Sounds\\Effects\\MouseIntersect");
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -62,11 +66,20 @@ namespace RPG
         public void Update()
         {
             this.controls.Update();
-
+            if (this.GUIRect.Contains(this.controls.CursorPos) && !rectangleContainedMouseBefore)
+            {
+                rectangleContainedMouseBefore = true;
+                MouseIntersect.Play();
+            }
+            if (!GUIRect.Contains(this.controls.CursorPos))
+            {
+                rectangleContainedMouseBefore = false;
+            }
             //Wenn sich die Maus mit der Textur schneidet und dann der linke Mausbutton gedrückt wird, wird das ClickEvent ausgelöst
             if (this.GUIRect.Contains(this.controls.CursorPos) && Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
                 this.clickEvent(this.assetName);
+                rectangleContainedMouseBefore = false;
             }
             if (this.GUIRect.Contains(this.controls.CursorPos) && this.controls.CurrentKeyboardState.IsKeyDown(Keys.Enter))
             {
