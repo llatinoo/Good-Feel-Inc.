@@ -978,6 +978,7 @@ namespace RPG.Events
                             }
 
                             skill.Execute(this.activeChar, targets);
+                            targets.Clear();
                             this.targetClicked = true;
                             skillClicked = true;
                             Thread.Sleep(120);
@@ -991,6 +992,7 @@ namespace RPG.Events
                                 targets.Add(enemy);
                             }
                             skill.Execute(this.activeChar, targets);
+                            targets.Clear();
                             this.targetClicked = true;
                             skillClicked = true;
                             Thread.Sleep(120);
@@ -1157,11 +1159,11 @@ namespace RPG.Events
                 AllowDeathAnimation = true;
             }
         }
+        /*
         public void UpdateDeathAnimations()
         {
             if (AllowDeathAnimation)
             {
-                AllowDeathAnimation = false;
                 if (FightCadre.Count == 1)
                 {
                     if (FightCadre.ElementAt<PartyMember>(0).Life <= 0)
@@ -1267,8 +1269,12 @@ namespace RPG.Events
                         this.Enemies.ElementAt<Enemy>(3).LoadContent(enemyDeathAnimation_4, this.enemyPosition_4);
                     }
                 }
+                AllowDeathAnimation = false;
             }
         }
+
+
+        */
         //führt die Logik aus wie beispielsweise die Steuerung oder das Abspielen der Animationen
         public void Update(GameTime gameTime)
         {
@@ -1277,7 +1283,7 @@ namespace RPG.Events
             Hit.Update(gameTime);
 
             UpdateAnimatedSkillsFromPartymember();
-            UpdateDeathAnimations();
+            //UpdateDeathAnimations();
             
             if (FightCadre.All(member => member.Life == 0))
             {
@@ -1335,6 +1341,7 @@ namespace RPG.Events
                         activeChar.LoadContent(enemyAttackAnimation_4, enemyPosition_4);
                         enemyAttackAnimation_4.active = true;
                     }
+                    ((Enemy)this.activeChar).Targets.Clear();
                 }
                 //führt ein Update der Animationen und Texte aus wenn es sich bei dem aktiven Character um ein Gruppenmitglied handelt
                 else
@@ -1848,9 +1855,12 @@ namespace RPG.Events
                         }
                         if (this.Character2Name != null)
                         {
-                            spriteBatch.DrawString(AwesomeFont, Character2Name.SkillName, new Vector2(135, 135), Color.White);
-                            spriteBatch.DrawString(AwesomeFont, "Leben: " + FightCadre.ElementAt<PartyMember>(1).Life + " \\ " + FightCadre.ElementAt<PartyMember>(1).FightVitality, new Vector2(215, 135), Color.White);
-                            spriteBatch.DrawString(AwesomeFont, "Mana: " + FightCadre.ElementAt<PartyMember>(1).Mana + " \\ " + FightCadre.ElementAt<PartyMember>(1).FightManaPool, new Vector2(415, 135), Color.White);
+                            if (activeChar.Life == 0)
+                            {
+                                spriteBatch.DrawString(AwesomeFont, Character2Name.SkillName, new Vector2(135, 135), Color.White);
+                                spriteBatch.DrawString(AwesomeFont, "Leben: " + FightCadre.ElementAt<PartyMember>(1).Life + " \\ " + FightCadre.ElementAt<PartyMember>(1).FightVitality, new Vector2(215, 135), Color.White);
+                                spriteBatch.DrawString(AwesomeFont, "Mana: " + FightCadre.ElementAt<PartyMember>(1).Mana + " \\ " + FightCadre.ElementAt<PartyMember>(1).FightManaPool, new Vector2(415, 135), Color.White);
+                            }
                         }
                         if (this.Character3Name != null)
                         {
