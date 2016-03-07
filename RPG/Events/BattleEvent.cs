@@ -1011,49 +1011,49 @@ namespace RPG.Events
                         Heal.LoadContent(healAnimation, characterPosition_1);
                     }
                 }
-                if (Character2Name != null)
+                else if (Character2Name != null)
                 {
                     if (activeChar.Name == Character2Name.SkillName)
                     {
                         Heal.LoadContent(healAnimation, characterPosition_2);
                     }
                 }
-                if (Character3Name != null)
+                else if (Character3Name != null)
                 {
                     if (activeChar.Name == Character3Name.SkillName)
                     {
                         Heal.LoadContent(healAnimation, characterPosition_3);
                     }
                 }
-                if (Character4Name != null)
+                else if (Character4Name != null)
                 {
                     if (activeChar.Name == Character4Name.SkillName)
                     {
                         Heal.LoadContent(healAnimation, characterPosition_4);
                     }
                 }
-                if (enemy1Name != null)
+                else if (enemy1Name != null)
                 {
                     if (activeChar.Name == enemy1Name.SkillName)
                     {
                         Heal.LoadContent(healAnimation, enemyPosition_1);
                     }
                 }
-                if (enemy2Name != null)
+                else if (enemy2Name != null)
                 {
                     if (activeChar.Name == enemy2Name.SkillName)
                     {
                         Heal.LoadContent(healAnimation, enemyPosition_2);
                     }
                 }
-                if (enemy3Name != null)
+                else if (enemy3Name != null)
                 {
                     if (activeChar.Name == enemy3Name.SkillName)
                     {
                         Heal.LoadContent(healAnimation, enemyPosition_3);
                     }
                 }
-                if (enemy4Name != null)
+                else if (enemy4Name != null)
                 {
                     if (activeChar.Name == enemy4Name.SkillName)
                     {
@@ -1061,9 +1061,10 @@ namespace RPG.Events
                     }
                 }
                 healAnimation.active = true;
+                Thread.Sleep(300);
                 this.activeChar.RestSkill.Execute(activeChar, new List<Character> { activeChar });
                 targetClicked = true;
-                Thread.Sleep(120);
+                
                 this.StartNextTurn();
             }
             if(skillName == "Angriff")
@@ -1297,6 +1298,7 @@ namespace RPG.Events
                 if (activeChar.GetType() == typeof(Enemy))
                 {
                     ((Enemy)this.activeChar).PerformAI(this.FightCadre, this.Enemies.Cast<Character>().ToList());
+                    /*
                     if (((Enemy)this.activeChar).Targets.Count == 1)
                     {
                         LoadAnimatedSkillsFromEnemies(((Enemy)this.activeChar).Targets.ElementAt<Character>(0), ((Enemy)this.activeChar).TargetName);
@@ -1340,6 +1342,7 @@ namespace RPG.Events
                         enemyAttackAnimation_4.active = true;
                     }
                     ((Enemy)this.activeChar).Targets.Clear();
+                    */
                     StartNextTurn();
                 }
                 //führt ein Update der Animationen und Texte aus wenn es sich bei dem aktiven Character um ein Gruppenmitglied handelt
