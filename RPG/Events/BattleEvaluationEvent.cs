@@ -17,6 +17,11 @@ namespace RPG.Events
         TextElement Character_3_Name;
         TextElement Character_4_Name;
 
+        TextElement Character_1_GainedXP;
+        TextElement Character_2_GainedXP;
+        TextElement Character_3_GainedXP;
+        TextElement Character_4_GainedXP;
+
         private TextElement Character;
         public bool EndBattle
         {
@@ -26,12 +31,11 @@ namespace RPG.Events
 
         GUIElement EvaluationBox;
         GUIElement ContinueButton;
-        TextElement CharacterXP1;
         
-        public BattleEvaluationEvent(string evaluationBoxPath)
+        public BattleEvaluationEvent()
         {
-            EvaluationBox = new GUIElement(evaluationBoxPath);
             ContinueButton = new GUIElement("Buttons\\Continue_Button");
+            EvaluationBox = new GUIElement("Backgrounds\\Menus\\BattleEvaluationBackground");
         }
 
         public void LoadContent(ContentManager content)
@@ -39,7 +43,7 @@ namespace RPG.Events
             EvaluationBox.LoadContent(content);
             ContinueButton.LoadContent(content);
             ContinueButton.CenterElement(576, 720);
-            ContinueButton.moveElement(230, 220);
+            ContinueButton.moveElement(160, 160);
             ContinueButton.clickEvent += OnClick;
         }
 
