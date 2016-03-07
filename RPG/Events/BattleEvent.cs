@@ -759,9 +759,10 @@ namespace RPG.Events
                 enemieCounter++;
             }
         }
-
+        
         public void LoadAnimatedSkillsFromPartymember(Character actualTarget, string targetName)
         {
+            
             if (actualTarget.GetType() == typeof(Enemy))
             {
                 if (enemy1Name != null)
@@ -891,7 +892,7 @@ namespace RPG.Events
                 }
             }
         }
-
+        
         //Führt aus was beim Klick auf ein Ziel passieren soll
         public void onClickTarget(String target)
         {
@@ -908,27 +909,31 @@ namespace RPG.Events
                     this.singleTargetParty = false;
                     LoadAnimatedSkillsFromPartymember(character, target);
                 }
-                if (activeChar.Name == Character1Name.SkillName)
+                if (activeSkill.Target.GetType() == typeof(Enemy))
                 {
-                    activeChar.LoadContent(charAttackAnimation_1, characterPosition_1);
-                    charAttackAnimation_1.active = true;
-                }
-                else if (activeChar.Name == Character2Name.SkillName)
-                {
-                    activeChar.LoadContent(charAttackAnimation_2, characterPosition_2);
-                    charAttackAnimation_2.active = true;
-                }
-                else if (activeChar.Name == Character3Name.SkillName)
-                {
-                    activeChar.LoadContent(charAttackAnimation_3, characterPosition_3);
-                    charAttackAnimation_3.active = true;
-                }
-                else if (activeChar.Name == Character4Name.SkillName)
-                {
-                    activeChar.LoadContent(charAttackAnimation_4, characterPosition_4);
-                    charAttackAnimation_4.active = true;
+                    if (activeChar.Name == Character1Name.SkillName)
+                    {
+                        activeChar.LoadContent(charAttackAnimation_1, characterPosition_1);
+                        charAttackAnimation_1.active = true;
+                    }
+                    else if (activeChar.Name == Character2Name.SkillName)
+                    {
+                        activeChar.LoadContent(charAttackAnimation_2, characterPosition_2);
+                        charAttackAnimation_2.active = true;
+                    }
+                    else if (activeChar.Name == Character3Name.SkillName)
+                    {
+                        activeChar.LoadContent(charAttackAnimation_3, characterPosition_3);
+                        charAttackAnimation_3.active = true;
+                    }
+                    else if (activeChar.Name == Character4Name.SkillName)
+                    {
+                        activeChar.LoadContent(charAttackAnimation_4, characterPosition_4);
+                        charAttackAnimation_4.active = true;
+                    }
                 }
             }
+            StartNextTurn();
         }
 
         //Führt aus was beim Klick auf einen Skill passieren soll
@@ -1061,10 +1066,9 @@ namespace RPG.Events
                     }
                 }
                 healAnimation.active = true;
-                Thread.Sleep(300);
                 this.activeChar.RestSkill.Execute(activeChar, new List<Character> { activeChar });
                 targetClicked = true;
-                
+                Thread.Sleep(300);
                 this.StartNextTurn();
             }
             if(skillName == "Angriff")
@@ -1075,7 +1079,7 @@ namespace RPG.Events
             }
             
         }
-
+        
         public void UpdateAnimatedSkillsFromPartymember()
         {
             if (!healAnimation.active && healAnimation.Done)
@@ -1160,7 +1164,7 @@ namespace RPG.Events
                 AllowDeathAnimation = true;
             }
         }
-
+        
         public void UpdateDeathAnimations()
         {
             if (AllowDeathAnimation)
@@ -1273,11 +1277,12 @@ namespace RPG.Events
                 AllowDeathAnimation = false;
             }
         }
-
+        
         //führt die Logik aus wie beispielsweise die Steuerung oder das Abspielen der Animationen
         public void Update(GameTime gameTime)
         {
             controls.Update();
+
             Heal.Update(gameTime);
             Hit.Update(gameTime);
 
@@ -1341,8 +1346,9 @@ namespace RPG.Events
                         activeChar.LoadContent(enemyAttackAnimation_4, enemyPosition_4);
                         enemyAttackAnimation_4.active = true;
                     }
-                    ((Enemy)this.activeChar).Targets.Clear();
                     */
+                    ((Enemy)this.activeChar).Targets.Clear();
+                    
                     StartNextTurn();
                 }
                 //führt ein Update der Animationen und Texte aus wenn es sich bei dem aktiven Character um ein Gruppenmitglied handelt
@@ -1958,8 +1964,9 @@ namespace RPG.Events
             {
                 chars.Draw(spriteBatch);
             }
-            Hit.Draw(spriteBatch);
-            Heal.Draw(spriteBatch);
+
+                    Hit.Draw(spriteBatch);
+                    Heal.Draw(spriteBatch);
         }
 
         //führt die Statuseffekte aus
