@@ -110,6 +110,10 @@ namespace RPG
                     this.targets = new List<Character>() { groupOfFoe.ElementAt(0) };
                     break;
                 }
+                else
+                {
+                    this.targets = new List<Character>() { this };
+                }
             }
             this.SetTargetNameForSingleTarget();
         }
@@ -162,7 +166,6 @@ namespace RPG
                             this.performableSkills.Add(skill);
                             continue;
                         }
-
                     }
 
                     if (skill.Effects.All(effect => effect.GetType() == typeof(RemoveStatusEffect)))
