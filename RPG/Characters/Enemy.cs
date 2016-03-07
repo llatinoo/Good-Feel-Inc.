@@ -132,13 +132,17 @@ namespace RPG
         private void SelectUsableSkills()
         {
             Random r = new Random();
+            Skill skillToAdd;
             for (int i = 0; i <= 3; i++)
             {
-                try
+                skillToAdd = Skills.ElementAt(r.Next(0, this.Skills.Count*1000)/1000);
+
+                if (this.useableSkills.Contains(skillToAdd))
                 {
-                    this.useableSkills.Add(Skills.ElementAt(r.Next(0, this.Skills.Count*1000)/1000));
-                }catch(Exception e)
-                { }
+                    i--;
+                    continue;
+                }
+                this.useableSkills.Add(skillToAdd);
             }
         }
 
@@ -209,8 +213,12 @@ namespace RPG
             }
 
 
-            int performableSkillsCount = 0;
-            MathHelper.Clamp(performableSkillsCount, 1, this.performableSkills.Count);
+            int performableSkillsCount = 1;
+
+            if (this.performableSkills.Count > performableSkillsCount)
+            {
+                performableSkillsCount = this.performableSkills.Count;
+            }
 
 
             for (int i = 0; i < performableSkillsCount / 2; i++)
