@@ -43,7 +43,7 @@ namespace RPG
 
         public static List<int> SetAttributes()
         {
-            return new List<int>() { 500, 100, 50, 50, 30, 1, 3 };
+            return new List<int>() { 500, 100, 80, 80, 30, 1, 3 };
         }
     }
 }

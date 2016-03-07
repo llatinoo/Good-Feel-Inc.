@@ -41,6 +41,7 @@ namespace RPGTests
                 (
                     "Test",
                     Classes.Warrior,
+                    1,
                     "",
                     "",
                     "",

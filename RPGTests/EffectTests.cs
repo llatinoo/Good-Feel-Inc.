@@ -19,6 +19,7 @@ namespace RPGTests
             (
                 "Enemy",
                 Classes.Coloss,
+                1,
                 "",
                 "",
                 "",
@@ -29,6 +30,7 @@ namespace RPGTests
             (
                 "Char",
                 Classes.DamageDealer,
+                1,
                 new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
                 100,
                 "",
@@ -109,6 +111,7 @@ namespace RPGTests
             (
                 "Enemy",
                 Classes.Coloss,
+                1,
                 "",
                 "",
                 "",
@@ -119,6 +122,7 @@ namespace RPGTests
             (
                 "Char",
                 Classes.DamageDealer,
+                1,
                 new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
                 100,
                 "",
@@ -218,6 +222,7 @@ namespace RPGTests
             (
                 "Enemy",
                 Classes.Coloss,
+                1,
                 "",
                 "",
                 "",
@@ -235,6 +240,7 @@ namespace RPGTests
             (
                 "Char",
                 Classes.DamageDealer,
+                1,
                 new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
                 100,
                 "",

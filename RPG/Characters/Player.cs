@@ -16,8 +16,8 @@ namespace RPG
         public List<Skill> AngelSkills { get; private set; }
         public List<Skill> DemonSkills { get; private set; }
 
-        public Player(string charName, Classes className, List<int> levellist, int ultimatePointsToCast, List<int> angelLevelCap, List<int> demonLevelCap,string standardAnimationPath,string attackanimationPath, string deathAnimationPath) 
-            : base(charName, className, levellist, ultimatePointsToCast, standardAnimationPath, attackanimationPath, deathAnimationPath)
+        public Player(string charName, Classes className, int level, List<int> levellist, int ultimatePointsToCast, List<int> angelLevelCap, List<int> demonLevelCap,string standardAnimationPath,string attackanimationPath, string deathAnimationPath) 
+            : base(charName, className, level, levellist, ultimatePointsToCast, standardAnimationPath, attackanimationPath, deathAnimationPath)
         {
             this.AngelLevelcap = angelLevelCap;
             this.DemonLevelcap = demonLevelCap;

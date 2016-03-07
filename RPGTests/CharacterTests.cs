@@ -17,6 +17,7 @@ namespace RPGTests
                 (
                     "Char",
                     Classes.Warrior,
+                    1,
                     "",
                     "",
                     ""
@@ -26,6 +27,7 @@ namespace RPGTests
                 (
                     "Enemy",
                     Classes.Coloss,
+                    1,
                     "",
                     "",
                     "", 
@@ -36,6 +38,7 @@ namespace RPGTests
                 (
                     "Char",
                     Classes.DamageDealer,
+                    1,
                     new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
                     100,
                     "",
@@ -47,6 +50,7 @@ namespace RPGTests
             (
                 "Char",
                 Classes.Patron,
+                1,
                 new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
                 100,
                 new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
@@ -92,6 +96,7 @@ namespace RPGTests
                 (
                     "Warrior",
                     Classes.Warrior,
+                    1,
                     "",
                     "",
                     ""
@@ -101,6 +106,7 @@ namespace RPGTests
                 (
                     "Harasser",
                     Classes.Harasser,
+                    1,
                     "",
                     "",
                     ""
