@@ -11,7 +11,7 @@ namespace RPG
     {
         //Hinzufügen aller Skills einer Klasse
         //Gedacht für Gegner
-        public static void AddAllClassSkills(Enemy enemy)
+        public static void AddSkillsForClass(Enemy enemy)
         {
             //Aufrufen der benötigten Sections
             var skillCadreDataSection =
@@ -77,8 +77,8 @@ namespace RPG
                          .SingleOrDefault(
                              cadreSkill => cadreSkill.Name == charSkill.Name);
 
-                if (!member.Skills.All(Skill => Skill.Name == charSkill.Name) &&
-                    member.Level <= Convert.ToInt32(skillToAdd.Level))
+                if (member.Skills.All(Skill => Skill.Name != charSkill.Name) &&
+                    member.Level >= Convert.ToInt32(skillToAdd.Level))
                 {
                     skillToAddEffects = new List<IEffect>();
                     foreach (EffectElement effect in skillToAdd.Effects)
