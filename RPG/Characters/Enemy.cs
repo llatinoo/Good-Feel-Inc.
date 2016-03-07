@@ -36,8 +36,8 @@ namespace RPG
 
 
 
-        public Enemy(string charName, Classes className, string standardAnimationPath, string attackAnimationPath, string deathAnimationPath, bool isAnimated)
-            : base(charName, className, standardAnimationPath, attackAnimationPath, deathAnimationPath)
+        public Enemy(string charName, Classes className, int level, string standardAnimationPath, string attackAnimationPath, string deathAnimationPath, bool isAnimated)
+            : base(charName, className, level, standardAnimationPath, attackAnimationPath, deathAnimationPath)
         {
             this.isAnimated = isAnimated;
             LoadSkillHelperClass.AddAllClassSkills(this);
