@@ -79,6 +79,7 @@
     <Compile Include="Data Section Classes\ClassSkillCadreDataSection.cs" />
     <Compile Include="Data Section Classes\SkillCadreDataSection.cs" />
     <Compile Include="GameManager.cs" />
+    <Compile Include="Scenes\GameManager.cs" />
     <Compile Include="Scenes\IScene.cs" />
     <Compile Include="Skills\Effects\Drain.cs" />
     <Compile Include="Skills\Effects\MagicalDamage.cs" />
@@ -902,7 +903,9 @@
     <Folder Include="Sounds\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="bin\Windows\Debug\Content\Fonts\BasicFont.xnb" />
     <None Include="bin\Windows\Debug\RPG.exe.config" />
     <None Include="bin\Windows\Debug\RPG.vshost.exe.config" />

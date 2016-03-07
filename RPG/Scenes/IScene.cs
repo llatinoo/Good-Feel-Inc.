@@ -7,7 +7,7 @@ namespace RPG
 {
     public interface IScene
     {
-        List<PartyMember> Group { get; }
+        List<PartyMember> Group { get; set; }
         List<PartyMember> FightCadre { get; }
         List<Enemy> Enemies { get; }
 

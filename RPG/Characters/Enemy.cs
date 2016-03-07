@@ -40,7 +40,7 @@ namespace RPG
             : base(charName, className, level, standardAnimationPath, attackAnimationPath, deathAnimationPath)
         {
             this.isAnimated = isAnimated;
-            LoadSkillHelperClass.AddAllClassSkills(this);
+            LoadSkillHelperClass.AddSkillsForClass(this);
             this.SelectUsableSkills();
         }
 

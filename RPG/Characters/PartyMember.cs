@@ -25,6 +25,11 @@ namespace RPG
 
             this.UltimatePoints = 0;
             this.UltimatePointsToCast = ultimatePointsToCast;
+
+            if(this.GetType() != typeof(Player))
+            {
+                LoadSkillHelperClass.AddSkillsToParty(this);
+            }
         }
 
 

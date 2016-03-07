@@ -6,24 +6,44 @@ namespace RPG
     //Klasse für Spielerdaten
     public class Player : PartyMember
     {
+        public string HiddenName { get; private set; }
+        private string JosDemon = "Jos Dämon";
+        private string JosAngel = "Jos Engel";
+
+
         //Erfahrung für Dämonen Skills und Engel Skills
         public int AngelExp { get; set; }
         public int DemonExp { get; set; }
 
-        public List<int> AngelLevelcap { get; private set; }
-        public List<int> DemonLevelcap { get; private set; }
 
-        public List<Skill> AngelSkills { get; private set; }
-        public List<Skill> DemonSkills { get; private set; }
-
-        public Player(string charName, Classes className, int level, List<int> levellist, int ultimatePointsToCast, List<int> angelLevelCap, List<int> demonLevelCap,string standardAnimationPath,string attackanimationPath, string deathAnimationPath) 
+        public Player(string charName, Classes className, int level, List<int> levellist, int ultimatePointsToCast, string standardAnimationPath,string attackanimationPath, string deathAnimationPath) 
             : base(charName, className, level, levellist, ultimatePointsToCast, standardAnimationPath, attackanimationPath, deathAnimationPath)
         {
-            this.AngelLevelcap = angelLevelCap;
-            this.DemonLevelcap = demonLevelCap;
-
+            this.HiddenName = this.JosDemon;
             this.AngelExp = 0;
             this.DemonExp = 0;
+
+            LoadSkillHelperClass.AddSkillsToPlayer(this);
         }
+
+        public override void LevelUp()
+        {
+            this.Level++;
+            if (this.DemonExp > this.AngelExp)
+            {
+                this.Class = Classes.Warrior;
+                this.HiddenName = this.JosAngel;
+            }
+            else if(this.AngelExp > this.DemonExp)
+            {
+                this.Class = Classes.Patron;
+                this.HiddenName = this.JosDemon;
+
+            }
+            this.ChangeAttributes(AttributesChange.LevelUpAttributes(this.Class));
+
+        }
+
+
     }
 }

@@ -55,11 +55,11 @@ namespace RPG
 
 
         //Name
-        public string Name { get; private set; }
+        public string Name { get; protected set; }
 
 
         //Klasse
-        public Classes Class { get; private set; }
+        public Classes Class { get; protected set; }
         public int Initiative { get; private set; }
 
 
@@ -261,11 +261,11 @@ namespace RPG
         }
 
         //Levelupaufruf
-        public void LevelUp()
+        public virtual void LevelUp()
         {
             this.Level++;
             this.ChangeAttributes(AttributesChange.LevelUpAttributes(this.Class));
-            LoadSkillHelperClass.AddLevelUpSkillToParty(this as PartyMember);
+            LoadSkillHelperClass.AddSkillsToParty(this as PartyMember);
         }
     }
 }
