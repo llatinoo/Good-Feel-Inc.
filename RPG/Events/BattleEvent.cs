@@ -909,8 +909,6 @@ namespace RPG.Events
                     this.singleTargetParty = false;
                     LoadAnimatedSkillsFromPartymember(character, target);
                 }
-                if (activeSkill.Target.GetType() == typeof(Enemy))
-                {
                     if (activeChar.Name == Character1Name.SkillName)
                     {
                         activeChar.LoadContent(charAttackAnimation_1, characterPosition_1);
@@ -932,8 +930,6 @@ namespace RPG.Events
                         charAttackAnimation_4.active = true;
                     }
                 }
-            }
-            StartNextTurn();
         }
 
         //Führt aus was beim Klick auf einen Skill passieren soll
