@@ -26,8 +26,8 @@ namespace RPG
         Movie Intro = new Movie("Intro\\Good Feel Inc Intro");
 
         //Musste die Parameter von 0,0 auf 0,1 ändern, da es zwar eine Szene 0 gibt, Parts (Genau wie Texteboxen) immer bei 1 anfangen
-        //ConversationEvent conversation1 = new ConversationEvent(0, 1, 1);
-        //ConversationEvent conversation2 = new ConversationEvent(0, 1, 1);
+        ConversationEvent conversation1 = new ConversationEvent(0, 1, 1);
+        ConversationEvent conversation2 = new ConversationEvent(0, 1, 1);
 
         StoryEvent Scene1;
 
