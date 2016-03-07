@@ -1,13 +1,12 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using RPG.Skills;
+﻿using RPG.Skills;
 using System.Collections.Generic;
 
-namespace RPG.Characters
+namespace RPG
 {
     //Klasse für Spielerdaten
     public class Player : PartyMember
     {
+        //Erfahrung für Dämonen Skills und Engel Skills
         public int AngelExp { get; set; }
         public int DemonExp { get; set; }
 
@@ -17,9 +16,8 @@ namespace RPG.Characters
         public List<Skill> AngelSkills { get; private set; }
         public List<Skill> DemonSkills { get; private set; }
 
-        public Player(string charName, Classes className, string race, int vita, int mana, int strength, int mag,
-            int def, int res, int luck, List<int> levellist, int ultimatePointsToCast, List<int> angelLevelCap, List<int> demonLevelCap) 
-            : base(charName, className, race, vita, mana, strength, mag, def, res, luck, levellist, ultimatePointsToCast)
+        public Player(string charName, Classes className, int level, List<int> levellist, int ultimatePointsToCast, List<int> angelLevelCap, List<int> demonLevelCap,string standardAnimationPath,string attackanimationPath, string deathAnimationPath) 
+            : base(charName, className, level, levellist, ultimatePointsToCast, standardAnimationPath, attackanimationPath, deathAnimationPath)
         {
             this.AngelLevelcap = angelLevelCap;
             this.DemonLevelcap = demonLevelCap;

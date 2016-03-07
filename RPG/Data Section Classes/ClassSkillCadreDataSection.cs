@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Configuration.Internal;
+﻿using System.Configuration;
 using System.Linq;
-using System.Text;
 
 namespace RPG
 {
+    //Section für Klassen-Skill zuordnung
     public class ClassSkillCadreDataSection : ConfigurationSection
     {
+        //Benennung der Section
         [ConfigurationProperty("Classes")]
         public ClassesElementCollection Classes
         {
@@ -19,7 +17,9 @@ namespace RPG
         }
     }
 
+    //Struktur der Section
 
+    //Ansammlung von Klassen-Elementen
     public class ClassesElementCollection : ConfigurationElementCollection
     {
         protected override ConfigurationElement CreateNewElement()
@@ -69,6 +69,7 @@ namespace RPG
     }
 
 
+    //Konkretes Klassen-Element
     public class ClassElement : ConfigurationElement
     {
         [ConfigurationProperty("name", IsRequired = true, IsKey = true)]
@@ -95,6 +96,7 @@ namespace RPG
     }
 
 
+    //Ansammlung von Skill-Element-Referenzen
     public class ClassSkillsElementCollection : ConfigurationElementCollection
     {
         protected override ConfigurationElement CreateNewElement()
@@ -143,6 +145,7 @@ namespace RPG
     }
 
 
+    //Konkrete von Skill-Element-Referenz
     public class ClassSkillElement : ConfigurationElement
     {
         [ConfigurationProperty("name", IsRequired = true, IsKey = true)]

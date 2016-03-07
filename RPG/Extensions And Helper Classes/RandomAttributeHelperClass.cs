@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using RPG.Skills;
-using RPG.Skills.Effects;
-using RPG.Skills.StatusEffects;
 
 namespace RPG
 {
     public static class RandomAttributeHelperClass
     {
+        //Gibt zufällig eines der Attribute die ein Charakter haben kann zurück
         public static Attributes GetRandomAttribute()
         {
             int random = new Random().Next(0, 7 * 1000) / 1000;

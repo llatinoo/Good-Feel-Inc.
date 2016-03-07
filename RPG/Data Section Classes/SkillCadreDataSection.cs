@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Linq;
-using System.Text;
-using RPG.Skills.Effects;
 
 namespace RPG
 {
+    //Section für alle Skills
     public class SkillCadreDataSection : ConfigurationSection
     {
         [ConfigurationProperty("Skills")]
@@ -19,7 +16,9 @@ namespace RPG
         }
     }
 
+    //Struktur der Section
 
+    //Ansammlung von Skill-Elementen
     public class SkillsElementCollection : ConfigurationElementCollection
     {
         protected override ConfigurationElement CreateNewElement()
@@ -69,6 +68,7 @@ namespace RPG
     }
 
 
+    //Konkretes Skill Element
     public class SkillElement : ConfigurationElement
     {
         [ConfigurationProperty("name", IsRequired = true, IsKey = true)]
@@ -84,16 +84,42 @@ namespace RPG
             }
         }
 
-        [ConfigurationProperty("manaCosts", IsRequired = true, IsKey = false)]
-        public string ManaCosts
+        [ConfigurationProperty("level", IsRequired = true, IsKey = false)]
+        public string Level
         {
             get
             {
-                return this["manaCosts"] as string;
+                return this["level"] as string;
             }
             set
             {
-                this["manaCosts"] = value;
+                this["level"] = value;
+            }
+        }
+
+        [ConfigurationProperty("target", IsRequired = true, IsKey = false)]
+        public string Target
+        {
+            get
+            {
+                return this["target"] as string;
+            }
+            set
+            {
+                this["target"] = value;
+            }
+        }
+
+        [ConfigurationProperty("areaOfEffect", IsRequired = true, IsKey = false)]
+        public string AreaOfEffect
+        {
+            get
+            {
+                return this["areaOfEffect"] as string;
+            }
+            set
+            {
+                this["areaOfEffect"] = value;
             }
         }
 
@@ -108,6 +134,7 @@ namespace RPG
     }
 
 
+    //Ansammlung von Effekt-Elementen
     public class EffectsElementCollection : ConfigurationElementCollection
     {
         protected override ConfigurationElement CreateNewElement()
@@ -156,6 +183,7 @@ namespace RPG
     }
 
 
+    //Konkretes Effekt-Element
     public class EffectElement : ConfigurationElement
     {
         [ConfigurationProperty("name", IsRequired = true, IsKey = true)]

@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using RPG.Characters;
-using RPG.Skills.Effects;
 
-namespace RPG.Skills.Ultis
+namespace RPG
 {
     public class Hyperstrahl : IEffect
     {

@@ -60,6 +60,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AITest.cs" />
     <Compile Include="AppConfigDataSectionTests.cs" />
     <Compile Include="EffectTests.cs" />
     <Compile Include="CharacterTests.cs" />
@@ -70,6 +71,9 @@
       <Project>{be6c7fe4-e607-4205-8e00-377341791cf3}</Project>
       <Name>RPG</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

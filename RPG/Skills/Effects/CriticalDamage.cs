@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using RPG.Characters;
 
-namespace RPG.Skills.Effects
+namespace RPG
 {
     public class CriticalDamage : IEffect
     {
@@ -16,12 +15,13 @@ namespace RPG.Skills.Effects
             {
                 this.CausedDamage = Convert.ToInt32((source.FightStrength + (this.r1.Next(1, (source.FightStrength / 7) * 1000)) / 1000));
 
+                //Automatischer Kritischer-Treffer
                 this.CausedDamage = Convert.ToInt32(this.CausedDamage * 1.5);
                 this.CausedDamage -= target.FightDefense;
 
-                if (this.CausedDamage < 0)
+                if (this.CausedDamage < source.FightStrength / 6)
                 {
-                    this.CausedDamage = 0;
+                    this.CausedDamage = source.FightStrength / 6;
                 }
 
                 target.Life -= this.CausedDamage;

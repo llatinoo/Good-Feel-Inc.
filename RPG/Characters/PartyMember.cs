@@ -1,27 +1,24 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
+﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace RPG.Characters
+namespace RPG
 {
     //Klasse zur Unterscheidung von Verbündeten
     public class PartyMember : Character
     {
-        //Level Attribute
+        //Erfahrung des Charakters
         public int Exp { get; set; }
+        //Punkte an denen ein Charakter Aufsteigt
         public List<int> LevelList { get; private set; }
 
 
-        //Ultimative Fähigkeit
+        //Ultimative Fähigkeit und Punkte die zum Aktivieren benötigt werden
         public int UltimatePoints { get; set; }
         public int UltimatePointsToCast { get; set; }
 
 
-        public PartyMember(string charName, Classes className, string race, int vita, int mana, int strength, int mag,
-            int def, int res, int luck, List<int> levellist, int ultimatePointsToCast)
-            : base(charName, className, race, vita, mana, strength, mag, def, res, luck)
+        public PartyMember(string charName, Classes className, int level, List<int> levellist, int ultimatePointsToCast,string standardAnimationPath, string attackAnimationPath, string deathAnimationPath)
+            : base(charName, className, level, standardAnimationPath, attackAnimationPath, deathAnimationPath)
         {
             this.Exp = 0;
             this.LevelList = levellist;
@@ -30,18 +27,19 @@ namespace RPG.Characters
             this.UltimatePointsToCast = ultimatePointsToCast;
         }
 
-        public void CheckLelve()
-        {
-            this.LevelList.OrderBy(x => x.ToString());
-            if (this.Exp >= this.LevelList.ElementAt(0))
-            {
-                
-            }
-        }
 
-        public void LevelUP()
+        //Erhalten von Exp und gegebenfalls LevelUp ausführen
+        public void GainExp(int exp)
         {
-            
+            this.Exp += exp;
+            this.LevelList.OrderBy(x => x);
+
+            while (this.Exp >= this.LevelList.ElementAt(0))
+            {
+                this.LevelUp();
+                this.LevelList.Remove(this.LevelList.ElementAt(0));
+                this.LevelList.OrderBy(x => x);
+            }
         }
     }
 }

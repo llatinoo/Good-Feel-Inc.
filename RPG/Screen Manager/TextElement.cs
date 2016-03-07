@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 namespace RPG
 {
@@ -15,44 +12,66 @@ namespace RPG
         Controls controls = new Controls();
         SpriteFont AwesomeFont;
         private Vector2 fontSize;
+        SoundEffect MouseIntersect;
+        private bool rectangleContainedMouseBefore;
 
-        private string skillName;
+        string skillName;
+        public string SkillName
+        {
+            get { return skillName; }
+        }
         private int positionX;
         private int positionY;
 
-        Rectangle textRect;
+        public Rectangle textRect;
+        bool clickAble;
 
         public delegate void tElementClicked(string element);
         public event tElementClicked tclickEvent;
-        public TextElement(string skillName, int positionX, int positionY)
+        public TextElement(string skillName, int positionX, int positionY, bool clickAble)
         {
             this.skillName = skillName;
             this.positionX = positionX;
             this.positionY = positionY;
+            this.clickAble = clickAble;
         }
 
         public void LoadContent(ContentManager content)
         {
+            MouseIntersect = content.Load<SoundEffect>("Sounds\\Effects\\MouseIntersect");
             //Font mit dem Namen "BasicFont" wird geladen
-            AwesomeFont = content.Load<SpriteFont>("Fonts\\AwesomeFont");
-            fontSize = AwesomeFont.MeasureString(skillName);
-            textRect = new Rectangle(positionX, positionY, (int)fontSize.X, (int)fontSize.Y);
+            this.AwesomeFont = content.Load<SpriteFont>("Fonts\\AwesomeFont");
+            if (clickAble)
+            {
+                this.fontSize = this.AwesomeFont.MeasureString(this.skillName);
+                this.textRect = new Rectangle(this.positionX, this.positionY, (int)this.fontSize.X, (int)this.fontSize.Y);
+            }
         }
 
         public void Update()
         {
-            controls.Update();
-            if(textRect.Contains(controls.CursorPos) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+            this.controls.Update();
+            if(this.textRect.Contains(this.controls.CursorPos) && !rectangleContainedMouseBefore)
             {
-                tclickEvent(skillName);
+                rectangleContainedMouseBefore = true;
+                MouseIntersect.Play();
+            }
+            if(!textRect.Contains(this.controls.CursorPos))
+            {
+                rectangleContainedMouseBefore = false;
+            }
+            if(this.textRect.Contains(this.controls.CursorPos) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+            {
+                rectangleContainedMouseBefore = false;
+                this.tclickEvent(this.skillName);
             }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(AwesomeFont, skillName, new Vector2(positionX, positionY), Color.White);
-            if (textRect.Contains(controls.CursorPos))
+            spriteBatch.DrawString(this.AwesomeFont, this.skillName, new Vector2(this.positionX, this.positionY), Color.White);
+            if (this.textRect.Contains(this.controls.CursorPos))
             {
-                spriteBatch.DrawString(AwesomeFont, skillName, new Vector2(positionX, positionY), Color.DarkBlue);
+                spriteBatch.DrawString(this.AwesomeFont, this.skillName, new Vector2(this.positionX, this.positionY), Color.DarkBlue);
             }
         }
       }

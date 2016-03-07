@@ -1,6 +1,4 @@
 ﻿using System;
-using RPG.Characters;
-using RPG.Skills.StatusEffects;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,6 +6,7 @@ namespace RPG
 {
     internal static class StatusEffectExecuteExtensions
     {
+        //Fügt einen Status Effekt den Zielen zu
         public static void AddStatuseffectToTargets(this List<Character> targets, Func<Character, IStatuseffect> getStatuseffectFunc)
         {            
             foreach (Character target in targets)
@@ -18,6 +17,8 @@ namespace RPG
                 {
                     target.Statuseffects.Add(statuseffect);
                 }
+                //Falls das Ziel bereits von einem Statuseffekt dieser Art betroffen ist
+                //wird die Dauer des breits existierenden Effekts erhöt
                 else
                 {
                     foreach (var effect in target.Statuseffects)

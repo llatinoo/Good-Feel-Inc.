@@ -1,11 +1,11 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Graphics;
+using System.Linq;
 using RPG.Skills;
-using RPG.Skills.StatusEffects;
 
-namespace RPG.Characters
+namespace RPG
 {
     public enum MainAttributes
     {
@@ -26,9 +26,11 @@ namespace RPG.Characters
         Harasser
     }
 
+
     //Technische Daten eines Charakters
     public class Character
     {
+        //Werte welche eine Abgrenzung (Clamp) besitzen
         private int resistance;
         private int fightResistance;
 
@@ -41,19 +43,24 @@ namespace RPG.Characters
         private int mana;
         private int fightManaPool;
 
+        private Animation animation;
+        private Vector2 position;
+
 
         //Grafikdaten des Charakters
         public Animation Sprite { get; private set; }
+        public String standardAnimationPath { get; private set; }
+        public String deathAnimationPath {get; private set; }
+        public String attackAnimationPath { get; private set; }
 
 
         //Name
         public string Name { get; private set; }
+
+
         //Klasse
         public Classes Class { get; private set; }
         public int Initiative { get; private set; }
-
-        //Rasse
-        public string Race { get; private set; }
 
 
         //Festwerte die durch aufleveln gesteigert werden
@@ -67,7 +74,7 @@ namespace RPG.Characters
             get { return this.resistance; }
             set { this.resistance = MathHelper.Clamp(this.resistance, 0, 21); }
         }
-        public int Luck   
+        public int Luck
         {
             get { return this.luck; }
             set { this.luck = MathHelper.Clamp(this.luck, 0, 71); }
@@ -88,24 +95,16 @@ namespace RPG.Characters
 
 
         //Kampfwerte die im Kampf verändert werden können
-        //Vitalität und Manapool regulieren auch ManaPool und Leben, da diese Werte nicht über deren Kampfwerte liegen dürfen
+        //Vitalität und Manapool regulieren auch Leben und Mana, da diese Werte nicht über deren Kampfwerte liegen dürfen
         public int FightVitality
         {
             get { return this.fightVitality; }
-            set
-            {
-                this.fightVitality = value;
-                MathHelper.Clamp(this.life, 0, this.fightVitality);
-            }
+            set { this.fightVitality = value; MathHelper.Clamp(this.life, 0, this.fightVitality); }
         }
         public int FightManaPool
         {
             get { return this.fightManaPool; }
-            set
-            {
-                this.fightManaPool = value;
-                MathHelper.Clamp(this.mana, 0, this.fightManaPool);
-            }
+            set { this.fightManaPool = value; MathHelper.Clamp(this.mana, 0, this.fightManaPool); }
         }
         public int FightStrength { get; set; }
         public int FightMagic { get; set; }
@@ -113,70 +112,98 @@ namespace RPG.Characters
         public int FightResistance
         {
             get { return this.fightResistance; }
-            set { this.fightResistance = MathHelper.Clamp(value, 0, 20); }
+            set { this.fightResistance = MathHelper.Clamp(value, 0, 21); }
         }
         public int FightLuck
         {
             get { return this.fightLuck; }
-            set { this.fightLuck = MathHelper.Clamp(value, 0, 70); }
+            set { this.fightLuck = MathHelper.Clamp(value, 0, 71); }
         }
         
-        //Fähigkeiten Attribute
-        public List<Skill> Skills { get; private set; }
-        //public List<string> SkillTree { get; private set; }
 
+        //Fähigkeiten Attribute
+        public List<Skill> Skills { get; }
+        public Skill AttackSkill { get; private set; }
+        public Skill RestSkill { get; private set; }
         public int Level { get; set; }
+
 
         //Auf den Charakter wirkende Effekte
         public List<IStatuseffect> Statuseffects { get; set; }
 
 
-        public Character(string charName, Classes className, string race, int vitality, int mana, int strength, int magic, int defense, int resistance, int luck)
+        //Gibt an ob der Charakter kämpfen kann
+        public bool IsMindBlown { get; set; }
+        //Gibt an ob der Charakter geschützt ist
+        public bool IsBlessed { get; set; }
+
+
+        //Konstruktor
+        public Character(string charName, Classes className, int level, string standardAnimationPath,  string attackAnimationPath, string deathAnimationPath)
         {
             this.Name = charName;
             this.Class = className;
-            this.Race = race;
+            this.Level = level;
 
-            this.FightVitality = this.Vitality = vitality;
-            this.FightManaPool = this.Manapool = mana;
-            this.FightStrength = this.Strength = strength;
-            this.FightMagic = this.Magic = magic;
-            this.FightDefense = this.Defense = defense;
-            this.FightResistance = this.Resistance = resistance;
-            this.FightLuck = this.Luck = luck;
+            this.ChangeAttributes(AttributesChange.SetAttributes());
+
+            for (int i = Level; i > 0; i--)
+            {
+                this.ChangeAttributes(AttributesChange.LevelUpAttributes(this.Class));
+            }
+
+            this.SetFightAttributes();
 
             this.Skills = new List<Skill>();
             this.Statuseffects = new List<IStatuseffect>();
 
-            this.Level = 0;
+            this.standardAnimationPath = standardAnimationPath;
+            this.deathAnimationPath = deathAnimationPath;
+            this.attackAnimationPath = attackAnimationPath;
+
+            LoadSkillHelperClass.AddStandardSkills(this);
+            this.IsMindBlown = false;
         }
 
+
+        //Hinzufügen eines Skills
         public void AddSkill(Skill newSkill)
         {
             this.Skills.Add(newSkill);
         }
 
-        public void RemoveSkill(Skill removeSkill)
+
+        //Setzen der Skills Attacke und Ausruhen
+        public void SetStandardSkills(Skill atk, Skill res)
         {
-            this.Skills.Remove(removeSkill);
+            this.AttackSkill = atk;
+            this.RestSkill = res;
         }
 
-        public void UpdateStat(int updateAmmount, MainAttributes mainAttributeToUpdate)
+
+        //Das Aufleveln der Attribute
+        public void ChangeAttributes(List<int> stats)
         {
-            var propertyInfo = typeof(Character).GetProperty(mainAttributeToUpdate.ToString());
-            var oldValue = (int)propertyInfo.GetValue(this, null);
-            propertyInfo.SetValue(this, oldValue + updateAmmount, null);
+            this.Vitality += stats.ElementAt(0);
+            this.Manapool += stats.ElementAt(1);
+            this.Strength += stats.ElementAt(2);
+            this.Magic += stats.ElementAt(3);
+            this.Defense += stats.ElementAt(4);
+            this.Resistance += stats.ElementAt(5);
+            this.Luck += stats.ElementAt(6);
         }
 
+
+        //Legt Initiative je nach Klasse fest
         public void SetInitiative()
         {
             if (this.Class == Classes.Coloss)
             {
-                this.Initiative = 1;
+                this.Initiative = 5;
             }
             if (this.Class == Classes.Warrior)
             {
-                this.Initiative = 2;
+                this.Initiative = 4;
             }
             if (this.Class == Classes.Harasser)
             {
@@ -184,17 +211,61 @@ namespace RPG.Characters
             }
             if (this.Class == Classes.Patron)
             {
-                this.Initiative = 4;
+                this.Initiative = 2;
             }
             if (this.Class == Classes.DamageDealer)
             {
-                this.Initiative = 5;
+                this.Initiative = 1;
             }
         }
 
+
+        //Holen der Initiative mit einer Modifizierung für mehr Varianz
         public int GetInitiative()
         {
             return this.Initiative + (new Random().Next(this.Initiative, (this.Initiative + 4) * 1000) / 1000);
+        }
+
+
+        
+        public void LoadContent(Animation animation, Vector2 position)
+        {
+            this.animation = animation;
+            this.position = position;
+        }
+
+
+        public void Update(GameTime gameTime)
+        {
+            this.animation.position = this.position;
+            this.animation.Update(gameTime);
+        }
+
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            this.animation.Draw(spriteBatch);
+        }
+
+        public void SetFightAttributes()
+        {
+            this.FightVitality = this.Vitality;
+            this.FightManaPool = this.Manapool;
+            this.FightStrength = this.Strength;
+            this.FightMagic = this.Magic;
+            this.FightDefense = this.Defense;
+            this.FightResistance = this.Resistance;
+            this.FightLuck = this.Luck;
+            this.Life = Vitality;
+            this.Mana = Manapool;
+        }
+
+        //Levelupaufruf
+        public void LevelUp()
+        {
+            this.Level++;
+            this.ChangeAttributes(AttributesChange.LevelUpAttributes(this.Class));
+            LoadSkillHelperClass.AddLevelUpSkillToParty(this as PartyMember);
         }
     }
 }

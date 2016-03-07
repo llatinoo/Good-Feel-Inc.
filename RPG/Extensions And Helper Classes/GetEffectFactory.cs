@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using RPG.Skills.Effects;
+﻿using RPG.Skills.Effects;
 
-namespace RPG.Extensions_And_Helper_Classes
+namespace RPG
 {
     public static class GetEffectFactory
     {
+        //Gibt den durch einen String gesuchten Effekt zurück
         public static IEffect GetEffect(string effectName)
         {
-            //Attributes Change
             //Vit
             if (effectName.ToLower() == "VitalityBuff".ToLower())
                 return new AttributesChangeEffect(AttributeActions.Add, Attributes.FightVitality);
@@ -80,6 +76,10 @@ namespace RPG.Extensions_And_Helper_Classes
             if (effectName.ToLower() == "Damage".ToLower())
                 return new Damage();
 
+            //Damage
+            if (effectName.ToLower() == "MagicalDamage".ToLower())
+                return new MagicalDamage();
+
             //Drain
             if (effectName.ToLower() == "Drain".ToLower())
                 return new Drain();
@@ -111,6 +111,10 @@ namespace RPG.Extensions_And_Helper_Classes
             //RandomEffect
             if (effectName.ToLower() == "RandomEffect".ToLower())
                 return new RandomEffect();
+
+            //Recover
+            if (effectName.ToLower() == "Recover".ToLower())
+                return new Recover();
 
             //RemoveStatus
             if (effectName.ToLower() == "RemoveStatus".ToLower())

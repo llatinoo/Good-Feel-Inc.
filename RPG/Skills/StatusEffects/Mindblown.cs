@@ -1,15 +1,16 @@
-﻿using RPG.Characters;
-
-namespace RPG.Skills.StatusEffects
+﻿namespace RPG
 {
     public class Mindblown : IStatuseffect
     {
         public int Duration { get; private set; }
         public int Damage { get; private set; }
 
+        public Character Target { get; set; }
+
         public Mindblown(Character source, Character target)
         {
             this.Damage = 0;
+            this.Target = target;
 
             int difference = source.Level - target.Level;
 
@@ -42,6 +43,8 @@ namespace RPG.Skills.StatusEffects
 
         public int ExecuteStatus()
         {
+            this.Target.IsMindBlown = false;
+
             this.Duration--;
             return this.Damage;
         }

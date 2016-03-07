@@ -1,14 +1,8 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RPG;
-using RPG.Characters;
-using RPG.Skills;
 using RPG.Skills.Effects;
-using RPG.Skills.StatusEffects;
 
 namespace RPGTests
 {
@@ -25,31 +19,23 @@ namespace RPGTests
             (
                 "Enemy",
                 Classes.Coloss,
-                false,
-                "Human",
-                1000, //vita
-                100, //mana
-                100, //strength
-                100, //magic
-                50, //Defense
-                100, //Res
-                100 //Luck
+                1,
+                "",
+                "",
+                "",
+                false
             );
 
             var partymember = new PartyMember
             (
                 "Char",
                 Classes.DamageDealer,
-                "Dämon",
-                100,
-                100,
-                100,
-                100,
-                100,
-                100,
-                10,
+                1,
                 new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
-                100
+                100,
+                "",
+                "",
+                ""
             );
 
             enemy.Life = enemy.FightVitality;
@@ -64,6 +50,13 @@ namespace RPGTests
             partymember = this.ResetPartyMember();
 
             new Damage().Execute(partymember, new List<Character>() { enemy });
+            Assert.IsTrue(enemy.FightVitality > enemy.Life);
+
+            //MagicalDMG
+            enemy = this.ResetEnemy();
+            partymember = this.ResetPartyMember();
+
+            new MagicalDamage().Execute(partymember, new List<Character>() {enemy});
             Assert.IsTrue(enemy.FightVitality > enemy.Life);
 
             //Drain
@@ -118,31 +111,23 @@ namespace RPGTests
             (
                 "Enemy",
                 Classes.Coloss,
-                false,
-                "Human",
-                1000, //vita
-                100, //mana
-                100, //strength
-                100, //magic
-                50, //Defense
-                0, //Res
-                100 //Luck
+                1,
+                "",
+                "",
+                "",
+                false
             );
 
             var partymember = new PartyMember
             (
                 "Char",
                 Classes.DamageDealer,
-                "Dämon",
-                100,
-                100,
-                100,
-                100,
-                100,
                 1,
-                100,
                 new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
-                100
+                100,
+                "",
+                "",
+                ""
             );
 
             enemy.Life = enemy.FightVitality;
@@ -237,15 +222,11 @@ namespace RPGTests
             (
                 "Enemy",
                 Classes.Coloss,
-                false,
-                "Human",
-                1000, //vita
-                100, //mana
-                100, //strength
-                100, //magic
-                50, //Defense
-                100, //Res
-                100 //Luck
+                1,
+                "",
+                "",
+                "",
+                false
             );
 
             enemy.Life = enemy.FightVitality;
@@ -259,16 +240,12 @@ namespace RPGTests
             (
                 "Char",
                 Classes.DamageDealer,
-                "Dämon",
-                100,
-                100,
-                100,
-                100,
-                100,
-                100,
-                10,
+                1,
                 new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
-                100
+                100,
+                "",
+                "",
+                ""
             );
 
             partymember.Life = partymember.FightVitality;

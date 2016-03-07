@@ -5,15 +5,37 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using RPG.Events;
+
 
 namespace RPG
 {
     class Screen
     {
+        PartyMember char1 = new PartyMember("Anna", Classes.Patron, 8, new List<int>(10), 20, "Animations\\Battlers\\Female\\Anna\\Anna_Standard_Animation", "Animations\\Battlers\\Female\\Anna\\Anna_Attack_Animation", "Animations\\Battlers\\Female\\Anna\\Anna_Death_Animation");
+        Enemy enemy1 = new Enemy("Kaiser", Classes.DamageDealer, 8, "Enemies\\Bosse\\Human\\Anna\\Anna_Standard_Animation", "Enemies\\Bosse\\Human\\Anna\\Anna_Attack_Animation", "Enemies\\Bosse\\Human\\Anna\\Anna_Death_Animation", true);
+
+        PartyMember char2 = new PartyMember("Caspar", Classes.Harasser, 8, new List<int>(10), 20, "Animations\\Battlers\\Male\\Caspar\\Caspar_Standard_Animation", "Animations\\Battlers\\Male\\Caspar\\Caspar_Attack_Animation", "Animations\\Battlers\\Male\\Caspar\\Caspar_Death_Animation");
+        PartyMember char3 = new PartyMember("Elena", Classes.Coloss, 8, new List<int>(10), 20, "Animations\\Battlers\\Female\\Elena\\Elena_Standard_Animation", "Animations\\Battlers\\Female\\Elena\\Elena_Attack_Animation", "Animations\\Battlers\\Female\\Elena\\Elena_Death_Animation");
+        PartyMember char4 = new PartyMember("Genefe", Classes.Warrior, 8, new List<int>(10), 20, "Animations\\Battlers\\Female\\Genefe\\Genefe_Standard_Animation", "Animations\\Battlers\\Female\\Genefe\\Genefe_Attack_Animation", "Animations\\Battlers\\Female\\Genefe\\Genefe_Death_Animation");
+
+        
+
+        BattleEvent testevent;
+
+        Movie Intro = new Movie("Intro\\Good Feel Inc Intro");
+
+        //Musste die Parameter von 0,0 auf 0,1 ändern, da es zwar eine Szene 0 gibt, Parts (Genau wie Texteboxen) immer bei 1 anfangen
+        ConversationEvent conversation1 = new ConversationEvent(0, 1, 1);
+        ConversationEvent conversation2 = new ConversationEvent(0, 1, 1);
+
+        StoryEvent Scene1;
+
         bool stateChanged = false;
         Song mainMenuTheme;
         Song storyScreenTheme;
         Song battleScreenTheme;
+        
 
         Controls controls = new Controls();
         //Skill Animation wird erstellt
@@ -28,11 +50,11 @@ namespace RPG
         private SkillAnimation testSkill9 = new SkillAnimation();
 
         //SpielStatus
-        public enum GameState {mainMenu, options, storyScreen, battleScreen}
+        public enum GameState {intro, mainMenu, options, storyScreen, battleScreen}
         private GameState gameState;
         public GameState getGameState
         {
-            get { return gameState; }
+            get { return this.gameState; }
         }
         private GameState oldGameState;
 
@@ -48,7 +70,7 @@ namespace RPG
         private bool exitGame = false;
         public bool ExitGame
         {
-            get { return exitGame; }
+            get { return this.exitGame; }
         }
 
         //Character in Pixeln
@@ -68,80 +90,85 @@ namespace RPG
         Vector2 normalBossPosition;
         Vector2 finalBossPosition;
 
-        //position des Textes
-        Vector2 textLine_1 = new Vector2(150, 422);
-        Vector2 textLine_2 = new Vector2(150, 447);
-        Vector2 textLine_3 = new Vector2(150, 472);
-        Vector2 textLine_4 = new Vector2(150, 497);
-
         public Screen()
         {
-            mainMenu.Insert(0, new GUIElement("Backgrounds\\Menus\\Title_Screen_Background"));
-            mainMenu.Insert(1, new GUIElement("Buttons\\New_Game_Button"));
-            mainMenu.Insert(2, new GUIElement("Buttons\\Load_Game_Button"));
-            mainMenu.Insert(3, new GUIElement("Buttons\\Quit_Button"));
+            
+
+            this.mainMenu.Insert(0, new GUIElement("Backgrounds\\Menus\\Title_Screen_Background"));
+            this.mainMenu.Insert(1, new GUIElement("Buttons\\New_Game_Button"));
+            this.mainMenu.Insert(2, new GUIElement("Buttons\\Load_Game_Button"));
+            this.mainMenu.Insert(3, new GUIElement("Buttons\\Quit_Button"));
 
 
-            options.Insert(0, new GUIElement("Backgrounds\\Menus\\Options_Screen_Background"));
-            options.Insert(1, new GUIElement("Buttons\\Continue_Button"));
-            options.Insert(2, new GUIElement("Buttons\\Save_Button"));
-            options.Insert(3, new GUIElement("Buttons\\Quit_Button"));
+            this.options.Insert(0, new GUIElement("Backgrounds\\Menus\\Options_Screen_Background"));
+            this.options.Insert(1, new GUIElement("Buttons\\Continue_Button"));
+            this.options.Insert(2, new GUIElement("Buttons\\Save_Button"));
+            this.options.Insert(3, new GUIElement("Buttons\\Quit_Button"));
 
-            storyScreen.Insert(0, new GUIElement("Backgrounds\\Story\\Triumphfelder_Story_Background"));
-            storyScreen.Insert(1, new GUIElement("Boxes\\TextBox_Heroic_RPG"));
+            this.storyScreen.Insert(0, new GUIElement("Backgrounds\\Story\\Triumphfelder_Story_Background"));
+            this.storyScreen.Insert(1, new GUIElement("Boxes\\TextBox_Heroic"));
 
-            battleScreen.Insert(0, new GUIElement("Backgrounds\\Battle\\Forest_Battle_Background"));
-            battleScreen.Insert(1, new GUIElement("Icons\\Mindblown_Icon"));
+            this.battleScreen.Insert(0, new GUIElement("Backgrounds\\Battle\\Forest_Battle_Background"));
+            this.battleScreen.Insert(1, new GUIElement("Icons\\Mindblown_Icon"));
 
-            battleScreenSkills.Insert(0,new TextElement("Skill1", 400, 450));
-            battleScreenSkills.Insert(1, new TextElement("Skill2", 400, 480));
-
-            storyText.Insert(0, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", (int)textLine_1.X, (int)textLine_1.Y));
-            storyText.Insert(1, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", (int)textLine_2.X, (int)textLine_2.Y));
-            storyText.Insert(2, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", (int)textLine_3.X, (int)textLine_3.Y));
-            storyText.Insert(3, new TextElement("hallo, ich bin Seitz! lol. Was geht ab ihr Niggarz", (int)textLine_4.X, (int)textLine_4.Y));
+            this.battleScreenSkills.Insert(0,new TextElement("Skill1", 400, 450, false));
+            this.battleScreenSkills.Insert(1, new TextElement("Skill2", 400, 480, false));
             
         }
 
+        public void Initialize()
+        {
+            LoadSkillHelperClass.AddAllClassSkills(this.char1);
+            LoadSkillHelperClass.AddAllClassSkills(this.char2);
+            LoadSkillHelperClass.AddAllClassSkills(this.char3);
+            LoadSkillHelperClass.AddAllClassSkills(this.char4);
+            this.Intro.Initialize();
+            this.testevent = new BattleEvent(new List<PartyMember> {this.char1, this.char2, this.char3, this.char4 }, new List<Enemy> {this.enemy1 }, "Backgrounds\\Battle\\Forest_Battle_Background");
+
+            //Scene1 = new StoryEvent(new List<ConversationEvent> { conversation1, conversation2 }, "Backgrounds\\Story\\Anlegestelle_Triumphfelder_Story_Background.png");
+
+        }
         public void LoadContent(ContentManager content)
         {
-            mainMenuTheme = content.Load<Song>("Sounds\\Umineko_Life");
-            battleScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
-            storyScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
+            this.testevent.LoadContent(content);
+            //this.test.LoadContent(content);
+            //this.test1.LoadContent(content);
+            //Scene1.LoadContent(content);
+            this.mainMenuTheme = content.Load<Song>("Sounds\\Umineko_Life");
+            this.battleScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
+            this.storyScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
+            
             MediaPlayer.IsRepeating = true;
+            MediaPlayer.Volume = 0.8f;
+            this.Intro.LoadContent(content);
 
-            foreach (TextElement element in storyText)
+            foreach (TextElement element in this.battleScreenSkills)
             {
                 element.LoadContent(content);
-                element.tclickEvent += OnClick;
+                element.tclickEvent += this.OnClick;
             }
-            foreach (TextElement element in battleScreenSkills)
+            foreach (GUIElement element in this.mainMenu)
             {
                 element.LoadContent(content);
-                element.tclickEvent += OnClick;
-            }
-            foreach (GUIElement element in mainMenu)
-            {
-                element.LoadContent(content);
-                element.clickEvent += OnClick;
+                element.clickEvent += this.OnClick;
             }
 
-            foreach(GUIElement element in options)
+            foreach(GUIElement element in this.options)
             {
                 element.LoadContent(content);
-                element.clickEvent += OnClick;
+                element.clickEvent += this.OnClick;
             }
             
-            foreach (GUIElement element in storyScreen)
+            foreach (GUIElement element in this.storyScreen)
             {
                 element.LoadContent(content);
-                element.clickEvent += OnClick;
+                element.clickEvent += this.OnClick;
             }
             
-            foreach (GUIElement element in battleScreen)
+            foreach (GUIElement element in this.battleScreen)
             {
                 element.LoadContent(content);
-                element.clickEvent += OnClick;
+                element.clickEvent += this.OnClick;
 
                 //neue Animation wird erstellt
                 Animation testAnimation = new Animation();
@@ -157,98 +184,117 @@ namespace RPG
                 //Animation wird geladen und die Textur sowie die Breite und Höhe wird festeglegt
 
                 //Spieler Charactere
-                testAnimation.LoadContent(content.Load<Texture2D>("Animations\\Skills\\Dark_Hole_Animation"), Vector2.Zero, 468, 468, 80, Color.White, 1f, true, 32, 1, false);
-                testSkill.LoadContent(testAnimation, new Vector2(400, 200));
+                testAnimation.LoadContent(content.Load<Texture2D>("Animations\\Skills\\Dark_Hole_Animation"), Vector2.Zero, 468, 468, 80, Color.White, 1f, true, 32, 1, false, false);
+                this.testSkill.LoadContent(testAnimation, new Vector2(400, 200));
 
-                testAnimation2.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Caspar\\Caspar_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 1, 3, false);
-                testSkill2.LoadContent(testAnimation2, characterPosition_1);
+                testAnimation2.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Caspar\\Caspar_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 1, 3, false, false);
+                this.testSkill2.LoadContent(testAnimation2, this.characterPosition_1);
 
-                testAnimation3.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Kaiser\\Kaiser_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 1, 3, false);
-                testSkill3.LoadContent(testAnimation3, characterPosition_2);
+                testAnimation3.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Kaiser\\Kaiser_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 1, 3, false, false);
+                this.testSkill3.LoadContent(testAnimation3, this.characterPosition_2);
 
-                testAnimation4.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Seitz\\Seitz_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 1, 3, false);
-                testSkill4.LoadContent(testAnimation4, characterPosition_3);
+                testAnimation4.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Seitz\\Seitz_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 1, 3, false, false);
+                this.testSkill4.LoadContent(testAnimation4, this.characterPosition_3);
 
-                testAnimation5.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Seyfrid\\Seyfrid_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 1, 3, false);
-                testSkill5.LoadContent(testAnimation5, characterPosition_4);
+                testAnimation5.LoadContent(content.Load<Texture2D>("Animations\\Battlers\\Male\\Seyfrid\\Seyfrid_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 1, 3, false, false);
+                this.testSkill5.LoadContent(testAnimation5, this.characterPosition_4);
 
 
                 //Gegner
-                testAnimation6.LoadContent(content.Load<Texture2D>("Enemies\\Bosse\\Human\\Anna\\Anna_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 2, true);
-                testSkill6.LoadContent(testAnimation6, enemyPosition_1);
+                testAnimation6.LoadContent(content.Load<Texture2D>("Enemies\\Bosse\\Human\\Anna\\Anna_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 0, 2, true, false);
+                this.testSkill6.LoadContent(testAnimation6, this.enemyPosition_1);
 
-                testAnimation7.LoadContent(content.Load<Texture2D>("Enemies\\Bosse\\Human\\Elena\\Elena_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 2, true);
-                testSkill7.LoadContent(testAnimation7, enemyPosition_2);
+                testAnimation7.LoadContent(content.Load<Texture2D>("Enemies\\Bosse\\Human\\Elena\\Elena_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 0, 2, true, false);
+                this.testSkill7.LoadContent(testAnimation7, this.enemyPosition_2);
 
-                testAnimation8.LoadContent(content.Load<Texture2D>("Enemies\\Bosse\\Human\\Ells\\Ells_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 2, true);
-                testSkill8.LoadContent(testAnimation8, enemyPosition_3);
+                testAnimation8.LoadContent(content.Load<Texture2D>("Enemies\\Bosse\\Human\\Ells\\Ells_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 0, 2, true, false);
+                this.testSkill8.LoadContent(testAnimation8, this.enemyPosition_3);
 
-                testAnimation9.LoadContent(content.Load<Texture2D>("Enemies\\Bosse\\Human\\Marlein\\Marlein_Standard_Animation"), Vector2.Zero, characterSize, characterSize, 300, Color.White, 1f, true, 0, 2, true);
-                testSkill9.LoadContent(testAnimation9, enemyPosition_4);
+                testAnimation9.LoadContent(content.Load<Texture2D>("Enemies\\Bosse\\Human\\Marlein\\Marlein_Standard_Animation"), Vector2.Zero, this.characterSize, this.characterSize, 300, Color.White, 1f, true, 0, 2, true, false);
+                this.testSkill9.LoadContent(testAnimation9, this.enemyPosition_4);
 
             }
 
             //Die Position der GUIElemente wird verändert
-            mainMenu.ElementAt<GUIElement>(1).CenterElement(576, 720);
-            mainMenu.ElementAt<GUIElement>(1).moveElement(0, 0);
-            mainMenu.ElementAt<GUIElement>(2).CenterElement(576, 720);
-            mainMenu.ElementAt<GUIElement>(2).moveElement(0, 100);
-            mainMenu.ElementAt<GUIElement>(3).CenterElement(576, 720);
-            mainMenu.ElementAt<GUIElement>(3).moveElement(0, 200);
+            this.mainMenu.ElementAt<GUIElement>(1).CenterElement(576, 720);
+            this.mainMenu.ElementAt<GUIElement>(1).moveElement(0, 0);
+            this.mainMenu.ElementAt<GUIElement>(2).CenterElement(576, 720);
+            this.mainMenu.ElementAt<GUIElement>(2).moveElement(0, 100);
+            this.mainMenu.ElementAt<GUIElement>(3).CenterElement(576, 720);
+            this.mainMenu.ElementAt<GUIElement>(3).moveElement(0, 200);
 
-            options.ElementAt<GUIElement>(1).CenterElement(576, 720);
-            options.ElementAt<GUIElement>(1).moveElement(0, -100);
-            options.ElementAt<GUIElement>(2).CenterElement(576, 720);
-            options.ElementAt<GUIElement>(2).moveElement(0, 0);
-            options.ElementAt<GUIElement>(3).CenterElement(576, 720);
-            options.ElementAt<GUIElement>(3).moveElement(0, 100);
+            this.options.ElementAt<GUIElement>(1).CenterElement(576, 720);
+            this.options.ElementAt<GUIElement>(1).moveElement(0, -100);
+            this.options.ElementAt<GUIElement>(2).CenterElement(576, 720);
+            this.options.ElementAt<GUIElement>(2).moveElement(0, 0);
+            this.options.ElementAt<GUIElement>(3).CenterElement(576, 720);
+            this.options.ElementAt<GUIElement>(3).moveElement(0, 100);
 
-            storyScreen.ElementAt<GUIElement>(1).CenterElement(576, 720);
-            storyScreen.ElementAt<GUIElement>(1).moveElement(0, 180);
+            this.storyScreen.ElementAt<GUIElement>(1).CenterElement(576, 720);
+            this.storyScreen.ElementAt<GUIElement>(1).moveElement(0, 180);
 
-            battleScreen.ElementAt<GUIElement>(1).moveElement((int)characterPosition_1.X + 30, (int)characterPosition_1.Y - 30);
+            this.battleScreen.ElementAt<GUIElement>(1).moveElement((int) this.characterPosition_1.X + 30, (int) this.characterPosition_1.Y - 30);
 
         }
         
         public void Update(GameTime gameTime)
         {
-            controls.Update();
+            this.controls.Update();
 
             //Wenn das options Menu geöffnet wird, wird der Gamestate gespeichert um nach dem pausieren fortzufahren
-            if (controls.CurrentKeyboardState.IsKeyDown(Keys.Escape) && gameState != GameState.mainMenu && gameState != GameState.options)
+            if (this.controls.CurrentKeyboardState.IsKeyDown(Keys.Escape) && this.gameState != GameState.mainMenu && this.gameState != GameState.options)
             {
-                oldGameState = gameState;
-                gameState = GameState.options;
+                this.oldGameState = this.gameState;
+                this.gameState = GameState.options;
             }
 
             //Je nach gamestate startet ein anderes Lied
-            if (stateChanged)
+            if (this.stateChanged)
             {
                 MediaPlayer.Stop();
-                switch (gameState)
+                switch (this.gameState)
                 {
                     case GameState.mainMenu:
-                        MediaPlayer.Play(mainMenuTheme);
+                        MediaPlayer.Play(this.mainMenuTheme);
                         break;
                     case GameState.battleScreen:
-                        MediaPlayer.Play(battleScreenTheme);
+                        MediaPlayer.Play(this.battleScreenTheme);
                         break;
                     case GameState.storyScreen:
-                        MediaPlayer.Play(storyScreenTheme);
+                        MediaPlayer.Play(this.storyScreenTheme);
                         break;
                 }
-                stateChanged = false;
+                this.stateChanged = false;
             }
 
             //nachdem Das Intro abgespielt wurde, startet die Backgroundmusic
-            if (gameTime.TotalGameTime.Seconds == 5)
+            if (gameTime.TotalGameTime.Seconds == 6)
             {
-                MediaPlayer.Play(mainMenuTheme);
+                if (gameState == GameState.intro)
+                {
+                    this.gameState = GameState.mainMenu;
+                    stateChanged = true;
+                }
             }
 
-            switch (gameState)
+            switch (this.gameState)
             {
+                case GameState.intro:
+                    this.Intro.Update();
+                    if(controls.CurrentKeyboardState.IsKeyDown(Keys.Enter))
+                    {
+                        Intro.Player.Stop();
+                        gameState = GameState.mainMenu;
+                        stateChanged = true;
+                    }
+                    break;
                 case GameState.mainMenu:
+                    if (!testevent.BattleEvaluation.EndBattle)
+                    {
+                        this.testevent.Update(gameTime);
+                    }
+                    //Scene1.Update();
+                    /*
                     foreach (GUIElement element in mainMenu)
                     {
                         element.Update();
@@ -290,59 +336,61 @@ namespace RPG
                         {
                             Mouse.SetPosition(mainMenu.ElementAt<GUIElement>(3).getGUIRect.Center.X, mainMenu.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
                         }
-                    }
+                    }*/
                         break;
                 case GameState.options:
-                    foreach (GUIElement element in options)
+                    foreach (GUIElement element in this.options)
                     {
                         element.Update();
-                        if (controls.CurrentKeyboardState.IsKeyDown(Keys.Up) && !controls.PreviousKeyboardState.IsKeyDown(Keys.Up))
+                        if (this.controls.CurrentKeyboardState.IsKeyDown(Keys.Up) && !this.controls.PreviousKeyboardState.IsKeyDown(Keys.Up))
                         {
-                            if (options.ElementAt<GUIElement>(3).getGUIRect.Contains(controls.CursorPos))
+                            if (this.options.ElementAt<GUIElement>(3).getGUIRect.Contains(this.controls.CursorPos))
                             {
-                                Mouse.SetPosition(options.ElementAt<GUIElement>(2).getGUIRect.Center.X, options.ElementAt<GUIElement>(2).getGUIRect.Center.Y);
+                                Mouse.SetPosition(this.options.ElementAt<GUIElement>(2).getGUIRect.Center.X, this.options.ElementAt<GUIElement>(2).getGUIRect.Center.Y);
                             }
-                            else if (options.ElementAt<GUIElement>(1).getGUIRect.Contains(controls.CursorPos))
+                            else if (this.options.ElementAt<GUIElement>(1).getGUIRect.Contains(this.controls.CursorPos))
                             {
-                                Mouse.SetPosition(options.ElementAt<GUIElement>(3).getGUIRect.Center.X, options.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
+                                Mouse.SetPosition(this.options.ElementAt<GUIElement>(3).getGUIRect.Center.X, this.options.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
                             }
-                            else if (options.ElementAt<GUIElement>(2).getGUIRect.Contains(controls.CursorPos))
+                            else if (this.options.ElementAt<GUIElement>(2).getGUIRect.Contains(this.controls.CursorPos))
                             {
-                                Mouse.SetPosition(options.ElementAt<GUIElement>(1).getGUIRect.Center.X, options.ElementAt<GUIElement>(1).getGUIRect.Center.Y);
+                                Mouse.SetPosition(this.options.ElementAt<GUIElement>(1).getGUIRect.Center.X, this.options.ElementAt<GUIElement>(1).getGUIRect.Center.Y);
                             }
                             else
                             {
-                                Mouse.SetPosition(options.ElementAt<GUIElement>(3).getGUIRect.Center.X, options.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
+                                Mouse.SetPosition(this.options.ElementAt<GUIElement>(3).getGUIRect.Center.X, this.options.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
                             }
                         }
-                        if (controls.CurrentKeyboardState.IsKeyDown(Keys.Down) && !controls.PreviousKeyboardState.IsKeyDown(Keys.Down))
+                        if (this.controls.CurrentKeyboardState.IsKeyDown(Keys.Down) && !this.controls.PreviousKeyboardState.IsKeyDown(Keys.Down))
                         {
-                            if (options.ElementAt<GUIElement>(2).getGUIRect.Contains(controls.CursorPos))
+                            if (this.options.ElementAt<GUIElement>(2).getGUIRect.Contains(this.controls.CursorPos))
                             {
-                                Mouse.SetPosition(options.ElementAt<GUIElement>(3).getGUIRect.Center.X, options.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
+                                Mouse.SetPosition(this.options.ElementAt<GUIElement>(3).getGUIRect.Center.X, this.options.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
                             }
-                            else if (options.ElementAt<GUIElement>(3).getGUIRect.Contains(controls.CursorPos))
+                            else if (this.options.ElementAt<GUIElement>(3).getGUIRect.Contains(this.controls.CursorPos))
                             {
-                                Mouse.SetPosition(options.ElementAt<GUIElement>(1).getGUIRect.Center.X, options.ElementAt<GUIElement>(1).getGUIRect.Center.Y);
+                                Mouse.SetPosition(this.options.ElementAt<GUIElement>(1).getGUIRect.Center.X, this.options.ElementAt<GUIElement>(1).getGUIRect.Center.Y);
                             }
-                            else if (options.ElementAt<GUIElement>(1).getGUIRect.Contains(controls.CursorPos))
+                            else if (this.options.ElementAt<GUIElement>(1).getGUIRect.Contains(this.controls.CursorPos))
                             {
-                                Mouse.SetPosition(options.ElementAt<GUIElement>(2).getGUIRect.Center.X, options.ElementAt<GUIElement>(2).getGUIRect.Center.Y);
+                                Mouse.SetPosition(this.options.ElementAt<GUIElement>(2).getGUIRect.Center.X, this.options.ElementAt<GUIElement>(2).getGUIRect.Center.Y);
                             }
                             else
                             {
-                                Mouse.SetPosition(options.ElementAt<GUIElement>(3).getGUIRect.Center.X, options.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
+                                Mouse.SetPosition(this.options.ElementAt<GUIElement>(3).getGUIRect.Center.X, this.options.ElementAt<GUIElement>(3).getGUIRect.Center.Y);
                             }
                         }
                     }
                     break;
                 case GameState.storyScreen:
-                    foreach (GUIElement element in storyScreen)
+                    foreach (GUIElement element in this.storyScreen)
                     {
                         element.Update();
                     }
                     break;
                 case GameState.battleScreen:
+                    
+                    /*
                     foreach (GUIElement element in battleScreen)
                     {
                         element.Update();
@@ -359,7 +407,7 @@ namespace RPG
                         testSkill7.Update(gameTime);
                         testSkill8.Update(gameTime);
                         testSkill9.Update(gameTime);
-                    }
+                    }*/
                     break;
             }
 
@@ -368,9 +416,18 @@ namespace RPG
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            switch (gameState)
+            switch (this.gameState)
             {
+                case GameState.intro:
+                    this.Intro.Draw(spriteBatch);
+                    break;
                 case GameState.mainMenu:
+                    if (!testevent.BattleEvaluation.EndBattle)
+                    {
+                        this.testevent.Draw(spriteBatch);
+                    }
+                    //Scene1.Draw(spriteBatch);
+                    /*
                     foreach (GUIElement element in mainMenu)
                     {
                         element.Draw(spriteBatch);
@@ -387,12 +444,20 @@ namespace RPG
                     {
                         element.Draw(spriteBatch);
                     }
-                    foreach (TextElement element in storyText)
+                    if (!controls.PreviousKeyboardState.IsKeyDown(Keys.Enter))
                     {
-                        element.Draw(spriteBatch);
+                        test.Draw(spriteBatch);
                     }
+                    if(controls.CurrentKeyboardState.IsKeyDown(Keys.Enter))
+                    {
+                        test1.Draw(spriteBatch);
+                    }*/
                     break;
                 case GameState.battleScreen:
+
+                    
+
+                    /*
                     foreach (GUIElement element in battleScreen)
                     {
                         element.Draw(spriteBatch);
@@ -411,6 +476,7 @@ namespace RPG
                         testSkill8.Draw(spriteBatch);
                         testSkill9.Draw(spriteBatch);
                     }
+                    */
                     break;
             }
         }
@@ -426,21 +492,21 @@ namespace RPG
         {
             if(element == "Buttons\\Continue_Button")
             {
-                gameState = oldGameState;
+                this.gameState = this.oldGameState;
             }
             if (element == "Buttons\\Load_Game_Button")
             {
-                gameState = GameState.storyScreen;
-                stateChanged = true;
+                this.gameState = GameState.storyScreen;
+                this.stateChanged = true;
             }
             if (element == "Buttons\\New_Game_Button")
             {
-                gameState = GameState.battleScreen;
-                stateChanged = true;
+                this.gameState = GameState.battleScreen;
+                this.stateChanged = true;
             }
             if (element == "Buttons\\Quit_Button")
             {
-                exitGame = true;
+                this.exitGame = true;
             }
             if (element == "Buttons\\Save_Button")
             {
@@ -448,13 +514,13 @@ namespace RPG
             }
             if (element == "Skill1")
             {
-                gameState = GameState.storyScreen;
-                stateChanged = true;
+                this.gameState = GameState.storyScreen;
+                this.stateChanged = true;
             }
             if (element == "Skill2")
             {
-                gameState = GameState.mainMenu;
-                stateChanged = true;
+                this.gameState = GameState.mainMenu;
+                this.stateChanged = true;
             }
         }
     }

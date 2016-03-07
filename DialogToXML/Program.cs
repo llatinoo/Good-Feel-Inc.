@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Configuration;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace DialogToXML
 {
@@ -23,6 +17,7 @@ namespace DialogToXML
                 {
                     Console.WriteLine("abschnitt");
                     string part = Console.ReadLine();
+                    
                     Console.WriteLine("speaker");
                     string speaker = Console.ReadLine();
                     Console.WriteLine("speakerPicture");
@@ -43,7 +38,10 @@ namespace DialogToXML
 
                     if (Console.ReadLine().ToLower() == "j")
                     {
-                        string filePath = String.Format(@"C:\Users\dengler\OneDrive\RPG\RPG Dokumente\RPGDialogs\{0}\{1}.xml",scene, part);
+                        //Laptop
+                        //string filePath = String.Format(@"C:\Users\dengler\OneDrive\RPG\RPG Dokumente\RPGDialogs\szene{0}\part{1}\textbox{2}.xml", scene, part, i);
+                        //Arbeit
+                        string filePath = String.Format(@"C:\Users\dengler\OneDrive\RPG\RPG Dokumente\RPGDialogs\szene{0}\part{1}\textbox{2}.xml", scene, part, i);
                         string data = String.Format("<TextBox id=\"{8}\" speaker=\"{0}\" speakerPicture=\"{1}\" listener=\"{2}\" listenerPicture=\"{3}\" row1=\"{4}\" row2=\"{5}\" row3=\"{6}\" row4=\"{7}\"/>", speaker, speakerPicture, listener, listenerPicture, textRow1, textRow2, textRow3, textRow4, i);
                         File.AppendAllText(filePath, data + Environment.NewLine);
                         i++;

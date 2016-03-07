@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using RPG.Characters;
-using RPG.Skills.Effects;
 
-namespace RPG.Skills.Ultis
+namespace RPG
 {
-    public class Shcmetterschlag : IEffect
+    public class Schmetterschlag : IEffect
     {
-        private Random r1;
+        private Random r1 = new Random();
         public void Execute(Character source, List<Character> targets)
         {
             new Damage().Execute(source, targets);

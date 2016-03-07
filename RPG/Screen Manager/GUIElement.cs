@@ -2,11 +2,14 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 namespace RPG
 {
     class GUIElement
     {
+        private bool rectangleContainedMouseBefore;
+        SoundEffect MouseIntersect;
         Controls controls = new Controls();
         //Farbe des GUI Elements
         Color color = Color.White;
@@ -15,6 +18,8 @@ namespace RPG
         //Größe des Elements
         private Rectangle GUIRect;
 
+        int PositionX;
+        int PositionY;
         public Rectangle getGUIRect
         {
             get { return this.GUIRect; }
@@ -30,34 +35,51 @@ namespace RPG
         //Event das beim drücken auf ein GUI Element ausgeführt wird
         public delegate void ElementClicked(string element);
         public event ElementClicked clickEvent;
+
         public GUIElement(string assetName)
         {
             this.assetName = assetName;
+            this.PositionX = 0;
+            this.PositionY = 0;
+        }
+        public GUIElement(string assetName,int PositionX, int PositionY)
+        {
+            this.assetName = assetName;
+            this.PositionX = PositionX;
+            this.PositionY = PositionY;
         }
         public void LoadContent(ContentManager content)
         {
             this.GUITexture = content.Load<Texture2D>(this.assetName);
-            this.GUIRect = new Rectangle(0, 0, this.GUITexture.Width, this.GUITexture.Height);
+            this.GUIRect = new Rectangle(this.PositionX, this.PositionY, this.GUITexture.Width, this.GUITexture.Height);
+            MouseIntersect = content.Load<SoundEffect>("Sounds\\Effects\\MouseIntersect");
         }
         public void Draw(SpriteBatch spriteBatch)
         {
                 spriteBatch.Draw(this.GUITexture, this.GUIRect, this.color);
                 if (this.GUIRect.Contains(this.controls.CursorPos) && Mouse.GetState().LeftButton != ButtonState.Pressed && this.assetName.Contains("Button"))
                 {
-                    spriteBatch.Draw(this.GUITexture, this.GUIRect, Color.LightYellow);
+                    spriteBatch.Draw(this.GUITexture, this.GUIRect, Color.PaleVioletRed);
                 }
-
-                spriteBatch.Draw(this.GUITexture, this.GUIRect, this.color);
         }
         
         public void Update()
         {
             this.controls.Update();
-
+            if (this.GUIRect.Contains(this.controls.CursorPos) && !rectangleContainedMouseBefore)
+            {
+                rectangleContainedMouseBefore = true;
+                MouseIntersect.Play();
+            }
+            if (!GUIRect.Contains(this.controls.CursorPos))
+            {
+                rectangleContainedMouseBefore = false;
+            }
             //Wenn sich die Maus mit der Textur schneidet und dann der linke Mausbutton gedrückt wird, wird das ClickEvent ausgelöst
             if (this.GUIRect.Contains(this.controls.CursorPos) && Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
                 this.clickEvent(this.assetName);
+                rectangleContainedMouseBefore = false;
             }
             if (this.GUIRect.Contains(this.controls.CursorPos) && this.controls.CurrentKeyboardState.IsKeyDown(Keys.Enter))
             {

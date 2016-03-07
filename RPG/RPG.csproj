@@ -65,15 +65,27 @@
     <Compile Include="Characters\PartyMember.cs" />
     <Compile Include="Characters\Player.cs" />
     <Compile Include="Data Section Classes\PartySkillCadreDataSection.cs" />
+    <Compile Include="Events\BattleEvaluationEvent.cs" />
+    <Compile Include="Events\BattleEvent.cs" />
+    <Compile Include="Events\ChooseCadreEvent.cs" />
+    <Compile Include="Events\GameOverEvent.cs" />
+    <Compile Include="Events\IEvent.cs" />
+    <Compile Include="Events\StoryEvent.cs" />
+    <Compile Include="Events\ConversationEvent.cs" />
     <Compile Include="Extensions And Helper Classes\GetEffectFactory.cs" />
+    <Compile Include="Extensions And Helper Classes\AttributesChange.cs" />
     <Compile Include="Extensions And Helper Classes\LoadSkillHelperClass.cs" />
     <Compile Include="Extensions And Helper Classes\RandomStatusEffectHelperClass.cs" />
     <Compile Include="Data Section Classes\ClassSkillCadreDataSection.cs" />
     <Compile Include="Data Section Classes\SkillCadreDataSection.cs" />
+    <Compile Include="GameManager.cs" />
+    <Compile Include="Scenes\IScene.cs" />
     <Compile Include="Skills\Effects\Drain.cs" />
+    <Compile Include="Skills\Effects\MagicalDamage.cs" />
     <Compile Include="Skills\Effects\RandomBuffEffect.cs" />
     <Compile Include="Skills\Effects\RandomDebuffEffect.cs" />
     <Compile Include="Skills\Effects\RandomEffect.cs" />
+    <Compile Include="Skills\Effects\Recover.cs" />
     <Compile Include="Skills\Effects\Resurrection.cs" />
     <Compile Include="Skills\Ultis\BaumDesLebens.cs" />
     <Compile Include="Skills\Ultis\Fegefeuer.cs" />
@@ -82,7 +94,7 @@
     <Compile Include="Skills\Ultis\Horizont.cs" />
     <Compile Include="Skills\Ultis\Hyperstrahl.cs" />
     <Compile Include="Skills\Ultis\Schlachtruf.cs" />
-    <Compile Include="Skills\Ultis\Shcmetterschlag.cs" />
+    <Compile Include="Skills\Ultis\Schmetterschlag.cs" />
     <Compile Include="Skills\Ultis\Ultimatum.cs" />
     <Compile Include="Skills\Ultis\Woog.cs" />
     <Compile Include="Skills\Ultis\Wundergranate.cs" />
@@ -182,626 +194,641 @@
     <Content Include="bin\Windows\Debug\SharpDX.XInput.xml" />
     <Content Include="bin\Windows\Debug\SharpDX.xml" />
     <Content Include="Content\Animations\Battlers\Female\Anna\Anna_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Female\Anna\Anna_Death_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Female\Anna\Anna_Standard_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Female\Elena\Elena_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Female\Elena\Elena_Death_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Female\Elena\Elena_Standard_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Female\Ells\Ells_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Female\Ells\Ells_Death_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Female\Ells\Ells_Standard_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Female\Genefe\Genefe_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Female\Genefe\Genefe_Death_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Female\Genefe\Genefe_Standard_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Female\Marlein\Marlein_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Female\Marlein\Marlein_Death_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Female\Marlein\Marlein_Standard_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Caspar\Caspar_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Caspar\Caspar_Death_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Caspar\Caspar_Standard_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Jos\Jos_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Jos\Jos_Death_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Jos\Jos_Standard_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Kaiser\Kaiser_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Kaiser\Kaiser_Death_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Kaiser\Kaiser_Standard_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Nick\Nick_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Nick\Nick_Death_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Nick\Nick_Standard_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Seitz\Seitz_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Seitz\Seitz_Death_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Seitz\Seitz_Standard_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Seyfrid\Seyfrid_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Seyfrid\Seyfrid_Death_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Battlers\Male\Seyfrid\Seyfrid_Standard_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Skills\Dark_Hole_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Animations\Skills\Heal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Animations\Skills\Physical_Hit.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Battle\Bell_Battle_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Battle\Brücke_nach_Falkenstein_Battle_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Battle\Die_Hohen_Himmel_Battle_1_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Battle\Die_Hohen_himmel_Battle_2_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Battle\Falkenstein_Battle_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Battle\Falkenstein_Tor_Zum_Adelsbezirk_Battle_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Battle\Flammberg_Battle_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Battle\Forest_Battle_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Battle\Grab_Der_Welt_Battle_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Battle\Kanal_Battle_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Battle\Steinberg_Battle_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Battle\Triumphfelder_Battle_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Battle\Weg_Zum_Schrein_Battle_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Battle\Winterbach_Battle_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Menus\Options_Screen_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Menus\Title_Screen_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Story\Anlegestelle_Triumphfelder_Story_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Story\Bell_Ruinen_Story_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Story\Bell_Story_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Story\Bergspitze_Story_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Story\Brücke_nach_Falkenstein_Story_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Story\Caspar_Haus_Story_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Story\Die_Hohen_Himmel_Story_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Story\Falkenstein_Stroy_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Story\Falkenstein_Tor_Zum_Adelsbezirk_Story_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Story\Flammberg_Story_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Story\Grab_Der_Welt_Story_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Story\Kanal_Story_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Story\Kathedralen_Bezirk_Story_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Story\Steinberg_Story_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Story\Steinberg_Thronsaal_Story_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Story\Triumphfelder_Story_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Story\Weg_Zum_Schrein_Story_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Story\Winterbach_Story_Background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\bin\Windows\Intro\Good Feel Inc Intro.wmv" />
     <Content Include="Content\bin\Windows\Sounds\Hitman_Reborn.wma" />
     <Content Include="Content\bin\Windows\Sounds\Umineko_Life.wma" />
-    <Content Include="Content\Boxes\SkillBox_RPG.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Boxes\Character_Stat_Box.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Boxes\SkillBox.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Buttons\Continue_Button.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Buttons\Load_Game_Button.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Buttons\New_Game_Button.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Buttons\Quit_Button.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Buttons\Save_Button.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Cursors\Demon_Sword_Cursor.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Irene\Irene_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Irene\Irene_Death_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Irene\Irene_Standard_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Michael\Michael_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Michael\Michael_Death_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Michael\Michael_Standard_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Reinhardt\Reinhardt_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Reinhardt\Reinhardt_Death_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Reinhardt\Reinhardt_Standard_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Monsters\Der_Engel.PNG">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Monsters\Der_Geläuterte.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Anna\Anna_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Anna\Anna_Death_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Anna\Anna_Standard_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Elena\Elena_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Elena\Elena_Death_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Elena\Elena_Standard_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Ells\Ells_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Ells\Ells_Death_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Ells\Ells_Standard_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Kaiser\Kaiser_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Kaiser\Kaiser_Death_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Kaiser\Kaiser_Standard_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Marlein\Marlein_Attack_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Marlein\Marlein_Death_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Human\Marlein\Marlein_Standard_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Monsters\Ttherot%27h\Ttherhot%27h_Minion.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Monsters\Ttherot%27h\Ttherhot%27h_Stufe_1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Monsters\Ttherot%27h\Ttherhot%27h_Stufe_2.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Monsters\Ttherot%27h\Ttherhot%27h_Stufe_3.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Monsters\Ttherot%27h\Ttherhot%27h_Stufe_4.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Monsters\White_Hole_Animation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Demons\Demon_Retributer.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Demons\Demon_Soldier.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Human\Falken_Gardist.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Human\Falken_Ritter.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Human\Freier_Falke.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Human\Legenden Wächter.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Human\Ritter.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Human\Söldner.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Human\Wache.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Monster\Aggresive_Demon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Monster\Death.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Monster\Mutant.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Monster\Slime.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Monster\Succubus.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Anna\Anna_Cry_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Anna\Anna_Cry_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Anna\Anna_Happy_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Anna\Anna_Happy_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Anna\Anna_NotAmused_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Anna\Anna_NotAmused_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Anna\Anna_Provoke_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Anna\Anna_Provoke_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Anna\Anna_Shoked_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Anna\Anna_Shoked_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Anna\Anna_Standard_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Anna\Anna_Standard_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Anna\Anna_Thoughtful_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Anna\Anna_Thoughtful_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Elena\Elena_Happy_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Elena\Elena_Happy_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Elena\Elena_NotAmused_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Elena\Elena_NotAmused_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Elena\Elena_Provoke_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Elena\Elena_Provoke_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Elena\Elena_Shocked_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Elena\Elena_Shocked_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Elena\Elena_Standard_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Elena\Elena_Standard_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Elena\Elena_Thoughtful_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Elena\Elena_Thoughtful_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Ells\Ells_Cry_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Ells\Ells_Cry_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Ells\Ells_Happy_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Ells\Ells_Happy_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Ells\Ells_NotAmused_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Ells\Ells_NotAmused_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Ells\Ells_Provoke_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Ells\Ells_Provoke_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Ells\Ells_Shocked_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Ells\Ells_Shocked_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Ells\Ells_Standard_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Ells\Ells_Standard_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Ells\Ells_Thoughtful_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Ells\Ells_Thoughtful_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Genefe\Genefe_Cry_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Genefe\Genefe_Cry_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Genefe\Genefe_Happy_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Genefe\Genefe_Happy_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Genefe\Genefe_NotAmused_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Genefe\Genefe_NotAmused_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Genefe\Genefe_Provoke_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Genefe\Genefe_Provoke_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Genefe\Genefe_Shocked_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Genefe\Genefe_Shocked_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Genefe\Genefe_Standard_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Genefe\Genefe_Standard_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Genefe\Genefe_Thoughtful_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Genefe\Genefe_Thoughtful_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Irene\Irene_Standard_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Irene\Irene_Standard_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Marlein\Marlein_Cry_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Marlein\Marlein_Cry_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Marlein\Marlein_Happy_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Marlein\Marlein_Happy_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Marlein\Marlein_NotAmused_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Marlein\Marlein_NotAmused_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Marlein\Marlein_Provoke_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Marlein\Marlein_Provoke_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Marlein\Marlein_Shocked_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Marlein\Marlein_Shocked_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Marlein\Marlein_Standard_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Marlein\Marlein_Standard_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Female\Marlein\Marlein_Thoughtful_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Marlein\Marlein_Thoughtful_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Capsar\Caspar_Happy_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Capsar\Caspar_Happy_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Capsar\Caspar_NotAmused_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Capsar\Caspar_NotAmused_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Capsar\Caspar_Provoke_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Capsar\Caspar_Provoke_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Capsar\Caspar_Shocked_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Capsar\Caspar_Shocked_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Capsar\Caspar_Standard_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Capsar\Caspar_Standard_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Capsar\Caspar_Thoughtful_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Capsar\Caspar_Thoughtful_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Jos\Jos_Happy_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Jos\Jos_Happy_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Jos\Jos_NotAmused_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Jos\Jos_NotAmused_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Jos\Jos_Provoke_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Jos\Jos_Provoke_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Jos\Jos_Shocked_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Jos\Jos_Shocked_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Jos\Jos_Standard_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Jos\Jos_Standard_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Jos\Jos_Thoughtful_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Jos\Jos_Thoughtful_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Kaiser\Kaiser_Happy_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Kaiser\Kaiser_Happy_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Kaiser\Kaiser_NotAmused_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Kaiser\Kaiser_NotAmused_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Kaiser\Kaiser_Provoke_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Kaiser\Kaiser_Provoke_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Kaiser\Kaiser_Shocked_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Kaiser\Kaiser_Shocked_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Kaiser\Kaiser_Standard_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Kaiser\Kaiser_Standard_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Kaiser\Kaiser_Thoightful_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Kaiser\Kaiser_Thoightful_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Michael\Michael_Standard_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Michael\Michael_Standard_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Nick\Nick_Happy_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Nick\Nick_Happy_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Nick\Nick_NotAmused_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Nick\Nick_NotAmused_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Nick\Nick_Provoke_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Nick\Nick_Provoke_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Nick\Nick_Shocked_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Nick\Nick_Shocked_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Nick\Nick_Standard_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Nick\Nick_Standard_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Nick\Nick_Thoughtful_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Nick\Nick_Thoughtful_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Reinhardt\Reinhardt_Standard_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Reinhardt\Reinhardt_Standard_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seitz\Seitz_Happy_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Seitz\Seitz_Happy_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seitz\Seitz_NotAmused_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Seitz\Seitz_NotAmused_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seitz\Seitz_Provoke_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Seitz\Seitz_Provoke_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seitz\Seitz_Shocked_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Seitz\Seitz_Shocked_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seitz\Seitz_Standard_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Seitz\Seitz_Standard_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seitz\Seitz_Thoughtful_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Seitz\Seitz_Thoughtful_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seyfrid\Seyfrid_Happy_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Seyfrid\Seyfrid_Happy_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seyfrid\Seyfrid_NotAmused_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Seyfrid\Seyfrid_NotAmused_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seyfrid\Seyfrid_Provoke_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Seyfrid\Seyfrid_Provoke_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seyfrid\Seyfrid_Shocked_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Seyfrid\Seyfrid_Shocked_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seyfrid\Seyfrid_Standard_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Seyfrid\Seyfrid_Standard_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Male\Seyfrid\Seyfrid_Thoughtful_Face.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Faces\Seyfrid\Seyfrid_Thoughtful_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Icons\Blessed_Icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Icons\Blood_Icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Icons\Bleed_Icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Icons\Burn_Icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Icons\Halo_Icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Icons\Mindblown_Icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Icons\Toxic_Icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Intro\Good Feel Inc Intro.wmv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Others\ActiveEnemyArrow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Others\ActivePartymemberArrow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\Effects\click.wav" />
     <Content Include="Content\Sounds\Hitman_Reborn.wma">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Boxes\TextBox_Heroic_RPG.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Boxes\TextBox_Heroic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Sounds\Effects\MouseIntersect.wav" />
+    <Content Include="Content\Sounds\Effects\Punch.mp3" />
     <Content Include="Content\Sounds\Umineko_Life.wma">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />
-    <Content Include="Content\Boxes\TextBox_RPG.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Content\Boxes\TextBox_Normal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="obj\x86\Debug\RPG.csproj.FileListAbsolute.txt" />
     <Content Include="obj\x86\Debug\RPG.exe" />
@@ -875,12 +902,17 @@
     <None Include="bin\Windows\Debug\RPG.vshost.exe.config" />
     <None Include="bin\Windows\Debug\RPG.vshost.exe.manifest" />
     <None Include="bin\Windows\Debug\RPGTest.vshost.exe.manifest" />
+    <None Include="Content.mgcb" />
     <None Include="Content\bin\Windows\Fonts\AwesomeFont.xnb" />
     <None Include="Content\bin\Windows\Intro\Good Feel Inc Intro.xnb" />
     <None Include="Content\bin\Windows\Sounds\Hitman_Reborn.xnb" />
     <None Include="Content\bin\Windows\Sounds\Umineko_Life.xnb" />
-    <None Include="Content\Fonts\AwesomeFont.spritefont" />
-    <None Include="Content\Fonts\AwesomeFont.xnb" />
+    <None Include="Content\Fonts\AwesomeFont.spritefont">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Fonts\AwesomeFont.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Content\obj\Windows\.mgcontent" />
     <None Include="Content\obj\Windows\Fonts\AwesomeFont.mgcontent" />
     <None Include="Content\obj\Windows\Intro\Good Feel Inc Intro.mgcontent" />
@@ -890,6 +922,9 @@
     <None Include="obj\x86\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\x86\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="obj\x86\Debug\RPG.csprojResolveAssemblyReference.cache" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

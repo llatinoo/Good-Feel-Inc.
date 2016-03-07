@@ -1,14 +1,10 @@
-﻿using System;
-using System.Linq.Expressions;
+﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RPG;
+using RPG.Skills.Effects;
 
 namespace RPGTests
 {
-    using Microsoft.Xna.Framework;
-    using RPG.Characters;
-    using RPG.Skills;
-    using RPG.Skills.StatusEffects;
     using System.Collections.Generic;
 
     [TestClass]
@@ -20,64 +16,48 @@ namespace RPGTests
             var character = new Character
                 (
                     "Char",
-                    Classes.Warrior, 
-                    "Dämon",
-                    100,
-                    100,
-                    100,
-                    100,
-                    100,
-                    100,
-                    10
+                    Classes.Warrior,
+                    1,
+                    "",
+                    "",
+                    ""
                 );
 
             var enemy = new Enemy
                 (
                     "Enemy",
                     Classes.Coloss,
-                    false,
-                    "Human",
-                    100,
-                    100,
-                    100,
-                    100,
-                    100,
-                    100,
-                    10
+                    1,
+                    "",
+                    "",
+                    "", 
+                    false
                 );
 
             var partymember = new PartyMember
                 (
                     "Char",
                     Classes.DamageDealer,
-                    "Dämon",
-                    100,
-                    100,
-                    100,
-                    100,
-                    100,
-                    100,
-                    10,
+                    1,
                     new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
-                    100
+                    100,
+                    "",
+                    "",
+                    ""
                 );
 
             var player = new Player
             (
                 "Char",
                 Classes.Patron,
-                "Dämon",
-                100,
-                100,
-                100,
-                100,
-                100,
-                100,
-                10,
+                1,
                 new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
                 100,
                 new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
-                new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 }
+                new List<int>() { 1000, 2000, 4000, 8000, 16000, 32000, 64000 },
+                "",
+                "",
+                ""
             );
 
             List<Character> Chars = new List<Character>() {player, enemy, character, partymember};
@@ -107,6 +87,34 @@ namespace RPGTests
             }
 
             Assert.IsNotNull(Chars);
+        }
+
+        [TestMethod]
+        public void CharacterStandardSkillsTest()
+        {
+            var Warrior = new Character
+                (
+                    "Warrior",
+                    Classes.Warrior,
+                    1,
+                    "",
+                    "",
+                    ""
+                );
+
+            var Harasser = new Character
+                (
+                    "Harasser",
+                    Classes.Harasser,
+                    1,
+                    "",
+                    "",
+                    ""
+                );
+
+            Assert.IsTrue(Warrior.AttackSkill.Effects.All(effect => effect.GetType() == typeof(Damage)) && !Warrior.AttackSkill.Effects.All(effect => effect.GetType() == typeof(MagicalDamage)));
+            Assert.IsTrue(Harasser.AttackSkill.Effects.All(effect => effect.GetType() == typeof(MagicalDamage)) && !Harasser.AttackSkill.Effects.All(effect => effect.GetType() == typeof(Damage)));
+            Assert.IsNotNull(Warrior.RestSkill);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using RPG.Characters;
 
-namespace RPG.Skills.Effects
+namespace RPG
 {
     public class RandomBuffEffect : IEffect
     {

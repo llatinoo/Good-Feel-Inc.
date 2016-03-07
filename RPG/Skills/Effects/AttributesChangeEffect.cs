@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using RPG.Characters;
 
-namespace RPG.Skills.Effects
+namespace RPG
 {
+    //Alle Haupt-Attribute die Existieren
     public enum Attributes
     {
         FightVitality,
@@ -15,6 +15,7 @@ namespace RPG.Skills.Effects
         FightLuck
     }
 
+    //Aktionen die im Kontext mit den Attributen möglich siond
     public enum Actions
     {
         Add,
@@ -42,6 +43,7 @@ namespace RPG.Skills.Effects
         }
     }
 
+    //Eigentlicher Effekt
     public class AttributesChangeEffect : IEffect
     {
         public Attributes Attribute { get; private set; }
