@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using RPG.Skills;
 
 namespace RPG
@@ -10,7 +11,7 @@ namespace RPG
     {
         //Hinzufügen aller Skills einer Klasse
         //Gedacht für Gegner
-        public static void AddAllClassSkills(Character character)
+        public static void AddAllClassSkills(Enemy enemy)
         {
             //Aufrufen der benötigten Sections
             var skillCadreDataSection =
@@ -22,7 +23,7 @@ namespace RPG
             var Class =
                 classSkillDataSection.Classes.Cast<ClassElement>()
                     .SingleOrDefault(
-                        concreteClass => concreteClass.Name.ToLower() == String.Format(character.Class.ToString().ToLower()));
+                        concreteClass => concreteClass.Name.ToLower() == String.Format(enemy.Class.ToString().ToLower()));
 
             //Herauslesen aller Skills der gewählten Klasse
             List<IEffect> skillToAddEffects;
@@ -34,7 +35,7 @@ namespace RPG
                         .SingleOrDefault(
                             cadreSkill => cadreSkill.Name == classSkill.Name);
 
-                if (character.Level >= Convert.ToInt32(skillToAdd.Level))
+                if (enemy.Level >= Convert.ToInt32(skillToAdd.Level))
                 {
                     //Läd alle Effekte dieses Skills
                     skillToAddEffects = new List<IEffect>();
@@ -44,7 +45,7 @@ namespace RPG
                     }
 
                     //Fügt dem Charakter den gewählten Skill hinzu
-                    character.AddSkill(new Skill(skillToAdd.Name,
+                    enemy.AddSkill(new Skill(skillToAdd.Name,
                         LoadSkillHelperClass.GetManaCosts(Convert.ToInt32(skillToAdd.Level)), skillToAdd.Target,
                         skillToAdd.AreaOfEffect, skillToAddEffects));
                 }
@@ -53,7 +54,7 @@ namespace RPG
 
 
         //Hinzufügen aller Skills die ein Partymember bei einem gegebenen Level haben muss
-        public static void AddLevelUpSkillToParty(PartyMember member)
+        public static void AddSkillsToParty(PartyMember member)
         {
             var skillCadreDataSection =
                 ConfigurationManager.GetSection("SkillCadre") as SkillCadreDataSection;
@@ -144,6 +145,44 @@ namespace RPG
                 new Skill(recoverSkill.Name, LoadSkillHelperClass.GetManaCosts(Convert.ToInt32(recoverSkill.Level)), recoverSkill.Target, recoverSkill.AreaOfEffect, recoverSkillEffects)
              );
         }
+
+        
+        public static void AddSkillsToPlayer(Player player)
+        {
+            var skillCadreDataSection =
+                ConfigurationManager.GetSection("SkillCadre") as SkillCadreDataSection;
+            var partySkillCadreDataSection =
+                ConfigurationManager.GetSection("PartySkillCadre") as PartySkillCadreDataSection;
+
+            var playerChar =
+                    partySkillCadreDataSection.Chars.Cast<CharElement>()
+                        .SingleOrDefault(
+                            concreteChar => concreteChar.Name.ToLower() == player.HiddenName.ToLower());
+
+            player.Skills.RemoveRange(0, player.Skills.Count);
+
+            List<IEffect> skillToAddEffects;
+            foreach (CharSkillElement skill in playerChar.CharSkills)
+            {
+                var skillToAdd =
+                     skillCadreDataSection.Skills.Cast<SkillElement>()
+                         .SingleOrDefault(
+                             cadreSkill => cadreSkill.Name == skill.Name);
+
+                if (player.Skills.All(Skill => Skill.Name != skill.Name) &&
+                   player.Level >= Convert.ToInt32(skillToAdd.Level))
+                {
+                    skillToAddEffects = new List<IEffect>();
+                    foreach (EffectElement effect in skillToAdd.Effects)
+                    {
+                        skillToAddEffects.Add(GetEffectFactory.GetEffect(effect.Name));
+                    }
+
+                    player.AddSkill(new Skill(skillToAdd.Name, LoadSkillHelperClass.GetManaCosts(Convert.ToInt32(skillToAdd.Level)), skillToAdd.Target, skillToAdd.AreaOfEffect, skillToAddEffects));
+                }
+            }
+        }
+
 
         public static int GetManaCosts(int level)
         {
