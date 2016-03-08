@@ -1972,80 +1972,92 @@ namespace RPG.Events
                         {
                             spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + "Ein Normaler Angriff", skillDescriptionPosition, Color.White);
                         }
-                        if (activeChar.Name == Character1Name.SkillName)
+                        if (Character1Name != null)
                         {
-                            if(character1skill1.textRect.Contains(controls.CursorPos))
+                            if (activeChar.Name == Character1Name.SkillName)
                             {
-                                spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n"+ activeChar.Skills.ElementAt(0).Description, skillDescriptionPosition, Color.White);
-                            }
-                            else if(character1skill2.textRect.Contains(controls.CursorPos))
-                            {
-                                spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(1).Description, skillDescriptionPosition, Color.White);
-                            }
-                            else if (character1skill3.textRect.Contains(controls.CursorPos))
-                            {
-                                spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(2).Description, skillDescriptionPosition, Color.White);
-                            }
-                            else if (character1skill4.textRect.Contains(controls.CursorPos))
-                            {
-                                spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(3).Description, skillDescriptionPosition, Color.White);
+                                if (character1skill1.textRect.Contains(controls.CursorPos))
+                                {
+                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(0).Description, skillDescriptionPosition, Color.White);
+                                }
+                                else if (character1skill2.textRect.Contains(controls.CursorPos))
+                                {
+                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(1).Description, skillDescriptionPosition, Color.White);
+                                }
+                                else if (character1skill3.textRect.Contains(controls.CursorPos))
+                                {
+                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(2).Description, skillDescriptionPosition, Color.White);
+                                }
+                                else if (character1skill4.textRect.Contains(controls.CursorPos))
+                                {
+                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(3).Description, skillDescriptionPosition, Color.White);
+                                }
                             }
                         }
-                        else if (activeChar.Name == Character2Name.SkillName)
+                        if (Character2Name != null)
                         {
-                            if (character2skill1.textRect.Contains(controls.CursorPos))
+                            if (activeChar.Name == Character2Name.SkillName)
                             {
-                                spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(0).Description, skillDescriptionPosition, Color.White);
-                            }
-                            else if (character2skill2.textRect.Contains(controls.CursorPos))
-                            {
-                                spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(1).Description, skillDescriptionPosition, Color.White);
-                            }
-                            else if (character2skill3.textRect.Contains(controls.CursorPos))
-                            {
-                                spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(2).Description, skillDescriptionPosition, Color.White);
-                            }
-                            else if (character2skill4.textRect.Contains(controls.CursorPos))
-                            {
-                                spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(3).Description, skillDescriptionPosition, Color.White);
+                                if (character2skill1.textRect.Contains(controls.CursorPos))
+                                {
+                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(0).Description, skillDescriptionPosition, Color.White);
+                                }
+                                else if (character2skill2.textRect.Contains(controls.CursorPos))
+                                {
+                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(1).Description, skillDescriptionPosition, Color.White);
+                                }
+                                else if (character2skill3.textRect.Contains(controls.CursorPos))
+                                {
+                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(2).Description, skillDescriptionPosition, Color.White);
+                                }
+                                else if (character2skill4.textRect.Contains(controls.CursorPos))
+                                {
+                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(3).Description, skillDescriptionPosition, Color.White);
+                                }
                             }
                         }
-                        else if (activeChar.Name == Character3Name.SkillName)
+                        if (Character3Name != null)
                         {
-                            if (character3skill1.textRect.Contains(controls.CursorPos))
+                            if (activeChar.Name == Character3Name.SkillName)
                             {
-                                spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(0).Description, skillDescriptionPosition, Color.White);
-                            }
-                            else if (character3skill2.textRect.Contains(controls.CursorPos))
-                            {
-                                spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(1).Description, skillDescriptionPosition, Color.White);
-                            }
-                            else if (character3skill3.textRect.Contains(controls.CursorPos))
-                            {
-                                spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(2).Description, skillDescriptionPosition, Color.White);
-                            }
-                            else if (character3skill4.textRect.Contains(controls.CursorPos))
-                            {
-                                spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(3).Description, skillDescriptionPosition, Color.White);
+                                if (character3skill1.textRect.Contains(controls.CursorPos))
+                                {
+                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(0).Description, skillDescriptionPosition, Color.White);
+                                }
+                                else if (character3skill2.textRect.Contains(controls.CursorPos))
+                                {
+                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(1).Description, skillDescriptionPosition, Color.White);
+                                }
+                                else if (character3skill3.textRect.Contains(controls.CursorPos))
+                                {
+                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(2).Description, skillDescriptionPosition, Color.White);
+                                }
+                                else if (character3skill4.textRect.Contains(controls.CursorPos))
+                                {
+                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(3).Description, skillDescriptionPosition, Color.White);
+                                }
                             }
                         }
-                        else if (activeChar.Name == Character4Name.SkillName)
+                        if (Character4Name != null)
                         {
-                            if (character4skill1.textRect.Contains(controls.CursorPos))
+                            if (activeChar.Name == Character4Name.SkillName)
                             {
-                                spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(0).Description, skillDescriptionPosition, Color.White);
-                            }
-                            else if (character4skill2.textRect.Contains(controls.CursorPos))
-                            {
-                                spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(1).Description, skillDescriptionPosition, Color.White);
-                            }
-                            else if (character4skill3.textRect.Contains(controls.CursorPos))
-                            {
-                                spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(2).Description, skillDescriptionPosition, Color.White);
-                            }
-                            else if (character4skill4.textRect.Contains(controls.CursorPos))
-                            {
-                                spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(3).Description, skillDescriptionPosition, Color.White);
+                                if (character4skill1.textRect.Contains(controls.CursorPos))
+                                {
+                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(0).Description, skillDescriptionPosition, Color.White);
+                                }
+                                else if (character4skill2.textRect.Contains(controls.CursorPos))
+                                {
+                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(1).Description, skillDescriptionPosition, Color.White);
+                                }
+                                else if (character4skill3.textRect.Contains(controls.CursorPos))
+                                {
+                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(2).Description, skillDescriptionPosition, Color.White);
+                                }
+                                else if (character4skill4.textRect.Contains(controls.CursorPos))
+                                {
+                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(3).Description, skillDescriptionPosition, Color.White);
+                                }
                             }
                         }
                     }
