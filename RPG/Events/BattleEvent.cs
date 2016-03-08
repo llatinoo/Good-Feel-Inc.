@@ -604,7 +604,7 @@ namespace RPG.Events
             foreach (Character character in this.FightCadre)
             {
 
-                if (character.GetType() == typeof(PartyMember))
+                if (character.GetType() == typeof(PartyMember) || character.GetType() == typeof(Player))
                 {
 
                     if (charCounter == 0)

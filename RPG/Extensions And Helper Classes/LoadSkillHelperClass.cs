@@ -61,13 +61,28 @@ namespace RPG
             var partySkillCadreDataSection =
                 ConfigurationManager.GetSection("PartySkillCadre") as PartySkillCadreDataSection;
 
-            var Char =
-                partySkillCadreDataSection.Chars.Cast<CharElement>()
-                    .SingleOrDefault(
-                        concreteChar => concreteChar.Name.ToLower() == member.Name.ToLower());
+            CharElement character;
+
+            if (member.GetType() == typeof (Player))
+            {
+                Player player = member as Player;
+                character =
+                    partySkillCadreDataSection.Chars.Cast<CharElement>()
+                        .SingleOrDefault(
+                            concreteChar => concreteChar.Name.ToLower() == player.HiddenName.ToLower());
+
+                player.Skills.RemoveRange(0, player.Skills.Count);
+            }
+            else
+            {
+                character =
+                    partySkillCadreDataSection.Chars.Cast<CharElement>()
+                        .SingleOrDefault(
+                            concreteChar => concreteChar.Name.ToLower() == member.Name.ToLower());
+            }
 
             List<IEffect> skillToAddEffects;
-            foreach ( CharSkillElement charSkill in Char.CharSkills)
+            foreach ( CharSkillElement charSkill in character.CharSkills)
             {
                 //Überprufen ob der Charakter das erforderliche Level für den Skills besitzt
                 //und ob der Charakter diesen Skill bereits besitzt
@@ -147,41 +162,41 @@ namespace RPG
         }
 
         
-        public static void AddSkillsToPlayer(Player player)
-        {
-            var skillCadreDataSection =
-                ConfigurationManager.GetSection("SkillCadre") as SkillCadreDataSection;
-            var partySkillCadreDataSection =
-                ConfigurationManager.GetSection("PartySkillCadre") as PartySkillCadreDataSection;
+        //public static void AddSkillsToPlayer(Player player)
+        //{
+        //    var skillCadreDataSection =
+        //        ConfigurationManager.GetSection("SkillCadre") as SkillCadreDataSection;
+        //    var partySkillCadreDataSection =
+        //        ConfigurationManager.GetSection("PartySkillCadre") as PartySkillCadreDataSection;
 
-            var playerChar =
-                    partySkillCadreDataSection.Chars.Cast<CharElement>()
-                        .SingleOrDefault(
-                            concreteChar => concreteChar.Name.ToLower() == player.HiddenName.ToLower());
+        //    var playerChar =
+        //            partySkillCadreDataSection.Chars.Cast<CharElement>()
+        //                .SingleOrDefault(
+        //                    concreteChar => concreteChar.Name.ToLower() == player.HiddenName.ToLower());
 
-            player.Skills.RemoveRange(0, player.Skills.Count);
+        //    player.Skills.RemoveRange(0, player.Skills.Count);
 
-            List<IEffect> skillToAddEffects;
-            foreach (CharSkillElement skill in playerChar.CharSkills)
-            {
-                var skillToAdd =
-                     skillCadreDataSection.Skills.Cast<SkillElement>()
-                         .SingleOrDefault(
-                             cadreSkill => cadreSkill.Name == skill.Name);
+        //    List<IEffect> skillToAddEffects;
+        //    foreach (CharSkillElement skill in playerChar.CharSkills)
+        //    {
+        //        var skillToAdd =
+        //             skillCadreDataSection.Skills.Cast<SkillElement>()
+        //                 .SingleOrDefault(
+        //                     cadreSkill => cadreSkill.Name == skill.Name);
 
-                if (player.Skills.All(Skill => Skill.Name != skill.Name) &&
-                   player.Level >= Convert.ToInt32(skillToAdd.Level))
-                {
-                    skillToAddEffects = new List<IEffect>();
-                    foreach (EffectElement effect in skillToAdd.Effects)
-                    {
-                        skillToAddEffects.Add(GetEffectFactory.GetEffect(effect.Name));
-                    }
+        //        if (player.Skills.All(Skill => Skill.Name != skill.Name) &&
+        //           player.Level >= Convert.ToInt32(skillToAdd.Level))
+        //        {
+        //            skillToAddEffects = new List<IEffect>();
+        //            foreach (EffectElement effect in skillToAdd.Effects)
+        //            {
+        //                skillToAddEffects.Add(GetEffectFactory.GetEffect(effect.Name));
+        //            }
 
-                    player.AddSkill(new Skill(skillToAdd.Name, LoadSkillHelperClass.GetManaCosts(Convert.ToInt32(skillToAdd.Level)), skillToAdd.Target, skillToAdd.AreaOfEffect, skillToAdd.Description, skillToAddEffects));
-                }
-            }
-        }
+        //            player.AddSkill(new Skill(skillToAdd.Name, LoadSkillHelperClass.GetManaCosts(Convert.ToInt32(skillToAdd.Level)), skillToAdd.Target, skillToAdd.AreaOfEffect, skillToAdd.Description, skillToAddEffects));
+        //        }
+        //    }
+        //}
 
 
         public static int GetManaCosts(int level)
