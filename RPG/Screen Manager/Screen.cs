@@ -12,7 +12,7 @@ namespace RPG
 {
     class Screen
     {
-        PartyMember char1 = new PartyMember("Seitz", Classes.Warrior, 10, new List<int>(10), 20, "Animations\\Battlers\\Male\\Seitz\\Seitz_Standard_Animation", "Animations\\Battlers\\Male\\Seitz\\Seitz_Attack_Animation", "Animations\\Battlers\\Male\\Seitz\\Seitz_Death_Animation");
+        Player char1 = new Player("Jos", Classes.Warrior, 10, new List<int>(10), 20, "Animations\\Battlers\\Male\\Jos\\Jos_Standard_Animation", "Animations\\Battlers\\Male\\Jos\\Jos_Attack_Animation", "Animations\\Battlers\\Male\\Jos\\Jos_Death_Animation");
         Enemy enemy1 = new Enemy("Kaiser", Classes.Coloss, 10, "Enemies\\Bosse\\Human\\Kaiser\\Kaiser_Standard_Animation", "Enemies\\Bosse\\Human\\Kaiser\\Kaiser_Attack_Animation", "Enemies\\Bosse\\Human\\Kaiser\\Kaiser_Death_Animation", true);
 
         PartyMember char2 = new PartyMember("Caspar", Classes.Harasser, 10, new List<int>(10), 20, "Animations\\Battlers\\Male\\Caspar\\Caspar_Standard_Animation", "Animations\\Battlers\\Male\\Caspar\\Caspar_Attack_Animation", "Animations\\Battlers\\Male\\Caspar\\Caspar_Death_Animation");
