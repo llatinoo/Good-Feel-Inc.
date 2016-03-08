@@ -18,16 +18,16 @@ namespace RPG.Skills.Effects
             {
                 this.CausedDamage = Convert.ToInt32(source.FightMagic + (this.r1.Next(1, (source.FightMagic / 7) * 1000)) / 1000);
 
-                if (this.CritChance.Next(0, 101) <= source.FightLuck)
+                if (this.CritChance.Next(0, 91) <= source.FightLuck)
                 {
                     this.CausedDamage = Convert.ToInt32(this.CausedDamage * 1.5);
                 }
 
                 this.CausedDamage -= target.FightDefense;
 
-                if (this.CausedDamage < source.FightMagic / 6)
+                if (this.CausedDamage <= 0)
                 {
-                    this.CausedDamage = source.FightMagic / 6;
+                    target.FightDefense -= source.FightStrength / 5;
                 }
 
                 target.Life -= this.CausedDamage;

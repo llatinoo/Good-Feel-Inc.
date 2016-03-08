@@ -293,22 +293,22 @@ namespace RPG.Events
             int enemyCount = 0;
 
             hitAnimation.LoadContent(content.Load<Texture2D>("Animations\\Skills\\Physical_Hit"), Vector2.Zero, 192, 192, this.animationSpeed - 200, Color.White, 1f, false, 1, 5, false, false);
-            Hit = new Skill("PhysicalHit", 0, null, null, null);
+            Hit = new Skill("PhysicalHit", 0, null, null, null, null);
             Hit.LoadContent(hitAnimation, new Vector2(0, 0));
             hitAnimation.active = false;
 
             healAnimation.LoadContent(content.Load<Texture2D>("Animations\\Skills\\Heal"), Vector2.Zero, 80, 80, this.animationSpeed - 200, Color.White, 1f, false, 1, 10, false, false);
-            Heal = new Skill("Heal", 0, null, null, null);
+            Heal = new Skill("Heal", 0, null, null, null, null);
             Heal.LoadContent(healAnimation, new Vector2(0, 0));
             healAnimation.active = false;
 
             groupHealAnimation.LoadContent(content.Load<Texture2D>("Animations\\Skills\\Heal"), Vector2.Zero, 80, 80, this.animationSpeed - 200, Color.White, 1f, false, 1, 10, false, false);
-            groupHeal = new Skill("GroupHeal", 0, null, null, null);
+            groupHeal = new Skill("GroupHeal", 0, null, null, null, null);
             groupHeal.LoadContent(healAnimation, new Vector2(0, 0));
             groupHealAnimation.active = false;
 
             groupHitAnimation.LoadContent(content.Load<Texture2D>("Animations\\Skills\\Physical_Hit"), Vector2.Zero, 192, 192, this.animationSpeed - 200, Color.White, 1f, false, 1, 5, false, false);
-            groupHit = new Skill("GroupHit", 0, null, null, null);
+            groupHit = new Skill("GroupHit", 0, null, null, null, null);
             groupHit.LoadContent(hitAnimation, new Vector2(0, 0));
             groupHitAnimation.active = false;
 
