@@ -23,7 +23,7 @@ namespace RPG
             this.AngelExp = 0;
             this.DemonExp = 0;
 
-            LoadSkillHelperClass.AddSkillsToPlayer(this);
+            LoadSkillHelperClass.AddSkillsToParty(this);
         }
 
         public override void LevelUp()
