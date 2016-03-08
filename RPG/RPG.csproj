@@ -73,12 +73,13 @@
     <Compile Include="Events\StoryEvent.cs" />
     <Compile Include="Events\ConversationEvent.cs" />
     <Compile Include="Extensions And Helper Classes\GetEffectFactory.cs" />
-    <Compile Include="Extensions And Helper Classes\LevelUpClass.cs" />
+    <Compile Include="Extensions And Helper Classes\AttributesChange.cs" />
     <Compile Include="Extensions And Helper Classes\LoadSkillHelperClass.cs" />
     <Compile Include="Extensions And Helper Classes\RandomStatusEffectHelperClass.cs" />
     <Compile Include="Data Section Classes\ClassSkillCadreDataSection.cs" />
     <Compile Include="Data Section Classes\SkillCadreDataSection.cs" />
     <Compile Include="GameManager.cs" />
+    <Compile Include="Scenes\GameManager.cs" />
     <Compile Include="Scenes\IScene.cs" />
     <Compile Include="Skills\Effects\Drain.cs" />
     <Compile Include="Skills\Effects\MagicalDamage.cs" />
@@ -343,6 +344,9 @@
     <Content Include="Content\Backgrounds\Battle\Winterbach_Battle_Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Backgrounds\Menus\GameOverBackground.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Backgrounds\Menus\Options_Screen_Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -401,6 +405,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Story\Winterbach_Story_Background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Backgrounds\Menus\BattleEvaluationBackground.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\bin\Windows\Intro\Good Feel Inc Intro.wmv" />
@@ -619,12 +626,7 @@
     <Content Include="Content\Faces\Ells\Ells_Provoke_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Ells\Ells_Shocked_Face.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Faces\Ells\Ells_Standard_Face.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Content\Faces\Ells\Ells_Standard_Face.png" />
     <Content Include="Content\Faces\Ells\Ells_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -673,22 +675,22 @@
     <Content Include="Content\Faces\Marlein\Marlein_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Capsar\Caspar_Happy_Face.png">
+    <Content Include="Content\Faces\Caspar\Caspar_Happy_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Capsar\Caspar_NotAmused_Face.png">
+    <Content Include="Content\Faces\Caspar\Caspar_NotAmused_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Capsar\Caspar_Provoke_Face.png">
+    <Content Include="Content\Faces\Caspar\Caspar_Provoke_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Capsar\Caspar_Shocked_Face.png">
+    <Content Include="Content\Faces\Caspar\Caspar_Shocked_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Capsar\Caspar_Standard_Face.png">
+    <Content Include="Content\Faces\Caspar\Caspar_Standard_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Capsar\Caspar_Thoughtful_Face.png">
+    <Content Include="Content\Faces\Caspar\Caspar_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Jos\Jos_Happy_Face.png">
@@ -764,7 +766,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Seitz\Seitz_Standard_Face.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Seitz\Seitz_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -782,7 +784,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Seyfrid\Seyfrid_Standard_Face.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Seyfrid\Seyfrid_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -896,7 +898,9 @@
     <Folder Include="Sounds\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="bin\Windows\Debug\Content\Fonts\BasicFont.xnb" />
     <None Include="bin\Windows\Debug\RPG.exe.config" />
     <None Include="bin\Windows\Debug\RPG.vshost.exe.config" />

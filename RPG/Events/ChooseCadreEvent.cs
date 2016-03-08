@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using System.Threading;
 
 namespace RPG.Events
 {
@@ -16,26 +17,26 @@ namespace RPG.Events
         {
             get { return this.fightCadre; }
         }
-        List<PartyMember> Group = new List<PartyMember>();
-
+        List<PartyMember> group = new List<PartyMember>();
+        public List<PartyMember> Group
+        {
+            get { return group; }
+        }
         //Liste der Faces
         List<GUIElement> Faces = new List<GUIElement>();
 
         //Position der Face Bilder
-        Vector2 FacePosition_1 = new Vector2();
-        Vector2 FacePosition_2 = new Vector2();
-        Vector2 FacePosition_3 = new Vector2();
-        Vector2 FacePosition_4 = new Vector2();
-        Vector2 FacePosition_5 = new Vector2();
-        Vector2 FacePosition_6 = new Vector2();
-        Vector2 FacePosition_7 = new Vector2();
-        Vector2 FacePosition_8 = new Vector2();
-        Vector2 FacePosition_9 = new Vector2();
-        Vector2 FacePosition_10 = new Vector2();
-        Vector2 FacePosition_11 = new Vector2();
-        Vector2 FacePosition_12 = new Vector2();
-        Vector2 FacePosition_13 = new Vector2();
-        Vector2 FacePosition_14 = new Vector2();
+        Vector2 FacePosition_1 = new Vector2(60, 50);
+        Vector2 FacePosition_2 = new Vector2(210, 50);
+        Vector2 FacePosition_3 = new Vector2(360, 50);
+        Vector2 FacePosition_4 = new Vector2(510, 50);
+        Vector2 FacePosition_5 = new Vector2(60, 210);
+        Vector2 FacePosition_6 = new Vector2(210, 210);
+        Vector2 FacePosition_7 = new Vector2(360, 210);
+        Vector2 FacePosition_8 = new Vector2(510, 210);
+        Vector2 FacePosition_9 = new Vector2(60, 370);
+        Vector2 FacePosition_10 = new Vector2(210, 370);
+        Vector2 FacePosition_11 = new Vector2(360, 370);
 
         //GUIElemente die die Face Bilder darstellen
         GUIElement Face_1;
@@ -49,19 +50,30 @@ namespace RPG.Events
         GUIElement Face_9;
         GUIElement Face_10;
         GUIElement Face_11;
-        GUIElement Face_12;
-        GUIElement Face_13;
-        GUIElement Face_14;
-        public ChooseCadreEvent(List<PartyMember> Group, List<PartyMember> FightCadre)
-        {
-            this.Group = Group;
-            this.fightCadre = FightCadre;
 
-            FightCadre.Clear();
+        TextElement tooManyChars;
+        GUIElement AuswahlAufhebenButton;
+        GUIElement FortfahrenButton;
+        GUIElement Background;
+
+        bool auswahlBestätigt;
+        public bool AuswahlBestätigt
+        {
+            get { return auswahlBestätigt;}
+        }
+        public ChooseCadreEvent(List<PartyMember> Group, List<PartyMember> FightCadre, string BackgroundPath)
+        {
+            this.group = Group;
+            this.fightCadre = FightCadre;
+            Background = new GUIElement(BackgroundPath);
         }
 
         public void LoadContent(ContentManager content)
         {
+            Background.LoadContent(content);
+            tooManyChars = new TextElement("Du kannst maximal vier Charaktere mit in den Kampf nehmen!\nUm die Auswahl aufzuheben klicke auf den Button!", 0, 0, false);
+            AuswahlAufhebenButton = new GUIElement("Buttons\\Quit_Button");
+            FortfahrenButton = new GUIElement("Buttons\\Continue_Button");
             int CountMember = 0;
             foreach(PartyMember groupMember in this.Group)
             {
@@ -120,21 +132,6 @@ namespace RPG.Events
                     this.Face_11 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_11.X, (int) this.FacePosition_11.Y);
                     this.Faces.Add(this.Face_11);
                 }
-                if (CountMember == 11)
-                {
-                    this.Face_12 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_12.X, (int) this.FacePosition_12.Y);
-                    this.Faces.Add(this.Face_12);
-                }
-                if (CountMember == 12)
-                {
-                    this.Face_13 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_13.X, (int) this.FacePosition_13.Y);
-                    this.Faces.Add(this.Face_13);
-                }
-                if (CountMember == 13)
-                {
-                    this.Face_14 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_14.X, (int) this.FacePosition_14.Y);
-                    this.Faces.Add(this.Face_14);
-                }
                 CountMember++;
             }
             foreach(GUIElement face in this.Faces)
@@ -142,48 +139,84 @@ namespace RPG.Events
                 face.LoadContent(content);
                 face.clickEvent += this.OnClick;
             }
+            tooManyChars.LoadContent(content);
+            AuswahlAufhebenButton.LoadContent(content);
+            AuswahlAufhebenButton.CenterElement(576, 720);
+            AuswahlAufhebenButton.moveElement(50, 180);
+            AuswahlAufhebenButton.clickEvent += OnClick;
+            FortfahrenButton.LoadContent(content);
+            FortfahrenButton.CenterElement(576, 720);
+            FortfahrenButton.moveElement(220, 180);
+            FortfahrenButton.clickEvent += OnClick;
         }
         public void Update()
         {
-
+            foreach(GUIElement face in Faces)
+            {
+                face.Update();
+            }
+            AuswahlAufhebenButton.Update();
+            FortfahrenButton.Update();
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach(GUIElement face in this.Faces)
+            Background.Draw(spriteBatch);
+            AuswahlAufhebenButton.Draw(spriteBatch);
+            FortfahrenButton.Draw(spriteBatch);
+            foreach (GUIElement face in this.Faces)
             {
                 face.Draw(spriteBatch);
-            }
-            foreach(PartyMember member in this.fightCadre)
-            {
-                foreach (GUIElement face in this.Faces)
+                foreach (PartyMember Cadremember in Fightcadre)
                 {
-                    if(face.AssetName.Contains(member.Name))
+                    if (face.AssetName.Contains(Cadremember.Name))
                     {
                         face.changeColor(Color.DarkBlue);
                     }
                 }
+                foreach (PartyMember groupMember in Group)
+                {
+                    if (face.AssetName.Contains(groupMember.Name))
+                    {
+                        face.changeColor(Color.White);
+                    }
+                }
+            }
+            if(Fightcadre.Count == 4)
+            {
+                tooManyChars.Draw(spriteBatch);
             }
         }
         public void OnClick(String element)
         {
-            foreach (PartyMember groupMember in this.Group)
+            Thread.Sleep(300);
+            if (element == "Buttons\\Quit_Button")
             {
-                if (element == "Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face")
+                foreach(PartyMember member in fightCadre)
                 {
-                    if(this.fightCadre.Contains<PartyMember>(groupMember))
+                    Group.Add(member);
+                }
+                fightCadre.Clear();
+            }
+            if (element == "Buttons\\Continue_Button")
+            {
+                auswahlBestätigt = true;
+            }
+
+            for (int i = 0; i < Faces.Count; i++)
+            {
+                if (element == Faces.ElementAt(i).AssetName)
+                {
+                    for (int j = 0; j < Group.Count; j++)
                     {
-                        this.fightCadre.RemoveAt(this.fightCadre.IndexOf(groupMember));
-                        foreach(GUIElement face in this.Faces)
+                        if (Faces.ElementAt<GUIElement>(i).AssetName.Contains(Group.ElementAt<PartyMember>(j).Name))
                         {
-                            if(face.AssetName.Contains(groupMember.Name))
+                            if (fightCadre.Count < 4)
                             {
-                                face.changeColor(Color.White);
+                                fightCadre.Add(Group.ElementAt<PartyMember>(j));
+                                Group.RemoveAt(j);
+                                break;
                             }
                         }
-                    }
-                    else if (this.fightCadre.Count < 3)
-                    {
-                        this.fightCadre.Add(groupMember);
                     }
                 }
             }

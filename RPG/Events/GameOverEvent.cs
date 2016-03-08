@@ -14,9 +14,9 @@ namespace RPG.Events
         GUIElement Background;
         GUIElement LoadGameButton;
         GUIElement QuitButton;
-        public GameOverEvent(string background)
+        public GameOverEvent()
         {
-            Background = new GUIElement(background);
+            Background = new GUIElement("Backgrounds\\Menus\\GameOverBackground");
             LoadGameButton = new GUIElement("Buttons\\Load_Game_Button");
             QuitButton = new GUIElement("Buttons\\Quit_Button");
         }

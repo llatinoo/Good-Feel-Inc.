@@ -55,11 +55,11 @@ namespace RPG
 
 
         //Name
-        public string Name { get; private set; }
+        public string Name { get; protected set; }
 
 
         //Klasse
-        public Classes Class { get; private set; }
+        public Classes Class { get; protected set; }
         public int Initiative { get; private set; }
 
 
@@ -139,19 +139,24 @@ namespace RPG
 
 
         //Konstruktor
-        public Character(string charName, Classes className, string standardAnimationPath,  string attackAnimationPath, string deathAnimationPath)
+        public Character(string charName, Classes className, int level, string standardAnimationPath,  string attackAnimationPath, string deathAnimationPath)
         {
             this.Name = charName;
             this.Class = className;
+            this.Level = level;
 
-            this.SetAttributes(AttributesChange.SetAttributes());
-            this.SetAttributes(AttributesChange.LevelUpAttributes(this.Class));
+            this.ChangeAttributes(AttributesChange.SetAttributes());
+
+            for (int i = Level; i > 0; i--)
+            {
+                this.ChangeAttributes(AttributesChange.LevelUpAttributes(this.Class));
+            }
+
             this.SetFightAttributes();
 
             this.Skills = new List<Skill>();
             this.Statuseffects = new List<IStatuseffect>();
 
-            this.Level = 0;
             this.standardAnimationPath = standardAnimationPath;
             this.deathAnimationPath = deathAnimationPath;
             this.attackAnimationPath = attackAnimationPath;
@@ -177,7 +182,7 @@ namespace RPG
 
 
         //Das Aufleveln der Attribute
-        public void SetAttributes(List<int> stats)
+        public void ChangeAttributes(List<int> stats)
         {
             this.Vitality += stats.ElementAt(0);
             this.Manapool += stats.ElementAt(1);
@@ -253,6 +258,14 @@ namespace RPG
             this.FightLuck = this.Luck;
             this.Life = Vitality;
             this.Mana = Manapool;
+        }
+
+        //Levelupaufruf
+        public virtual void LevelUp()
+        {
+            this.Level++;
+            this.ChangeAttributes(AttributesChange.LevelUpAttributes(this.Class));
+            LoadSkillHelperClass.AddSkillsToParty(this as PartyMember);
         }
     }
 }

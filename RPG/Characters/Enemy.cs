@@ -23,8 +23,7 @@ namespace RPG
         private List<Skill> useableSkills = new List<Skill>();
 
         //Skill der Ausgeführt werden soll
-        private Skill SkillToPerform { get; set; }
-        public string SkillToPerformName { get; private set; }
+        public Skill SkillToPerform { get; private set; }
 
         //Ziele des Skills
         private List<Character> targets = new List<Character>();
@@ -36,11 +35,11 @@ namespace RPG
 
 
 
-        public Enemy(string charName, Classes className, string standardAnimationPath, string attackAnimationPath, string deathAnimationPath, bool isAnimated)
-            : base(charName, className, standardAnimationPath, attackAnimationPath, deathAnimationPath)
+        public Enemy(string charName, Classes className, int level, string standardAnimationPath, string attackAnimationPath, string deathAnimationPath, bool isAnimated)
+            : base(charName, className, level, standardAnimationPath, attackAnimationPath, deathAnimationPath)
         {
             this.isAnimated = isAnimated;
-            LoadSkillHelperClass.AddAllClassSkills(this);
+            LoadSkillHelperClass.AddSkillsForClass(this);
             this.SelectUsableSkills();
         }
 
@@ -53,7 +52,6 @@ namespace RPG
             this.SetPerformSkills(groupOfFoe);
 
             this.SkillToPerform = this.performableSkills.ElementAt(r.Next(0, (this.performableSkills.Count - 1) * 1000) / 1000);
-            this.SkillToPerformName = this.SkillToPerform.Name;
 
             if (this.SkillToPerform.Target.ToLower() == "Single".ToLower())
             {
@@ -110,6 +108,10 @@ namespace RPG
                     this.targets = new List<Character>() { groupOfFoe.ElementAt(0) };
                     break;
                 }
+                else
+                {
+                    this.targets = new List<Character>() { this };
+                }
             }
             this.SetTargetNameForSingleTarget();
         }
@@ -132,13 +134,17 @@ namespace RPG
         private void SelectUsableSkills()
         {
             Random r = new Random();
+            Skill skillToAdd;
             for (int i = 0; i <= 3; i++)
             {
-                try
+                skillToAdd = Skills.ElementAt(r.Next(0, this.Skills.Count*1000)/1000);
+
+                if (this.useableSkills.Contains(skillToAdd))
                 {
-                    this.useableSkills.Add(Skills.ElementAt(r.Next(0, this.Skills.Count*1000)/1000));
-                }catch(Exception e)
-                { }
+                    i--;
+                    continue;
+                }
+                this.useableSkills.Add(skillToAdd);
             }
         }
 
@@ -158,7 +164,6 @@ namespace RPG
                             this.performableSkills.Add(skill);
                             continue;
                         }
-
                     }
 
                     if (skill.Effects.All(effect => effect.GetType() == typeof(RemoveStatusEffect)))
@@ -209,8 +214,12 @@ namespace RPG
             }
 
 
-            int performableSkillsCount = 0;
-            MathHelper.Clamp(performableSkillsCount, 1, this.performableSkills.Count);
+            int performableSkillsCount = 1;
+
+            if (this.performableSkills.Count > performableSkillsCount)
+            {
+                performableSkillsCount = this.performableSkills.Count;
+            }
 
 
             for (int i = 0; i < performableSkillsCount / 2; i++)

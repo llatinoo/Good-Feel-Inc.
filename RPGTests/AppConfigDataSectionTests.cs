@@ -41,13 +41,14 @@ namespace RPGTests
                 (
                     "Test",
                     Classes.Warrior,
+                    1,
                     "",
                     "",
                     "",
                     false
                 );
 
-            LoadSkillHelperClass.AddAllClassSkills(enemy);
+            LoadSkillHelperClass.AddSkillsForClass(enemy);
 
             Assert.IsTrue(enemy.Skills.Count > 0);
             Assert.IsTrue(enemy.AttackSkill != null);

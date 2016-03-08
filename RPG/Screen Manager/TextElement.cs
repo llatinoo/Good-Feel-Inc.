@@ -71,7 +71,7 @@ namespace RPG
             spriteBatch.DrawString(this.AwesomeFont, this.skillName, new Vector2(this.positionX, this.positionY), Color.White);
             if (this.textRect.Contains(this.controls.CursorPos))
             {
-                spriteBatch.DrawString(this.AwesomeFont, this.skillName, new Vector2(this.positionX, this.positionY), Color.DarkBlue);
+                spriteBatch.DrawString(this.AwesomeFont, this.skillName, new Vector2(this.positionX, this.positionY), Color.Blue);
             }
         }
       }

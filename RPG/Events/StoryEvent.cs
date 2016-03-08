@@ -12,6 +12,11 @@ namespace RPG
 {
     class StoryEvent
     {
+        bool storyPartIsOver;
+        public bool StoryPartIsOver
+        {
+            get { return storyPartIsOver; }
+        } 
         Controls controls = new Controls();
 
         int activeConversation;
@@ -36,7 +41,6 @@ namespace RPG
         public void Update()
         {
             controls.Update();
-            
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -49,7 +53,7 @@ namespace RPG
                 }
                 else if (activeConversation == Conversations.Count - 1)
                 {
-                    activeConversation = 0;
+                    storyPartIsOver = true;
                 }
                 
             }

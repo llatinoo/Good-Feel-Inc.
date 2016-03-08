@@ -28,12 +28,12 @@ namespace RPG
 
             if (charClass.Equals(Classes.Patron))
             {
-                return new List<int>() { 400, 5, 40, 80, 15, 1, 3 };
+                return new List<int>() { 200, 5, 40, 80, 15, 2, 3 };
             }
 
             if (charClass.Equals(Classes.Harasser))
             {
-                return new List<int>() { 200, 5, 40, 80, 15, 2, 3 };
+                return new List<int>() { 400, 5, 40, 80, 15, 1, 3 };
             }
             else
             {
@@ -43,7 +43,7 @@ namespace RPG
 
         public static List<int> SetAttributes()
         {
-            return new List<int>() { 500, 100, 50, 50, 30, 1, 3 };
+            return new List<int>() { 500, 100, 80, 80, 30, 0, 3 };
         }
     }
 }
