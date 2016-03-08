@@ -17,26 +17,26 @@ namespace RPG.Events
         {
             get { return this.fightCadre; }
         }
-        List<PartyMember> Group = new List<PartyMember>();
-
+        List<PartyMember> group = new List<PartyMember>();
+        public List<PartyMember> Group
+        {
+            get { return group; }
+        }
         //Liste der Faces
         List<GUIElement> Faces = new List<GUIElement>();
 
         //Position der Face Bilder
-        Vector2 FacePosition_1 = new Vector2(100,100);
-        Vector2 FacePosition_2 = new Vector2(250, 200);
-        Vector2 FacePosition_3 = new Vector2(400, 300);
-        Vector2 FacePosition_4 = new Vector2(550, 400);
-        Vector2 FacePosition_5 = new Vector2();
-        Vector2 FacePosition_6 = new Vector2();
-        Vector2 FacePosition_7 = new Vector2();
-        Vector2 FacePosition_8 = new Vector2();
-        Vector2 FacePosition_9 = new Vector2();
-        Vector2 FacePosition_10 = new Vector2();
-        Vector2 FacePosition_11 = new Vector2();
-        Vector2 FacePosition_12 = new Vector2();
-        Vector2 FacePosition_13 = new Vector2();
-        Vector2 FacePosition_14 = new Vector2();
+        Vector2 FacePosition_1 = new Vector2(60, 50);
+        Vector2 FacePosition_2 = new Vector2(210, 50);
+        Vector2 FacePosition_3 = new Vector2(360, 50);
+        Vector2 FacePosition_4 = new Vector2(510, 50);
+        Vector2 FacePosition_5 = new Vector2(60, 210);
+        Vector2 FacePosition_6 = new Vector2(210, 210);
+        Vector2 FacePosition_7 = new Vector2(360, 210);
+        Vector2 FacePosition_8 = new Vector2(510, 210);
+        Vector2 FacePosition_9 = new Vector2(60, 370);
+        Vector2 FacePosition_10 = new Vector2(210, 370);
+        Vector2 FacePosition_11 = new Vector2(360, 370);
 
         //GUIElemente die die Face Bilder darstellen
         GUIElement Face_1;
@@ -50,31 +50,28 @@ namespace RPG.Events
         GUIElement Face_9;
         GUIElement Face_10;
         GUIElement Face_11;
-        GUIElement Face_12;
-        GUIElement Face_13;
-        GUIElement Face_14;
 
-        bool DrawtooManyCharsError;
         TextElement tooManyChars;
         GUIElement AuswahlAufhebenButton;
         GUIElement FortfahrenButton;
+        GUIElement Background;
 
         bool auswahlBestätigt;
         public bool AuswahlBestätigt
         {
             get { return auswahlBestätigt;}
         }
-        public ChooseCadreEvent(List<PartyMember> Group, List<PartyMember> FightCadre)
+        public ChooseCadreEvent(List<PartyMember> Group, List<PartyMember> FightCadre, string BackgroundPath)
         {
-            this.Group = Group;
+            this.group = Group;
             this.fightCadre = FightCadre;
-
-            //fightCadre.Clear();
+            Background = new GUIElement(BackgroundPath);
         }
 
         public void LoadContent(ContentManager content)
         {
-            tooManyChars = new TextElement("Du kannst maximal vier Charaktere mit in den Kampf nehmen!\rUm die Auswahl aufzuheben klicke auf den Button!", 0, 0, false);
+            Background.LoadContent(content);
+            tooManyChars = new TextElement("Du kannst maximal vier Charaktere mit in den Kampf nehmen!\nUm die Auswahl aufzuheben klicke auf den Button!", 0, 0, false);
             AuswahlAufhebenButton = new GUIElement("Buttons\\Quit_Button");
             FortfahrenButton = new GUIElement("Buttons\\Continue_Button");
             int CountMember = 0;
@@ -135,32 +132,13 @@ namespace RPG.Events
                     this.Face_11 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_11.X, (int) this.FacePosition_11.Y);
                     this.Faces.Add(this.Face_11);
                 }
-                if (CountMember == 11)
-                {
-                    this.Face_12 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_12.X, (int) this.FacePosition_12.Y);
-                    this.Faces.Add(this.Face_12);
-                }
-                if (CountMember == 12)
-                {
-                    this.Face_13 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_13.X, (int) this.FacePosition_13.Y);
-                    this.Faces.Add(this.Face_13);
-                }
-                if (CountMember == 13)
-                {
-                    this.Face_14 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_14.X, (int) this.FacePosition_14.Y);
-                    this.Faces.Add(this.Face_14);
-                }
                 CountMember++;
             }
             foreach(GUIElement face in this.Faces)
             {
                 face.LoadContent(content);
-                //face.clickEvent += this.OnClick;
+                face.clickEvent += this.OnClick;
             }
-            Face_1.clickEvent += OnClick;
-            Face_2.clickEvent += OnClick;
-            Face_3.clickEvent += OnClick;
-            Face_4.clickEvent += OnClick;
             tooManyChars.LoadContent(content);
             AuswahlAufhebenButton.LoadContent(content);
             AuswahlAufhebenButton.CenterElement(576, 720);
@@ -182,6 +160,7 @@ namespace RPG.Events
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+            Background.Draw(spriteBatch);
             AuswahlAufhebenButton.Draw(spriteBatch);
             FortfahrenButton.Draw(spriteBatch);
             foreach (GUIElement face in this.Faces)
@@ -202,7 +181,7 @@ namespace RPG.Events
                     }
                 }
             }
-            if(DrawtooManyCharsError)
+            if(Fightcadre.Count == 4)
             {
                 tooManyChars.Draw(spriteBatch);
             }
@@ -222,9 +201,10 @@ namespace RPG.Events
             {
                 auswahlBestätigt = true;
             }
-            else if (element == Face_2.AssetName)
+
+            for (int i = 0; i < Faces.Count; i++)
             {
-                for (int i = 0; i < Faces.Count; i++)
+                if (element == Faces.ElementAt(i).AssetName)
                 {
                     for (int j = 0; j < Group.Count; j++)
                     {
@@ -236,13 +216,8 @@ namespace RPG.Events
                                 Group.RemoveAt(j);
                                 break;
                             }
-                            if (fightCadre.Count == 4)
-                            {
-                                DrawtooManyCharsError = true;
-                            }
                         }
                     }
-
                 }
             }
         }

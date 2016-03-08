@@ -125,7 +125,7 @@ namespace RPG
             //LoadSkillHelperClass.AddSkillsForClass(this.char4);
             this.Intro.Initialize();
             this.testevent = new BattleEvent(new List<PartyMember> {this.char1, this.char2, this.char3, this.char4 }, new List<Enemy> {this.enemy1 }, "Backgrounds\\Battle\\Forest_Battle_Background");
-            choosetest = new ChooseCadreEvent(new List<PartyMember> { this.char1, this.char2, this.char3, this.char4 }, Fightcadre);
+            choosetest = new ChooseCadreEvent(new List<PartyMember> { this.char1, this.char2, this.char3, this.char4 }, Fightcadre, "Backgrounds\\Battle\\Bell_Battle_Background");
             //Scene1 = new StoryEvent(new List<ConversationEvent> { conversation1, conversation2 }, "Backgrounds\\Story\\Anlegestelle_Triumphfelder_Story_Background.png");
 
         }

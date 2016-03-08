@@ -626,12 +626,7 @@
     <Content Include="Content\Faces\Ells\Ells_Provoke_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Ells\Ells_Shocked_Face.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Faces\Ells\Ells_Standard_Face.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Content\Faces\Ells\Ells_Standard_Face.png" />
     <Content Include="Content\Faces\Ells\Ells_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -771,7 +766,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Seitz\Seitz_Standard_Face.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Seitz\Seitz_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -789,7 +784,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Seyfrid\Seyfrid_Standard_Face.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Seyfrid\Seyfrid_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
