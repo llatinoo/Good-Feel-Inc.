@@ -852,67 +852,70 @@ namespace RPG.Events
             }
         }
 
-        public void LoadAnimatedSkillsFromEnemies(Character actualTarget, string targetName)
+        public void LoadAnimatedSkillsFromEnemies(List<Character> actualTarget, string targetName)
         {
-            if (actualTarget.GetType() == typeof(Enemy))
+            if (activeSkill.Target.ToLower() == "Single".ToLower())
             {
-                if (enemy1Name != null)
+                if (activeSkill.AreaOfEffect == "Enemy")
                 {
-                    if (targetName == enemy1Name.SkillName)
+                    if (Character1Name != null)
                     {
-                        Heal.LoadContent(healAnimation, enemyPosition_1);
+                        if (targetName == Character1Name.SkillName)
+                        {
+                            Hit.LoadContent(hitAnimation, characterPosition_1);
+                        }
+                    }
+                    if (Character2Name != null)
+                    {
+                        if (targetName == Character2Name.SkillName)
+                        {
+                            Hit.LoadContent(hitAnimation, characterPosition_2);
+                        }
+                    }
+                    if (Character3Name != null)
+                    {
+                        if (targetName == Character3Name.SkillName)
+                        {
+                            Hit.LoadContent(hitAnimation, characterPosition_3);
+                        }
+                    }
+                    if (Character4Name != null)
+                    {
+                        if (targetName == Character4Name.SkillName)
+                        {
+                            Hit.LoadContent(hitAnimation, characterPosition_4);
+                        }
                     }
                 }
-                if (enemy2Name != null)
+                else if (activeSkill.AreaOfEffect == "Party")
                 {
-                    if (targetName == enemy2Name.SkillName)
+                    if (enemy1Name != null)
                     {
-                        Heal.LoadContent(healAnimation, enemyPosition_2);
+                        if (targetName == enemy1Name.SkillName)
+                        {
+                            Heal.LoadContent(healAnimation, enemyPosition_1);
+                        }
                     }
-                }
-                if (enemy3Name != null)
-                {
-                    if (targetName == enemy3Name.SkillName)
+                    if (enemy2Name != null)
                     {
-                        Heal.LoadContent(healAnimation, enemyPosition_3);
+                        if (targetName == enemy2Name.SkillName)
+                        {
+                            Heal.LoadContent(healAnimation, enemyPosition_2);
+                        }
                     }
-                }
-                if (enemy4Name != null)
-                {
-                    if (targetName == enemy4Name.SkillName)
+                    if (enemy3Name != null)
                     {
-                        Heal.LoadContent(healAnimation, enemyPosition_4);
+                        if (targetName == enemy3Name.SkillName)
+                        {
+                            Heal.LoadContent(healAnimation, enemyPosition_3);
+                        }
                     }
-                }
-            }
-            else if(actualTarget.GetType() == typeof(PartyMember))
-            {
-                if (Character1Name != null)
-                {
-                    if (targetName == Character1Name.SkillName)
+                    if (enemy4Name != null)
                     {
-                        Hit.LoadContent(hitAnimation, characterPosition_1);
-                    }
-                }
-                if (Character2Name != null)
-                {
-                    if (targetName == Character2Name.SkillName)
-                    {
-                        Hit.LoadContent(hitAnimation, characterPosition_2);
-                    }
-                }
-                if (Character3Name != null)
-                {
-                    if (targetName == Character3Name.SkillName)
-                    {
-                        Hit.LoadContent(hitAnimation, characterPosition_3);
-                    }
-                }
-                if (Character4Name != null)
-                {
-                    if (targetName == Character4Name.SkillName)
-                    {
-                        Hit.LoadContent(hitAnimation, characterPosition_4);
+                        if (targetName == enemy4Name.SkillName)
+                        {
+                            Heal.LoadContent(healAnimation, enemyPosition_4);
+                        }
                     }
                 }
             }
@@ -1075,7 +1078,7 @@ namespace RPG.Events
             }
             if (skillName == "Ausruhen")
             {
-                Thread.Sleep(200);
+                Thread.Sleep(300);
                 if (Character1Name != null)
                 {
                     if (activeChar.Name == Character1Name.SkillName)
@@ -1349,30 +1352,12 @@ namespace RPG.Events
                 //Die KI wird ausgeführt wenn es sich bei dem Aktiven Character um einen Gegner handelt
                 if (activeChar.GetType() == typeof(Enemy))
                 {
+                    Hit.LoadContent(hitAnimation, new Vector2(-60, 0));
+                    Heal.LoadContent(healAnimation, new Vector2(-60, 0));
+                    
                     ((Enemy)this.activeChar).PerformAI(this.FightCadre, this.Enemies.Cast<Character>().ToList());
-                    /*
-                    if (((Enemy)this.activeChar).Targets.Count == 1)
-                    {
-                        LoadAnimatedSkillsFromEnemies(((Enemy)this.activeChar).Targets.ElementAt<Character>(0), ((Enemy)this.activeChar).TargetName);
-                    }
-                    if (((Enemy)this.activeChar).Targets.Count == 2)
-                    {
-                        LoadAnimatedSkillsFromEnemies(((Enemy)this.activeChar).Targets.ElementAt<Character>(0), ((Enemy)this.activeChar).TargetName);
-                        LoadAnimatedSkillsFromEnemies(((Enemy)this.activeChar).Targets.ElementAt<Character>(1), ((Enemy)this.activeChar).TargetName);
-                    }
-                    if (((Enemy)this.activeChar).Targets.Count == 3)
-                    {
-                        LoadAnimatedSkillsFromEnemies(((Enemy)this.activeChar).Targets.ElementAt<Character>(0), ((Enemy)this.activeChar).TargetName);
-                        LoadAnimatedSkillsFromEnemies(((Enemy)this.activeChar).Targets.ElementAt<Character>(1), ((Enemy)this.activeChar).TargetName);
-                        LoadAnimatedSkillsFromEnemies(((Enemy)this.activeChar).Targets.ElementAt<Character>(2), ((Enemy)this.activeChar).TargetName);
-                    }
-                    if (((Enemy)this.activeChar).Targets.Count == 4)
-                    {
-                        LoadAnimatedSkillsFromEnemies(((Enemy)this.activeChar).Targets.ElementAt<Character>(0), ((Enemy)this.activeChar).TargetName);
-                        LoadAnimatedSkillsFromEnemies(((Enemy)this.activeChar).Targets.ElementAt<Character>(1), ((Enemy)this.activeChar).TargetName);
-                        LoadAnimatedSkillsFromEnemies(((Enemy)this.activeChar).Targets.ElementAt<Character>(2), ((Enemy)this.activeChar).TargetName);
-                        LoadAnimatedSkillsFromEnemies(((Enemy)this.activeChar).Targets.ElementAt<Character>(3), ((Enemy)this.activeChar).TargetName);
-                    }
+                    activeSkill = activeChar.Skills.ElementAt(0);
+                    LoadAnimatedSkillsFromEnemies(((Enemy)activeChar).Targets, ((Enemy)activeChar).TargetName);
                     if (activeChar.Name == enemy1Name.SkillName)
                     {
                         activeChar.LoadContent(enemyAttackAnimation_1, enemyPosition_1);
@@ -1393,10 +1378,10 @@ namespace RPG.Events
                         activeChar.LoadContent(enemyAttackAnimation_4, enemyPosition_4);
                         enemyAttackAnimation_4.active = true;
                     }
-                    */
-                    ((Enemy)this.activeChar).Targets.Clear();
                     
-                    StartNextTurn();
+                    //((Enemy)this.activeChar).Targets.Clear();
+                    
+                    //StartNextTurn();
                 }
                 //führt ein Update der Animationen und Texte aus wenn es sich bei dem aktiven Character um ein Gruppenmitglied handelt
                 else
@@ -1834,11 +1819,11 @@ namespace RPG.Events
 
                     foreach (Skill skill in activeChar.Skills)
                     {
-                        if(attackSkill.textRect.Contains(controls.CursorPos))
+                        if(restSkill.textRect.Contains(controls.CursorPos))
                         {
                             spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + "Charakter regeneriert Mana", skillDescriptionPosition, Color.White);
                         }
-                        if(restSkill.textRect.Contains(controls.CursorPos))
+                        if(attackSkill.textRect.Contains(controls.CursorPos))
                         {
                             spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + "Ein Normaler Angriff", skillDescriptionPosition, Color.White);
                         }
