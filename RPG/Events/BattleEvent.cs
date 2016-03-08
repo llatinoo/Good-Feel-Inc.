@@ -2323,7 +2323,6 @@ namespace RPG.Events
 
             }
         }
-
         }
     }
 
