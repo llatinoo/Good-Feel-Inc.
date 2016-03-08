@@ -47,7 +47,7 @@ namespace RPG
                     //Fügt dem Charakter den gewählten Skill hinzu
                     enemy.AddSkill(new Skill(skillToAdd.Name,
                         LoadSkillHelperClass.GetManaCosts(Convert.ToInt32(skillToAdd.Level)), skillToAdd.Target,
-                        skillToAdd.AreaOfEffect, skillToAddEffects));
+                        skillToAdd.AreaOfEffect, skillToAdd.Description, skillToAddEffects));
                 }
             }
         }
@@ -86,7 +86,7 @@ namespace RPG
                         skillToAddEffects.Add(GetEffectFactory.GetEffect(effect.Name));
                     }
 
-                    member.AddSkill(new Skill(skillToAdd.Name, LoadSkillHelperClass.GetManaCosts(Convert.ToInt32(skillToAdd.Level)), skillToAdd.Target, skillToAdd.AreaOfEffect, skillToAddEffects));
+                    member.AddSkill(new Skill(skillToAdd.Name, LoadSkillHelperClass.GetManaCosts(Convert.ToInt32(skillToAdd.Level)), skillToAdd.Target, skillToAdd.AreaOfEffect, skillToAdd.Description, skillToAddEffects));
                 }
             }
         }
@@ -141,8 +141,8 @@ namespace RPG
 
 
             member.SetStandardSkills(
-                new Skill(attackSkill.Name, LoadSkillHelperClass.GetManaCosts(Convert.ToInt32(attackSkill.Level)), attackSkill.Target, attackSkill.AreaOfEffect, attackSkillEffects), 
-                new Skill(recoverSkill.Name, LoadSkillHelperClass.GetManaCosts(Convert.ToInt32(recoverSkill.Level)), recoverSkill.Target, recoverSkill.AreaOfEffect, recoverSkillEffects)
+                new Skill(attackSkill.Name, LoadSkillHelperClass.GetManaCosts(Convert.ToInt32(attackSkill.Level)), attackSkill.Target, attackSkill.AreaOfEffect, attackSkill.Description, attackSkillEffects), 
+                new Skill(recoverSkill.Name, LoadSkillHelperClass.GetManaCosts(Convert.ToInt32(recoverSkill.Level)), recoverSkill.Target, recoverSkill.AreaOfEffect, recoverSkill.Description, recoverSkillEffects)
              );
         }
 
@@ -178,7 +178,7 @@ namespace RPG
                         skillToAddEffects.Add(GetEffectFactory.GetEffect(effect.Name));
                     }
 
-                    player.AddSkill(new Skill(skillToAdd.Name, LoadSkillHelperClass.GetManaCosts(Convert.ToInt32(skillToAdd.Level)), skillToAdd.Target, skillToAdd.AreaOfEffect, skillToAddEffects));
+                    player.AddSkill(new Skill(skillToAdd.Name, LoadSkillHelperClass.GetManaCosts(Convert.ToInt32(skillToAdd.Level)), skillToAdd.Target, skillToAdd.AreaOfEffect, skillToAdd.Description, skillToAddEffects));
                 }
             }
         }

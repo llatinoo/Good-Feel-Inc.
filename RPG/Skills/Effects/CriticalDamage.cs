@@ -19,9 +19,9 @@ namespace RPG
                 this.CausedDamage = Convert.ToInt32(this.CausedDamage * 1.5);
                 this.CausedDamage -= target.FightDefense;
 
-                if (this.CausedDamage < source.FightStrength / 6)
+                if (this.CausedDamage <= 0)
                 {
-                    this.CausedDamage = source.FightStrength / 6;
+                    target.FightDefense -= source.FightStrength / 5;
                 }
 
                 target.Life -= this.CausedDamage;

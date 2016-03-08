@@ -123,6 +123,19 @@ namespace RPG
             }
         }
 
+        [ConfigurationProperty("description", IsRequired = true, IsKey = false)]
+        public string Description
+        {
+            get
+            {
+                return this["description"] as string;
+            }
+            set
+            {
+                this["description"] = value;
+            }
+        }
+
         [ConfigurationProperty("Effects")]
         public EffectsElementCollection Effects
         {
