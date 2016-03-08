@@ -58,7 +58,7 @@ namespace RPG.Scenes
             ChooseCadre1 = new ChooseCadreEvent(Group,FightCadre,ChooseCadreBackground1);
             ChooseCadre1.LoadContent(content);
             Battle1 = new BattleEvent(FightCadre, Enemies, BattleBackground1);
-            Battle1.LoadContent(content);
+            //Battle1.LoadContent(content);
             
         }
 

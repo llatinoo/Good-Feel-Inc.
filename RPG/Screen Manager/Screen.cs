@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using RPG.Events;
+using RPG.Scenes;
 
 
 namespace RPG
@@ -30,7 +31,8 @@ namespace RPG
         ConversationEvent conversation1 = new ConversationEvent(0, 1, 1);
         ConversationEvent conversation2 = new ConversationEvent(0, 1, 1);
 
-        StoryEvent Scene1;
+        //StoryEvent Scene1;
+        
 
         bool stateChanged = false;
         Song mainMenuTheme;
@@ -124,9 +126,9 @@ namespace RPG
             //LoadSkillHelperClass.AddSkillsForClass(this.char3);
             //LoadSkillHelperClass.AddSkillsForClass(this.char4);
             this.Intro.Initialize();
-            this.testevent = new BattleEvent(new List<PartyMember> {this.char1, this.char2, this.char3, this.char4 }, new List<Enemy> {this.enemy1 }, "Backgrounds\\Battle\\Forest_Battle_Background");
+            this.testevent = new BattleEvent(new List<PartyMember> {this.char2, this.char3 }, new List<Enemy> {this.enemy1 }, "Backgrounds\\Battle\\Forest_Battle_Background");
             choosetest = new ChooseCadreEvent(new List<PartyMember> { this.char1, this.char2, this.char3, this.char4 }, Fightcadre, "Backgrounds\\Battle\\Bell_Battle_Background");
-            //Scene1 = new StoryEvent(new List<ConversationEvent> { conversation1, conversation2 }, "Backgrounds\\Story\\Anlegestelle_Triumphfelder_Story_Background.png");
+            Scene1 = new StoryEvent(new List<ConversationEvent> { conversation1, conversation2 }, "Backgrounds\\Story\\Anlegestelle_Triumphfelder_Story_Background.png");
 
         }
         public void LoadContent(ContentManager content)
@@ -135,7 +137,7 @@ namespace RPG
             this.testevent.LoadContent(content);
             //this.test.LoadContent(content);
             //this.test1.LoadContent(content);
-            //Scene1.LoadContent(content);
+            Scene1.LoadContent(content);
             this.mainMenuTheme = content.Load<Song>("Sounds\\Umineko_Life");
             this.battleScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
             this.storyScreenTheme = content.Load<Song>("Sounds\\Hitman_Reborn");
@@ -239,7 +241,7 @@ namespace RPG
 
         }
         
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, ContentManager content)
         {
             this.controls.Update();
 
@@ -292,12 +294,12 @@ namespace RPG
                     break;
                 case GameState.mainMenu:
                     
-                    if (!testevent.BattleEvaluation.EndBattle)
+                    /*if (!testevent.BattleEvaluation.EndBattle)
                     {
                         this.testevent.Update(gameTime);
-                    }
+                    }*/
                     //choosetest.Update();
-                    //Scene1.Update();
+                    Scene1.Update(gameTime,content);
                     /*
                     foreach (GUIElement element in mainMenu)
                     {
@@ -427,12 +429,12 @@ namespace RPG
                     break;
                 case GameState.mainMenu:
                     
-                    if (!testevent.BattleEvaluation.EndBattle)
+                    /*if (!testevent.BattleEvaluation.EndBattle)
                     {
                         this.testevent.Draw(spriteBatch);
-                    }
+                    }*/
                     //choosetest.Draw(spriteBatch);
-                    //Scene1.Draw(spriteBatch);
+                    Scene1.Draw(spriteBatch);
                     /*
                     foreach (GUIElement element in mainMenu)
                     {

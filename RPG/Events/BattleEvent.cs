@@ -1352,6 +1352,7 @@ namespace RPG.Events
                 //Die KI wird ausgeführt wenn es sich bei dem Aktiven Character um einen Gegner handelt
                 if (activeChar.GetType() == typeof(Enemy))
                 {
+                    /*
                     Hit.LoadContent(hitAnimation, new Vector2(-60, 0));
                     Heal.LoadContent(healAnimation, new Vector2(-60, 0));
                     
@@ -1380,8 +1381,8 @@ namespace RPG.Events
                     }
                     
                     //((Enemy)this.activeChar).Targets.Clear();
-                    
-                    //StartNextTurn();
+                    */
+                    StartNextTurn();
                 }
                 //führt ein Update der Animationen und Texte aus wenn es sich bei dem aktiven Character um ein Gruppenmitglied handelt
                 else
@@ -1557,213 +1558,357 @@ namespace RPG.Events
                 {
                     if (effect.GetType() == typeof(Bleeding))
                     {
-                        if (character.Name.Equals(Character1Name.SkillName))
+                        if (Character1Name != null)
                         {
-                            bleedIcoCharacter_1.Draw(spriteBatch);
+                            if (character.Name.Equals(Character1Name.SkillName))
+                            {
+                                bleedIcoCharacter_1.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(Character2Name.SkillName))
+                        if (Character2Name != null)
                         {
-                            bleedIcoCharacter_2.Draw(spriteBatch);
+                            if (character.Name.Equals(Character2Name.SkillName))
+                            {
+                                bleedIcoCharacter_2.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(Character3Name.SkillName))
+                        if (Character3Name != null)
                         {
-                            bleedIcoCharacter_3.Draw(spriteBatch);
+                            if (character.Name.Equals(Character3Name.SkillName))
+                            {
+                                bleedIcoCharacter_3.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(Character4Name.SkillName))
+                        if (Character4Name != null)
                         {
-                            bleedIcoCharacter_4.Draw(spriteBatch);
+                            if (character.Name.Equals(Character4Name.SkillName))
+                            {
+                                bleedIcoCharacter_4.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy1Name.SkillName))
+                        if (enemy1Name != null)
                         {
-                            bleedIcoEnemy_1.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy1Name.SkillName))
+                            {
+                                bleedIcoEnemy_1.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy2Name.SkillName))
+                        if (enemy2Name != null)
                         {
-                            bleedIcoEnemy_2.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy2Name.SkillName))
+                            {
+                                bleedIcoEnemy_2.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy3Name.SkillName))
+                        if (enemy3Name != null)
                         {
-                            bleedIcoEnemy_3.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy3Name.SkillName))
+                            {
+                                bleedIcoEnemy_3.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy4Name.SkillName))
+                        if (enemy4Name != null)
                         {
-                            bleedIcoEnemy_4.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy4Name.SkillName))
+                            {
+                                bleedIcoEnemy_4.Draw(spriteBatch);
+                            }
                         }
                     }
 
                     else if (effect.GetType() == typeof(Mindblown))
                     {
-                        if (character.Name.Equals(Character1Name.SkillName))
+                        if (Character1Name != null)
                         {
-                            mindBlownIcoCharacter_1.Draw(spriteBatch);
+                            if (character.Name.Equals(Character1Name.SkillName))
+                            {
+                                mindBlownIcoCharacter_1.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(Character2Name.SkillName))
+                        if (Character2Name != null)
                         {
-                            mindBlownIcoCharacter_2.Draw(spriteBatch);
+                            if (character.Name.Equals(Character2Name.SkillName))
+                            {
+                                mindBlownIcoCharacter_2.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(Character3Name.SkillName))
+                        if (Character3Name != null)
                         {
-                            mindBlownIcoCharacter_3.Draw(spriteBatch);
+                            if (character.Name.Equals(Character3Name.SkillName))
+                            {
+                                mindBlownIcoCharacter_3.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(Character4Name.SkillName))
+                        if (Character4Name != null)
                         {
-                            mindBlownIcoCharacter_4.Draw(spriteBatch);
+                            if (character.Name.Equals(Character4Name.SkillName))
+                            {
+                                mindBlownIcoCharacter_4.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy1Name.SkillName))
+                        if (enemy1Name != null)
                         {
-                            mindBlownIcoEnemy_1.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy1Name.SkillName))
+                            {
+                                mindBlownIcoEnemy_1.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy2Name.SkillName))
+                        if (enemy2Name != null)
                         {
-                            mindBlownIcoEnemy_2.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy2Name.SkillName))
+                            {
+                                mindBlownIcoEnemy_2.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy3Name.SkillName))
+                        if (enemy3Name != null)
                         {
-                            mindBlownIcoEnemy_3.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy3Name.SkillName))
+                            {
+                                mindBlownIcoEnemy_3.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy4Name.SkillName))
+                        if (enemy4Name != null)
                         {
-                            mindBlownIcoEnemy_4.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy4Name.SkillName))
+                            {
+                                mindBlownIcoEnemy_4.Draw(spriteBatch);
+                            }
                         }
                     }
                     else if (effect.GetType() == typeof(Blessing))
                     {
-                        if (character.Name.Equals(Character1Name.SkillName))
+                        if (Character1Name != null)
                         {
-                            blessedIcoCharacter_1.Draw(spriteBatch);
+                            if (character.Name.Equals(Character1Name.SkillName))
+                            {
+                                blessedIcoCharacter_1.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(Character2Name.SkillName))
+                        if (Character2Name != null)
                         {
-                            blessedIcoCharacter_2.Draw(spriteBatch);
+                            if (character.Name.Equals(Character2Name.SkillName))
+                            {
+                                blessedIcoCharacter_2.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(Character3Name.SkillName))
+                        if (Character3Name != null)
                         {
-                            blessedIcoCharacter_3.Draw(spriteBatch);
+                            if (character.Name.Equals(Character3Name.SkillName))
+                            {
+                                blessedIcoCharacter_3.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(Character4Name.SkillName))
+                        if (Character4Name != null)
                         {
-                            blessedIcoCharacter_4.Draw(spriteBatch);
+                            if (character.Name.Equals(Character4Name.SkillName))
+                            {
+                                blessedIcoCharacter_4.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy1Name.SkillName))
+                        if (enemy1Name != null)
                         {
-                            blessedIcoEnemy_1.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy1Name.SkillName))
+                            {
+                                blessedIcoEnemy_1.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy2Name.SkillName))
+                        if (enemy2Name != null)
                         {
-                            blessedIcoEnemy_2.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy2Name.SkillName))
+                            {
+                                blessedIcoEnemy_2.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy3Name.SkillName))
+                        if (enemy3Name != null)
                         {
-                            blessedIcoEnemy_3.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy3Name.SkillName))
+                            {
+                                blessedIcoEnemy_3.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy4Name.SkillName))
+                        if (enemy4Name != null)
                         {
-                            blessedIcoEnemy_4.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy4Name.SkillName))
+                            {
+                                blessedIcoEnemy_4.Draw(spriteBatch);
+                            }
                         }
                     }
                     else if (effect.GetType() == typeof(HasHalo))
                     {
-                        if (character.Name.Equals(Character1Name.SkillName))
+                        if (Character1Name != null)
                         {
-                            haloIcoCharacter_1.Draw(spriteBatch);
+                            if (character.Name.Equals(Character1Name.SkillName))
+                            {
+                                haloIcoCharacter_1.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(Character2Name.SkillName))
+                        if (Character2Name != null)
                         {
-                            haloIcoCharacter_2.Draw(spriteBatch);
+                            if (character.Name.Equals(Character2Name.SkillName))
+                            {
+                                haloIcoCharacter_2.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(Character3Name.SkillName))
+                        if (Character3Name != null)
                         {
-                            haloIcoCharacter_3.Draw(spriteBatch);
+                            if (character.Name.Equals(Character3Name.SkillName))
+                            {
+                                haloIcoCharacter_3.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(Character4Name.SkillName))
+                        if (Character1Name != null)
                         {
-                            haloIcoCharacter_4.Draw(spriteBatch);
+                            if (character.Name.Equals(Character4Name.SkillName))
+                            {
+                                haloIcoCharacter_4.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy1Name.SkillName))
+                        if (enemy2Name != null)
                         {
-                            haloIcoEnemy_1.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy1Name.SkillName))
+                            {
+                                haloIcoEnemy_1.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy2Name.SkillName))
+                        if (enemy3Name != null)
                         {
-                            haloIcoEnemy_2.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy2Name.SkillName))
+                            {
+                                haloIcoEnemy_2.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy3Name.SkillName))
+                        if (enemy3Name != null)
                         {
-                            haloIcoEnemy_3.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy3Name.SkillName))
+                            {
+                                haloIcoEnemy_3.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy4Name.SkillName))
+                        if (enemy4Name != null)
                         {
-                            haloIcoEnemy_4.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy4Name.SkillName))
+                            {
+                                haloIcoEnemy_4.Draw(spriteBatch);
+                            }
                         }
                     }
                     else if (effect.GetType() == typeof(Poisoned))
                     {
-                        if (character.Name.Equals(Character1Name.SkillName))
+                        if (Character1Name != null)
                         {
-                            toxicIcoCharacter_1.Draw(spriteBatch);
+                            if (character.Name.Equals(Character1Name.SkillName))
+                            {
+                                toxicIcoCharacter_1.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(Character2Name.SkillName))
+                        if (Character2Name != null)
                         {
-                            toxicIcoCharacter_2.Draw(spriteBatch);
+                            if (character.Name.Equals(Character2Name.SkillName))
+                            {
+                                toxicIcoCharacter_2.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(Character3Name.SkillName))
+                        if (Character3Name != null)
                         {
-                            toxicIcoCharacter_3.Draw(spriteBatch);
+                            if (character.Name.Equals(Character3Name.SkillName))
+                            {
+                                toxicIcoCharacter_3.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(Character4Name.SkillName))
+                        if (Character4Name != null)
                         {
-                            toxicIcoCharacter_4.Draw(spriteBatch);
+                            if (character.Name.Equals(Character4Name.SkillName))
+                            {
+                                toxicIcoCharacter_4.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy1Name.SkillName))
+                        if (enemy1Name != null)
                         {
-                            toxicIcoEnemy_1.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy1Name.SkillName))
+                            {
+                                toxicIcoEnemy_1.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy2Name.SkillName))
+                        if (enemy2Name != null)
                         {
-                            toxicIcoEnemy_2.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy2Name.SkillName))
+                            {
+                                toxicIcoEnemy_2.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy3Name.SkillName))
+                        if (enemy3Name != null)
                         {
-                            toxicIcoEnemy_3.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy3Name.SkillName))
+                            {
+                                toxicIcoEnemy_3.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy4Name.SkillName))
+                        if (enemy4Name != null)
                         {
-                            toxicIcoEnemy_4.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy4Name.SkillName))
+                            {
+                                toxicIcoEnemy_4.Draw(spriteBatch);
+                            }
                         }
                     }
                     else if (effect.GetType() == typeof(Burning))
                     {
-                        if (character.Name.Equals(Character1Name.SkillName))
+                        if (Character1Name != null)
                         {
-                            burnIcoCharacter_1.Draw(spriteBatch);
+                            if (character.Name.Equals(Character1Name.SkillName))
+                            {
+                                burnIcoCharacter_1.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(Character2Name.SkillName))
+                        if (Character2Name != null)
                         {
-                            burnIcoCharacter_2.Draw(spriteBatch);
+                            if (character.Name.Equals(Character2Name.SkillName))
+                            {
+                                burnIcoCharacter_2.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(Character3Name.SkillName))
+                        if (Character3Name != null)
                         {
-                            burnIcoCharacter_3.Draw(spriteBatch);
+                            if (character.Name.Equals(Character3Name.SkillName))
+                            {
+                                burnIcoCharacter_3.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(Character4Name.SkillName))
+                        if (Character4Name != null)
                         {
-                            burnIcoCharacter_4.Draw(spriteBatch);
+                            if (character.Name.Equals(Character4Name.SkillName))
+                            {
+                                burnIcoCharacter_4.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy1Name.SkillName))
+                        if (enemy1Name != null)
                         {
-                            burnIcoEnemy_1.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy1Name.SkillName))
+                            {
+                                burnIcoEnemy_1.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy2Name.SkillName))
+                        if (enemy2Name != null)
                         {
-                            burnIcoEnemy_2.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy2Name.SkillName))
+                            {
+                                burnIcoEnemy_2.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy3Name.SkillName))
+                        if (enemy3Name != null)
                         {
-                            burnIcoEnemy_3.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy3Name.SkillName))
+                            {
+                                burnIcoEnemy_3.Draw(spriteBatch);
+                            }
                         }
-                        else if (character.Name.Equals(enemy4Name.SkillName))
+                        if (enemy4Name != null)
                         {
-                            burnIcoEnemy_4.Draw(spriteBatch);
+                            if (character.Name.Equals(enemy4Name.SkillName))
+                            {
+                                burnIcoEnemy_4.Draw(spriteBatch);
+                            }
                         }
                     }
                 }
