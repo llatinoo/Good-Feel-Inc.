@@ -1352,13 +1352,13 @@ namespace RPG.Events
                 //Die KI wird ausgeführt wenn es sich bei dem Aktiven Character um einen Gegner handelt
                 if (activeChar.GetType() == typeof(Enemy))
                 {
-                    /*
+
                     Hit.LoadContent(hitAnimation, new Vector2(-60, 0));
                     Heal.LoadContent(healAnimation, new Vector2(-60, 0));
-                    
+
                     ((Enemy)this.activeChar).PerformAI(this.FightCadre, this.Enemies.Cast<Character>().ToList());
                     activeSkill = activeChar.Skills.ElementAt(0);
-                    LoadAnimatedSkillsFromEnemies(((Enemy)activeChar).Targets, ((Enemy)activeChar).TargetName);
+                    //LoadAnimatedSkillsFromEnemies(((Enemy)activeChar).Targets, ((Enemy)activeChar).TargetName);
                     if (activeChar.Name == enemy1Name.SkillName)
                     {
                         activeChar.LoadContent(enemyAttackAnimation_1, enemyPosition_1);
@@ -1379,10 +1379,10 @@ namespace RPG.Events
                         activeChar.LoadContent(enemyAttackAnimation_4, enemyPosition_4);
                         enemyAttackAnimation_4.active = true;
                     }
-                    
+
                     //((Enemy)this.activeChar).Targets.Clear();
-                    */
-                    StartNextTurn();
+
+                    //StartNextTurn();
                 }
                 //führt ein Update der Animationen und Texte aus wenn es sich bei dem aktiven Character um ein Gruppenmitglied handelt
                 else

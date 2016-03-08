@@ -27,10 +27,6 @@ namespace RPG
 
         //Ziele des Skills
         private List<Character> targets = new List<Character>();
-        public List<Character> Targets
-        {
-            get { return targets; }
-        }
         public string TargetName { get; private set; }
 
 
@@ -48,6 +44,9 @@ namespace RPG
         public void PerformAI(IEnumerable<Character> enemiesOfFoe, List<Character> groupOfFoe)
         {
             Random r = new Random();
+            this.performableSkills = new List<Skill>();
+            this.targets = new List<Character>();
+
 
             this.SetPerformSkills(groupOfFoe);
 
@@ -162,8 +161,8 @@ namespace RPG
                             groupOfFoe.All(foe => foe.Life <= 0))
                         {
                             this.performableSkills.Add(skill);
-                            continue;
                         }
+                        continue;
                     }
 
                     if (skill.Effects.All(effect => effect.GetType() == typeof(RemoveStatusEffect)))
@@ -172,8 +171,8 @@ namespace RPG
                             groupOfFoe.All(foe => foe.Statuseffects.Count > 0))
                         {
                             this.performableSkills.Add(skill);
-                            continue;
                         }
+                        continue;
                     }
 
                     if (skill.Effects.All(effect => effect.GetType() == typeof(Halo)))
@@ -182,8 +181,8 @@ namespace RPG
                             groupOfFoe.All(foe => (foe.Life/foe.FightVitality)*100 < 65))
                         {
                             this.performableSkills.Add(skill);
-                            continue;
                         }
+                        continue;
                     }
 
                     if (skill.Effects.All(effect => effect.GetType() == typeof(Heal)))
@@ -192,8 +191,8 @@ namespace RPG
                             groupOfFoe.All(foe => (foe.Life/foe.FightVitality)*100 < 45))
                         {
                             this.performableSkills.Add(skill);
-                            continue;
                         }
+                        continue;
                     }
 
                     if (skill.Effects.All(effect => effect.GetType() == typeof(Drain)))
@@ -202,8 +201,8 @@ namespace RPG
                             (this.Life/this.FightVitality)*100 < 55)
                         {
                             this.performableSkills.Add(skill);
-                            continue;
                         }
+                        continue;
                     }
 
                     else
