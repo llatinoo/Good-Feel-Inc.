@@ -81,6 +81,7 @@
     <Compile Include="GameManager.cs" />
     <Compile Include="Scenes\GameManager.cs" />
     <Compile Include="Scenes\IScene.cs" />
+    <Compile Include="Scenes\Scene1.cs" />
     <Compile Include="Skills\Effects\Drain.cs" />
     <Compile Include="Skills\Effects\MagicalDamage.cs" />
     <Compile Include="Skills\Effects\RandomBuffEffect.cs" />
