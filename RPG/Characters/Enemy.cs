@@ -23,8 +23,7 @@ namespace RPG
         private List<Skill> useableSkills = new List<Skill>();
 
         //Skill der Ausgeführt werden soll
-        private Skill SkillToPerform { get; set; }
-        public string SkillToPerformName { get; private set; }
+        public Skill SkillToPerform { get; private set; }
 
         //Ziele des Skills
         private List<Character> targets = new List<Character>();
@@ -53,7 +52,6 @@ namespace RPG
             this.SetPerformSkills(groupOfFoe);
 
             this.SkillToPerform = this.performableSkills.ElementAt(r.Next(0, (this.performableSkills.Count - 1) * 1000) / 1000);
-            this.SkillToPerformName = this.SkillToPerform.Name;
 
             if (this.SkillToPerform.Target.ToLower() == "Single".ToLower())
             {
