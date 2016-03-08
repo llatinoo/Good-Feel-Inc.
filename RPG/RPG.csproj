@@ -344,6 +344,9 @@
     <Content Include="Content\Backgrounds\Battle\Winterbach_Battle_Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Backgrounds\Menus\GameOverBackground.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Backgrounds\Menus\Options_Screen_Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -402,6 +405,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Story\Winterbach_Story_Background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Backgrounds\Menus\BattleEvaluationBackground.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\bin\Windows\Intro\Good Feel Inc Intro.wmv" />
@@ -674,22 +680,22 @@
     <Content Include="Content\Faces\Marlein\Marlein_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Capsar\Caspar_Happy_Face.png">
+    <Content Include="Content\Faces\Caspar\Caspar_Happy_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Capsar\Caspar_NotAmused_Face.png">
+    <Content Include="Content\Faces\Caspar\Caspar_NotAmused_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Capsar\Caspar_Provoke_Face.png">
+    <Content Include="Content\Faces\Caspar\Caspar_Provoke_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Capsar\Caspar_Shocked_Face.png">
+    <Content Include="Content\Faces\Caspar\Caspar_Shocked_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Capsar\Caspar_Standard_Face.png">
+    <Content Include="Content\Faces\Caspar\Caspar_Standard_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Capsar\Caspar_Thoughtful_Face.png">
+    <Content Include="Content\Faces\Caspar\Caspar_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Jos\Jos_Happy_Face.png">

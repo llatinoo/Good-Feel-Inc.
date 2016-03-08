@@ -20,7 +20,8 @@ namespace RPG
         PartyMember char4 = new PartyMember("Genefe", Classes.Patron, 10, new List<int>(10), 20, "Animations\\Battlers\\Female\\Genefe\\Genefe_Standard_Animation", "Animations\\Battlers\\Female\\Genefe\\Genefe_Attack_Animation", "Animations\\Battlers\\Female\\Genefe\\Genefe_Death_Animation");
 
         
-
+        ChooseCadreEvent choosetest;
+        List<PartyMember> Fightcadre = new List<PartyMember>();
         BattleEvent testevent;
 
         Movie Intro = new Movie("Intro\\Good Feel Inc Intro");
@@ -124,12 +125,13 @@ namespace RPG
             //LoadSkillHelperClass.AddSkillsForClass(this.char4);
             this.Intro.Initialize();
             this.testevent = new BattleEvent(new List<PartyMember> {this.char1, this.char2, this.char3, this.char4 }, new List<Enemy> {this.enemy1 }, "Backgrounds\\Battle\\Forest_Battle_Background");
-
+            choosetest = new ChooseCadreEvent(new List<PartyMember> { this.char1, this.char2, this.char3, this.char4 }, Fightcadre);
             //Scene1 = new StoryEvent(new List<ConversationEvent> { conversation1, conversation2 }, "Backgrounds\\Story\\Anlegestelle_Triumphfelder_Story_Background.png");
 
         }
         public void LoadContent(ContentManager content)
         {
+            choosetest.LoadContent(content);
             this.testevent.LoadContent(content);
             //this.test.LoadContent(content);
             //this.test1.LoadContent(content);
@@ -289,10 +291,12 @@ namespace RPG
                     }
                     break;
                 case GameState.mainMenu:
+                    /*
                     if (!testevent.BattleEvaluation.EndBattle)
                     {
                         this.testevent.Update(gameTime);
-                    }
+                    }*/
+                    choosetest.Update();
                     //Scene1.Update();
                     /*
                     foreach (GUIElement element in mainMenu)
@@ -422,10 +426,12 @@ namespace RPG
                     this.Intro.Draw(spriteBatch);
                     break;
                 case GameState.mainMenu:
+                    /*
                     if (!testevent.BattleEvaluation.EndBattle)
                     {
                         this.testevent.Draw(spriteBatch);
-                    }
+                    }*/
+                    choosetest.Draw(spriteBatch);
                     //Scene1.Draw(spriteBatch);
                     /*
                     foreach (GUIElement element in mainMenu)

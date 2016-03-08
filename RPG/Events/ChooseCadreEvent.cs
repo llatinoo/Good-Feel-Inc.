@@ -22,10 +22,10 @@ namespace RPG.Events
         List<GUIElement> Faces = new List<GUIElement>();
 
         //Position der Face Bilder
-        Vector2 FacePosition_1 = new Vector2();
-        Vector2 FacePosition_2 = new Vector2();
-        Vector2 FacePosition_3 = new Vector2();
-        Vector2 FacePosition_4 = new Vector2();
+        Vector2 FacePosition_1 = new Vector2(100,100);
+        Vector2 FacePosition_2 = new Vector2(250, 100);
+        Vector2 FacePosition_3 = new Vector2(400, 100);
+        Vector2 FacePosition_4 = new Vector2(550, 100);
         Vector2 FacePosition_5 = new Vector2();
         Vector2 FacePosition_6 = new Vector2();
         Vector2 FacePosition_7 = new Vector2();
@@ -145,48 +145,30 @@ namespace RPG.Events
         }
         public void Update()
         {
-
+            foreach(GUIElement face in Faces)
+            {
+                face.Update();
+                face.clickEvent += OnClick;
+            }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach(GUIElement face in this.Faces)
             {
                 face.Draw(spriteBatch);
-            }
-            foreach(PartyMember member in this.fightCadre)
-            {
-                foreach (GUIElement face in this.Faces)
+                foreach (PartyMember Cadremember in Fightcadre)
                 {
-                    if(face.AssetName.Contains(member.Name))
+                    if (face.AssetName.Contains(Cadremember.Name))
                     {
                         face.changeColor(Color.DarkBlue);
                     }
                 }
             }
+
         }
         public void OnClick(String element)
         {
-            foreach (PartyMember groupMember in this.Group)
-            {
-                if (element == "Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face")
-                {
-                    if(this.fightCadre.Contains<PartyMember>(groupMember))
-                    {
-                        this.fightCadre.RemoveAt(this.fightCadre.IndexOf(groupMember));
-                        foreach(GUIElement face in this.Faces)
-                        {
-                            if(face.AssetName.Contains(groupMember.Name))
-                            {
-                                face.changeColor(Color.White);
-                            }
-                        }
-                    }
-                    else if (this.fightCadre.Count < 3)
-                    {
-                        this.fightCadre.Add(groupMember);
-                    }
-                }
-            }
+
         }
     }
 }
