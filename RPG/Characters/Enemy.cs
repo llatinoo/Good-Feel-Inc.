@@ -162,8 +162,8 @@ namespace RPG
                             groupOfFoe.All(foe => foe.Life <= 0))
                         {
                             this.performableSkills.Add(skill);
-                            continue;
                         }
+                        continue;
                     }
 
                     if (skill.Effects.All(effect => effect.GetType() == typeof(RemoveStatusEffect)))
@@ -172,8 +172,8 @@ namespace RPG
                             groupOfFoe.All(foe => foe.Statuseffects.Count > 0))
                         {
                             this.performableSkills.Add(skill);
-                            continue;
                         }
+                        continue;
                     }
 
                     if (skill.Effects.All(effect => effect.GetType() == typeof(Halo)))
@@ -182,8 +182,8 @@ namespace RPG
                             groupOfFoe.All(foe => (foe.Life/foe.FightVitality)*100 < 65))
                         {
                             this.performableSkills.Add(skill);
-                            continue;
                         }
+                        continue;
                     }
 
                     if (skill.Effects.All(effect => effect.GetType() == typeof(Heal)))
@@ -192,8 +192,8 @@ namespace RPG
                             groupOfFoe.All(foe => (foe.Life/foe.FightVitality)*100 < 45))
                         {
                             this.performableSkills.Add(skill);
-                            continue;
                         }
+                        continue;
                     }
 
                     if (skill.Effects.All(effect => effect.GetType() == typeof(Drain)))
@@ -202,8 +202,8 @@ namespace RPG
                             (this.Life/this.FightVitality)*100 < 55)
                         {
                             this.performableSkills.Add(skill);
-                            continue;
                         }
+                        continue;
                     }
 
                     else

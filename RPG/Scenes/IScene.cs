@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace RPG
+namespace RPG.Scenes
 {
-    public class Scene
+    public abstract class IScene
     {
         public List<PartyMember> Group { get; set; }
-        public List<PartyMember> FightCadre { get; private set; }
-        public List<Enemy> Enemies { get; private set; }
+        public List<PartyMember> FightCadre { get; protected set; }
+        public List<Enemy> Enemies { get; protected set; }
 
         public bool IsDone { get; private set; }
 

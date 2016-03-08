@@ -76,9 +76,9 @@ namespace RPG.Scenes
             {
                 if(!BattleSet)
                 {
-                    Battle1.FightCadre = ChooseCadre1.Fightcadre;
-                    BattleSet = true;
-                    Battle1.ReloadContent(content);
+                    //Battle1.FightCadre = ChooseCadre1.Fightcadre;
+                    //BattleSet = true;
+                    //Battle1.ReloadContent(content);
                 }
                 Battle1.Update(gameTime);
             }

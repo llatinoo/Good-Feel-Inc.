@@ -10,8 +10,8 @@ namespace RPG.Scenes
     {
         protected List<PartyMember> Group { get; set; }
 
-        private List<Scene> Scenes  = new List<Scene>();
-        private Scene ActiveScene;
+        private List<IScene> Scenes  = new List<IScene>();
+        private IScene _activeAbstractScene;
         private int sceneCounter;
 
         public GameManager(List<PartyMember> group)
@@ -19,28 +19,28 @@ namespace RPG.Scenes
             this.Group = group;
 
             this.sceneCounter = 0;
-            this.ActiveScene = this.Scenes.ElementAt(this.sceneCounter);
+            this._activeAbstractScene = this.Scenes.ElementAt(this.sceneCounter);
 
             this.StartGame();
         }
 
         private void StartGame()
         {
-            this.ActiveScene.Play(this.Group);
+            this._activeAbstractScene.Play(this.Group);
         }
 
         protected void NextScene()
         {
-            if (!this.ActiveScene.IsDone)
+            if (!this._activeAbstractScene.IsDone)
             {
                 return;
             }
-            this.Group = this.ActiveScene.Group;
+            this.Group = this._activeAbstractScene.Group;
 
             this.sceneCounter++;
-            this.ActiveScene = this.Scenes.ElementAt(this.sceneCounter);
+            this._activeAbstractScene = this.Scenes.ElementAt(this.sceneCounter);
 
-            this.ActiveScene.Play(this.Group);
+            this._activeAbstractScene.Play(this.Group);
         }
     }
 }
