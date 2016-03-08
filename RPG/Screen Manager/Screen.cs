@@ -291,12 +291,12 @@ namespace RPG
                     }
                     break;
                 case GameState.mainMenu:
-                    /*
+                    
                     if (!testevent.BattleEvaluation.EndBattle)
                     {
                         this.testevent.Update(gameTime);
-                    }*/
-                    choosetest.Update();
+                    }
+                    //choosetest.Update();
                     //Scene1.Update();
                     /*
                     foreach (GUIElement element in mainMenu)
@@ -426,12 +426,12 @@ namespace RPG
                     this.Intro.Draw(spriteBatch);
                     break;
                 case GameState.mainMenu:
-                    /*
+                    
                     if (!testevent.BattleEvaluation.EndBattle)
                     {
                         this.testevent.Draw(spriteBatch);
-                    }*/
-                    choosetest.Draw(spriteBatch);
+                    }
+                    //choosetest.Draw(spriteBatch);
                     //Scene1.Draw(spriteBatch);
                     /*
                     foreach (GUIElement element in mainMenu)
