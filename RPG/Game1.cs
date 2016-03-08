@@ -14,7 +14,6 @@ namespace RPG
         SpriteBatch spriteBatch;
         Screen screen = new Screen();
         Cursor MouseCursor = new Cursor();
-        
 
         public Game1()
         {
