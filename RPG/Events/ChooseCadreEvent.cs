@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using System.Threading;
 
 namespace RPG.Events
 {
@@ -23,9 +24,9 @@ namespace RPG.Events
 
         //Position der Face Bilder
         Vector2 FacePosition_1 = new Vector2(100,100);
-        Vector2 FacePosition_2 = new Vector2(250, 100);
-        Vector2 FacePosition_3 = new Vector2(400, 100);
-        Vector2 FacePosition_4 = new Vector2(550, 100);
+        Vector2 FacePosition_2 = new Vector2(250, 200);
+        Vector2 FacePosition_3 = new Vector2(400, 300);
+        Vector2 FacePosition_4 = new Vector2(550, 400);
         Vector2 FacePosition_5 = new Vector2();
         Vector2 FacePosition_6 = new Vector2();
         Vector2 FacePosition_7 = new Vector2();
@@ -52,16 +53,30 @@ namespace RPG.Events
         GUIElement Face_12;
         GUIElement Face_13;
         GUIElement Face_14;
+
+        bool DrawtooManyCharsError;
+        TextElement tooManyChars;
+        GUIElement AuswahlAufhebenButton;
+        GUIElement FortfahrenButton;
+
+        bool auswahlBestätigt;
+        public bool AuswahlBestätigt
+        {
+            get { return auswahlBestätigt;}
+        }
         public ChooseCadreEvent(List<PartyMember> Group, List<PartyMember> FightCadre)
         {
             this.Group = Group;
             this.fightCadre = FightCadre;
 
-            FightCadre.Clear();
+            //fightCadre.Clear();
         }
 
         public void LoadContent(ContentManager content)
         {
+            tooManyChars = new TextElement("Du kannst maximal vier Charaktere mit in den Kampf nehmen!\rUm die Auswahl aufzuheben klicke auf den Button!", 0, 0, false);
+            AuswahlAufhebenButton = new GUIElement("Buttons\\Quit_Button");
+            FortfahrenButton = new GUIElement("Buttons\\Continue_Button");
             int CountMember = 0;
             foreach(PartyMember groupMember in this.Group)
             {
@@ -140,20 +155,36 @@ namespace RPG.Events
             foreach(GUIElement face in this.Faces)
             {
                 face.LoadContent(content);
-                face.clickEvent += this.OnClick;
+                //face.clickEvent += this.OnClick;
             }
+            Face_1.clickEvent += OnClick;
+            Face_2.clickEvent += OnClick;
+            Face_3.clickEvent += OnClick;
+            Face_4.clickEvent += OnClick;
+            tooManyChars.LoadContent(content);
+            AuswahlAufhebenButton.LoadContent(content);
+            AuswahlAufhebenButton.CenterElement(576, 720);
+            AuswahlAufhebenButton.moveElement(50, 180);
+            AuswahlAufhebenButton.clickEvent += OnClick;
+            FortfahrenButton.LoadContent(content);
+            FortfahrenButton.CenterElement(576, 720);
+            FortfahrenButton.moveElement(220, 180);
+            FortfahrenButton.clickEvent += OnClick;
         }
         public void Update()
         {
             foreach(GUIElement face in Faces)
             {
                 face.Update();
-                face.clickEvent += OnClick;
             }
+            AuswahlAufhebenButton.Update();
+            FortfahrenButton.Update();
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach(GUIElement face in this.Faces)
+            AuswahlAufhebenButton.Draw(spriteBatch);
+            FortfahrenButton.Draw(spriteBatch);
+            foreach (GUIElement face in this.Faces)
             {
                 face.Draw(spriteBatch);
                 foreach (PartyMember Cadremember in Fightcadre)
@@ -163,12 +194,57 @@ namespace RPG.Events
                         face.changeColor(Color.DarkBlue);
                     }
                 }
+                foreach (PartyMember groupMember in Group)
+                {
+                    if (face.AssetName.Contains(groupMember.Name))
+                    {
+                        face.changeColor(Color.White);
+                    }
+                }
             }
-
+            if(DrawtooManyCharsError)
+            {
+                tooManyChars.Draw(spriteBatch);
+            }
         }
         public void OnClick(String element)
         {
+            Thread.Sleep(300);
+            if (element == "Buttons\\Quit_Button")
+            {
+                foreach(PartyMember member in fightCadre)
+                {
+                    Group.Add(member);
+                }
+                fightCadre.Clear();
+            }
+            if (element == "Buttons\\Continue_Button")
+            {
+                auswahlBestätigt = true;
+            }
+            else if (element == Face_2.AssetName)
+            {
+                for (int i = 0; i < Faces.Count; i++)
+                {
+                    for (int j = 0; j < Group.Count; j++)
+                    {
+                        if (Faces.ElementAt<GUIElement>(i).AssetName.Contains(Group.ElementAt<PartyMember>(j).Name))
+                        {
+                            if (fightCadre.Count < 4)
+                            {
+                                fightCadre.Add(Group.ElementAt<PartyMember>(j));
+                                Group.RemoveAt(j);
+                                break;
+                            }
+                            if (fightCadre.Count == 4)
+                            {
+                                DrawtooManyCharsError = true;
+                            }
+                        }
+                    }
 
+                }
+            }
         }
     }
 }
