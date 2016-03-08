@@ -5,15 +5,17 @@ using System.Text;
 
 namespace RPG
 {
-    public interface IScene
+    public class Scene
     {
-        List<PartyMember> Group { get; set; }
-        List<PartyMember> FightCadre { get; }
-        List<Enemy> Enemies { get; }
+        public List<PartyMember> Group { get; set; }
+        public List<PartyMember> FightCadre { get; private set; }
+        public List<Enemy> Enemies { get; private set; }
 
-        List<IEvent> Events { get; }
+        public bool IsDone { get; private set; }
 
-        List<PartyMember> ReturnGroup();
-        bool IsDone();
+        public void Play(List<PartyMember> group)
+        {
+            this.IsDone = true;
+        }
     }
 }
