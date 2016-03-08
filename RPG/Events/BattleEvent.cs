@@ -263,7 +263,7 @@ namespace RPG.Events
             this.FightClub.OrderBy(character => character.GetInitiative());
             activeChar = FightClub.ElementAt<Character>(0);
             activeCharCounter = 0;
-            targetClicked = true;
+            targetClicked = true; 
         }
 
         //Läd alle Texturen und Daten die das Event benötigt
