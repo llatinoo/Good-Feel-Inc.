@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace RPG
 {
-    class StoryEvent
+    class StoryEvent : IEvent
     {
         bool storyPartIsOver;
         public bool StoryPartIsOver

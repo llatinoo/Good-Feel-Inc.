@@ -12,7 +12,7 @@ using RPG.Extensions_And_Helper_Classes;
 
 namespace RPG.Events
 {
-    class BattleEvent
+    class BattleEvent : IEvent
     {
         bool enemyHitDone;
         public bool StartFight = true;

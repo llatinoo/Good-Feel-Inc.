@@ -74,6 +74,7 @@
     <Compile Include="Events\SaveEvent.cs" />
     <Compile Include="Events\StoryEvent.cs" />
     <Compile Include="Events\ConversationEvent.cs" />
+    <Compile Include="Extensions And Helper Classes\EventTemplate.cs" />
     <Compile Include="Extensions And Helper Classes\GetEffectFactory.cs" />
     <Compile Include="Extensions And Helper Classes\AttributesChange.cs" />
     <Compile Include="Extensions And Helper Classes\LoadContentHelper.cs" />
@@ -82,7 +83,7 @@
     <Compile Include="Data Section Classes\ClassSkillCadreDataSection.cs" />
     <Compile Include="Data Section Classes\SkillCadreDataSection.cs" />
     <Compile Include="Scenes\GameManager.cs" />
-    <Compile Include="Scenes\IScene.cs" />
+    <Compile Include="Scenes\Scene.cs" />
     <Compile Include="Skills\Effects\Drain.cs" />
     <Compile Include="Skills\Effects\MagicalDamage.cs" />
     <Compile Include="Skills\Effects\RandomBuffEffect.cs" />

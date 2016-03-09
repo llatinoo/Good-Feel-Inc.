@@ -138,7 +138,7 @@ namespace RPG
             miau.Add(this.char1);
             miau.Add(this.char2);
 
-            gameManager = new Scenes.GameManager(miau);
+            //gameManager = new Scenes.GameManager(miau);
 
 
 

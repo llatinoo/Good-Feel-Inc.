@@ -10,7 +10,7 @@ using RPG.Extensions_And_Helper_Classes;
 
 namespace RPG.Events
 {
-    class ChooseCadreEvent
+    class ChooseCadreEvent : IEvent
     {
         //Listen des FightCadres und der Gruppe
         List<PartyMember> fightCadre = new List<PartyMember>();

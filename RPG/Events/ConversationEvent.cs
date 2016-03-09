@@ -10,7 +10,7 @@ using RPG.Extensions_And_Helper_Classes;
 
 namespace RPG.Events
 {
-    class ConversationEvent
+    class ConversationEvent : IEvent
     {
         //Position des Textes
         Vector2 textLine_1 = new Vector2(150, 422);

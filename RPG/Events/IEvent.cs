@@ -7,8 +7,5 @@ namespace RPG
 {
     public interface IEvent
     {
-        void Execute();
-        
-
     }
 }
