@@ -45,11 +45,11 @@ namespace RPG.Scenes
                 {
                     return;
                 }
-                this.Group = this.ActiveScene.Group;
-
+                this.Group = this.ActiveScene.SceneGroup;
+                
                 this.sceneCounter++;
                 this.ActiveScene = this.Scenes.ElementAt(this.sceneCounter);
-
+                
                 this.ActiveScene.Play(this.Group);
             }
         }
