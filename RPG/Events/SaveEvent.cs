@@ -11,17 +11,17 @@ namespace RPG.Events
     {
         List<PartyMember> group = new List<PartyMember>();
 
-        public SaveEvent(List<PartyMember> partyMember)
+        public SaveEvent(List<PartyMember> partyMember,int sceneCount)
         {
-            SaveContent(partyMember);
+            SaveContent(partyMember,sceneCount);
         }
 
-        public void SaveContent(List<PartyMember> partyMember)
+        public void SaveContent(List<PartyMember> partyMember,int sceneCount)
         {
-                
+            //XML muss noch den ScenenCount speicher
                 group = partyMember;
                 var safeData = new FileStream("SafeData.xml", FileMode.Create);
-                new XmlSerializer(typeof(Character)).Serialize(safeData, group);
+                new XmlSerializer(typeof(PartyMember)).Serialize(safeData, group);
         }
 
     }

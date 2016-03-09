@@ -13,7 +13,7 @@ namespace RPG
 {
     class Screen
     {
-        GameManager gameManager;
+        Scenes.GameManager gameManager;
         int activeScene;
         List<PartyMember> group;
 
@@ -133,11 +133,12 @@ namespace RPG
             this.testevent = new BattleEvent(new List<PartyMember> {this.char2, this.char3 }, new List<Enemy> {this.enemy1 }, "Backgrounds\\Battle\\Forest_Battle_Background");
             choosetest = new ChooseCadreEvent(new List<PartyMember> { this.char1, this.char2, this.char3, this.char4 }, Fightcadre, "Backgrounds\\Battle\\Bell_Battle_Background");
             //Scene1 = new StoryEvent(new List<ConversationEvent> { conversation1, conversation2 }, "Backgrounds\\Story\\Anlegestelle_Triumphfelder_Story_Background.png");
+            //TEST
             List<PartyMember> miau = new List<PartyMember>();
             miau.Add(this.char1);
             miau.Add(this.char2);
 
-            gameManager = new GameManager(miau);
+            gameManager = new Scenes.GameManager(miau);
 
 
 
@@ -534,7 +535,7 @@ namespace RPG
             if (element == "Buttons\\Save_Button")
             {
                 //Save
-                SaveEvent safe = new SaveEvent(group);
+                SaveEvent safe = new SaveEvent(group,activeScene);
             }
             if (element == "Skill1")
             {
