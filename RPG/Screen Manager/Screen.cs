@@ -14,6 +14,9 @@ namespace RPG
     class Screen
     {
         GameManager gameManager;
+        int activeScene;
+        List<PartyMember> group;
+
         Player char1 = new Player("Jos", Classes.Warrior, 10, new List<int>(10), 20, "Animations\\Battlers\\Male\\Jos\\Jos_Standard_Animation", "Animations\\Battlers\\Male\\Jos\\Jos_Attack_Animation", "Animations\\Battlers\\Male\\Jos\\Jos_Death_Animation");
         Enemy enemy1 = new Enemy("Kaiser", Classes.Coloss, 10, "Enemies\\Bosse\\Human\\Kaiser\\Kaiser_Standard_Animation", "Enemies\\Bosse\\Human\\Kaiser\\Kaiser_Attack_Animation", "Enemies\\Bosse\\Human\\Kaiser\\Kaiser_Death_Animation", true);
 
@@ -130,6 +133,14 @@ namespace RPG
             this.testevent = new BattleEvent(new List<PartyMember> {this.char2, this.char3 }, new List<Enemy> {this.enemy1 }, "Backgrounds\\Battle\\Forest_Battle_Background");
             choosetest = new ChooseCadreEvent(new List<PartyMember> { this.char1, this.char2, this.char3, this.char4 }, Fightcadre, "Backgrounds\\Battle\\Bell_Battle_Background");
             //Scene1 = new StoryEvent(new List<ConversationEvent> { conversation1, conversation2 }, "Backgrounds\\Story\\Anlegestelle_Triumphfelder_Story_Background.png");
+            List<PartyMember> miau = new List<PartyMember>();
+            miau.Add(this.char1);
+            miau.Add(this.char2);
+
+            gameManager = new GameManager(miau);
+
+
+
         }
         public void LoadContent(ContentManager content)
         {
@@ -243,7 +254,10 @@ namespace RPG
         
         public void Update(GameTime gameTime)
         {
-            this.controls.Update();
+            activeScene = gameManager.GetSceneCounter();
+            group = gameManager.GetPartyMember();
+
+                this.controls.Update();
 
             //Wenn das options Menu geöffnet wird, wird der Gamestate gespeichert um nach dem pausieren fortzufahren
             if (this.controls.CurrentKeyboardState.IsKeyDown(Keys.Escape) && this.gameState != GameState.mainMenu && this.gameState != GameState.options)
@@ -520,6 +534,7 @@ namespace RPG
             if (element == "Buttons\\Save_Button")
             {
                 //Save
+                SaveEvent safe = new SaveEvent(group);
             }
             if (element == "Skill1")
             {

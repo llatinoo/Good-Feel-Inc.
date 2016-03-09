@@ -27,6 +27,13 @@ namespace RPG.Scenes
             {
                 return sceneCounter;
             }
+
+            public List<PartyMember> GetPartyMember()
+            {
+            return Group;
+            }
+
+
             private void StartGame()
             {
                 this.ActiveScene.Play(this.Group);

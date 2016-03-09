@@ -9,14 +9,14 @@ namespace RPG.Events
 {
     class SaveEvent
     {
-        List<Character> group = new List<Character>();
+        List<PartyMember> group = new List<PartyMember>();
 
-        public SaveEvent(List<Character> partyMember)
+        public SaveEvent(List<PartyMember> partyMember)
         {
             SaveContent(partyMember);
         }
 
-        public void SaveContent(List<Character> partyMember)
+        public void SaveContent(List<PartyMember> partyMember)
         {
                 
                 group = partyMember;
