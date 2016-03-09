@@ -13,6 +13,7 @@ namespace RPG
 {
     class Screen
     {
+        GameManager gameManager;
         Player char1 = new Player("Jos", Classes.Warrior, 10, new List<int>(10), 20, "Animations\\Battlers\\Male\\Jos\\Jos_Standard_Animation", "Animations\\Battlers\\Male\\Jos\\Jos_Attack_Animation", "Animations\\Battlers\\Male\\Jos\\Jos_Death_Animation");
         Enemy enemy1 = new Enemy("Kaiser", Classes.Coloss, 10, "Enemies\\Bosse\\Human\\Kaiser\\Kaiser_Standard_Animation", "Enemies\\Bosse\\Human\\Kaiser\\Kaiser_Attack_Animation", "Enemies\\Bosse\\Human\\Kaiser\\Kaiser_Death_Animation", true);
 
@@ -419,6 +420,7 @@ namespace RPG
                     
             
         }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             switch (this.gameState)
