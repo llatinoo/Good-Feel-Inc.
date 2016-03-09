@@ -70,6 +70,8 @@
     <Compile Include="Events\ChooseCadreEvent.cs" />
     <Compile Include="Events\GameOverEvent.cs" />
     <Compile Include="Events\IEvent.cs" />
+    <Compile Include="Events\LoadEvent.cs" />
+    <Compile Include="Events\SaveEvent.cs" />
     <Compile Include="Events\StoryEvent.cs" />
     <Compile Include="Events\ConversationEvent.cs" />
     <Compile Include="Extensions And Helper Classes\GetEffectFactory.cs" />
@@ -78,7 +80,6 @@
     <Compile Include="Extensions And Helper Classes\RandomStatusEffectHelperClass.cs" />
     <Compile Include="Data Section Classes\ClassSkillCadreDataSection.cs" />
     <Compile Include="Data Section Classes\SkillCadreDataSection.cs" />
-    <Compile Include="GameManager.cs" />
     <Compile Include="Scenes\GameManager.cs" />
     <Compile Include="Scenes\IScene.cs" />
     <Compile Include="Skills\Effects\Drain.cs" />
