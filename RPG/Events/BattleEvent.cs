@@ -8,15 +8,16 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.Threading;
 using Microsoft.Xna.Framework.Audio;
-using System.Timers;
+using RPG.Extensions_And_Helper_Classes;
 
 namespace RPG.Events
 {
     class BattleEvent
     {
+        bool enemyHitDone;
+        public bool StartFight = true;
         bool AllowDeathAnimation = false;
         Controls controls = new Controls();
-        SpriteFont AwesomeFont;
         GameOverEvent GameOver;
         
         BattleEvaluationEvent battleEvaluation;
@@ -205,6 +206,11 @@ namespace RPG.Events
 
         GUIElement CharacterStatBox;
 
+        GUIElement staticEnemy_1;
+        GUIElement staticEnemy_2;
+        GUIElement staticEnemy_3;
+        GUIElement staticEnemy_4;
+
         //Animation erstellt
         Animation charStandardAnimation_1 = new Animation();
         Animation charStandardAnimation_2 = new Animation();
@@ -251,6 +257,8 @@ namespace RPG.Events
 
         SoundEffect Click;
         SoundEffect Punch;
+        SoundEffect MouseIntersect;
+        
 
         public BattleEvent(List<PartyMember> fightCadre, List<Enemy> enemies, string background)
         {
@@ -278,21 +286,727 @@ namespace RPG.Events
             targetClicked = true; 
         }
 
+        public void InitializeData()
+        {
+            int groupCount = 0;
+            int enemyCount = 0;
+            foreach (Character character in this.FightCadre)
+            {
+                //Anpassung benötigt da am Ende Festwerte eingetragen wurden
+                if (groupCount == 0)
+                {
+                    if (character.Name == "Anna")
+                    {
+                        charStandardAnimation_1 = LoadContentHelper.AnnaStandardAnimation;
+                        charAttackAnimation_1 = LoadContentHelper.AnnaAttackAnimation;
+                        charDeathAnimation_1 = LoadContentHelper.AnnaDeathAnimation;
+                    }
+                    else if (character.Name == "Elena")
+                    {
+                        charStandardAnimation_1 = LoadContentHelper.ElenaStandardAnimation;
+                        charAttackAnimation_1 = LoadContentHelper.ElenaAttackAnimation;
+                        charDeathAnimation_1 = LoadContentHelper.ElenaDeathAnimation;
+                    }
+                    else if (character.Name == "Ells")
+                    {
+                        charStandardAnimation_1 = LoadContentHelper.EllsStandardAnimation;
+                        charAttackAnimation_1 = LoadContentHelper.EllsAttackAnimation;
+                        charDeathAnimation_1 = LoadContentHelper.EllsDeathAnimation;
+                    }
+                    else if (character.Name == "Genefe")
+                    {
+                        charStandardAnimation_1 = LoadContentHelper.GenefeStandardAnimation;
+                        charAttackAnimation_1 = LoadContentHelper.GenefeAttackAnimation;
+                        charDeathAnimation_1 = LoadContentHelper.GenefeDeathAnimation;
+                    }
+                    else if (character.Name == "Marlein")
+                    {
+                        charStandardAnimation_1 = LoadContentHelper.MarleinStandardAnimation;
+                        charAttackAnimation_1 = LoadContentHelper.MarleinAttackAnimation;
+                        charDeathAnimation_1 = LoadContentHelper.MarleinDeathAnimation;
+                    }
+                    else if (character.Name == "Caspar")
+                    {
+                        charStandardAnimation_1 = LoadContentHelper.CasparStandardAnimation;
+                        charAttackAnimation_1 = LoadContentHelper.CasparAttackAnimation;
+                        charDeathAnimation_1 = LoadContentHelper.CasparDeathAnimation;
+                    }
+                    else if (character.Name == "Jos")
+                    {
+                        charStandardAnimation_1 = LoadContentHelper.JosStandardAnimation;
+                        charAttackAnimation_1 = LoadContentHelper.JosAttackAnimation;
+                        charDeathAnimation_1 = LoadContentHelper.JosDeathAnimation;
+                    }
+                    else if (character.Name == "Kaiser")
+                    {
+                        charStandardAnimation_1 = LoadContentHelper.KaiserStandardAnimation;
+                        charAttackAnimation_1 = LoadContentHelper.KaiserAttackAnimation;
+                        charDeathAnimation_1 = LoadContentHelper.KaiserDeathAnimation;
+                    }
+                    else if (character.Name == "Nick")
+                    {
+                        charStandardAnimation_1 = LoadContentHelper.NickStandardAnimation;
+                        charAttackAnimation_1 = LoadContentHelper.NickAttackAnimation;
+                        charDeathAnimation_1 = LoadContentHelper.NickDeathAnimation;
+                    }
+                    else if (character.Name == "Seitz")
+                    {
+                        charStandardAnimation_1 = LoadContentHelper.SeitzStandardAnimation;
+                        charAttackAnimation_1 = LoadContentHelper.SeitzAttackAnimation;
+                        charDeathAnimation_1 = LoadContentHelper.SeitzDeathAnimation;
+                    }
+                    else if (character.Name == "Seyfrid")
+                    {
+                        charStandardAnimation_1 = LoadContentHelper.SeyfridStandardAnimation;
+                        charAttackAnimation_1 = LoadContentHelper.SeyfridAttackAnimation;
+                        charDeathAnimation_1 = LoadContentHelper.SeyfridDeathAnimation;
+                    }
+                    charAttackAnimation_1.active = false;
+                    this.FightCadre.ElementAt<Character>(0).LoadContent(charStandardAnimation_1, this.characterPosition_1);
+                }
+
+                if (groupCount == 1)
+                {
+                    if (character.Name == "Anna")
+                    {
+                        charStandardAnimation_2 = LoadContentHelper.AnnaStandardAnimation;
+                        charAttackAnimation_2 = LoadContentHelper.AnnaAttackAnimation;
+                        charDeathAnimation_2 = LoadContentHelper.AnnaDeathAnimation;
+                    }
+                    else if (character.Name == "Elena")
+                    {
+                        charStandardAnimation_2 = LoadContentHelper.ElenaStandardAnimation;
+                        charAttackAnimation_2 = LoadContentHelper.ElenaAttackAnimation;
+                        charDeathAnimation_2 = LoadContentHelper.ElenaDeathAnimation;
+                    }
+                    else if (character.Name == "Ells")
+                    {
+                        charStandardAnimation_2 = LoadContentHelper.EllsStandardAnimation;
+                        charAttackAnimation_2 = LoadContentHelper.EllsAttackAnimation;
+                        charDeathAnimation_2 = LoadContentHelper.EllsDeathAnimation;
+                    }
+                    else if (character.Name == "Genefe")
+                    {
+                        charStandardAnimation_2 = LoadContentHelper.GenefeStandardAnimation;
+                        charAttackAnimation_2 = LoadContentHelper.GenefeAttackAnimation;
+                        charDeathAnimation_2 = LoadContentHelper.GenefeDeathAnimation;
+                    }
+                    else if (character.Name == "Marlein")
+                    {
+                        charStandardAnimation_2 = LoadContentHelper.MarleinStandardAnimation;
+                        charAttackAnimation_2 = LoadContentHelper.MarleinAttackAnimation;
+                        charDeathAnimation_2 = LoadContentHelper.MarleinDeathAnimation;
+                    }
+                    else if (character.Name == "Caspar")
+                    {
+                        charStandardAnimation_2 = LoadContentHelper.CasparStandardAnimation;
+                        charAttackAnimation_2 = LoadContentHelper.CasparAttackAnimation;
+                        charDeathAnimation_2 = LoadContentHelper.CasparDeathAnimation;
+                    }
+                    else if (character.Name == "Jos")
+                    {
+                        charStandardAnimation_2 = LoadContentHelper.JosStandardAnimation;
+                        charAttackAnimation_2 = LoadContentHelper.JosAttackAnimation;
+                        charDeathAnimation_2 = LoadContentHelper.JosDeathAnimation;
+                    }
+                    else if (character.Name == "Kaiser")
+                    {
+                        charStandardAnimation_2 = LoadContentHelper.KaiserStandardAnimation;
+                        charAttackAnimation_2 = LoadContentHelper.KaiserAttackAnimation;
+                        charDeathAnimation_2 = LoadContentHelper.KaiserDeathAnimation;
+                    }
+                    else if (character.Name == "Nick")
+                    {
+                        charStandardAnimation_2 = LoadContentHelper.NickStandardAnimation;
+                        charAttackAnimation_2 = LoadContentHelper.NickAttackAnimation;
+                        charDeathAnimation_2 = LoadContentHelper.NickDeathAnimation;
+                    }
+                    else if (character.Name == "Seitz")
+                    {
+                        charStandardAnimation_2 = LoadContentHelper.SeitzStandardAnimation;
+                        charAttackAnimation_2 = LoadContentHelper.SeitzAttackAnimation;
+                        charDeathAnimation_2 = LoadContentHelper.SeitzDeathAnimation;
+                    }
+                    else if (character.Name == "Seyfrid")
+                    {
+                        charStandardAnimation_2 = LoadContentHelper.SeyfridStandardAnimation;
+                        charAttackAnimation_2 = LoadContentHelper.SeyfridAttackAnimation;
+                        charDeathAnimation_2 = LoadContentHelper.SeyfridDeathAnimation;
+                    }
+                    charAttackAnimation_2.active = false;
+                    this.FightCadre.ElementAt<Character>(1).LoadContent(charStandardAnimation_2, this.characterPosition_2);
+                }
+
+                if (groupCount == 2)
+                {
+                    if (character.Name == "Anna")
+                    {
+                        charStandardAnimation_3 = LoadContentHelper.AnnaStandardAnimation;
+                        charAttackAnimation_3 = LoadContentHelper.AnnaAttackAnimation;
+                        charDeathAnimation_3 = LoadContentHelper.AnnaDeathAnimation;
+                    }
+                    else if (character.Name == "Elena")
+                    {
+                        charStandardAnimation_3 = LoadContentHelper.ElenaStandardAnimation;
+                        charAttackAnimation_3 = LoadContentHelper.ElenaAttackAnimation;
+                        charDeathAnimation_3 = LoadContentHelper.ElenaDeathAnimation;
+                    }
+                    else if (character.Name == "Ells")
+                    {
+                        charStandardAnimation_3 = LoadContentHelper.EllsStandardAnimation;
+                        charAttackAnimation_3 = LoadContentHelper.EllsAttackAnimation;
+                        charDeathAnimation_3 = LoadContentHelper.EllsDeathAnimation;
+                    }
+                    else if (character.Name == "Genefe")
+                    {
+                        charStandardAnimation_3 = LoadContentHelper.GenefeStandardAnimation;
+                        charAttackAnimation_3 = LoadContentHelper.GenefeAttackAnimation;
+                        charDeathAnimation_3 = LoadContentHelper.GenefeDeathAnimation;
+                    }
+                    else if (character.Name == "Marlein")
+                    {
+                        charStandardAnimation_3 = LoadContentHelper.MarleinStandardAnimation;
+                        charAttackAnimation_3 = LoadContentHelper.MarleinAttackAnimation;
+                        charDeathAnimation_3 = LoadContentHelper.MarleinDeathAnimation;
+                    }
+                    else if (character.Name == "Caspar")
+                    {
+                        charStandardAnimation_3 = LoadContentHelper.CasparStandardAnimation;
+                        charAttackAnimation_3 = LoadContentHelper.CasparAttackAnimation;
+                        charDeathAnimation_3 = LoadContentHelper.CasparDeathAnimation;
+                    }
+                    else if (character.Name == "Jos")
+                    {
+                        charStandardAnimation_3 = LoadContentHelper.JosStandardAnimation;
+                        charAttackAnimation_3 = LoadContentHelper.JosAttackAnimation;
+                        charDeathAnimation_3 = LoadContentHelper.JosDeathAnimation;
+                    }
+                    else if (character.Name == "Kaiser")
+                    {
+                        charStandardAnimation_3 = LoadContentHelper.KaiserStandardAnimation;
+                        charAttackAnimation_3 = LoadContentHelper.KaiserAttackAnimation;
+                        charDeathAnimation_3 = LoadContentHelper.KaiserDeathAnimation;
+                    }
+                    else if (character.Name == "Nick")
+                    {
+                        charStandardAnimation_3 = LoadContentHelper.NickStandardAnimation;
+                        charAttackAnimation_3 = LoadContentHelper.NickAttackAnimation;
+                        charDeathAnimation_3 = LoadContentHelper.NickDeathAnimation;
+                    }
+                    else if (character.Name == "Seitz")
+                    {
+                        charStandardAnimation_3 = LoadContentHelper.SeitzStandardAnimation;
+                        charAttackAnimation_3 = LoadContentHelper.SeitzAttackAnimation;
+                        charDeathAnimation_3 = LoadContentHelper.SeitzDeathAnimation;
+                    }
+                    else if (character.Name == "Seyfrid")
+                    {
+                        charStandardAnimation_3 = LoadContentHelper.SeyfridStandardAnimation;
+                        charAttackAnimation_3 = LoadContentHelper.SeyfridAttackAnimation;
+                        charDeathAnimation_3 = LoadContentHelper.SeyfridDeathAnimation;
+                    }
+                    charAttackAnimation_3.active = false;
+                    this.FightCadre.ElementAt<Character>(2).LoadContent(charStandardAnimation_3, this.characterPosition_3);
+                }
+
+                if (groupCount == 3)
+                {
+                    if (character.Name == "Anna")
+                    {
+                        charStandardAnimation_4 = LoadContentHelper.AnnaStandardAnimation;
+                        charAttackAnimation_4 = LoadContentHelper.AnnaAttackAnimation;
+                        charDeathAnimation_4 = LoadContentHelper.AnnaDeathAnimation;
+                    }
+                    else if (character.Name == "Elena")
+                    {
+                        charStandardAnimation_4 = LoadContentHelper.ElenaStandardAnimation;
+                        charAttackAnimation_4 = LoadContentHelper.ElenaAttackAnimation;
+                        charDeathAnimation_4 = LoadContentHelper.ElenaDeathAnimation;
+                    }
+                    else if (character.Name == "Ells")
+                    {
+                        charStandardAnimation_4 = LoadContentHelper.EllsStandardAnimation;
+                        charAttackAnimation_4 = LoadContentHelper.EllsAttackAnimation;
+                        charDeathAnimation_4 = LoadContentHelper.EllsDeathAnimation;
+                    }
+                    else if (character.Name == "Genefe")
+                    {
+                        charStandardAnimation_4 = LoadContentHelper.GenefeStandardAnimation;
+                        charAttackAnimation_4 = LoadContentHelper.GenefeAttackAnimation;
+                        charDeathAnimation_4 = LoadContentHelper.GenefeDeathAnimation;
+                    }
+                    else if (character.Name == "Marlein")
+                    {
+                        charStandardAnimation_4 = LoadContentHelper.MarleinStandardAnimation;
+                        charAttackAnimation_4 = LoadContentHelper.MarleinAttackAnimation;
+                        charDeathAnimation_4 = LoadContentHelper.MarleinDeathAnimation;
+                    }
+                    else if (character.Name == "Caspar")
+                    {
+                        charStandardAnimation_4 = LoadContentHelper.CasparStandardAnimation;
+                        charAttackAnimation_4 = LoadContentHelper.CasparAttackAnimation;
+                        charDeathAnimation_4 = LoadContentHelper.CasparDeathAnimation;
+                    }
+                    else if (character.Name == "Jos")
+                    {
+                        charStandardAnimation_4 = LoadContentHelper.JosStandardAnimation;
+                        charAttackAnimation_4 = LoadContentHelper.JosAttackAnimation;
+                        charDeathAnimation_4 = LoadContentHelper.JosDeathAnimation;
+                    }
+                    else if (character.Name == "Kaiser")
+                    {
+                        charStandardAnimation_4 = LoadContentHelper.KaiserStandardAnimation;
+                        charAttackAnimation_4 = LoadContentHelper.KaiserAttackAnimation;
+                        charDeathAnimation_4 = LoadContentHelper.KaiserDeathAnimation;
+                    }
+                    else if (character.Name == "Nick")
+                    {
+                        charStandardAnimation_4 = LoadContentHelper.NickStandardAnimation;
+                        charAttackAnimation_4 = LoadContentHelper.NickAttackAnimation;
+                        charDeathAnimation_4 = LoadContentHelper.NickDeathAnimation;
+                    }
+                    else if (character.Name == "Seitz")
+                    {
+                        charStandardAnimation_4 = LoadContentHelper.SeitzStandardAnimation;
+                        charAttackAnimation_4 = LoadContentHelper.SeitzAttackAnimation;
+                        charDeathAnimation_4 = LoadContentHelper.SeitzDeathAnimation;
+                    }
+                    else if (character.Name == "Seyfrid")
+                    {
+                        charStandardAnimation_4 = LoadContentHelper.SeyfridStandardAnimation;
+                        charAttackAnimation_4 = LoadContentHelper.SeyfridAttackAnimation;
+                        charDeathAnimation_4 = LoadContentHelper.SeyfridDeathAnimation;
+                    }
+                    charAttackAnimation_4.active = false;
+                    this.FightCadre.ElementAt<Character>(3).LoadContent(charStandardAnimation_4, this.characterPosition_4);
+                }
+
+                groupCount++;
+            }
+
+            foreach (Enemy enemy in this.Enemies)
+            {
+                // Sobald der Gegner eine Animation bestizt wird dies erkannt und die Animationen werden geladen
+                if (enemy.isAnimated)
+                {
+                    if (enemyCount == 0)
+                    {
+                        if (enemy.Name == "Anna")
+                        {
+                            enemyStandardAnimation_1 = LoadContentHelper.EnemyAnnaStandardAnimation;
+                            enemyAttackAnimation_1 = LoadContentHelper.EnemyAnnaAttackAnimation;
+                            enemyDeathAnimation_1 = LoadContentHelper.EnemyAnnaDeathAnimation;
+                        }
+                        else if (enemy.Name == "Elena")
+                        {
+                            enemyStandardAnimation_1 = LoadContentHelper.EnemyElenaStandardAnimation;
+                            enemyAttackAnimation_1 = LoadContentHelper.EnemyElenaAttackAnimation;
+                            enemyDeathAnimation_1 = LoadContentHelper.EnemyElenaDeathAnimation;
+                        }
+                        else if (enemy.Name == "Ells")
+                        {
+                            enemyStandardAnimation_1 = LoadContentHelper.EnemyEllsStandardAnimation;
+                            enemyAttackAnimation_1 = LoadContentHelper.EnemyEllsAttackAnimation;
+                            enemyDeathAnimation_1 = LoadContentHelper.EnemyEllsDeathAnimation;
+                        }
+                        else if (enemy.Name == "Irene")
+                        {
+                            enemyStandardAnimation_1 = LoadContentHelper.EnemyIreneStandardAnimation;
+                            enemyAttackAnimation_1 = LoadContentHelper.EnemyIreneAttackAnimation;
+                            enemyDeathAnimation_1 = LoadContentHelper.EnemyIreneDeathAnimation;
+                        }
+                        else if (enemy.Name == "Marlein")
+                        {
+                            enemyStandardAnimation_1 = LoadContentHelper.EnemyMarleinStandardAnimation;
+                            enemyAttackAnimation_1 = LoadContentHelper.EnemyMarleinAttackAnimation;
+                            enemyDeathAnimation_1 = LoadContentHelper.EnemyMarleinDeathAnimation;
+                        }
+                        else if (enemy.Name == "Kaiser")
+                        {
+                            enemyStandardAnimation_1 = LoadContentHelper.EnemyKaiserStandardAnimation;
+                            enemyAttackAnimation_1 = LoadContentHelper.EnemyKaiserAttackAnimation;
+                            enemyDeathAnimation_1 = LoadContentHelper.EnemyKaiserDeathAnimation;
+                        }
+                        else if (enemy.Name == "Michael")
+                        {
+                            enemyStandardAnimation_1 = LoadContentHelper.EnemyMichaelStandardAnimation;
+                            enemyAttackAnimation_1 = LoadContentHelper.EnemyMichaelAttackAnimation;
+                            enemyDeathAnimation_1 = LoadContentHelper.EnemyMichaelDeathAnimation;
+                        }
+                        else if (enemy.Name == "Reinhardt")
+                        {
+                            enemyStandardAnimation_1 = LoadContentHelper.EnemyReinhardtStandardAnimation;
+                            enemyAttackAnimation_1 = LoadContentHelper.EnemyReinhardtAttackAnimation;
+                            enemyDeathAnimation_1 = LoadContentHelper.EnemyReinhardtDeathAnimation;
+                        }
+                        enemyAttackAnimation_1.active = false;
+                        this.Enemies.ElementAt<Character>(0).LoadContent(enemyStandardAnimation_1, this.enemyPosition_1);
+                    }
+
+                    if (enemyCount == 1)
+                    {
+                        if (enemy.Name == "Anna")
+                        {
+                            enemyStandardAnimation_2 = LoadContentHelper.EnemyAnnaStandardAnimation;
+                            enemyAttackAnimation_2 = LoadContentHelper.EnemyAnnaAttackAnimation;
+                            enemyDeathAnimation_2 = LoadContentHelper.EnemyAnnaDeathAnimation;
+                        }
+                        else if (enemy.Name == "Elena")
+                        {
+                            enemyStandardAnimation_2 = LoadContentHelper.EnemyElenaStandardAnimation;
+                            enemyAttackAnimation_2 = LoadContentHelper.EnemyElenaAttackAnimation;
+                            enemyDeathAnimation_2 = LoadContentHelper.EnemyElenaDeathAnimation;
+                        }
+                        else if (enemy.Name == "Ells")
+                        {
+                            enemyStandardAnimation_2 = LoadContentHelper.EnemyEllsStandardAnimation;
+                            enemyAttackAnimation_2 = LoadContentHelper.EnemyEllsAttackAnimation;
+                            enemyDeathAnimation_2 = LoadContentHelper.EnemyEllsDeathAnimation;
+                        }
+                        else if (enemy.Name == "Irene")
+                        {
+                            enemyStandardAnimation_2 = LoadContentHelper.EnemyIreneStandardAnimation;
+                            enemyAttackAnimation_2 = LoadContentHelper.EnemyIreneAttackAnimation;
+                            enemyDeathAnimation_2 = LoadContentHelper.EnemyIreneDeathAnimation;
+                        }
+                        else if (enemy.Name == "Marlein")
+                        {
+                            enemyStandardAnimation_2 = LoadContentHelper.EnemyMarleinStandardAnimation;
+                            enemyAttackAnimation_2 = LoadContentHelper.EnemyMarleinAttackAnimation;
+                            enemyDeathAnimation_2 = LoadContentHelper.EnemyMarleinDeathAnimation;
+                        }
+                        else if (enemy.Name == "Kaiser")
+                        {
+                            enemyStandardAnimation_2 = LoadContentHelper.EnemyKaiserStandardAnimation;
+                            enemyAttackAnimation_2 = LoadContentHelper.EnemyKaiserAttackAnimation;
+                            enemyDeathAnimation_2 = LoadContentHelper.EnemyKaiserDeathAnimation;
+                        }
+                        else if (enemy.Name == "Michael")
+                        {
+                            enemyStandardAnimation_2 = LoadContentHelper.EnemyMichaelStandardAnimation;
+                            enemyAttackAnimation_2 = LoadContentHelper.EnemyMichaelAttackAnimation;
+                            enemyDeathAnimation_2 = LoadContentHelper.EnemyMichaelDeathAnimation;
+                        }
+                        else if (enemy.Name == "Reinhardt")
+                        {
+                            enemyStandardAnimation_2 = LoadContentHelper.EnemyReinhardtStandardAnimation;
+                            enemyAttackAnimation_2 = LoadContentHelper.EnemyReinhardtAttackAnimation;
+                            enemyDeathAnimation_2 = LoadContentHelper.EnemyReinhardtDeathAnimation;
+                        }
+                        enemyAttackAnimation_2.active = false;
+                        this.Enemies.ElementAt<Character>(1).LoadContent(enemyStandardAnimation_2, this.enemyPosition_2);
+                    }
+
+                    if (enemyCount == 2)
+                    {
+                        if (enemy.Name == "Anna")
+                        {
+                            enemyStandardAnimation_3 = LoadContentHelper.EnemyAnnaStandardAnimation;
+                            enemyAttackAnimation_3 = LoadContentHelper.EnemyAnnaAttackAnimation;
+                            enemyDeathAnimation_3 = LoadContentHelper.EnemyAnnaDeathAnimation;
+                        }
+                        else if (enemy.Name == "Elena")
+                        {
+                            enemyStandardAnimation_3 = LoadContentHelper.EnemyElenaStandardAnimation;
+                            enemyAttackAnimation_3 = LoadContentHelper.EnemyElenaAttackAnimation;
+                            enemyDeathAnimation_3 = LoadContentHelper.EnemyElenaDeathAnimation;
+                        }
+                        else if (enemy.Name == "Ells")
+                        {
+                            enemyStandardAnimation_3 = LoadContentHelper.EnemyEllsStandardAnimation;
+                            enemyAttackAnimation_3 = LoadContentHelper.EnemyEllsAttackAnimation;
+                            enemyDeathAnimation_3 = LoadContentHelper.EnemyEllsDeathAnimation;
+                        }
+                        else if (enemy.Name == "Irene")
+                        {
+                            enemyStandardAnimation_3 = LoadContentHelper.EnemyIreneStandardAnimation;
+                            enemyAttackAnimation_3 = LoadContentHelper.EnemyIreneAttackAnimation;
+                            enemyDeathAnimation_3 = LoadContentHelper.EnemyIreneDeathAnimation;
+                        }
+                        else if (enemy.Name == "Marlein")
+                        {
+                            enemyStandardAnimation_3 = LoadContentHelper.EnemyMarleinStandardAnimation;
+                            enemyAttackAnimation_3 = LoadContentHelper.EnemyMarleinAttackAnimation;
+                            enemyDeathAnimation_3 = LoadContentHelper.EnemyMarleinDeathAnimation;
+                        }
+                        else if (enemy.Name == "Kaiser")
+                        {
+                            enemyStandardAnimation_3 = LoadContentHelper.EnemyKaiserStandardAnimation;
+                            enemyAttackAnimation_3 = LoadContentHelper.EnemyKaiserAttackAnimation;
+                            enemyDeathAnimation_3 = LoadContentHelper.EnemyKaiserDeathAnimation;
+                        }
+                        else if (enemy.Name == "Michael")
+                        {
+                            enemyStandardAnimation_3 = LoadContentHelper.EnemyMichaelStandardAnimation;
+                            enemyAttackAnimation_3 = LoadContentHelper.EnemyMichaelAttackAnimation;
+                            enemyDeathAnimation_3 = LoadContentHelper.EnemyMichaelDeathAnimation;
+                        }
+                        else if (enemy.Name == "Reinhardt")
+                        {
+                            enemyStandardAnimation_3 = LoadContentHelper.EnemyReinhardtStandardAnimation;
+                            enemyAttackAnimation_3 = LoadContentHelper.EnemyReinhardtAttackAnimation;
+                            enemyDeathAnimation_3 = LoadContentHelper.EnemyReinhardtDeathAnimation;
+                        }
+                        enemyAttackAnimation_3.active = false;
+                        this.Enemies.ElementAt<Character>(2).LoadContent(enemyStandardAnimation_3, this.enemyPosition_3);
+                    }
+
+                    if (enemyCount == 3)
+                    {
+                        if (enemy.Name == "Anna")
+                        {
+                            enemyStandardAnimation_4 = LoadContentHelper.EnemyAnnaStandardAnimation;
+                            enemyAttackAnimation_4 = LoadContentHelper.EnemyAnnaAttackAnimation;
+                            enemyDeathAnimation_4 = LoadContentHelper.EnemyAnnaDeathAnimation;
+                        }
+                        else if (enemy.Name == "Elena")
+                        {
+                            enemyStandardAnimation_4 = LoadContentHelper.EnemyElenaStandardAnimation;
+                            enemyAttackAnimation_4 = LoadContentHelper.EnemyElenaAttackAnimation;
+                            enemyDeathAnimation_4 = LoadContentHelper.EnemyElenaDeathAnimation;
+                        }
+                        else if (enemy.Name == "Ells")
+                        {
+                            enemyStandardAnimation_4 = LoadContentHelper.EnemyEllsStandardAnimation;
+                            enemyAttackAnimation_4 = LoadContentHelper.EnemyEllsAttackAnimation;
+                            enemyDeathAnimation_4 = LoadContentHelper.EnemyEllsDeathAnimation;
+                        }
+                        else if (enemy.Name == "Irene")
+                        {
+                            enemyStandardAnimation_4 = LoadContentHelper.EnemyIreneStandardAnimation;
+                            enemyAttackAnimation_4 = LoadContentHelper.EnemyIreneAttackAnimation;
+                            enemyDeathAnimation_4 = LoadContentHelper.EnemyIreneDeathAnimation;
+                        }
+                        else if (enemy.Name == "Marlein")
+                        {
+                            enemyStandardAnimation_4 = LoadContentHelper.EnemyMarleinStandardAnimation;
+                            enemyAttackAnimation_4 = LoadContentHelper.EnemyMarleinAttackAnimation;
+                            enemyDeathAnimation_4 = LoadContentHelper.EnemyMarleinDeathAnimation;
+                        }
+                        else if (enemy.Name == "Kaiser")
+                        {
+                            enemyStandardAnimation_4 = LoadContentHelper.EnemyKaiserStandardAnimation;
+                            enemyAttackAnimation_4 = LoadContentHelper.EnemyKaiserAttackAnimation;
+                            enemyDeathAnimation_4 = LoadContentHelper.EnemyKaiserDeathAnimation;
+                        }
+                        else if (enemy.Name == "Michael")
+                        {
+                            enemyStandardAnimation_4 = LoadContentHelper.EnemyMichaelStandardAnimation;
+                            enemyAttackAnimation_4 = LoadContentHelper.EnemyMichaelAttackAnimation;
+                            enemyDeathAnimation_4 = LoadContentHelper.EnemyMichaelDeathAnimation;
+                        }
+                        else if (enemy.Name == "Reinhardt")
+                        {
+                            enemyStandardAnimation_4 = LoadContentHelper.EnemyReinhardtStandardAnimation;
+                            enemyAttackAnimation_4 = LoadContentHelper.EnemyReinhardtAttackAnimation;
+                            enemyDeathAnimation_4 = LoadContentHelper.EnemyReinhardtDeathAnimation;
+                        }
+                        enemyAttackAnimation_4.active = false;
+                        this.Enemies.ElementAt<Character>(3).LoadContent(enemyStandardAnimation_4, this.enemyPosition_4);
+                    }
+
+                    enemyCount++;
+                }
+                // Wenn der Gegner erstellt wird und es keine Animation für den Gegner gibt wird dem entsprechend nur ein Bild des gegeners geladen
+                else
+                {
+                    if (enemyCount == 0)
+                    {
+                        staticEnemy_1 = new GUIElement(this.Enemies.ElementAt<Enemy>(0).standardAnimationPath, (int)this.enemyPosition_1.X, (int)this.enemyPosition_1.Y);
+                    }
+
+                    if (enemyCount == 1)
+                    {
+                        staticEnemy_2 = new GUIElement(this.Enemies.ElementAt<Enemy>(1).standardAnimationPath, (int)this.enemyPosition_2.X, (int)this.enemyPosition_2.Y);
+                    }
+
+                    if (enemyCount == 2)
+                    {
+                        staticEnemy_3 = new GUIElement(this.Enemies.ElementAt<Enemy>(2).standardAnimationPath, (int)this.enemyPosition_3.X, (int)this.enemyPosition_3.Y);
+                    }
+
+                    if (enemyCount == 3)
+                    {
+                        staticEnemy_4 = new GUIElement(this.Enemies.ElementAt<Enemy>(3).standardAnimationPath, (int)this.enemyPosition_4.X, (int)this.enemyPosition_4.Y);
+                    }
+                    enemyCount++;
+                }
+
+            }
+
+
+
+
+            int skillCounter = 0;
+            int charCounter = 0;
+            int enemieCounter = 0;
+
+
+
+            foreach (Character character in this.FightCadre)
+            {
+
+                if (character.GetType() == typeof(PartyMember) || character.GetType() == typeof(Player))
+                {
+
+                    if (charCounter == 0)
+                    {
+                        this.Character1Name = new TextElement(LoadContentHelper.AwesomeFont, character.Name, (int)this.targetPosition_1.X, (int)this.targetPosition_1.Y, true, MouseIntersect);
+                        this.Character1Name.tclickEvent += this.onClickTarget;
+                        foreach (Skill skill in character.Skills)
+                        {
+                            if (skillCounter == 0)
+                            {
+                                this.character1skill1 = new TextElement(LoadContentHelper.AwesomeFont, skill.Name, (int)this.skillPosition_1.X, (int)this.skillPosition_1.Y, true, MouseIntersect);
+                                this.character1skill1.tclickEvent += this.OnClickSkill;
+                            }
+                            if (skillCounter == 1)
+                            {
+                                this.character1skill2 = new TextElement(LoadContentHelper.AwesomeFont, skill.Name, (int)this.skillPosition_2.X, (int)this.skillPosition_2.Y, true, MouseIntersect);
+                                this.character1skill2.tclickEvent += this.OnClickSkill;
+                            }
+                            if (skillCounter == 2)
+                            {
+                                this.character1skill3 = new TextElement(LoadContentHelper.AwesomeFont, skill.Name, (int)this.skillPosition_3.X, (int)this.skillPosition_3.Y, true, MouseIntersect);
+                                this.character1skill3.tclickEvent += this.OnClickSkill;
+                            }
+                            if (skillCounter == 3)
+                            {
+                                this.character1skill4 = new TextElement(LoadContentHelper.AwesomeFont, skill.Name, (int)this.skillPosition_4.X, (int)this.skillPosition_4.Y, true, MouseIntersect);
+                                this.character1skill4.tclickEvent += this.OnClickSkill;
+                            }
+                            skillCounter++;
+                        }
+                    }
+                    if (charCounter == 1)
+                    {
+                        this.Character2Name = new TextElement(LoadContentHelper.AwesomeFont, character.Name, (int)this.targetPosition_2.X, (int)this.targetPosition_2.Y, true, MouseIntersect);
+                        this.Character2Name.tclickEvent += this.onClickTarget;
+                        foreach (Skill skill in character.Skills)
+                        {
+                            if (skillCounter == 0)
+                            {
+                                this.character2skill1 = new TextElement(LoadContentHelper.AwesomeFont, skill.Name, (int)this.skillPosition_1.X, (int)this.skillPosition_1.Y, true, MouseIntersect);
+                                this.character2skill1.tclickEvent += this.OnClickSkill;
+
+                            }
+                            if (skillCounter == 1)
+                            {
+                                this.character2skill2 = new TextElement(LoadContentHelper.AwesomeFont, skill.Name, (int)this.skillPosition_2.X, (int)this.skillPosition_2.Y, true, MouseIntersect);
+                                this.character2skill2.tclickEvent += this.OnClickSkill;
+                            }
+                            if (skillCounter == 2)
+                            {
+                                this.character2skill3 = new TextElement(LoadContentHelper.AwesomeFont, skill.Name, (int)this.skillPosition_3.X, (int)this.skillPosition_3.Y, true, MouseIntersect);
+                                this.character2skill3.tclickEvent += this.OnClickSkill;
+                            }
+                            if (skillCounter == 3)
+                            {
+                                this.character2skill4 = new TextElement(LoadContentHelper.AwesomeFont, skill.Name, (int)this.skillPosition_4.X, (int)this.skillPosition_4.Y, true, MouseIntersect);
+                                this.character2skill4.tclickEvent += this.OnClickSkill;
+                            }
+
+                            skillCounter++;
+                        }
+
+                    }
+
+                    if (charCounter == 2)
+                    {
+                        this.Character3Name = new TextElement(LoadContentHelper.AwesomeFont, character.Name, (int)this.targetPosition_3.X, (int)this.targetPosition_3.Y, true, MouseIntersect);
+                        this.Character3Name.tclickEvent += this.onClickTarget;
+
+                        foreach (Skill skill in character.Skills)
+                        {
+                            if (skillCounter == 0)
+                            {
+                                this.character3skill1 = new TextElement(LoadContentHelper.AwesomeFont, skill.Name, (int)this.skillPosition_1.X, (int)this.skillPosition_1.Y, true, MouseIntersect);
+                                this.character3skill1.tclickEvent += this.OnClickSkill;
+                            }
+                            if (skillCounter == 1)
+                            {
+                                this.character3skill2 = new TextElement(LoadContentHelper.AwesomeFont, skill.Name, (int)this.skillPosition_2.X, (int)this.skillPosition_2.Y, true, MouseIntersect);
+                                this.character3skill2.tclickEvent += this.OnClickSkill;
+                            }
+                            if (skillCounter == 2)
+                            {
+                                this.character3skill3 = new TextElement(LoadContentHelper.AwesomeFont, skill.Name, (int)this.skillPosition_3.X, (int)this.skillPosition_3.Y, true, MouseIntersect);
+                                this.character3skill3.tclickEvent += this.OnClickSkill;
+                            }
+                            if (skillCounter == 3)
+                            {
+                                this.character3skill4 = new TextElement(LoadContentHelper.AwesomeFont, skill.Name, (int)this.skillPosition_4.X, (int)this.skillPosition_4.Y, true, MouseIntersect);
+                                this.character3skill4.tclickEvent += this.OnClickSkill;
+                            }
+
+                            skillCounter++;
+                        }
+                    }
+                    if (charCounter == 3)
+                    {
+                        this.Character4Name = new TextElement(LoadContentHelper.AwesomeFont, character.Name, (int)this.targetPosition_4.X, (int)this.targetPosition_4.Y, true, MouseIntersect);
+                        this.Character4Name.tclickEvent += this.onClickTarget;
+                        foreach (Skill skill in character.Skills)
+                        {
+                            if (skillCounter == 0)
+                            {
+                                this.character4skill1 = new TextElement(LoadContentHelper.AwesomeFont, skill.Name, (int)this.skillPosition_1.X, (int)this.skillPosition_1.Y, true, MouseIntersect);
+                                this.character4skill1.tclickEvent += this.OnClickSkill;
+                            }
+                            if (skillCounter == 1)
+                            {
+                                this.character4skill2 = new TextElement(LoadContentHelper.AwesomeFont, skill.Name, (int)this.skillPosition_2.X, (int)this.skillPosition_2.Y, true, MouseIntersect);
+                                this.character4skill2.tclickEvent += this.OnClickSkill;
+                            }
+                            if (skillCounter == 2)
+                            {
+                                this.character4skill3 = new TextElement(LoadContentHelper.AwesomeFont, skill.Name, (int)this.skillPosition_3.X, (int)this.skillPosition_3.Y, true, MouseIntersect);
+                                this.character4skill3.tclickEvent += this.OnClickSkill;
+                            }
+                            if (skillCounter == 3)
+                            {
+                                this.character4skill4 = new TextElement(LoadContentHelper.AwesomeFont, skill.Name, (int)this.skillPosition_4.X, (int)this.skillPosition_4.Y, true, MouseIntersect);
+                                this.character4skill4.tclickEvent += this.OnClickSkill;
+                            }
+                            skillCounter++;
+                        }
+                    }
+                    skillCounter = 0;
+                    charCounter++;
+                }
+            }
+            foreach (Enemy enemy in this.Enemies)
+            {
+                if (enemieCounter == 0)
+                {
+                    this.enemy1Name = new TextElement(LoadContentHelper.AwesomeFont, enemy.Name, (int)this.targetPosition_1.X, (int)this.targetPosition_1.Y, true, MouseIntersect);
+                    this.enemy1Name.tclickEvent += this.onClickTarget;
+                }
+                if (enemieCounter == 1)
+                {
+                    this.enemy2Name = new TextElement(LoadContentHelper.AwesomeFont, enemy.Name, (int)this.targetPosition_2.X, (int)this.targetPosition_2.Y, true, MouseIntersect);
+                    this.enemy2Name.tclickEvent += this.onClickTarget;
+                }
+                if (enemieCounter == 2)
+                {
+                    this.enemy3Name = new TextElement(LoadContentHelper.AwesomeFont, enemy.Name, (int)this.targetPosition_3.X, (int)this.targetPosition_3.Y, true, MouseIntersect);
+                    this.enemy3Name.tclickEvent += this.onClickTarget;
+                }
+                if (enemieCounter == 3)
+                {
+                    this.enemy4Name = new TextElement(LoadContentHelper.AwesomeFont, enemy.Name, (int)this.targetPosition_4.X, (int)this.targetPosition_4.Y, true, MouseIntersect);
+                    this.enemy4Name.tclickEvent += this.onClickTarget;
+                }
+                enemieCounter++;
+            }
+        }
+
         //Läd alle Texturen und Daten die das Event benötigt
         public void LoadContent(ContentManager content)
         {
             Click = content.Load<SoundEffect>("Sounds\\Effects\\click");
             Punch = content.Load<SoundEffect>("Sounds\\Effects\\Punch");
-            this.LoadTextures(content);
-
-            //GUIElemente für die Statischen Gegner erstellt
-            GUIElement enemy_1;
-            GUIElement enemy_2;
-            GUIElement enemy_3;
-            GUIElement enemy_4;
-
-            int groupCount = 0;
-            int enemyCount = 0;
+            MouseIntersect = content.Load<SoundEffect>("Sounds\\Effects\\MouseIntersect");
 
             hitAnimation.LoadContent(content.Load<Texture2D>("Animations\\Skills\\Physical_Hit"), Vector2.Zero, 192, 192, this.animationSpeed - 200, Color.White, 1f, false, 1, 5, false, false);
             Hit = new Skill("PhysicalHit", 0, null, null, null, null);
@@ -314,132 +1028,8 @@ namespace RPG.Events
             groupHit.LoadContent(hitAnimation, new Vector2(0, 0));
             groupHitAnimation.active = false;
 
-            foreach (Character chars in this.FightCadre)
-            {
-                //Anpassung benötigt da am Ende Festwerte eingetragen wurden
-                if (groupCount == 0)
-                {
-                    charStandardAnimation_1.LoadContent(content.Load<Texture2D>(this.FightCadre.ElementAt<Character>(0).standardAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, true, 1, 3, false, false);
-                    this.FightCadre.ElementAt<Character>(0).LoadContent(charStandardAnimation_1, this.characterPosition_1);
-                    charAttackAnimation_1.LoadContent(content.Load<Texture2D>(this.FightCadre.ElementAt<Character>(0).attackAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, false, 1, 6, false, false);
-                    charDeathAnimation_1.LoadContent(content.Load<Texture2D>(this.FightCadre.ElementAt<Character>(0).deathAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, true, 6, 1, false,true);
-                    charAttackAnimation_1.active = false;
-                }
-
-                if (groupCount == 1)
-                {
-                    charStandardAnimation_2.LoadContent(content.Load<Texture2D>(this.FightCadre.ElementAt<Character>(1).standardAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, true, 1, 3, false, false);
-                    this.FightCadre.ElementAt<Character>(1).LoadContent(charStandardAnimation_2, this.characterPosition_2);
-                    charAttackAnimation_2.LoadContent(content.Load<Texture2D>(this.FightCadre.ElementAt<Character>(1).attackAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, false, 1, 6, false, false);
-                    charDeathAnimation_2.LoadContent(content.Load<Texture2D>(this.FightCadre.ElementAt<Character>(1).deathAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, true, 6, 1, false, true);
-                    charAttackAnimation_2.active = false;
-                }
-
-                if (groupCount == 2)
-                {
-                    charStandardAnimation_3.LoadContent(content.Load<Texture2D>(this.FightCadre.ElementAt<Character>(2).standardAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, true, 1, 3, false, false);
-                    this.FightCadre.ElementAt<Character>(2).LoadContent(charStandardAnimation_3, this.characterPosition_3);
-                    charAttackAnimation_3.LoadContent(content.Load<Texture2D>(this.FightCadre.ElementAt<Character>(2).attackAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, false, 1, 6, false, false);
-                    charDeathAnimation_3.LoadContent(content.Load<Texture2D>(this.FightCadre.ElementAt<Character>(2).deathAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, true, 6, 1, false, true);
-                    charAttackAnimation_3.active = false;
-                }
-
-                if (groupCount == 3)
-                {
-                    charStandardAnimation_4.LoadContent(content.Load<Texture2D>(this.FightCadre.ElementAt<Character>(3).standardAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, true, 1, 3, false, false);
-                    this.FightCadre.ElementAt<Character>(3).LoadContent(charStandardAnimation_4, this.characterPosition_4);
-                    charAttackAnimation_4.LoadContent(content.Load<Texture2D>(this.FightCadre.ElementAt<Character>(3).attackAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, false, 1, 6, false, false);
-                    charDeathAnimation_4.LoadContent(content.Load<Texture2D>(this.FightCadre.ElementAt<Character>(3).deathAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, true, 6, 1, false, true);
-                    charAttackAnimation_4.active = false;
-                }
-
-                groupCount++;
-            }
-
-
-            foreach (Enemy chars in this.Enemies)
-            {
-                // Sobald der Gegner eine Animation bestizt wird dies erkannt und die Animationen werden geladen
-                if (chars.isAnimated)
-                {
-                    if (enemyCount == 0)
-                    {
-                        enemyStandardAnimation_1.LoadContent(content.Load<Texture2D>(this.Enemies.ElementAt<Enemy>(0).standardAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, true, 0, 2, true, false);
-                        this.Enemies.ElementAt<Enemy>(0).LoadContent(enemyStandardAnimation_1, this.enemyPosition_1);
-                        enemyAttackAnimation_1.LoadContent(content.Load<Texture2D>(this.Enemies.ElementAt<Enemy>(0).attackAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, false, 0, 5, true, false);
-                        enemyDeathAnimation_1.LoadContent(content.Load<Texture2D>(this.Enemies.ElementAt<Enemy>(0).deathAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, true, 6, 1, false, true);
-                        enemyAttackAnimation_1.active = false;
-                    }
-
-                    if (enemyCount == 1)
-                    {
-                        enemyStandardAnimation_2.LoadContent(content.Load<Texture2D>(this.Enemies.ElementAt<Enemy>(1).standardAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, true, 0, 2, true, false);
-                        this.Enemies.ElementAt<Enemy>(1).LoadContent(enemyStandardAnimation_2, this.characterPosition_2);
-                        enemyAttackAnimation_2.LoadContent(content.Load<Texture2D>(this.Enemies.ElementAt<Enemy>(1).attackAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, false, 0, 2, true, false);
-                        enemyDeathAnimation_2.LoadContent(content.Load<Texture2D>(this.Enemies.ElementAt<Enemy>(1).deathAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, false, 0, 2, true, true);
-                        enemyAttackAnimation_2.active = false;
-                    }
-
-                    if (enemyCount == 2)
-                    {
-                        enemyStandardAnimation_3.LoadContent(content.Load<Texture2D>(this.Enemies.ElementAt<Enemy>(2).standardAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, true, 0, 2, true, false);
-                        this.Enemies.ElementAt<Enemy>(2).LoadContent(enemyStandardAnimation_3, this.characterPosition_3);
-                        enemyAttackAnimation_3.LoadContent(content.Load<Texture2D>(this.Enemies.ElementAt<Enemy>(2).attackAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, false, 0, 2, true, false);
-                        enemyDeathAnimation_3.LoadContent(content.Load<Texture2D>(this.Enemies.ElementAt<Enemy>(2).deathAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, false, 0, 2, true, true);
-                        enemyAttackAnimation_3.active = false;
-                    }
-
-                    if (enemyCount == 3)
-                    {
-                        enemyStandardAnimation_4.LoadContent(content.Load<Texture2D>(this.Enemies.ElementAt<Enemy>(3).standardAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, true, 1, 3, false, false);
-                        this.Enemies.ElementAt<Enemy>(3).LoadContent(enemyStandardAnimation_4, this.characterPosition_4);
-                        enemyAttackAnimation_4.LoadContent(content.Load<Texture2D>(this.Enemies.ElementAt<Enemy>(3).attackAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, false, 0, 2, true, false);
-                        enemyDeathAnimation_4.LoadContent(content.Load<Texture2D>(this.Enemies.ElementAt<Enemy>(3).deathAnimationPath), Vector2.Zero, this.characterSize, this.characterSize, this.animationSpeed, Color.White, 1f, false, 0, 2, true, true);
-                        enemyAttackAnimation_4.active = false;
-                    }
-
-                    enemyCount++;
-                }
-                // Wenn der Gegner erstellt wird und es keine Animation für den Gegner gibt wird dem entsprechend nur ein Bild des gegeners geladen
-                else
-                {
-                    if (enemyCount == 0)
-                    {
-                        enemy_1 = new GUIElement(this.Enemies.ElementAt<Enemy>(0).standardAnimationPath, (int) this.enemyPosition_1.X, (int) this.enemyPosition_1.Y);
-                    }
-
-                    if (enemyCount == 1)
-                    {
-                        enemy_2 = new GUIElement(this.Enemies.ElementAt<Enemy>(1).standardAnimationPath, (int) this.enemyPosition_2.X, (int) this.enemyPosition_2.Y);
-                    }
-
-                    if (enemyCount == 2)
-                    {
-                        enemy_3 = new GUIElement(this.Enemies.ElementAt<Enemy>(2).standardAnimationPath, (int) this.enemyPosition_3.X, (int) this.enemyPosition_3.Y);
-                    }
-
-                    if (enemyCount == 3)
-                    {
-                        enemy_4 = new GUIElement(this.Enemies.ElementAt<Enemy>(3).standardAnimationPath, (int) this.enemyPosition_4.X, (int) this.enemyPosition_4.Y);
-                    }
-                    enemyCount++;
-                }
-
-            }
-
-        }
-
-        public void LoadTextures(ContentManager content)
-        {
-            
-            AwesomeFont = content.Load<SpriteFont>("Fonts\\AwesomeFont");
-            int skillCounter = 0;
-            int charCounter = 0;
-            int enemieCounter = 0;
-
             Background.LoadContent(content);
-            Back = new TextElement("Back", (int)targetPosition_4.X, (int)targetPosition_4.Y + 25, true);
-            Back.LoadContent(content);
+            Back = new TextElement(LoadContentHelper.AwesomeFont, "Back", (int)targetPosition_4.X, (int)targetPosition_4.Y + 25, true, MouseIntersect);
             Back.tclickEvent += OnClickElement;
 
             ActivePartymember1Arrow = new GUIElement("Others\\ActivePartymemberArrow", (int)characterPosition_1.X - 60, (int)characterPosition_1.Y - 10);
@@ -466,24 +1056,22 @@ namespace RPG.Events
             battleEvaluation = new BattleEvaluationEvent();
             battleEvaluation.LoadContent(content);
 
-            this.attackSkill = new TextElement("Angriff", (int) this.attackSkillPosition.X, (int) this.attackSkillPosition.Y, true);
-            this.attackSkill.LoadContent(content);
+            this.attackSkill = new TextElement(LoadContentHelper.AwesomeFont, "Angriff", (int)this.attackSkillPosition.X, (int)this.attackSkillPosition.Y, true, MouseIntersect);
             this.attackSkill.tclickEvent += OnClickSkill;
-            this.restSkill = new TextElement("Ausruhen", (int) this.restSkillPosition.X, (int) this.restSkillPosition.Y, true);
-            this.restSkill.LoadContent(content);
+            this.restSkill = new TextElement(LoadContentHelper.AwesomeFont, "Ausruhen", (int)this.restSkillPosition.X, (int)this.restSkillPosition.Y, true, MouseIntersect);
             this.restSkill.tclickEvent += OnClickSkill;
 
             skillBox = new GUIElement("Boxes\\SkillBox");
             skillBox.LoadContent(content);
-            skillBox.CenterElement(576,720);
-            skillBox.moveElement(0,245);
+            skillBox.CenterElement(576, 720);
+            skillBox.moveElement(0, 245);
 
             targetBox = new GUIElement("Boxes\\SkillBox");
             targetBox.LoadContent(content);
             targetBox.CenterElement(576, 720);
             targetBox.moveElement(0, 245);
 
-            CharacterStatBox = new GUIElement("Boxes\\Character_Stat_Box",118,88);
+            CharacterStatBox = new GUIElement("Boxes\\Character_Stat_Box", 118, 88);
             CharacterStatBox.LoadContent(content);
 
             this.mindBlownIcoCharacter_1 = new GUIElement("Icons\\Mindblown_Icon", (int)icoPositionCharacter_1.X, (int)icoPositionCharacter_1.Y);
@@ -601,188 +1189,8 @@ namespace RPG.Events
             haloIcoEnemy_4.LoadContent(content);
             toxicIcoEnemy_4.LoadContent(content);
 
-            foreach (Character character in this.FightCadre)
-            {
-
-                if (character.GetType() == typeof(PartyMember) || character.GetType() == typeof(Player))
-                {
-
-                    if (charCounter == 0)
-                    {
-                        this.Character1Name = new TextElement(character.Name, (int)this.targetPosition_1.X, (int)this.targetPosition_1.Y, true);
-                        this.Character1Name.LoadContent(content);
-                        this.Character1Name.tclickEvent += this.onClickTarget;
-                        foreach (Skill skill in character.Skills)
-                        {
-                            if (skillCounter == 0)
-                            {
-                                this.character1skill1 = new TextElement(skill.Name, (int)this.skillPosition_1.X, (int)this.skillPosition_1.Y, true);
-                                this.character1skill1.LoadContent(content);
-                                this.character1skill1.tclickEvent += this.OnClickSkill;
-                            }
-                            if (skillCounter == 1)
-                            {
-                                this.character1skill2 = new TextElement(skill.Name, (int)this.skillPosition_2.X, (int)this.skillPosition_2.Y, true);
-                                this.character1skill2.LoadContent(content);
-                                this.character1skill2.tclickEvent += this.OnClickSkill;
-                            }
-                            if (skillCounter == 2)
-                            {
-                                this.character1skill3 = new TextElement(skill.Name, (int)this.skillPosition_3.X, (int)this.skillPosition_3.Y, true);
-                                this.character1skill3.LoadContent(content);
-                                this.character1skill3.tclickEvent += this.OnClickSkill;
-                            }
-                            if (skillCounter == 3)
-                            {
-                                this.character1skill4 = new TextElement(skill.Name, (int)this.skillPosition_4.X, (int)this.skillPosition_4.Y, true);
-                                this.character1skill4.LoadContent(content);
-                                this.character1skill4.tclickEvent += this.OnClickSkill;
-                            }
-                            skillCounter++;
-                        }
-                    }
-                    if (charCounter == 1)
-                    {
-                        this.Character2Name = new TextElement(character.Name, (int)this.targetPosition_2.X, (int)this.targetPosition_2.Y, true);
-                        this.Character2Name.LoadContent(content);
-                        this.Character2Name.tclickEvent += this.onClickTarget;
-                        foreach (Skill skill in character.Skills)
-                        {
-                            if (skillCounter == 0)
-                            {
-                                this.character2skill1 = new TextElement(skill.Name, (int)this.skillPosition_1.X, (int)this.skillPosition_1.Y, true);
-                                this.character2skill1.LoadContent(content);
-                                this.character2skill1.tclickEvent += this.OnClickSkill;
-                                
-                            }
-                            if (skillCounter == 1)
-                            {
-                                this.character2skill2 = new TextElement(skill.Name, (int)this.skillPosition_2.X, (int)this.skillPosition_2.Y, true);
-                                this.character2skill2.LoadContent(content);
-                                this.character2skill2.tclickEvent += this.OnClickSkill;
-                            }
-                            if (skillCounter == 2)
-                            {
-                                this.character2skill3 = new TextElement(skill.Name, (int)this.skillPosition_3.X, (int)this.skillPosition_3.Y, true);
-                                this.character2skill3.LoadContent(content);
-                                this.character2skill3.tclickEvent += this.OnClickSkill;
-                            }
-                            if (skillCounter == 3)
-                            {
-                                this.character2skill4 = new TextElement(skill.Name, (int)this.skillPosition_4.X, (int)this.skillPosition_4.Y, true);
-                                this.character2skill4.LoadContent(content);
-                                this.character2skill4.tclickEvent += this.OnClickSkill;
-                            }
-
-                            skillCounter++;
-                        }
-                        
-                    }
-
-                    if (charCounter == 2)
-                    {
-                        this.Character3Name = new TextElement(character.Name, (int)this.targetPosition_3.X, (int)this.targetPosition_3.Y, true);
-                        this.Character3Name.LoadContent(content);
-                        this.Character3Name.tclickEvent += this.onClickTarget;
-
-                        foreach (Skill skill in character.Skills)
-                        {
-                            if (skillCounter == 0)
-                            {
-                                this.character3skill1 = new TextElement(skill.Name, (int)this.skillPosition_1.X, (int)this.skillPosition_1.Y, true);
-                                this.character3skill1.LoadContent(content);
-                                this.character3skill1.tclickEvent += this.OnClickSkill;
-                            }
-                            if (skillCounter == 1)
-                            {
-                                this.character3skill2 = new TextElement(skill.Name, (int)this.skillPosition_2.X, (int)this.skillPosition_2.Y, true);
-                                this.character3skill2.LoadContent(content);
-                                this.character3skill2.tclickEvent += this.OnClickSkill;
-                            }
-                            if (skillCounter == 2)
-                            {
-                                this.character3skill3 = new TextElement(skill.Name, (int)this.skillPosition_3.X, (int)this.skillPosition_3.Y, true);
-                                this.character3skill3.LoadContent(content);
-                                this.character3skill3.tclickEvent += this.OnClickSkill;
-                            }
-                            if (skillCounter == 3)
-                            {
-                                this.character3skill4 = new TextElement(skill.Name, (int)this.skillPosition_4.X, (int)this.skillPosition_4.Y, true);
-                                this.character3skill4.LoadContent(content);
-                                this.character3skill4.tclickEvent += this.OnClickSkill;
-                            }
-
-                            skillCounter++;
-                        }
-                    }
-                    if (charCounter == 3)
-                    {
-                        this.Character4Name = new TextElement(character.Name, (int)this.targetPosition_4.X, (int)this.targetPosition_4.Y, true);
-                        this.Character4Name.LoadContent(content);
-                        this.Character4Name.tclickEvent += this.onClickTarget;
-                        foreach (Skill skill in character.Skills)
-                        {
-                            if (skillCounter == 0)
-                            {
-                                this.character4skill1 = new TextElement(skill.Name, (int)this.skillPosition_1.X, (int)this.skillPosition_1.Y, true);
-                                this.character4skill1.LoadContent(content);
-                                this.character4skill1.tclickEvent += this.OnClickSkill;
-                            }
-                            if (skillCounter == 1)
-                            {
-                                this.character4skill2 = new TextElement(skill.Name, (int)this.skillPosition_2.X, (int)this.skillPosition_2.Y, true);
-                                this.character4skill2.LoadContent(content);
-                                this.character4skill2.tclickEvent += this.OnClickSkill;
-                            }
-                            if (skillCounter == 2)
-                            {
-                                this.character4skill3 = new TextElement(skill.Name, (int)this.skillPosition_3.X, (int)this.skillPosition_3.Y, true);
-                                this.character4skill3.LoadContent(content);
-                                this.character4skill3.tclickEvent += this.OnClickSkill;
-                            }
-                            if (skillCounter == 3)
-                            {
-                                this.character4skill4 = new TextElement(skill.Name, (int)this.skillPosition_4.X, (int)this.skillPosition_4.Y, true);
-                                this.character4skill4.LoadContent(content);
-                                this.character4skill4.tclickEvent += this.OnClickSkill;
-                            }
-                            skillCounter++;
-                        }
-                    }
-                    skillCounter = 0;
-                    charCounter++;
-                }
-            }
-            foreach (Enemy enemy in this.Enemies)
-            {
-                if (enemieCounter == 0)
-                {
-                    this.enemy1Name = new TextElement(enemy.Name, (int) this.targetPosition_1.X, (int) this.targetPosition_1.Y, true);
-                    this.enemy1Name.LoadContent(content);
-                    this.enemy1Name.tclickEvent += this.onClickTarget;
-                }
-                if (enemieCounter == 1)
-                {
-                    this.enemy2Name = new TextElement(enemy.Name, (int) this.targetPosition_2.X, (int) this.targetPosition_2.Y, true);
-                    this.enemy2Name.LoadContent(content);
-                    this.enemy2Name.tclickEvent += this.onClickTarget;
-                }
-                if (enemieCounter == 2)
-                {
-                    this.enemy3Name = new TextElement(enemy.Name, (int) this.targetPosition_3.X, (int) this.targetPosition_3.Y, true);
-                    this.enemy3Name.LoadContent(content);
-                    this.enemy3Name.tclickEvent += this.onClickTarget;
-                }
-                if (enemieCounter == 3)
-                {
-                    this.enemy4Name = new TextElement(enemy.Name, (int) this.targetPosition_4.X, (int) this.targetPosition_4.Y, true);
-                    this.enemy4Name.LoadContent(content);
-                    this.enemy4Name.tclickEvent += this.onClickTarget;
-                }
-                enemieCounter++;
-            }
         }
-        
+
         public void LoadAnimatedSkillsFromPartymember(List<Character> actualTargets, string targetName)
         {
             if (activeSkill.Target.ToLower() == "Single".ToLower())
@@ -1331,6 +1739,11 @@ namespace RPG.Events
         //führt die Logik aus wie beispielsweise die Steuerung oder das Abspielen der Animationen
         public void Update(GameTime gameTime)
         {
+            if(StartFight)
+            {
+                InitializeData();
+                StartFight = false;
+            }
             controls.Update();
 
             Heal.Update(gameTime);
@@ -1352,37 +1765,37 @@ namespace RPG.Events
                 //Die KI wird ausgeführt wenn es sich bei dem Aktiven Character um einen Gegner handelt
                 if (activeChar.GetType() == typeof(Enemy))
                 {
-
-                    Hit.LoadContent(hitAnimation, new Vector2(-60, 0));
-                    Heal.LoadContent(healAnimation, new Vector2(-60, 0));
-
-                    ((Enemy)this.activeChar).PerformAI(this.FightCadre, this.Enemies.Cast<Character>().ToList());
-                    activeSkill = activeChar.Skills.ElementAt(0);
-                    //LoadAnimatedSkillsFromEnemies(((Enemy)activeChar).Targets, ((Enemy)activeChar).TargetName);
-                    if (activeChar.Name == enemy1Name.SkillName)
+                    if (!enemyHitDone)
                     {
-                        activeChar.LoadContent(enemyAttackAnimation_1, enemyPosition_1);
-                        enemyAttackAnimation_1.active = true;
-                    }
-                    else if (activeChar.Name == enemy2Name.SkillName)
-                    {
-                        activeChar.LoadContent(enemyAttackAnimation_2, enemyPosition_2);
-                        enemyAttackAnimation_2.active = true;
-                    }
-                    else if (activeChar.Name == enemy3Name.SkillName)
-                    {
-                        activeChar.LoadContent(enemyAttackAnimation_3, enemyPosition_3);
-                        enemyAttackAnimation_3.active = true;
-                    }
-                    else if (activeChar.Name == enemy4Name.SkillName)
-                    {
-                        activeChar.LoadContent(enemyAttackAnimation_4, enemyPosition_4);
-                        enemyAttackAnimation_4.active = true;
-                    }
+                        Hit.LoadContent(hitAnimation, new Vector2(-60, 0));
+                        Heal.LoadContent(healAnimation, new Vector2(-60, 0));
 
-                    //((Enemy)this.activeChar).Targets.Clear();
-
-                    //StartNextTurn();
+                        ((Enemy)this.activeChar).PerformAI(this.FightCadre, this.Enemies.Cast<Character>().ToList());
+                        activeSkill = ((Enemy)activeChar).SkillToPerform;
+                        LoadAnimatedSkillsFromEnemies(((Enemy)activeChar).Targets, ((Enemy)activeChar).TargetName);
+                        if (activeChar.Name == enemy1Name.SkillName)
+                        {
+                            activeChar.LoadContent(enemyAttackAnimation_1, enemyPosition_1);
+                            enemyAttackAnimation_1.active = true;
+                        }
+                        else if (activeChar.Name == enemy2Name.SkillName)
+                        {
+                            activeChar.LoadContent(enemyAttackAnimation_2, enemyPosition_2);
+                            enemyAttackAnimation_2.active = true;
+                        }
+                        else if (activeChar.Name == enemy3Name.SkillName)
+                        {
+                            activeChar.LoadContent(enemyAttackAnimation_3, enemyPosition_3);
+                            enemyAttackAnimation_3.active = true;
+                        }
+                        else if (activeChar.Name == enemy4Name.SkillName)
+                        {
+                            activeChar.LoadContent(enemyAttackAnimation_4, enemyPosition_4);
+                            enemyAttackAnimation_4.active = true;
+                        }
+                        enemyHitDone = true;
+                        ((Enemy)activeChar).Targets.Clear();
+                    }
                 }
                 //führt ein Update der Animationen und Texte aus wenn es sich bei dem aktiven Character um ein Gruppenmitglied handelt
                 else
@@ -1757,21 +2170,21 @@ namespace RPG.Events
                                 haloIcoCharacter_3.Draw(spriteBatch);
                             }
                         }
-                        if (Character1Name != null)
+                        if (Character4Name != null)
                         {
                             if (character.Name.Equals(Character4Name.SkillName))
                             {
                                 haloIcoCharacter_4.Draw(spriteBatch);
                             }
                         }
-                        if (enemy2Name != null)
+                        if (enemy1Name != null)
                         {
                             if (character.Name.Equals(enemy1Name.SkillName))
                             {
                                 haloIcoEnemy_1.Draw(spriteBatch);
                             }
                         }
-                        if (enemy3Name != null)
+                        if (enemy2Name != null)
                         {
                             if (character.Name.Equals(enemy2Name.SkillName))
                             {
@@ -1935,22 +2348,22 @@ namespace RPG.Events
                 {
                     if (activeTarget.GetType() == typeof(Enemy))
                     {
-                        spriteBatch.DrawString(AwesomeFont, activeChar.Name + " greift " + activeTarget.Name + " mit " + activeSkill.Name + " an!", new Vector2(200, 295), Color.White);
+                        spriteBatch.DrawString(LoadContentHelper.AwesomeFont, activeChar.Name + " greift " + activeTarget.Name + " mit " + activeSkill.Name + " an!", new Vector2(200, 295), Color.White);
                     }
                     else if(activeTarget.GetType() == typeof(PartyMember))
                     {
-                        spriteBatch.DrawString(AwesomeFont, activeChar.Name + " wirkt " + activeSkill.Name + " auf " + activeTarget.Name + "!", new Vector2(200, 295), Color.White);
+                        spriteBatch.DrawString(LoadContentHelper.AwesomeFont, activeChar.Name + " wirkt " + activeSkill.Name + " auf " + activeTarget.Name + "!", new Vector2(200, 295), Color.White);
                     }
                 }
                 if(activeChar != null && activeSkill != null && activeTarget == null)
                 {
                     if (GroupTargetEnemy)
                     {
-                        spriteBatch.DrawString(AwesomeFont, activeChar.Name + " greift die feindliche Gruppe mit " + activeSkill.Name + " an!", new Vector2(200, 295), Color.White);
+                        spriteBatch.DrawString(LoadContentHelper.AwesomeFont, activeChar.Name + " greift die feindliche Gruppe mit " + activeSkill.Name + " an!", new Vector2(200, 295), Color.White);
                     }
                     if(GroupTargetParty)
                     {
-                        spriteBatch.DrawString(AwesomeFont, activeChar.Name + " wirkt " + activeSkill.Name + " auf die Gruppe!", new Vector2(200, 295), Color.White);
+                        spriteBatch.DrawString(LoadContentHelper.AwesomeFont, activeChar.Name + " wirkt " + activeSkill.Name + " auf die Gruppe!", new Vector2(200, 295), Color.White);
                     }
                 }
                 if (!this.skillClicked && !charAttackAnimation_1.active && !charAttackAnimation_2.active && !charAttackAnimation_3.active && !charAttackAnimation_4.active && !enemyAttackAnimation_1.active && !enemyAttackAnimation_2.active && !enemyAttackAnimation_3.active && !enemyAttackAnimation_4.active)
@@ -1966,11 +2379,11 @@ namespace RPG.Events
                     {
                         if(restSkill.textRect.Contains(controls.CursorPos))
                         {
-                            spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + "Charakter regeneriert Mana", skillDescriptionPosition, Color.White);
+                            spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Skill beschreibung:\n" + "Charakter regeneriert Mana", skillDescriptionPosition, Color.White);
                         }
                         if(attackSkill.textRect.Contains(controls.CursorPos))
                         {
-                            spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + "Ein Normaler Angriff", skillDescriptionPosition, Color.White);
+                            spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Skill beschreibung:\n" + "Ein Normaler Angriff", skillDescriptionPosition, Color.White);
                         }
                         if (Character1Name != null)
                         {
@@ -1978,19 +2391,19 @@ namespace RPG.Events
                             {
                                 if (character1skill1.textRect.Contains(controls.CursorPos))
                                 {
-                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(0).Description, skillDescriptionPosition, Color.White);
+                                    spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(0).Description, skillDescriptionPosition, Color.White);
                                 }
                                 else if (character1skill2.textRect.Contains(controls.CursorPos))
                                 {
-                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(1).Description, skillDescriptionPosition, Color.White);
+                                    spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(1).Description, skillDescriptionPosition, Color.White);
                                 }
                                 else if (character1skill3.textRect.Contains(controls.CursorPos))
                                 {
-                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(2).Description, skillDescriptionPosition, Color.White);
+                                    spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(2).Description, skillDescriptionPosition, Color.White);
                                 }
                                 else if (character1skill4.textRect.Contains(controls.CursorPos))
                                 {
-                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(3).Description, skillDescriptionPosition, Color.White);
+                                    spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(3).Description, skillDescriptionPosition, Color.White);
                                 }
                             }
                         }
@@ -2000,19 +2413,19 @@ namespace RPG.Events
                             {
                                 if (character2skill1.textRect.Contains(controls.CursorPos))
                                 {
-                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(0).Description, skillDescriptionPosition, Color.White);
+                                    spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(0).Description, skillDescriptionPosition, Color.White);
                                 }
                                 else if (character2skill2.textRect.Contains(controls.CursorPos))
                                 {
-                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(1).Description, skillDescriptionPosition, Color.White);
+                                    spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(1).Description, skillDescriptionPosition, Color.White);
                                 }
                                 else if (character2skill3.textRect.Contains(controls.CursorPos))
                                 {
-                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(2).Description, skillDescriptionPosition, Color.White);
+                                    spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(2).Description, skillDescriptionPosition, Color.White);
                                 }
                                 else if (character2skill4.textRect.Contains(controls.CursorPos))
                                 {
-                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(3).Description, skillDescriptionPosition, Color.White);
+                                    spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(3).Description, skillDescriptionPosition, Color.White);
                                 }
                             }
                         }
@@ -2022,19 +2435,19 @@ namespace RPG.Events
                             {
                                 if (character3skill1.textRect.Contains(controls.CursorPos))
                                 {
-                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(0).Description, skillDescriptionPosition, Color.White);
+                                    spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(0).Description, skillDescriptionPosition, Color.White);
                                 }
                                 else if (character3skill2.textRect.Contains(controls.CursorPos))
                                 {
-                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(1).Description, skillDescriptionPosition, Color.White);
+                                    spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(1).Description, skillDescriptionPosition, Color.White);
                                 }
                                 else if (character3skill3.textRect.Contains(controls.CursorPos))
                                 {
-                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(2).Description, skillDescriptionPosition, Color.White);
+                                    spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(2).Description, skillDescriptionPosition, Color.White);
                                 }
                                 else if (character3skill4.textRect.Contains(controls.CursorPos))
                                 {
-                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(3).Description, skillDescriptionPosition, Color.White);
+                                    spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(3).Description, skillDescriptionPosition, Color.White);
                                 }
                             }
                         }
@@ -2044,19 +2457,19 @@ namespace RPG.Events
                             {
                                 if (character4skill1.textRect.Contains(controls.CursorPos))
                                 {
-                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(0).Description, skillDescriptionPosition, Color.White);
+                                    spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(0).Description, skillDescriptionPosition, Color.White);
                                 }
                                 else if (character4skill2.textRect.Contains(controls.CursorPos))
                                 {
-                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(1).Description, skillDescriptionPosition, Color.White);
+                                    spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(1).Description, skillDescriptionPosition, Color.White);
                                 }
                                 else if (character4skill3.textRect.Contains(controls.CursorPos))
                                 {
-                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(2).Description, skillDescriptionPosition, Color.White);
+                                    spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(2).Description, skillDescriptionPosition, Color.White);
                                 }
                                 else if (character4skill4.textRect.Contains(controls.CursorPos))
                                 {
-                                    spriteBatch.DrawString(AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(3).Description, skillDescriptionPosition, Color.White);
+                                    spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Skill beschreibung:\n" + activeChar.Skills.ElementAt(3).Description, skillDescriptionPosition, Color.White);
                                 }
                             }
                         }
@@ -2156,27 +2569,27 @@ namespace RPG.Events
                         CharacterStatBox.Draw(spriteBatch);
                         if (this.Character1Name != null)
                         {
-                            spriteBatch.DrawString(AwesomeFont, Character1Name.SkillName, new Vector2(135,110), Color.White);
-                            spriteBatch.DrawString(AwesomeFont, "Leben: " + FightCadre.ElementAt<PartyMember>(0).Life + " \\ " + FightCadre.ElementAt<PartyMember>(0).FightVitality, new Vector2(215, 110), Color.White);
-                            spriteBatch.DrawString(AwesomeFont, "Mana: " + FightCadre.ElementAt<PartyMember>(0).Mana + " \\ " + FightCadre.ElementAt<PartyMember>(0).FightManaPool, new Vector2(415, 110), Color.White);
+                            spriteBatch.DrawString(LoadContentHelper.AwesomeFont, Character1Name.SkillName, new Vector2(135,110), Color.White);
+                            spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Leben: " + FightCadre.ElementAt<PartyMember>(0).Life + " \\ " + FightCadre.ElementAt<PartyMember>(0).FightVitality, new Vector2(215, 110), Color.White);
+                            spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Mana: " + FightCadre.ElementAt<PartyMember>(0).Mana + " \\ " + FightCadre.ElementAt<PartyMember>(0).FightManaPool, new Vector2(415, 110), Color.White);
                         }
                         if (this.Character2Name != null)
                         {
-                                spriteBatch.DrawString(AwesomeFont, Character2Name.SkillName, new Vector2(135, 135), Color.White);
-                                spriteBatch.DrawString(AwesomeFont, "Leben: " + FightCadre.ElementAt<PartyMember>(1).Life + " \\ " + FightCadre.ElementAt<PartyMember>(1).FightVitality, new Vector2(215, 135), Color.White);
-                                spriteBatch.DrawString(AwesomeFont, "Mana: " + FightCadre.ElementAt<PartyMember>(1).Mana + " \\ " + FightCadre.ElementAt<PartyMember>(1).FightManaPool, new Vector2(415, 135), Color.White);
+                                spriteBatch.DrawString(LoadContentHelper.AwesomeFont, Character2Name.SkillName, new Vector2(135, 135), Color.White);
+                                spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Leben: " + FightCadre.ElementAt<PartyMember>(1).Life + " \\ " + FightCadre.ElementAt<PartyMember>(1).FightVitality, new Vector2(215, 135), Color.White);
+                                spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Mana: " + FightCadre.ElementAt<PartyMember>(1).Mana + " \\ " + FightCadre.ElementAt<PartyMember>(1).FightManaPool, new Vector2(415, 135), Color.White);
                         }
                         if (this.Character3Name != null)
                         {
-                            spriteBatch.DrawString(AwesomeFont, Character3Name.SkillName, new Vector2(135, 160), Color.White);
-                            spriteBatch.DrawString(AwesomeFont, "Leben: " + FightCadre.ElementAt<PartyMember>(2).Life + " \\ " + FightCadre.ElementAt<PartyMember>(2).FightVitality, new Vector2(215, 160), Color.White);
-                            spriteBatch.DrawString(AwesomeFont, "Mana: " + FightCadre.ElementAt<PartyMember>(2).Mana + " \\ " + FightCadre.ElementAt<PartyMember>(2).FightManaPool, new Vector2(415, 160), Color.White);
+                            spriteBatch.DrawString(LoadContentHelper.AwesomeFont, Character3Name.SkillName, new Vector2(135, 160), Color.White);
+                            spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Leben: " + FightCadre.ElementAt<PartyMember>(2).Life + " \\ " + FightCadre.ElementAt<PartyMember>(2).FightVitality, new Vector2(215, 160), Color.White);
+                            spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Mana: " + FightCadre.ElementAt<PartyMember>(2).Mana + " \\ " + FightCadre.ElementAt<PartyMember>(2).FightManaPool, new Vector2(415, 160), Color.White);
                         }
                         if (this.Character4Name != null)
                         {
-                            spriteBatch.DrawString(AwesomeFont, Character4Name.SkillName, new Vector2(135, 185), Color.White);
-                            spriteBatch.DrawString(AwesomeFont, "Leben: " + FightCadre.ElementAt<PartyMember>(3).Life + " \\ " + FightCadre.ElementAt<PartyMember>(3).FightVitality, new Vector2(215, 185), Color.White);
-                            spriteBatch.DrawString(AwesomeFont, "Mana: " + FightCadre.ElementAt<PartyMember>(3).Mana + " \\ " + FightCadre.ElementAt<PartyMember>(3).FightManaPool, new Vector2(415, 185), Color.White);
+                            spriteBatch.DrawString(LoadContentHelper.AwesomeFont, Character4Name.SkillName, new Vector2(135, 185), Color.White);
+                            spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Leben: " + FightCadre.ElementAt<PartyMember>(3).Life + " \\ " + FightCadre.ElementAt<PartyMember>(3).FightVitality, new Vector2(215, 185), Color.White);
+                            spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Mana: " + FightCadre.ElementAt<PartyMember>(3).Mana + " \\ " + FightCadre.ElementAt<PartyMember>(3).FightManaPool, new Vector2(415, 185), Color.White);
                         }
                     }
                     if (this.singleTargetParty)
@@ -2189,26 +2602,26 @@ namespace RPG.Events
                             if (this.Character1Name != null)
                             {
                                 this.Character1Name.Draw(spriteBatch);
-                                spriteBatch.DrawString(AwesomeFont, "Leben: " + FightCadre.ElementAt<PartyMember>(0).Life + " \\ " + FightCadre.ElementAt<PartyMember>(0).FightVitality, new Vector2((int)targetPosition_1.X + 80, (int)targetPosition_1.Y), Color.White);
-                                spriteBatch.DrawString(AwesomeFont, "Mana: " + FightCadre.ElementAt<PartyMember>(0).Mana + " \\ " + FightCadre.ElementAt<PartyMember>(0).FightManaPool, new Vector2((int)targetPosition_1.X + 270, (int)targetPosition_1.Y), Color.White);
+                                spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Leben: " + FightCadre.ElementAt<PartyMember>(0).Life + " \\ " + FightCadre.ElementAt<PartyMember>(0).FightVitality, new Vector2((int)targetPosition_1.X + 80, (int)targetPosition_1.Y), Color.White);
+                                spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Mana: " + FightCadre.ElementAt<PartyMember>(0).Mana + " \\ " + FightCadre.ElementAt<PartyMember>(0).FightManaPool, new Vector2((int)targetPosition_1.X + 270, (int)targetPosition_1.Y), Color.White);
                             }
                             if (this.Character2Name != null)
                             {
                                 this.Character2Name.Draw(spriteBatch);
-                                spriteBatch.DrawString(AwesomeFont, "Leben: " + FightCadre.ElementAt<PartyMember>(1).Life + " \\ " + FightCadre.ElementAt<PartyMember>(1).FightVitality, new Vector2((int)targetPosition_2.X + 80, (int)targetPosition_2.Y), Color.White);
-                                spriteBatch.DrawString(AwesomeFont, "Mana: " + FightCadre.ElementAt<PartyMember>(1).Mana + " \\ " + FightCadre.ElementAt<PartyMember>(1).FightManaPool, new Vector2((int)targetPosition_2.X + 270, (int)targetPosition_2.Y), Color.White);
+                                spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Leben: " + FightCadre.ElementAt<PartyMember>(1).Life + " \\ " + FightCadre.ElementAt<PartyMember>(1).FightVitality, new Vector2((int)targetPosition_2.X + 80, (int)targetPosition_2.Y), Color.White);
+                                spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Mana: " + FightCadre.ElementAt<PartyMember>(1).Mana + " \\ " + FightCadre.ElementAt<PartyMember>(1).FightManaPool, new Vector2((int)targetPosition_2.X + 270, (int)targetPosition_2.Y), Color.White);
                             }
                             if (this.Character3Name != null)
                             {
                                 this.Character3Name.Draw(spriteBatch);
-                                spriteBatch.DrawString(AwesomeFont, "Leben: " + FightCadre.ElementAt<PartyMember>(2).Life + " \\ " + FightCadre.ElementAt<PartyMember>(2).FightVitality, new Vector2((int)targetPosition_3.X + 80, (int)targetPosition_3.Y), Color.White);
-                                spriteBatch.DrawString(AwesomeFont, "Mana: " + FightCadre.ElementAt<PartyMember>(2).Mana + " \\ " + FightCadre.ElementAt<PartyMember>(2).FightManaPool, new Vector2((int)targetPosition_3.X + 270, (int)targetPosition_3.Y), Color.White);
+                                spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Leben: " + FightCadre.ElementAt<PartyMember>(2).Life + " \\ " + FightCadre.ElementAt<PartyMember>(2).FightVitality, new Vector2((int)targetPosition_3.X + 80, (int)targetPosition_3.Y), Color.White);
+                                spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Mana: " + FightCadre.ElementAt<PartyMember>(2).Mana + " \\ " + FightCadre.ElementAt<PartyMember>(2).FightManaPool, new Vector2((int)targetPosition_3.X + 270, (int)targetPosition_3.Y), Color.White);
                             }
                             if (this.Character4Name != null)
                             {
                                 this.Character4Name.Draw(spriteBatch);
-                                spriteBatch.DrawString(AwesomeFont, "Leben: " + FightCadre.ElementAt<PartyMember>(3).Life + " \\ " + FightCadre.ElementAt<PartyMember>(3).FightVitality, new Vector2((int)targetPosition_4.X + 80, (int)targetPosition_4.Y), Color.White);
-                                spriteBatch.DrawString(AwesomeFont, "Mana: " + FightCadre.ElementAt<PartyMember>(3).Mana + " \\ " + FightCadre.ElementAt<PartyMember>(3).FightManaPool, new Vector2((int)targetPosition_4.X + 270, (int)targetPosition_4.Y), Color.White);
+                                spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Leben: " + FightCadre.ElementAt<PartyMember>(3).Life + " \\ " + FightCadre.ElementAt<PartyMember>(3).FightVitality, new Vector2((int)targetPosition_4.X + 80, (int)targetPosition_4.Y), Color.White);
+                                spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Mana: " + FightCadre.ElementAt<PartyMember>(3).Mana + " \\ " + FightCadre.ElementAt<PartyMember>(3).FightManaPool, new Vector2((int)targetPosition_4.X + 270, (int)targetPosition_4.Y), Color.White);
                             }
                         }
                     }
@@ -2222,26 +2635,26 @@ namespace RPG.Events
                             if (this.enemy1Name != null)
                             {
                                 this.enemy1Name.Draw(spriteBatch);
-                                spriteBatch.DrawString(AwesomeFont, "Leben: " + Enemies.ElementAt<Enemy>(0).Life + " \\ " + Enemies.ElementAt<Enemy>(0).FightVitality, new Vector2((int)targetPosition_1.X + 80, (int)targetPosition_1.Y), Color.White);
-                                spriteBatch.DrawString(AwesomeFont, "Mana: " + Enemies.ElementAt<Enemy>(0).Mana + " \\ " + Enemies.ElementAt<Enemy>(0).FightManaPool, new Vector2((int)targetPosition_1.X + 270, (int)targetPosition_1.Y), Color.White);
+                                spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Leben: " + Enemies.ElementAt<Enemy>(0).Life + " \\ " + Enemies.ElementAt<Enemy>(0).FightVitality, new Vector2((int)targetPosition_1.X + 80, (int)targetPosition_1.Y), Color.White);
+                                spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Mana: " + Enemies.ElementAt<Enemy>(0).Mana + " \\ " + Enemies.ElementAt<Enemy>(0).FightManaPool, new Vector2((int)targetPosition_1.X + 270, (int)targetPosition_1.Y), Color.White);
                             }
                             if (this.enemy2Name != null)
                             {
                                 this.enemy2Name.Draw(spriteBatch);
-                                spriteBatch.DrawString(AwesomeFont, "Leben: " + Enemies.ElementAt<Enemy>(1).Life + " \\ " + Enemies.ElementAt<Enemy>(1).FightVitality, new Vector2((int)targetPosition_2.X + 80, (int)targetPosition_2.Y), Color.White);
-                                spriteBatch.DrawString(AwesomeFont, "Mana: " + Enemies.ElementAt<Enemy>(1).Mana + " \\ " + Enemies.ElementAt<Enemy>(1).FightManaPool, new Vector2((int)targetPosition_2.X + 270, (int)targetPosition_2.Y), Color.White);
+                                spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Leben: " + Enemies.ElementAt<Enemy>(1).Life + " \\ " + Enemies.ElementAt<Enemy>(1).FightVitality, new Vector2((int)targetPosition_2.X + 80, (int)targetPosition_2.Y), Color.White);
+                                spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Mana: " + Enemies.ElementAt<Enemy>(1).Mana + " \\ " + Enemies.ElementAt<Enemy>(1).FightManaPool, new Vector2((int)targetPosition_2.X + 270, (int)targetPosition_2.Y), Color.White);
                             }
                             if (this.enemy3Name != null)
                             {
                                 this.enemy3Name.Draw(spriteBatch);
-                                spriteBatch.DrawString(AwesomeFont, "Leben: " + Enemies.ElementAt<Enemy>(2).Life + " \\ " + Enemies.ElementAt<Enemy>(2).FightVitality, new Vector2((int)targetPosition_3.X + 80, (int)targetPosition_3.Y), Color.White);
-                                spriteBatch.DrawString(AwesomeFont, "Mana: " + Enemies.ElementAt<Enemy>(2).Mana + " \\ " + Enemies.ElementAt<Enemy>(2).FightManaPool, new Vector2((int)targetPosition_3.X + 270, (int)targetPosition_3.Y), Color.White);
+                                spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Leben: " + Enemies.ElementAt<Enemy>(2).Life + " \\ " + Enemies.ElementAt<Enemy>(2).FightVitality, new Vector2((int)targetPosition_3.X + 80, (int)targetPosition_3.Y), Color.White);
+                                spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Mana: " + Enemies.ElementAt<Enemy>(2).Mana + " \\ " + Enemies.ElementAt<Enemy>(2).FightManaPool, new Vector2((int)targetPosition_3.X + 270, (int)targetPosition_3.Y), Color.White);
                             }
                             if (this.enemy4Name != null)
                             {
                                 this.enemy4Name.Draw(spriteBatch);
-                                spriteBatch.DrawString(AwesomeFont, "Leben: " + Enemies.ElementAt<Enemy>(3).Life + " \\ " + Enemies.ElementAt<Enemy>(3).FightVitality, new Vector2((int)targetPosition_4.X + 80, (int)targetPosition_4.Y), Color.White);
-                                spriteBatch.DrawString(AwesomeFont, "Mana: " + Enemies.ElementAt<Enemy>(3).Mana + " \\ " + Enemies.ElementAt<Enemy>(3).FightManaPool, new Vector2((int)targetPosition_4.X + 270, (int)targetPosition_4.Y), Color.White);
+                                spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Leben: " + Enemies.ElementAt<Enemy>(3).Life + " \\ " + Enemies.ElementAt<Enemy>(3).FightVitality, new Vector2((int)targetPosition_4.X + 80, (int)targetPosition_4.Y), Color.White);
+                                spriteBatch.DrawString(LoadContentHelper.AwesomeFont, "Mana: " + Enemies.ElementAt<Enemy>(3).Mana + " \\ " + Enemies.ElementAt<Enemy>(3).FightManaPool, new Vector2((int)targetPosition_4.X + 270, (int)targetPosition_4.Y), Color.White);
                             }
                         }
                     }
@@ -2325,6 +2738,7 @@ namespace RPG.Events
             activeSkill = null;
             GroupTargetEnemy = false;
             GroupTargetParty = false;
+            enemyHitDone = false;
         }
 
         public void OnClickElement(string element)

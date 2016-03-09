@@ -6,6 +6,7 @@ using System.Configuration;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using RPG.Extensions_And_Helper_Classes;
 
 namespace RPG.Events
 {
@@ -72,12 +73,12 @@ namespace RPG.Events
                 {
                     this.listenerPicture = new GUIElement("Faces\\Jos\\Jos_NotAmused_Face", (int)this.listenerPicturePosition.X, (int)this.listenerPicturePosition.Y);
                 }
-                this.speaker = new TextElement(getTextBox.Speaker, (int)this.speakerNamePosition.X, (int)this.speakerNamePosition.Y, false);
-                this.listener = new TextElement(getTextBox.Listener, (int)this.listenerNamePosition.X, (int)this.listenerNamePosition.Y, false);
-                this.row1 = new TextElement(getTextBox.Row1, (int)this.textLine_1.X, (int)this.textLine_1.Y, false);
-                this.row2 = new TextElement(getTextBox.Row2, (int)this.textLine_2.X, (int)this.textLine_2.Y, false);
-                this.row3 = new TextElement(getTextBox.Row3, (int)this.textLine_3.X, (int)this.textLine_3.Y, false);
-                this.row4 = new TextElement(getTextBox.Row4, (int)this.textLine_4.X, (int)this.textLine_4.Y, false);
+                this.speaker = new TextElement(LoadContentHelper.AwesomeFont, getTextBox.Speaker, (int)this.speakerNamePosition.X, (int)this.speakerNamePosition.Y, false);
+                this.listener = new TextElement(LoadContentHelper.AwesomeFont, getTextBox.Listener, (int)this.listenerNamePosition.X, (int)this.listenerNamePosition.Y, false);
+                this.row1 = new TextElement(LoadContentHelper.AwesomeFont, getTextBox.Row1, (int)this.textLine_1.X, (int)this.textLine_1.Y, false);
+                this.row2 = new TextElement(LoadContentHelper.AwesomeFont, getTextBox.Row2, (int)this.textLine_2.X, (int)this.textLine_2.Y, false);
+                this.row3 = new TextElement(LoadContentHelper.AwesomeFont, getTextBox.Row3, (int)this.textLine_3.X, (int)this.textLine_3.Y, false);
+                this.row4 = new TextElement(LoadContentHelper.AwesomeFont, getTextBox.Row4, (int)this.textLine_4.X, (int)this.textLine_4.Y, false);
         }
 
         public void LoadContent(ContentManager content)
@@ -85,13 +86,6 @@ namespace RPG.Events
             textBox.LoadContent(content);
             this.speakerPicture.LoadContent(content);
             this.listenerPicture.LoadContent(content);
-
-            this.speaker.LoadContent(content);
-            this.listener.LoadContent(content);
-            this.row1.LoadContent(content);
-            this.row2.LoadContent(content);
-            this.row3.LoadContent(content);
-            this.row4.LoadContent(content);
 
             textBox.CenterElement(576, 720);
             textBox.moveElement(0, 180);

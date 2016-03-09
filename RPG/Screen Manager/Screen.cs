@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using RPG.Events;
-using RPG.Scenes;
+using RPG.Extensions_And_Helper_Classes;
 
 
 namespace RPG
@@ -27,6 +27,7 @@ namespace RPG
 
         Movie Intro = new Movie("Intro\\Good Feel Inc Intro");
 
+        GameManager Manager;
         //Musste die Parameter von 0,0 auf 0,1 ändern, da es zwar eine Szene 0 gibt, Parts (Genau wie Texteboxen) immer bei 1 anfangen
         ConversationEvent conversation1 = new ConversationEvent(0, 1, 1);
         ConversationEvent conversation2 = new ConversationEvent(0, 1, 1);
@@ -114,8 +115,8 @@ namespace RPG
             this.battleScreen.Insert(0, new GUIElement("Backgrounds\\Battle\\Forest_Battle_Background"));
             this.battleScreen.Insert(1, new GUIElement("Icons\\Mindblown_Icon"));
 
-            this.battleScreenSkills.Insert(0,new TextElement("Skill1", 400, 450, false));
-            this.battleScreenSkills.Insert(1, new TextElement("Skill2", 400, 480, false));
+            this.battleScreenSkills.Insert(0,new TextElement(LoadContentHelper.AwesomeFont, "Skill1", 400, 450, false));
+            this.battleScreenSkills.Insert(1, new TextElement(LoadContentHelper.AwesomeFont, "Skill2", 400, 480, false));
             
         }
 
@@ -129,10 +130,11 @@ namespace RPG
             this.testevent = new BattleEvent(new List<PartyMember> {this.char2, this.char3 }, new List<Enemy> {this.enemy1 }, "Backgrounds\\Battle\\Forest_Battle_Background");
             choosetest = new ChooseCadreEvent(new List<PartyMember> { this.char1, this.char2, this.char3, this.char4 }, Fightcadre, "Backgrounds\\Battle\\Bell_Battle_Background");
             //Scene1 = new StoryEvent(new List<ConversationEvent> { conversation1, conversation2 }, "Backgrounds\\Story\\Anlegestelle_Triumphfelder_Story_Background.png");
-
+            Manager = new GameManager(new List<PartyMember> { this.char2 });
         }
         public void LoadContent(ContentManager content)
         {
+            LoadContentHelper.LoadContent(content);
             choosetest.LoadContent(content);
             this.testevent.LoadContent(content);
             //this.test.LoadContent(content);
@@ -148,7 +150,6 @@ namespace RPG
 
             foreach (TextElement element in this.battleScreenSkills)
             {
-                element.LoadContent(content);
                 element.tclickEvent += this.OnClick;
             }
             foreach (GUIElement element in this.mainMenu)

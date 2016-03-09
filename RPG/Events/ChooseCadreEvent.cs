@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using System.Threading;
+using RPG.Extensions_And_Helper_Classes;
 
 namespace RPG.Events
 {
@@ -68,78 +69,93 @@ namespace RPG.Events
             Background = new GUIElement(BackgroundPath);
         }
 
-        public void LoadContent(ContentManager content)
+        public void InitializeData()
         {
-            Background.LoadContent(content);
-            tooManyChars = new TextElement("Du kannst maximal vier Charaktere mit in den Kampf nehmen!\nUm die Auswahl aufzuheben klicke auf den Button!", 0, 0, false);
-            AuswahlAufhebenButton = new GUIElement("Buttons\\Quit_Button");
-            FortfahrenButton = new GUIElement("Buttons\\Continue_Button");
             int CountMember = 0;
-            foreach(PartyMember groupMember in this.Group)
+            foreach (PartyMember groupMember in this.Group)
             {
                 if (CountMember == 0)
                 {
-                    this.Face_1 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_1.X, (int) this.FacePosition_1.Y);
+                    foreach(GUIElement faceItem in LoadContentHelper.StandardFaces)
+                    {
+                        if(faceItem.AssetName.Contains(groupMember.Name))
+                        {
+                            Face_1 = faceItem;
+                        }
+                    }
                     this.Faces.Add(this.Face_1);
                 }
                 if (CountMember == 1)
                 {
-                    this.Face_2 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_2.X, (int) this.FacePosition_2.Y);
+                    foreach (GUIElement faceItem in LoadContentHelper.StandardFaces)
+                    {
+                        if (faceItem.AssetName.Contains(groupMember.Name))
+                        {
+                            Face_1 = faceItem;
+                        }
+                    }
+                    this.Faces.Add(this.Face_1);
                     this.Faces.Add(this.Face_2);
                 }
                 if (CountMember == 2)
                 {
-                    this.Face_3 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_3.X, (int) this.FacePosition_3.Y);
+                    this.Face_3 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)this.FacePosition_3.X, (int)this.FacePosition_3.Y);
                     this.Faces.Add(this.Face_3);
                 }
                 if (CountMember == 3)
                 {
-                    this.Face_4 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_4.X, (int) this.FacePosition_4.Y);
+                    this.Face_4 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)this.FacePosition_4.X, (int)this.FacePosition_4.Y);
                     this.Faces.Add(this.Face_4);
                 }
                 if (CountMember == 4)
                 {
-                    this.Face_5 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_5.X, (int) this.FacePosition_5.Y);
+                    this.Face_5 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)this.FacePosition_5.X, (int)this.FacePosition_5.Y);
                     this.Faces.Add(this.Face_5);
                 }
                 if (CountMember == 5)
                 {
-                    this.Face_6 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_6.X, (int) this.FacePosition_6.Y);
+                    this.Face_6 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)this.FacePosition_6.X, (int)this.FacePosition_6.Y);
                     this.Faces.Add(this.Face_6);
                 }
                 if (CountMember == 6)
                 {
-                    this.Face_7 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_7.X, (int) this.FacePosition_7.Y);
+                    this.Face_7 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)this.FacePosition_7.X, (int)this.FacePosition_7.Y);
                     this.Faces.Add(this.Face_7);
                 }
                 if (CountMember == 7)
                 {
-                    this.Face_8 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_8.X, (int) this.FacePosition_8.Y);
+                    this.Face_8 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)this.FacePosition_8.X, (int)this.FacePosition_8.Y);
                     this.Faces.Add(this.Face_8);
                 }
                 if (CountMember == 8)
                 {
-                    this.Face_9 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_9.X, (int) this.FacePosition_9.Y);
+                    this.Face_9 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)this.FacePosition_9.X, (int)this.FacePosition_9.Y);
                     this.Faces.Add(this.Face_9);
                 }
                 if (CountMember == 9)
                 {
-                    this.Face_10 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_10.X, (int) this.FacePosition_10.Y);
+                    this.Face_10 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)this.FacePosition_10.X, (int)this.FacePosition_10.Y);
                     this.Faces.Add(this.Face_10);
                 }
                 if (CountMember == 10)
                 {
-                    this.Face_11 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int) this.FacePosition_11.X, (int) this.FacePosition_11.Y);
+                    this.Face_11 = new GUIElement("Faces\\" + groupMember.Name + "\\" + groupMember.Name + "_Standard_Face", (int)this.FacePosition_11.X, (int)this.FacePosition_11.Y);
                     this.Faces.Add(this.Face_11);
                 }
                 CountMember++;
             }
-            foreach(GUIElement face in this.Faces)
+            foreach (GUIElement face in this.Faces)
             {
-                face.LoadContent(content);
                 face.clickEvent += this.OnClick;
             }
-            tooManyChars.LoadContent(content);
+        }
+        public void LoadContent(ContentManager content)
+        {
+            Background.LoadContent(content);
+            tooManyChars = new TextElement(LoadContentHelper.AwesomeFont, "Du kannst maximal vier Charaktere mit in den Kampf nehmen!\nUm die Auswahl aufzuheben klicke auf den Button!", 0, 0, false);
+            AuswahlAufhebenButton = new GUIElement("Buttons\\Quit_Button");
+            FortfahrenButton = new GUIElement("Buttons\\Continue_Button");
+            
             AuswahlAufhebenButton.LoadContent(content);
             AuswahlAufhebenButton.CenterElement(576, 720);
             AuswahlAufhebenButton.moveElement(50, 180);
