@@ -626,7 +626,9 @@
     <Content Include="Content\Faces\Ells\Ells_Provoke_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Ells\Ells_Standard_Face.png" />
+    <Content Include="Content\Faces\Ells\Ells_Standard_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Faces\Ells\Ells_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -726,7 +728,7 @@
     <Content Include="Content\Faces\Kaiser\Kaiser_Standard_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Kaiser\Kaiser_Thoightful_Face.png">
+    <Content Include="Content\Faces\Kaiser\Kaiser_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Michael\Michael_Standard_Face.png">

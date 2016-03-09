@@ -27,7 +27,6 @@ namespace RPG
 
         Movie Intro = new Movie("Intro\\Good Feel Inc Intro");
 
-        GameManager Manager;
         //Musste die Parameter von 0,0 auf 0,1 ändern, da es zwar eine Szene 0 gibt, Parts (Genau wie Texteboxen) immer bei 1 anfangen
         ConversationEvent conversation1 = new ConversationEvent(0, 1, 1);
         ConversationEvent conversation2 = new ConversationEvent(0, 1, 1);
@@ -130,7 +129,6 @@ namespace RPG
             this.testevent = new BattleEvent(new List<PartyMember> {this.char2, this.char3 }, new List<Enemy> {this.enemy1 }, "Backgrounds\\Battle\\Forest_Battle_Background");
             choosetest = new ChooseCadreEvent(new List<PartyMember> { this.char1, this.char2, this.char3, this.char4 }, Fightcadre, "Backgrounds\\Battle\\Bell_Battle_Background");
             //Scene1 = new StoryEvent(new List<ConversationEvent> { conversation1, conversation2 }, "Backgrounds\\Story\\Anlegestelle_Triumphfelder_Story_Background.png");
-            Manager = new GameManager(new List<PartyMember> { this.char2 });
         }
         public void LoadContent(ContentManager content)
         {

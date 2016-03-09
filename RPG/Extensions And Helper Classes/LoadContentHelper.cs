@@ -306,7 +306,7 @@ namespace RPG.Extensions_And_Helper_Classes
             EllsStandardFace.LoadContent(content);
             EllsNotAmusedFace.LoadContent(content);
             EllsProvokeFace.LoadContent(content);
-            EllsShockedFace.LoadContent(content);
+            //EllsShockedFace.LoadContent(content);
             EllsThoughtfulFace.LoadContent(content);
             EllsHappyFace.LoadContent(content);
             EllsCryFace.LoadContent(content);
