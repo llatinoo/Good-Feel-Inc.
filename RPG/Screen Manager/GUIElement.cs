@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace RPG
 {
-    class GUIElement
+    public class GUIElement
     {
         private bool rectangleContainedMouseBefore;
         SoundEffect MouseIntersect;

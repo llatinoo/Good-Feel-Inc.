@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using RPG.Events;
-using RPG.Scenes;
+using RPG.Extensions_And_Helper_Classes;
 
 
 namespace RPG
@@ -118,8 +118,8 @@ namespace RPG
             this.battleScreen.Insert(0, new GUIElement("Backgrounds\\Battle\\Forest_Battle_Background"));
             this.battleScreen.Insert(1, new GUIElement("Icons\\Mindblown_Icon"));
 
-            this.battleScreenSkills.Insert(0,new TextElement("Skill1", 400, 450, false));
-            this.battleScreenSkills.Insert(1, new TextElement("Skill2", 400, 480, false));
+            this.battleScreenSkills.Insert(0,new TextElement(LoadContentHelper.AwesomeFont, "Skill1", 400, 450, false));
+            this.battleScreenSkills.Insert(1, new TextElement(LoadContentHelper.AwesomeFont, "Skill2", 400, 480, false));
             
         }
 
@@ -144,6 +144,7 @@ namespace RPG
         }
         public void LoadContent(ContentManager content)
         {
+            LoadContentHelper.LoadContent(content);
             choosetest.LoadContent(content);
             this.testevent.LoadContent(content);
             //this.test.LoadContent(content);
@@ -159,7 +160,6 @@ namespace RPG
 
             foreach (TextElement element in this.battleScreenSkills)
             {
-                element.LoadContent(content);
                 element.tclickEvent += this.OnClick;
             }
             foreach (GUIElement element in this.mainMenu)

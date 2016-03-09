@@ -76,6 +76,7 @@
     <Compile Include="Events\ConversationEvent.cs" />
     <Compile Include="Extensions And Helper Classes\GetEffectFactory.cs" />
     <Compile Include="Extensions And Helper Classes\AttributesChange.cs" />
+    <Compile Include="Extensions And Helper Classes\LoadContentHelper.cs" />
     <Compile Include="Extensions And Helper Classes\LoadSkillHelperClass.cs" />
     <Compile Include="Extensions And Helper Classes\RandomStatusEffectHelperClass.cs" />
     <Compile Include="Data Section Classes\ClassSkillCadreDataSection.cs" />
@@ -516,19 +517,19 @@
     <Content Include="Content\Enemies\Bosse\Human\Marlein\Marlein_Standard_Animation.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Bosse\Monsters\Ttherot%27h\Ttherhot%27h_Minion.png">
+    <Content Include="Content\Enemies\Bosse\Monsters\Ttherhot%27h\Ttherhot%27h_Minion.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Bosse\Monsters\Ttherot%27h\Ttherhot%27h_Stufe_1.png">
+    <Content Include="Content\Enemies\Bosse\Monsters\Ttherhot%27h\Ttherhot%27h_Stufe_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Bosse\Monsters\Ttherot%27h\Ttherhot%27h_Stufe_2.png">
+    <Content Include="Content\Enemies\Bosse\Monsters\Ttherhot%27h\Ttherhot%27h_Stufe_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Bosse\Monsters\Ttherot%27h\Ttherhot%27h_Stufe_3.png">
+    <Content Include="Content\Enemies\Bosse\Monsters\Ttherhot%27h\Ttherhot%27h_Stufe_3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Enemies\Bosse\Monsters\Ttherot%27h\Ttherhot%27h_Stufe_4.png">
+    <Content Include="Content\Enemies\Bosse\Monsters\Ttherhot%27h\Ttherhot%27h_Stufe_4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Enemies\Bosse\Monsters\White_Hole_Animation.png">
@@ -588,7 +589,7 @@
     <Content Include="Content\Faces\Anna\Anna_Provoke_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Anna\Anna_Shoked_Face.png">
+    <Content Include="Content\Faces\Anna\Anna_Shocked_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Anna\Anna_Standard_Face.png">
@@ -627,7 +628,9 @@
     <Content Include="Content\Faces\Ells\Ells_Provoke_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Ells\Ells_Standard_Face.png" />
+    <Content Include="Content\Faces\Ells\Ells_Standard_Face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Faces\Ells\Ells_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -727,7 +730,7 @@
     <Content Include="Content\Faces\Kaiser\Kaiser_Standard_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Faces\Kaiser\Kaiser_Thoightful_Face.png">
+    <Content Include="Content\Faces\Kaiser\Kaiser_Thoughtful_Face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Faces\Michael\Michael_Standard_Face.png">

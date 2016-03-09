@@ -27,6 +27,10 @@ namespace RPG
 
         //Ziele des Skills
         private List<Character> targets = new List<Character>();
+        public List<Character> Targets
+        {
+            get { return targets; }
+        }
         public string TargetName { get; private set; }
 
 
@@ -46,7 +50,6 @@ namespace RPG
             Random r = new Random();
             this.performableSkills = new List<Skill>();
             this.targets = new List<Character>();
-
 
             this.SetPerformSkills(groupOfFoe);
 
