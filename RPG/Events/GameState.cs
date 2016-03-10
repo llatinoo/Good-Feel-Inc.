@@ -5,12 +5,12 @@ using System.Text;
 
 namespace RPG.Events
 {
-    class SafeGameState
+    class GameState
     {
         int scenenCount;
         List<PartyMember> group = new List<PartyMember>();
 
-        public SafeGameState(List<PartyMember> partyMember, int sCount)
+        public GameState(List<PartyMember> partyMember, int sCount)
         {
             group = partyMember;
             scenenCount = sCount;

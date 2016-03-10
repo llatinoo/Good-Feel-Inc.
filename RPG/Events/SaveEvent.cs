@@ -12,15 +12,15 @@ namespace RPG.Events
         List<PartyMember> group = new List<PartyMember>();
         int sceneCount;
 
-        public SaveEvent(SafeGameState gameState)
+        public SaveEvent(GameState gameState)
         {
             SaveContent(gameState);
         }
 
-        public void SaveContent(SafeGameState gameState)
+        public void SaveContent(GameState gameState)
         {
             //XML muss noch den ScenenCount speicher
-            XmlSerializer xmlSerializerGroup = new XmlSerializer(typeof(SafeGameState));
+            XmlSerializer xmlSerializerGroup = new XmlSerializer(typeof(GameState));
             StreamWriter sw = new StreamWriter(@"SaveGame/SafeData.xml");
             xmlSerializerGroup.Serialize(sw,gameState);
             sw.Close();

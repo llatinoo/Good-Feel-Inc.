@@ -71,7 +71,7 @@
     <Compile Include="Events\GameOverEvent.cs" />
     <Compile Include="Events\IEvent.cs" />
     <Compile Include="Events\LoadEvent.cs" />
-    <Compile Include="Events\SafeGameState.cs" />
+    <Compile Include="Events\GameState.cs" />
     <Compile Include="Events\SaveEvent.cs" />
     <Compile Include="Events\StoryEvent.cs" />
     <Compile Include="Events\ConversationEvent.cs" />

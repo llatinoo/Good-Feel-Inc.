@@ -10,7 +10,7 @@ namespace RPG.Events
 {
     class LoadEvent
     {
-        private SafeGameState saveGame;
+        private GameState saveGame;
 
         public LoadEvent()
         {
@@ -21,12 +21,12 @@ namespace RPG.Events
         {
             using (var reader = new StreamReader(@"SaveGame/SafeData.xml"))
             {
-                XmlSerializer deserializer = new XmlSerializer(typeof(SafeGameState));
-                saveGame = (SafeGameState)deserializer.Deserialize(reader);
+                XmlSerializer deserializer = new XmlSerializer(typeof(GameState));
+                saveGame = (GameState)deserializer.Deserialize(reader);
             }
         }
 
-        public SafeGameState getSaveGame()
+        public GameState getSaveGame()
         {
             return saveGame;
         }

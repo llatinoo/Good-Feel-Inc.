@@ -16,7 +16,7 @@ namespace RPG
         Scenes.GameManager gameManager;
         int activeScene;
         List<PartyMember> group;
-        SafeGameState safegame;
+        Events.GameState safegame;
 
         Player char1 = new Player("Jos", Classes.Warrior, 10, new List<int>(10), 20, "Animations\\Battlers\\Male\\Jos\\Jos_Standard_Animation", "Animations\\Battlers\\Male\\Jos\\Jos_Attack_Animation", "Animations\\Battlers\\Male\\Jos\\Jos_Death_Animation");
         Enemy enemy1 = new Enemy("Kaiser", Classes.Coloss, 10, "Enemies\\Bosse\\Human\\Kaiser\\Kaiser_Standard_Animation", "Enemies\\Bosse\\Human\\Kaiser\\Kaiser_Attack_Animation", "Enemies\\Bosse\\Human\\Kaiser\\Kaiser_Death_Animation", true);
@@ -141,7 +141,7 @@ namespace RPG
             miau.Add(this.char1);
             miau.Add(this.char2);
             LoadEvent content = new LoadEvent();
-            SafeGameState sf = new SafeGameState();
+            Events.GameState sf = new Events.GameState();
 
             gameManager = new Scenes.GameManager(miau,0);
 
@@ -262,7 +262,7 @@ namespace RPG
             //Safegame TEST
             activeScene = gameManager.GetSceneCounter();
             group = gameManager.GetPartyMember();
-            safegame = new SafeGameState(group, activeScene);
+            safegame = new Events.GameState(group, activeScene);
             //Safegame END TEST
                 this.controls.Update();
 
