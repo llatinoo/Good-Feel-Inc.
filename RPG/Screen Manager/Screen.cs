@@ -14,9 +14,7 @@ namespace RPG
     class Screen
     {
         Scenes.GameManager gameManager;
-        int activeScene;
-        List<PartyMember> group;
-        Events.GameState safegame;
+        Events.GameState saveGame;
 
         Player char1 = new Player("Jos", Classes.Warrior, 10, new List<int>(10), 20, "Animations\\Battlers\\Male\\Jos\\Jos_Standard_Animation", "Animations\\Battlers\\Male\\Jos\\Jos_Attack_Animation", "Animations\\Battlers\\Male\\Jos\\Jos_Death_Animation");
         Enemy enemy1 = new Enemy("Kaiser", Classes.Coloss, 10, "Enemies\\Bosse\\Human\\Kaiser\\Kaiser_Standard_Animation", "Enemies\\Bosse\\Human\\Kaiser\\Kaiser_Attack_Animation", "Enemies\\Bosse\\Human\\Kaiser\\Kaiser_Death_Animation", true);
@@ -136,14 +134,9 @@ namespace RPG
             //Scene1 = new StoryEvent(new List<ConversationEvent> { conversation1, conversation2 }, "Backgrounds\\Story\\Anlegestelle_Triumphfelder_Story_Background.png");
             
             
-            //STEST
-            List<PartyMember> miau = new List<PartyMember>();
-            miau.Add(this.char1);
-            miau.Add(this.char2);
+            //SAFETEST
             LoadEvent content = new LoadEvent();
-            Events.GameState sf = new Events.GameState();
-
-            gameManager = new Scenes.GameManager(miau,0);
+            saveGame = content.getSaveGame();
 
         }
 
@@ -259,11 +252,6 @@ namespace RPG
         
         public void Update(GameTime gameTime)
         {
-            //Safegame TEST
-            activeScene = gameManager.GetSceneCounter();
-            group = gameManager.GetPartyMember();
-            safegame = new Events.GameState(group, activeScene);
-            //Safegame END TEST
                 this.controls.Update();
 
             //Wenn das options Menu geöffnet wird, wird der Gamestate gespeichert um nach dem pausieren fortzufahren
@@ -527,8 +515,8 @@ namespace RPG
             }
             if (element == "Buttons\\Load_Game_Button")
             {
-                this.gameState = GameState.storyScreen;
-                this.stateChanged = true;
+                //  LoadEvent
+                gameManager = new Scenes.GameManager(saveGame);
             }
             if (element == "Buttons\\New_Game_Button")
             {
@@ -541,8 +529,8 @@ namespace RPG
             }
             if (element == "Buttons\\Save_Button")
             {
-                //Objekt Safegame mit dem aktuellen Status des Spiels wird an die SaveEventklasse übergeben
-                SaveEvent safe = new SaveEvent(safegame);
+                //Objekt Savegame mit dem aktuellen Status des Spiels wird an die SaveEventklasse übergeben
+                SaveEvent save = new SaveEvent(saveGame);
             }
             if (element == "Skill1")
             {

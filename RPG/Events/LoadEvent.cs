@@ -19,10 +19,17 @@ namespace RPG.Events
 
         protected void LoadContent()
         {
-            using (var reader = new StreamReader(@"SaveGame/SafeData.xml"))
+            try
             {
-                XmlSerializer deserializer = new XmlSerializer(typeof(GameState));
-                saveGame = (GameState)deserializer.Deserialize(reader);
+                using (var reader = new StreamReader(@"SaveGame/SafeData.xml"))
+                {
+                    XmlSerializer deserializer = new XmlSerializer(typeof(GameState));
+                    saveGame = (GameState)deserializer.Deserialize(reader);
+                }
+            }
+            catch(FileNotFoundException)
+            {
+                //Öffne ein Menü zum verarbeiten des Fehlers oder sperre den Knopf
             }
         }
 

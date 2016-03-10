@@ -12,11 +12,11 @@ namespace RPG.Scenes
             private Scene ActiveScene;
             private int sceneCounter;
 
-            public GameManager(List<PartyMember> group, int sceneId)
+            public GameManager(Events.GameState gameState)
             {
-                this.Group = group;
+            this.Group = gameState.getGroup();
 
-                this.sceneCounter = sceneId;
+                this.sceneCounter = gameState.getSceneCount();
                 this.ActiveScene = this.Scenes.ElementAt(this.sceneCounter);
 
                 this.StartGame();

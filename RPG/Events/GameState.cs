@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RPG.Events
 {
-    class GameState
+    public class GameState
     {
         int scenenCount;
         List<PartyMember> group = new List<PartyMember>();
