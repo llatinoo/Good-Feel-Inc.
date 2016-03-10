@@ -140,7 +140,10 @@ namespace RPG
             List<PartyMember> miau = new List<PartyMember>();
             miau.Add(this.char1);
             miau.Add(this.char2);
-            gameManager = new Scenes.GameManager(miau);
+            LoadEvent content = new LoadEvent();
+            SafeGameState sf = new SafeGameState();
+
+            gameManager = new Scenes.GameManager(miau,0);
 
         }
 

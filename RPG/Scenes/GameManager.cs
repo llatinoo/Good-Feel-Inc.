@@ -7,7 +7,7 @@ namespace RPG.Scenes
 {
         public class GameManager
         {
-            protected List<PartyMember> Group { get; set; }
+            private List<PartyMember> Group;
             private List<Scene> Scenes = new List<Scene>();
             private Scene ActiveScene;
             private int sceneCounter;

@@ -18,14 +18,23 @@ namespace RPG.Events
 
         public List<PartyMember> getGroup()
         {
-            return Group;
+            return group;
+        }
+
+        public void setGroup()
+        {
+
         }
 
         public int getSceneCount()
         {
             return scenenCount;
-        } 
+        }
 
+        public void setScene()
+        {
+
+        }
 
     }
 }
