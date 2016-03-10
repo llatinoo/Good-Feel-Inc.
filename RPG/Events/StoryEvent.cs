@@ -10,13 +10,11 @@ using Microsoft.Xna.Framework.Input;
 
 namespace RPG
 {
-    class StoryEvent
+    class StoryEvent : IEvent
     {
-        bool storyPartIsOver;
-        public bool StoryPartIsOver
-        {
-            get { return storyPartIsOver; }
-        } 
+        public bool firstStart { get; set; }
+        public bool isOver { get; set; }
+        public int ID { get; }
         Controls controls = new Controls();
 
         int activeConversation;
@@ -28,8 +26,12 @@ namespace RPG
         {
             this.Conversations = conversations;
             Background = new GUIElement(backgroundPath);
+            firstStart = true;
         }
+        public void InitializeData()
+        {
 
+        }
         public void LoadContent(ContentManager content)
         {
             foreach(ConversationEvent conversation in Conversations)
@@ -38,8 +40,13 @@ namespace RPG
             }
             Background.LoadContent(content);
         }
-        public void Update()
+        public void Update(GameTime gameTime)
         {
+            if(firstStart)
+            {
+                InitializeData();
+                firstStart = false;
+            }
             controls.Update();
         }
         public void Draw(SpriteBatch spriteBatch)
@@ -53,7 +60,7 @@ namespace RPG
                 }
                 else if (activeConversation == Conversations.Count - 1)
                 {
-                    storyPartIsOver = true;
+                    isOver = true;
                 }
                 
             }

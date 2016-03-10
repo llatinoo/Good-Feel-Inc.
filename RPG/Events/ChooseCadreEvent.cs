@@ -10,8 +10,11 @@ using RPG.Extensions_And_Helper_Classes;
 
 namespace RPG.Events
 {
-    class ChooseCadreEvent
+    class ChooseCadreEvent : IEvent
     {
+        public bool firstStart { get; set; }
+        public bool isOver { get; set; }
+        public int ID { get; }
         //Listen des FightCadres und der Gruppe
         List<PartyMember> fightCadre = new List<PartyMember>();
         public List<PartyMember> Fightcadre
@@ -22,6 +25,7 @@ namespace RPG.Events
         public List<PartyMember> Group
         {
             get { return group; }
+            set { group = value;  }
         }
         //Liste der Faces
         List<GUIElement> Faces = new List<GUIElement>();
@@ -56,17 +60,12 @@ namespace RPG.Events
         GUIElement AuswahlAufhebenButton;
         GUIElement FortfahrenButton;
         GUIElement Background;
-
-        bool auswahlBestätigt;
-        public bool AuswahlBestätigt
-        {
-            get { return auswahlBestätigt;}
-        }
         public ChooseCadreEvent(List<PartyMember> Group, List<PartyMember> FightCadre, string BackgroundPath)
         {
             this.group = Group;
             this.fightCadre = FightCadre;
             Background = new GUIElement(BackgroundPath);
+            firstStart = true;
         }
 
         public void InitializeData()
@@ -165,8 +164,13 @@ namespace RPG.Events
             FortfahrenButton.moveElement(220, 180);
             FortfahrenButton.clickEvent += OnClick;
         }
-        public void Update()
+        public void Update(GameTime gameTime)
         {
+            if(firstStart)
+            {
+                InitializeData();
+                firstStart = false;
+            }
             foreach(GUIElement face in Faces)
             {
                 face.Update();
@@ -215,7 +219,7 @@ namespace RPG.Events
             }
             if (element == "Buttons\\Continue_Button")
             {
-                auswahlBestätigt = true;
+                isOver = true;
             }
 
             for (int i = 0; i < Faces.Count; i++)

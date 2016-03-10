@@ -10,8 +10,11 @@ using RPG.Extensions_And_Helper_Classes;
 
 namespace RPG.Events
 {
-    class ConversationEvent
+    class ConversationEvent : IEvent
     {
+        public bool firstStart { get; set; }
+        public bool isOver { get; set; }
+        public int ID { get; }
         //Position des Textes
         Vector2 textLine_1 = new Vector2(150, 422);
         Vector2 textLine_2 = new Vector2(150, 447);
@@ -40,10 +43,18 @@ namespace RPG.Events
         TextElement row4;
 
         GUIElement textBox;
+
+      
         public ConversationEvent(int sceneNumber, int partNumber, int textBoxNumber)
         {
             this.getScene(sceneNumber, partNumber, textBoxNumber);
             textBox = new GUIElement("Boxes\\TextBox_Heroic");
+            firstStart = true;
+        }
+
+        public void InitializeData()
+        {
+
         }
 
         void getScene(int sceneNumber, int partNumber, int textBoxNumber)
@@ -89,6 +100,15 @@ namespace RPG.Events
 
             textBox.CenterElement(576, 720);
             textBox.moveElement(0, 180);
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            if(firstStart)
+            {
+                InitializeData();
+                firstStart = false;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)

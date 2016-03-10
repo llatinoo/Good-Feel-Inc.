@@ -12,11 +12,11 @@ namespace RPG.Scenes
             private Scene ActiveScene;
             private int sceneCounter;
 
-            public GameManager(List<PartyMember> group)
+            public GameManager(List<PartyMember> group, int sceneId)
             {
                 this.Group = group;
 
-                this.sceneCounter = 0;
+                this.sceneCounter = sceneId;
                 this.ActiveScene = this.Scenes.ElementAt(this.sceneCounter);
 
                 this.StartGame();
@@ -29,7 +29,7 @@ namespace RPG.Scenes
 
             public List<PartyMember> GetPartyMember()
             {
-            return Group;
+                return Group;
             }
 
             private void StartGame()
@@ -43,11 +43,11 @@ namespace RPG.Scenes
                 {
                     return;
                 }
-                this.Group = this.ActiveScene.Group;
-
+                this.Group = this.ActiveScene.SceneGroup;
+                
                 this.sceneCounter++;
                 this.ActiveScene = this.Scenes.ElementAt(this.sceneCounter);
-
+                
                 this.ActiveScene.Play(this.Group);
             }
         }
