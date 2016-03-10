@@ -16,6 +16,7 @@ namespace RPG
         Scenes.GameManager gameManager;
         int activeScene;
         List<PartyMember> group;
+        SafeGameState safegame;
 
         Player char1 = new Player("Jos", Classes.Warrior, 10, new List<int>(10), 20, "Animations\\Battlers\\Male\\Jos\\Jos_Standard_Animation", "Animations\\Battlers\\Male\\Jos\\Jos_Attack_Animation", "Animations\\Battlers\\Male\\Jos\\Jos_Death_Animation");
         Enemy enemy1 = new Enemy("Kaiser", Classes.Coloss, 10, "Enemies\\Bosse\\Human\\Kaiser\\Kaiser_Standard_Animation", "Enemies\\Bosse\\Human\\Kaiser\\Kaiser_Attack_Animation", "Enemies\\Bosse\\Human\\Kaiser\\Kaiser_Death_Animation", true);
@@ -133,16 +134,16 @@ namespace RPG
             this.testevent = new BattleEvent(new List<PartyMember> {this.char2, this.char3 }, new List<Enemy> {this.enemy1 }, "Backgrounds\\Battle\\Forest_Battle_Background");
             choosetest = new ChooseCadreEvent(new List<PartyMember> { this.char1, this.char2, this.char3, this.char4 }, Fightcadre, "Backgrounds\\Battle\\Bell_Battle_Background");
             //Scene1 = new StoryEvent(new List<ConversationEvent> { conversation1, conversation2 }, "Backgrounds\\Story\\Anlegestelle_Triumphfelder_Story_Background.png");
-            //TEST
+            
+            
+            //STEST
             List<PartyMember> miau = new List<PartyMember>();
             miau.Add(this.char1);
             miau.Add(this.char2);
-
             gameManager = new Scenes.GameManager(miau);
 
-
-
         }
+
         public void LoadContent(ContentManager content)
         {
             LoadContentHelper.LoadContent(content);
@@ -255,9 +256,11 @@ namespace RPG
         
         public void Update(GameTime gameTime)
         {
+            //Safegame TEST
             activeScene = gameManager.GetSceneCounter();
             group = gameManager.GetPartyMember();
-
+            safegame = new SafeGameState(group, activeScene);
+            //Safegame END TEST
                 this.controls.Update();
 
             //Wenn das options Menu geöffnet wird, wird der Gamestate gespeichert um nach dem pausieren fortzufahren
@@ -512,6 +515,7 @@ namespace RPG
             screen.Insert(index,newTexture);
         }
 
+        //Switch case als alternative ?
         public void OnClick(string element)
         {
             if(element == "Buttons\\Continue_Button")
@@ -534,8 +538,8 @@ namespace RPG
             }
             if (element == "Buttons\\Save_Button")
             {
-                //Save
-                SaveEvent safe = new SaveEvent(group,activeScene);
+                //Objekt Safegame mit dem aktuellen Status des Spiels wird an die SaveEventklasse übergeben
+                SaveEvent safe = new SaveEvent(safegame);
             }
             if (element == "Skill1")
             {

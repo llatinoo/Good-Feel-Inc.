@@ -8,7 +8,6 @@ namespace RPG.Scenes
         public class GameManager
         {
             protected List<PartyMember> Group { get; set; }
-
             private List<Scene> Scenes = new List<Scene>();
             private Scene ActiveScene;
             private int sceneCounter;
@@ -32,7 +31,6 @@ namespace RPG.Scenes
             {
             return Group;
             }
-
 
             private void StartGame()
             {

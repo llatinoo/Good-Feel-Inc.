@@ -292,6 +292,7 @@ namespace RPG.Events
             int enemyCount = 0;
             foreach (Character character in this.FightCadre)
             {
+                //Durch switch case ersetzen
                 //Anpassung benötigt da am Ende Festwerte eingetragen wurden
                 if (groupCount == 0)
                 {
@@ -580,7 +581,6 @@ namespace RPG.Events
                     charAttackAnimation_4.active = false;
                     this.FightCadre.ElementAt<Character>(3).LoadContent(charStandardAnimation_4, this.characterPosition_4);
                 }
-
                 groupCount++;
             }
 
@@ -834,21 +834,14 @@ namespace RPG.Events
 
             }
 
-
-
-
             int skillCounter = 0;
             int charCounter = 0;
             int enemieCounter = 0;
 
-
-
             foreach (Character character in this.FightCadre)
             {
-
                 if (character.GetType() == typeof(PartyMember) || character.GetType() == typeof(Player))
                 {
-
                     if (charCounter == 0)
                     {
                         this.Character1Name = new TextElement(LoadContentHelper.AwesomeFont, character.Name, (int)this.targetPosition_1.X, (int)this.targetPosition_1.Y, true, MouseIntersect);
@@ -878,6 +871,7 @@ namespace RPG.Events
                             skillCounter++;
                         }
                     }
+
                     if (charCounter == 1)
                     {
                         this.Character2Name = new TextElement(LoadContentHelper.AwesomeFont, character.Name, (int)this.targetPosition_2.X, (int)this.targetPosition_2.Y, true, MouseIntersect);
@@ -938,10 +932,10 @@ namespace RPG.Events
                                 this.character3skill4 = new TextElement(LoadContentHelper.AwesomeFont, skill.Name, (int)this.skillPosition_4.X, (int)this.skillPosition_4.Y, true, MouseIntersect);
                                 this.character3skill4.tclickEvent += this.OnClickSkill;
                             }
-
                             skillCounter++;
                         }
                     }
+
                     if (charCounter == 3)
                     {
                         this.Character4Name = new TextElement(LoadContentHelper.AwesomeFont, character.Name, (int)this.targetPosition_4.X, (int)this.targetPosition_4.Y, true, MouseIntersect);
@@ -1131,8 +1125,6 @@ namespace RPG.Events
             this.haloIcoEnemy_4 = new GUIElement("Icons\\Halo_Icon", (int)icoPositionEnemy_4.X, (int)icoPositionEnemy_4.Y);
             this.toxicIcoEnemy_4 = new GUIElement("Icons\\Toxic_Icon", (int)icoPositionEnemy_4.X, (int)icoPositionEnemy_4.Y);
 
-
-
             mindBlownIcoCharacter_1.LoadContent(content);
             bleedIcoCharacter_1.LoadContent(content);
             blessedIcoCharacter_1.LoadContent(content);
@@ -1188,7 +1180,6 @@ namespace RPG.Events
             burnIcoEnemy_4.LoadContent(content);
             haloIcoEnemy_4.LoadContent(content);
             toxicIcoEnemy_4.LoadContent(content);
-
         }
 
         public void LoadAnimatedSkillsFromPartymember(List<Character> actualTargets, string targetName)
